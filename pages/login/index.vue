@@ -129,7 +129,7 @@
 		// margin-top: 250rpx;
 	}
 	.a-i-d {
-		width:450rpx;
+		width:380rpx;
 		margin:0 auto;
 	}
 	uni-input {

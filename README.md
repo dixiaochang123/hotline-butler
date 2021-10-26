@@ -19,4 +19,8 @@
 			<!-- #endif -->
 </code>
 
-## over
+## 分辨率
+<code>
+华为MatePad Pro屏幕分辩率
+分辨率：2560×1440
+</code>

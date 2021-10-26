@@ -16,7 +16,9 @@
 			}
 		},
 		onLoad() {
-
+			uni.redirectTo({
+			    url: "pages/login/index"
+			});
 		},
 		methods: {
 
