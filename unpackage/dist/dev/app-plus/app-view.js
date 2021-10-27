@@ -223,68 +223,52 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-uni-view",
-    { attrs: { _i: 0 } },
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
-      _c("v-uni-view", { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } }, [
-        _vm._v("武进12345热线管家")
-      ]),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
         [
           _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            [
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+                [_vm._v("热线管家")]
+              ),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
+                [_vm._v("LOGIN")]
+              ),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+                [_vm._v("登录")]
+              )
+            ],
+            1
+          ),
+          _c(
             "uni-forms",
-            { ref: "form", attrs: { _i: 3 } },
+            { ref: "form", staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
             [
               _c(
                 "uniFormsItem",
-                { attrs: { _i: 4 } },
-                [
-                  _c("uniDataPicker", {
-                    attrs: { _i: 5 },
-                    on: {
-                      nodeclick: function($event) {
-                        return _vm.$handleViewEvent($event)
-                      }
-                    },
-                    model: {
-                      value: _vm._$g(5, "v-model"),
-                      callback: function() {},
-                      expression: "classes"
-                    }
-                  })
-                ],
-                1
-              ),
-              _c(
-                "uniFormsItem",
-                { attrs: { _i: 6 } },
+                { attrs: { _i: 7 } },
                 [
                   _c("uniEasyinput", {
-                    attrs: { _i: 7 },
-                    model: {
-                      value: _vm._$g(7, "v-model"),
-                      callback: function() {},
-                      expression: "formData.name"
-                    }
-                  })
-                ],
-                1
-              ),
-              _c(
-                "uniFormsItem",
-                { attrs: { _i: 8 } },
-                [
-                  _c("uniEasyinput", {
-                    staticClass: _vm._$g(9, "sc"),
-                    attrs: { _i: 9 },
+                    staticClass: _vm._$g(8, "sc"),
+                    attrs: { _i: 8 },
                     on: {
                       input: function($event) {
                         return _vm.$handleViewEvent($event)
                       }
                     },
                     model: {
-                      value: _vm._$g(9, "v-model"),
+                      value: _vm._$g(8, "v-model"),
                       callback: function() {},
                       expression: "formData.phone"
                     }
@@ -294,24 +278,29 @@ var render = function() {
               ),
               _c(
                 "uniFormsItem",
-                { attrs: { _i: 10 } },
+                { attrs: { _i: 9 } },
                 [
                   _c("uniEasyinput", {
-                    staticClass: _vm._$g(11, "sc"),
-                    attrs: { _i: 11 },
+                    staticClass: _vm._$g(10, "sc"),
+                    attrs: { _i: 10 },
                     on: {
                       input: function($event) {
                         return _vm.$handleViewEvent($event)
                       }
                     },
                     model: {
-                      value: _vm._$g(11, "v-model"),
+                      value: _vm._$g(10, "v-model"),
                       callback: function() {},
                       expression: "formData.password"
                     }
                   })
                 ],
                 1
+              ),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+                [_vm._v("忘记密码?")]
               )
             ],
             1
@@ -3249,7 +3238,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../HBuilderX.2.6.16.20200424/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 20);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.a-i-c[data-v-705bf593] {\r\n  font-size: 31rpx;\r\n  text-align: center;\r\n  color: #36f2ed;\n}\n.a-i-d[data-v-705bf593] {\r\n  width: 380rpx;\r\n  margin: 0 auto;\n}\nuni-input[data-v-705bf593] {\r\n  display: block;\r\n  font-size: 16px;\r\n  line-height: 1.4em;\r\n  height: 4.4em;\r\n  min-height: 1.4em;\r\n  overflow: hidden;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.content[data-v-705bf593] {\r\n  background-color: #f4f7f9;\n}\n.a-i-d[data-v-705bf593] {\r\n  width: 600rpx;\r\n  height: 816rpx;\r\n  background: #FFFFFF;\r\n  box-shadow: 0px 34px 88px 4px rgba(0, 20, 199, 0.04);\r\n  border-radius: 10rpx;\r\n  text-align: center;\r\n  position: absolute;\r\n  right: 128rpx;\r\n  top: 0;\r\n  bottom: 0;\r\n  margin: auto;\r\n  padding: 0 100rpx;\n}\n.a-i-c[data-v-705bf593] {\r\n  position: relative;\r\n  height: 233rpx;\n}\n.a-i-c uni-text[data-v-705bf593] {\r\n  display: block;\r\n  font-size: 50rpx;\r\n  color: #395176;\r\n  font-family: PingFang SC;\n}\n.a-i-c .text1[data-v-705bf593] {\r\n  padding-top: 50rpx;\r\n  font-size: 32px;\r\n  font-family: DOUYU;\r\n  font-weight: normal;\r\n  background: linear-gradient(0deg, #0030E1 0%, #0073FA 100%);\r\n  -webkit-background-clip: text;\r\n  -webkit-text-fill-color: transparent;\n}\n.a-i-c .text2[data-v-705bf593] {\r\n  font-weight: bold;\r\n  opacity: 0.1;\r\n  position: absolute;\r\n  bottom: 0;\r\n  left: 0;\r\n  right: 0;\r\n  margin: auto;\n}\n.a-i-c .text3[data-v-705bf593] {\r\n  font-weight: 600;\r\n  position: absolute;\r\n  bottom: 15rpx;\r\n  left: 0;\r\n  right: 0;\r\n  margin: auto;\n}\n.form[data-v-705bf593] {\r\n  position: relative;\n}\n.forget-password[data-v-705bf593] {\r\n  position: absolute;\r\n  bottom: 60rpx;\r\n  right: 0;\r\n  font-size: 20rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 500;\r\n  color: #395176;\n}\n.uni-forms-item[data-v-705bf593] {\r\n  padding-bottom: 67rpx;\n}\n[data-v-705bf593] .uni-easyinput__content {\r\n  border-left: none;\r\n  border-right: none;\r\n  border-top: none;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
