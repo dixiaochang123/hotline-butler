@@ -118,7 +118,7 @@
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
 					uni.navigateTo({
-			  　　     url: '../index/index' //跳转地址
+			  　　     url: '../acceptance/index' //跳转地址
 			  　　  })
 					
 				}).catch(err => {

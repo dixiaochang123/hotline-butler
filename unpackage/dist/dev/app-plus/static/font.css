@@ -1,6 +1,15 @@
-@font-face {  
-    font-family: 'DOUYU';
-    src: url('@/static/douyuFont-2.otf');
-    font-weight: normal;  
-    font-style: normal;  
-  }
+@font-face {
+	font-family: 'DOUYU';
+	src: url('@/static/douyuFont-2.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+/deep/ .uni-nav-bar-text {
+	font-size: 32rpx;
+	font-family: DOUYU;
+	font-weight: normal;
+	color: #395176;
+	background: linear-gradient(0deg, #0030E1 0%, #0073FA 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}

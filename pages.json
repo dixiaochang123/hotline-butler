@@ -22,6 +22,7 @@
         ,{
             "path" : "pages/login/index",
             "style" : {
+				"navigationBarTitleText": "uni-app",
 				"app-plus": {
 					"titleNView": false,
 					"background":"#F4F7F9"
@@ -29,29 +30,15 @@
 			}
         }
         ,{
-            "path" : "pages/Acceptance/index",
+            "path" : "pages/acceptance/index",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/Acceptance/index/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/Acceptance/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false
+                "enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background":"#F4F7F9"
+				}
             }
             
         }
