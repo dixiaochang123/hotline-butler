@@ -4,7 +4,8 @@
 			"path" : "pages/login/index",
 			"style" : {
 				"app-plus": {
-					"titleNView": false
+					"titleNView": false,
+					"background":"#F4F7F9"
 				}
 			}
 		},
@@ -13,7 +14,8 @@
 			"style": {
 				"navigationBarTitleText": "uni-app",
 				"app-plus": {
-					"titleNView": false
+					"titleNView": false,
+					"background":"#F4F7F9"
 				}
 			}
 		}
@@ -21,15 +23,44 @@
             "path" : "pages/login/index",
             "style" : {
 				"app-plus": {
-					"titleNView": false
+					"titleNView": false,
+					"background":"#F4F7F9"
 				}
 			}
+        }
+        ,{
+            "path" : "pages/Acceptance/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/Acceptance/index/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/Acceptance/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"rpxCalcMaxDeviceWidth": "100" 
 	}
 }

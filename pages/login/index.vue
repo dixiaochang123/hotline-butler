@@ -22,6 +22,7 @@
 				</uniFormsItem>
 				<text class="forget-password">忘记密码?</text>
 			</uni-forms>
+			<button style="visibility: hidden;">登 陆</button>
 			<button type="primary" @click="submit">登 陆</button>
 		</view>
 	</view>
@@ -47,8 +48,8 @@
 				// 表单数据
 				formData: {
 					// name: '',
-					phone: '',
-					password:'',
+					phone: '1361166910',
+					password:'111111',
 
 				},
 				// index: 0,
@@ -116,6 +117,10 @@
 			submit() {
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
+					uni.navigateTo({
+			  　　     url: '../index/index' //跳转地址
+			  　　  })
+					
 				}).catch(err => {
 					console.log('表单错误信息：', err);
 				})
@@ -123,14 +128,22 @@
 		}
 	}
 </script>
-
+<style>
+	@import "../../static/font.css";
+</style>
 <style lang="scss" scoped>
+	@function rpx2multiple ($px) {
+	  @return ($px * 1.5) + rpx;
+	}
 	.content {
 		background-color: rgba(244, 247, 249, 1);
 	}
 	.a-i-d {
-		width: 600rpx;
-		height: 816rpx;
+		border:solid 1px;
+		// width: 600rpx;
+		// height: 816rpx;
+		width: rpx2multiple(600);
+		height: rpx2multiple(816);
 		background: #FFFFFF;
 		box-shadow: 0px 34px 88px 4px rgba(0, 20, 199, 0.04);
 		border-radius: 10rpx;
@@ -141,19 +154,23 @@
 		bottom:0;
 		margin:auto;
 		padding:0 100rpx;
+		box-sizing: border-box;
 	}
 	.a-i-c {
 		position: relative;
 		height: 233rpx;
+		height: rpx2multiple(233);
 		text {
 			display: block;
 			font-size: 50rpx;
+			font-size: rpx2multiple(50);
 			color: #395176;
 			font-family: PingFang SC;
 		}
 		.text1 {
 			padding-top: 50rpx;
 			font-size: 32px;
+			font-size: rpx2multiple(32);
 			font-family: DOUYU;
 			font-weight: normal;
 			background: linear-gradient(0deg, #0030E1 0%, #0073FA 100%);
@@ -174,6 +191,7 @@
 			font-weight: 600;
 			position: absolute;
 			bottom: 15rpx;
+			bottom: rpx2multiple(2);
 			left: 0;
 			right: 0;
 			margin:auto;
@@ -184,19 +202,31 @@
 	}
 	.forget-password {
 		position: absolute;
-		bottom: 60rpx;
+		bottom: 30rpx;
+		bottom: rpx2multiple(30);
 		right: 0;
 		font-size: 20rpx;
+		font-size: rpx2multiple(20);
 		font-family: PingFang SC;
 		font-weight: 500;
 		color: #395176;
 	}
 	.uni-forms-item {
-		padding-bottom: 67rpx;
+		padding: 33rpx 0;
+		padding: rpx2multiple(33) 0;
 	}
 	/deep/ .uni-easyinput__content {
 		border-left: none;
 		border-right: none;
 		border-top: none;
+		border-radius: 0;
+	}
+	uni-button {
+		background: #0C24FF;
+		border-radius: 80prx;
+		border-radius: rpx2multiple(80);
+		color: #FFFFFF;
+		font-family: PingFang SC;
+		font-weight: 600;
 	}
 </style>
