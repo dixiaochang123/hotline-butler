@@ -1,0 +1,61 @@
+@font-face {
+	font-family: 'DOUYU';
+	src: url('@/static/douyuFont-2.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'PangMenZhengDao';
+	src: url('@/static/PangMenZhengDaoBiaoTiTi-1.ttf');
+	font-weight: 400;
+	font-style: normal;
+}
+.pmzd-font {
+	font-family: PangMenZhengDao;
+}
+/* 顶部栏样式 */
+/deep/ .uni-nav-bar-text {
+	font-size: 32rpx;
+	font-family: DOUYU;
+	font-weight: normal;
+	color: #395176;
+	background: linear-gradient(0deg, #0030E1 0%, #0073FA 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.box-style {
+	background-color: #FFFFFF;
+	border-radius: 60rpx;
+	padding:80rpx;
+	box-sizing: border-box;
+}
+.box-style-head {
+	height: 68rpx;
+	font-size: 70rpx;
+	font-family: PingFang SC;
+	font-weight: 600;
+	color: #395176;
+	position: relative;
+	padding-left: 40rpx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.box-style-head::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 15rpx;
+	width: 12rpx;
+	height: 46rpx;
+	background: #0073FA;
+	border-radius: 4rpx;
+	
+}
+.box-style-head-left {
+	
+}
+.box-style-head-right {
+	font-size: 48rpx;
+	color: #4585F5;
+}

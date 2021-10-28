@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" left-text="<" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="box">
 			<!-- 左侧tabs -->
 			<Tabs :active="active" />
@@ -518,7 +518,7 @@
 				margin-bottom: rpx2multiple(40);
 			}
 			.acceptance-data-show-right3 {
-				margin-bottom: rpx2multiple(40);
+				
 			}
 			.chart {
 				width: 100%;
@@ -533,5 +533,6 @@
 	}
 	.word-order {
 		width: 100%;
+		margin-top: rpx2multiple(40);
 	}
 </style>
