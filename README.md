@@ -1,4 +1,4 @@
-# echarts for app的实例
+# 热线管家pad
 ## 引入 echarts.min.js
 <!-- #ifdef APP-PLUS || H5  -->
 		<view id="container"></view>
