@@ -76,7 +76,7 @@
 	 * @event {Function}	iconClick	点击图标时触发
 	 * @example <uni-easyinput v-model="mobile"></uni-easyinput>
 	 */
-
+import uniIcons from "../../../uni-icons/components/uni-icons/uni-icons.vue"
 	export default {
 		name: 'uni-easyinput',
 		emits:['click','iconClick','update:modelValue','input','focus','blur','confirm'],
@@ -156,6 +156,9 @@
 				type:[String,Boolean],
 				default:''
 			}
+		},
+		components: {
+			uniIcons
 		},
 		data() {
 			return {

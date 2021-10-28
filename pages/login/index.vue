@@ -129,7 +129,7 @@
 	}
 </script>
 <style>
-	@import "../../static/font.css";
+	@import "../../static/style.css";
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {

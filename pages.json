@@ -20,16 +20,6 @@
 			}
 		}
         ,{
-            "path" : "pages/login/index",
-            "style" : {
-				"navigationBarTitleText": "uni-app",
-				"app-plus": {
-					"titleNView": false,
-					"background":"#F4F7F9"
-				}
-			}
-        }
-        ,{
             "path" : "pages/acceptance/index",
             "style" :                                                                                    
             {
@@ -37,7 +27,7 @@
                 "enablePullDownRefresh": false,
 				"app-plus": {
 					"titleNView": false,
-					"background":"#F4F7F9"
+					"background":"#EEF2F5"
 				}
             }
             
