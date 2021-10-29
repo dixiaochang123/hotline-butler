@@ -1,0 +1,524 @@
+<template>
+	<view class="content">
+		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<view class="box">
+			<!-- 左侧tabs -->
+			<Tabs :active="active" />
+			<!-- 右侧内容区 -->
+			<view class="box-main">
+				<!--  headtabs 日期-->
+				<view class="uni-tabs">
+					<view class="uni-tabs-item-parent">
+						<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
+							v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
+							{{item}}
+						</view>
+
+					</view>
+					<view class=" uni-tabs-item-selet">
+						<!-- <uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
+							@nodeclick="onnodeclick">
+						</uni-data-picker> -->
+						<picker class="uni-tabs-item-active" :range="years" @change="yearChange" mode="multiSelector">
+							{{  years[0][yearsIndex1] }} --- {{ years[1][yearsIndex2]  }}
+						</picker>
+						<uni-easyinput suffixIcon="search" v-model="searchvalue" placeholder="请输入内容"
+							@iconClick="handlesearch"></uni-easyinput>
+					</view>
+				</view>
+				<view class="data-chart">
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<view class="box-style datas" style="width: 100%;">
+						<view class="data-type-content-list">
+							<view class="content-list-1"></view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+				</view>
+				<view style="height: 300rpx;"></view>
+			</view>
+
+		</view>
+	</view>
+</template>
+
+<script>
+	import demodata from '@/mockdata/demodata.json';
+	import mapdata from '@/mockdata/mapdata.json'
+	import Tabs from '@/components/Tabs/index.vue';
+	import tableData from './tableData.js'
+	import {
+		mapState,
+		mapActions,
+		mapMutations
+	} from "vuex";
+	let myChart;
+	export default {
+		components: {
+			Tabs,
+		},
+		data() {
+			return {
+				isLandScape: true,
+				active: '数据分析', //左侧tabs
+				array: ['中国', '美国', '巴西', '日本'],
+				years: [{
+					text: '2019',
+					value: '2019'
+				}, {
+					text: '2020',
+					value: '2020'
+				}, {
+					text: '2021',
+					value: '2021'
+				}],
+				classes: '2021',
+				years:[
+					["请选择年份", 1998, 1999, 2000],
+					["请选择日期", 11, 12, 13]
+				],
+				yearsIndex1: 0,
+				yearsIndex2: 0,
+				
+				
+				headtabs: ['12345报告', '网络报告', '综合报告'],
+				activetab: '12345报告',
+				searchvalue: '',
+				canvas: '',
+
+				searchVal: '',
+				tableData: [],
+				// 每页数据量
+				pageSize: 10,
+				// 当前页
+				pageCurrent: 1,
+				// 数据总量
+				total: 0,
+				loading: false,
+
+				chartsDataColumn5: {},
+				chartsDataPie2: {},
+				ringOpts: {},
+			}
+		},
+		onReady() {
+			//模拟从服务器获取数据
+			this.getServerData()
+		},
+		onLoad() {
+			this.selectedIndexs = []
+			this.getData(1)
+		},
+		onResize() {
+			console.log(this)
+			let _this = this
+			uni.getSystemInfo({
+				success: function(res) {
+					if (res.windowWidth > res.windowHeight) {
+						// 横屏
+						_this.isLandScape = true
+						console.log('横屏')
+					} else {
+						// 竖屏
+						_this.isLandScape = false
+						console.log('竖屏')
+					}
+				}
+			})
+		},
+		mounted() {
+
+		},
+		methods: {
+			yearChange:function(e){
+				console.log(e)
+				//获得对象的 detail的 value
+				//通过数组的下标改变显示在页面的值
+				this.yearsIndex1 = e.detail.value[0];
+				this.yearsIndex2 = e.detail.value[1];
+				console.log(this.yearsIndex1)
+				console.log(this.yearsIndex2)
+			},
+			handlesearch() {
+				console.log(this.searchvalue)
+			},
+			onnodeclick(e) {
+				this.classes = e.value;
+			},
+			getServerData() {
+				setTimeout(() => {
+					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
+					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
+					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					console.log(this.chartsDataPie2)
+				}, 1500);
+			},
+			clickLeft() {
+
+			},
+			handleClickDatareport() {
+				uni.navigateTo({
+					url: '/pages/acceptance/datareport' //跳转地址
+				})
+			},
+			handletabschange(item) {
+				this.activetab = item;
+
+			},
+			// 多选处理
+			selectedItems() {
+				return this.selectedIndexs.map(i => this.tableData[i])
+			},
+			// 多选
+			selectionChange(e) {
+				console.log(e.detail.index)
+				this.selectedIndexs = e.detail.index
+			},
+			//批量删除
+			delTable() {
+				console.log(this.selectedItems())
+			},
+			// 分页触发
+			change(e) {
+				this.$refs.table.clearSelection()
+				this.selectedIndexs.length = 0
+				this.getData(e.current)
+			},
+			// 搜索
+			search() {
+				this.getData(1, this.searchVal)
+			},
+			// 获取数据
+			getData(pageCurrent, value = '') {
+				this.loading = true
+				this.pageCurrent = pageCurrent
+				this.request({
+					pageSize: this.pageSize,
+					pageCurrent: pageCurrent,
+					value: value,
+					success: res => {
+						// console.log('data', res);
+						this.tableData = res.data
+						this.total = res.total
+						this.loading = false
+					}
+				})
+			},
+			// 伪request请求
+			request(options) {
+				const {
+					pageSize,
+					pageCurrent,
+					success,
+					value
+				} = options
+				let total = tableData.length
+				let data = tableData.filter((item, index) => {
+					const idx = index - (pageCurrent - 1) * pageSize
+					return idx < pageSize && idx >= 0
+				})
+				if (value) {
+					data = []
+					tableData.forEach(item => {
+						if (item.name.indexOf(value) !== -1) {
+							data.push(item)
+						}
+					})
+					total = data.length
+				}
+
+				setTimeout(() => {
+					typeof success === 'function' &&
+						success({
+							data: data,
+							total: total
+						})
+				}, 500)
+			}
+		}
+	}
+</script>
+<style>
+	@import "../../static/style.css";
+</style>
+<style lang="scss" scoped>
+	@function rpx2multiple ($px) {
+		@return ($px * 1.5)+rpx;
+	}
+
+	.content {
+		height: 100vh;
+		overflow: hidden;
+		background-color: #F4F7F9;
+	}
+
+	.box {
+		height: 100%;
+		display: flex;
+		justify-content: flex-start;
+
+	}
+
+	// 右侧内容区
+	.box-main {
+		width: 100%;
+		min-height: 100vh;
+		overflow-y: auto;
+		padding: 0 rpx2multiple(40);
+	}
+
+	.uni-container {
+		.uni-table-tr {
+			height: rpx2multiple(100);
+		}
+
+		td {
+			font-size: rpx2multiple(24);
+			font-family: PingFang SC;
+			font-weight: 500;
+			color: #395176;
+		}
+	}
+
+	// 顶部tabs
+	.uni-tabs {
+		width: 100%;
+		height: 145rpx;
+		height: rpx2multiple(160);
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.uni-tabs-item-parent {
+			height: 100%;
+			width: 30%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.uni-tabs-item {
+			width: rpx2multiple(200);
+			height: rpx2multiple(65);
+			font-size: rpx2multiple(24);
+			line-height: rpx2multiple(65);
+			font-family: PingFang SC;
+			font-weight: 800;
+			color: #B8C0CB;
+			text-align: center;
+		}
+
+		.uni-tabs-item-selet {
+			width: 30%;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+
+		}
+
+		/deep/ .uni-data-tree {
+			width: rpx2multiple(200);
+		}
+
+		/deep/ .uni-easyinput {
+			// width: rpx2multiple(170);
+		}
+
+		/deep/ .uni-easyinput__content {
+			// width: rpx2multiple(370);
+		}
+
+		.uni-tabs-item-active {
+			background: #4585F5;
+			border-radius: rpx2multiple(33);
+			color: #FFFFFF;
+		}
+	}
+
+	.data-chart {
+		margin: rpx2multiple(40) 0;
+		height: rpx2multiple(518);
+		display: grid;
+		grid-template-columns: calc(50% - 80rpx) 50%;
+		grid-template-rows: rpx2multiple(518) rpx2multiple(518);
+		grid-row-gap: rpx2multiple(40);
+		grid-column-gap: rpx2multiple(40);
+
+		.datas {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+
+			.data-type-content-list {
+				// width: 809px;
+				height: rpx2multiple(160);
+				background: #4585F5;
+				border-radius: rpx2multiple(30);
+				display: flex;
+				justify-content: flex-start;
+				padding: rpx2multiple(30) rpx2multiple(39);
+
+				.content-list-1 {
+					width: rpx2multiple(77);
+					height: rpx2multiple(98);
+					background-color: #FFFFFF;
+				}
+
+				.content-list-2 {
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					font-family: PangMenZhengDao;
+					color: #FFFFFF;
+					font-size: rpx2multiple(48);
+					padding-left: rpx2multiple(20);
+				}
+
+			}
+
+			.data-type-appeal {
+				font-size: rpx2multiple(24);
+				font-family: PingFang;
+				font-weight: bold;
+				color: #395176;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.bor {
+					font-size: rpx2multiple(48);
+					vertical-align: sub;
+					padding-right: rpx2multiple(10);
+				}
+
+				.btn {
+					width: rpx2multiple(220);
+					height: rpx2multiple(80);
+					line-height: rpx2multiple(80);
+					text-align: center;
+					background: #DAEFFF;
+					border-radius: rpx2multiple(18);
+					font-size: rpx2multiple(35);
+					font-family: PingFang;
+					font-weight: bold;
+					color: #1EA2FF;
+				}
+			}
+		}
+
+		.charts {
+			margin-left: rpx2multiple(40);
+
+			.charts-box {
+				width: 100%;
+				height: 100%;
+				padding: rpx2multiple(55) 0;
+			}
+		}
+	}
+
+	.uni-group {
+		display: flex;
+		align-items: center;
+	}
+</style>

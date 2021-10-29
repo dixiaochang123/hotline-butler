@@ -181,11 +181,11 @@
 //下面是演示数据，您的项目不需要引用，数据需要您从服务器自行获取
 import demodata from '@/mockdata/demodata.json';
 import mapdata from '@/mockdata/mapdata.json'
-// import qiunDataCharts from '@/components/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue';
+import qiunDataCharts from '@/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue';
 
 export default {
 	components: {
-		// qiunDataCharts
+		qiunDataCharts
 	},
   data() {
     return {

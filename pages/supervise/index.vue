@@ -24,30 +24,36 @@
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">3 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">695 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">695 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">3 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
-							
+
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -86,7 +92,7 @@
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
-					
+
 				</view>
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 50%;">
@@ -106,34 +112,40 @@
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">3 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">3 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;" mode="aspectFit"
+								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
-									<view class="data-type-content-list-5">
-										<view class="">3 <text class="t-1"> 件</text></view><view class="" style="font-family: PingFang;">督办中</view>
-									</view>
+								<view class="data-type-content-list-5">
+									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="" style="font-family: PingFang;">督办中</view>
+								</view>
 							</view>
-							
+
 						</view>
 					</view>
 					<view class="datas-2" style="width: 50%;height::100%;">
-						
+
 						<view class="box-style chats chats-main" style="width: 50%;height: 100%;">
 							<view class="box-style-head">
 								<view class="">多次流转单同比</view>
@@ -157,7 +169,7 @@
 							</view>
 						</view>
 					</view>
-				
+
 				</view>
 				<view class="box-style">
 					<view class="box-style-head">
@@ -183,7 +195,9 @@
 								</uni-td>
 								<uni-td align="center">{{ item.address }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="uni-group">
+										<button class="uni-button" size="mini" type="primary" @click="handleClickSupervise(item)">督办/催办</button>
+									</view>
 								</uni-td>
 							</uni-tr>
 						</uni-table>
@@ -205,7 +219,7 @@
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
-				
+
 				</view>
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 50%;height: 100%;">
@@ -230,11 +244,35 @@
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
-					
+
 				</view>
-			<view style="height: 100rpx;"></view>	
+				<view style="height: 100rpx;"></view>
 			</view>
-			
+			<uni-popup ref="popup" type="bottom">
+				<view class="box-style popup-box">
+					<view class="box-style-head">
+						<view class="">督办/催办信息</view>
+						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
+					</view>
+					<textarea class="textarea"  v-model="textarea" placeholder="输入字体"/>
+					<button class="btn" type="default" @click="sendinfo">发 送</button>
+					<view style="height:20rpx;"></view>
+				</view>
+			</uni-popup>
+			<uni-popup ref="popup1" type="bottom">
+				<view class="box-style popup-box">
+					<!-- <view class="box-style-head" style="visibility: hidden;">
+						<view class="">督办/催办信息</view>
+						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
+					</view> -->
+					<view class="textarea" style="visibility: hidden;">
+						
+					</view>
+					<view class="info">督办/催办信息已发送</view>
+					<button class="btn" type="default" @click="closeinfo">确 定</button>
+					<view style="height:20rpx;"></view>
+				</view>
+			</uni-popup>
 		</view>
 	</view>
 </template>
@@ -257,7 +295,7 @@
 		data() {
 			return {
 				isLandScape: true,
-				active: '考核数据', //左侧tabs
+				active: '督查督办', //左侧tabs
 				array: ['中国', '美国', '巴西', '日本'],
 				years: [{
 					text: '2019',
@@ -273,7 +311,7 @@
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
-
+				textarea:'',
 				searchVal: '',
 				tableData: [],
 				// 每页数据量
@@ -318,6 +356,16 @@
 
 		},
 		methods: {
+			close() {
+				this.$refs.popup.close();
+			},
+			sendinfo() {
+				this.$refs.popup.close();
+				this.$refs.popup1.open('center');
+			},
+			closeinfo() {
+				this.$refs.popup1.close();
+			},
 			onnodeclick(e) {
 				this.classes = e.value;
 			},
@@ -329,6 +377,11 @@
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					console.log(this.chartsDataPie2)
 				}, 1500);
+			},
+			handleClickSupervise(item) {
+				console.log(item)
+				this.$refs.popup.open('center');
+				
 			},
 			clickLeft() {
 
@@ -458,6 +511,7 @@
 			color: #395176;
 		}
 	}
+
 	.data-chart {
 		margin: rpx2multiple(40) 0;
 		height: rpx2multiple(658);
@@ -470,7 +524,7 @@
 			.data-type-content-list {
 				height: rpx2multiple(250);
 				padding: rpx2multiple(50) rpx2multiple(30);
-				background: #DAEFFF;
+				background: #4585F5;
 				border-radius: rpx2multiple(10);
 				margin-bottom: rpx2multiple(40);
 				font-family: PingFang SC;
@@ -486,6 +540,7 @@
 					font-size: rpx2multiple(24);
 					font-weight: 500;
 					color: #1EA2FF;
+					color: #FFFFFF;
 				}
 
 				.content-list-2 {
@@ -498,17 +553,21 @@
 				.content-list-3 {
 					font-size: rpx2multiple(50);
 					color: #1EA2FF;
+					color: #FFFFFF;
 				}
 			}
+
 			.data-type-content-list-3 {
-				display:flex;
+				display: flex;
 				justify-content: space-between;
+
 				.data-type-content-list-4 {
-					display:flex;
+					display: flex;
 					justify-content: flex-start;
 				}
+
 				.data-type-content-list-5 {
-					display:flex;
+					display: flex;
 					justify-content: space-between;
 					flex-direction: column;
 					font-size: rpx2multiple(46);
@@ -516,15 +575,17 @@
 					font-weight: 400;
 					color: #395176;
 					padding-left: rpx2multiple(10);
+
 					.t-1 {
 						font-size: rpx2multiple(20);
 						display: inline-block;
 						padding-left: rpx2multiple(10);
 					}
 				}
-				
+
 			}
 		}
+
 		.datas-2 {
 			// margin-left: rpx2multiple(40);
 			display: flex;
@@ -533,14 +594,52 @@
 
 		.charts {
 			margin-left: rpx2multiple(40);
+
 			.charts-box {
 				width: 100%;
 				height: 100%;
 				padding: rpx2multiple(55) 0;
 			}
 		}
+
 		.chats-main {
 			margin-right: rpx2multiple(40);
+		}
+	}
+	
+	.popup-box {
+		width:rpx2multiple(980);
+		min-height:rpx2multiple(640);
+		
+		.textarea {
+			margin-top:rpx2multiple(40);
+			margin-bottom:rpx2multiple(40);
+			width: 100%;
+			height: rpx2multiple(387);
+			background: #F2F2F2;
+			border-radius: rpx2multiple(18);
+			padding:rpx2multiple(21);
+			font-size: rpx2multiple(24);
+			font-family: PingFang;
+			font-weight: bold;
+		}
+		.info {
+			font-size: rpx2multiple(36);
+			font-family: PingFang;
+			font-weight: bold;
+			color: #4585F5;
+			text-align: center;
+		}
+		.btn {
+			width: rpx2multiple(140);
+			height: rpx2multiple(60);
+			line-height: rpx2multiple(60);
+			background: #0073FA;
+			border-radius: rpx2multiple(14);
+			font-size: 24px;
+			font-family: PingFang;
+			font-weight: bold;
+			color: #FFFFFF;
 		}
 	}
 

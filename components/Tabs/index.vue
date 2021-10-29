@@ -28,11 +28,11 @@
 					name: '考核数据',
 					url:'/pages/assessdata/index'
 				}, {
-					name: '督察督办',
+					name: '督查督办',
 					url:'/pages/supervise/index'
 				}, {
 					name: '数据分析',
-					url:'/pages/login/index'
+					url:'/pages/dataanalysis/index'
 				}, {
 					name: '个人中心',
 					url:'/pages/login/index'
@@ -45,9 +45,10 @@
 			},
 			handlechange(item) {
 				console.log(item.url)
+				if(this.active == item.name)return;
 				uni.navigateTo({
 			　　     url: item.url //跳转地址
-			　　  })
+			　　 })
 			},
 		}
 	}

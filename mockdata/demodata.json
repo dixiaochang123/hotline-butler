@@ -160,10 +160,13 @@
 		}]
 	},
 	"Column": {
-		"categories": ["公共卫生", "政府机构", "物业管理", "公积金服务", "社会保障"],
+		"categories": ["2016", "2017", "2018", "2019", "2020", "2021"],
 		"series": [{
 			"name": "目标值",
-			"data": [350, 360, 310, 330, 130]
+			"data": [35, 36, 31, 33, 13, 34]
+		}, {
+			"name": "完成量",
+			"data": [18, 27, 21, 24, 6, 28]
 		}]
 	},
 	"ColumnA": {
@@ -236,14 +239,6 @@
 		}]
 	},
 	"Pie": {
-		"legend": {
-			"show": false
-		},
-		"grid":{
-			"show":true,
-			
-			"left": 10 
-		},
 		"series": [{
 			"name": "一班",
 			"data": 50
@@ -262,15 +257,11 @@
 		}]
 	},
 	"PieA": {
-		"legend": {
-			"show": false
-		},
-		"grid":{
-			"show":true,
-			
-			"left": 10 
-		},
 		"series": [{
+			"center": ["10%", "50%"],
+			"label": {
+				"show": false
+			},
 			"data": [{
 				"name": "一班",
 				"value": 50

@@ -166,11 +166,12 @@
 						<view class="">一次不满意工单详情</view>
 					</view>
 					<view class="charts-box">
-					<!-- 演示动态改变eopts -->
-					  <qiun-data-charts type="ring" :opts="{legend:{show:false}}" :chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true"/>
+						<!-- 演示动态改变eopts -->
+						<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+							:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
 					</view>
-					
-					
+
+
 				</view>
 				<view style="height: 150rpx;"></view>
 			</view>
@@ -202,13 +203,13 @@
 				subname: '当日', //顶部tabs
 				headtabs: [{
 					name: '当日诉求',
-					subname:'当日'
+					subname: '当日'
 				}, {
 					name: '近一周诉求',
-					subname:'近一周'
+					subname: '近一周'
 				}, {
 					name: '当月诉求',
-					subname:'当月'
+					subname: '当月'
 				}],
 				canvas: '',
 
@@ -224,7 +225,7 @@
 
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
-				ringOpts:{},
+				ringOpts: {},
 			}
 		},
 		onReady() {
@@ -260,18 +261,37 @@
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
-					this.chartsDataColumn5=JSON.parse(JSON.stringify(demodata.Column))
-					this.chartsDataPie2=JSON.parse(JSON.stringify(demodata.PieA))
+					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					this.ringOpts = {
+						color:['#E9A700','#E95F5E','#5E63FF','#5EC4FF','#EA7FE3','#9B8EFF','#6CDC2C','#672099','#F2984E','#0263FF'],
+						legend: {
+							show: false
+						},
+					}
 					console.log(this.chartsDataPie2)
 				}, 1000);
 			},
 			clickLeft() {
-
+				const pages = getCurrentPages();
+				if (pages.length === 2) {
+					uni.navigateBack({
+						delta: 1
+					});
+				} else if (pages.length === 1) {
+					uni.switchTab({
+						url: '/pages/login/index',
+					})
+				} else {
+					uni.navigateBack({
+						delta: 1
+					});
+				}
 			},
 			handleClickDatareport() {
 				uni.navigateTo({
-			　　     url: '/pages/acceptance/datareport' //跳转地址
-			　　  })
+					url: '/pages/acceptance/datareport' //跳转地址
+				})
 			},
 			handletabschange(item) {
 				this.activetab = item.name;
@@ -568,7 +588,7 @@
 			.charts-box {
 				width: 100%;
 				height: 100%;
-				padding:rpx2multiple(35) 0;
+				padding: rpx2multiple(35) 0;
 			}
 		}
 	}
@@ -591,10 +611,12 @@
 
 	.order-details {
 		margin-top: rpx2multiple(40);
+
 		/deep/ .uni-collapse-item {
 			margin-bottom: rpx2multiple(30);
 			background: #F9FBFC;
 		}
+
 		/deep/ .uni-collapse-item__title-box {
 			height: rpx2multiple(150);
 			background: #F9FBFC;
@@ -603,13 +625,15 @@
 			font-weight: bold;
 			color: #395176;
 		}
+
 		/deep/ .uni-collapse-item__wrap-content {
 			height: auto;
+
 			.content {
 				height: auto;
 				background: #F9FBFC;
-				border-top:solid 1px #000000;
-				padding:rpx2multiple(40) rpx2multiple(15);
+				border-top: solid 1px #000000;
+				padding: rpx2multiple(40) rpx2multiple(15);
 				font-size: rpx2multiple(24);
 				font-family: PingFang SC;
 				font-weight: 300;
@@ -618,13 +642,15 @@
 			}
 		}
 	}
+
 	.order-details-pie {
 		margin-top: rpx2multiple(40);
-		height:rpx2multiple(715) ;
+		height: rpx2multiple(715);
+
 		.charts-box {
 			width: 100%;
 			height: 100%;
-			padding:rpx2multiple(35) 0;
+			padding: rpx2multiple(35) 0;
 			box-sizing: border-box;
 		}
 	}

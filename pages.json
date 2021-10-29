@@ -66,6 +66,16 @@
 					"background": "#EEF2F5"
 				}
 			}
+		}, {
+			"path": "pages/dataanalysis/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background": "#EEF2F5"
+				}
+			}
 		}
 	],
 	"globalStyle": {
