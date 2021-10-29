@@ -1,12 +1,17 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path" : "pages/login/index",
-			"style" : {
+	"pages": [{
+			"path": "pages/login/index",
+			"style": {
 				"app-plus": {
 					"titleNView": false,
-					"background":"#F4F7F9"
+					"background": "#F4F7F9"
 				}
+			}
+		},
+		{
+			"path": "pages/ucharts/ucharts",
+			"style": {
+				"navigationBarTitleText": "全端uCharts渲染图表"
 			}
 		},
 		{
@@ -15,29 +20,59 @@
 				"navigationBarTitleText": "uni-app",
 				"app-plus": {
 					"titleNView": false,
-					"background":"#F4F7F9"
+					"background": "#F4F7F9"
+				}
+			}
+		}, {
+			"path": "pages/acceptance/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background": "#EEF2F5"
+				}
+			}
+
+		}, {
+			"path": "pages/acceptance/datareport",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background": "#EEF2F5"
+				}
+			}
+
+		}, {
+			"path": "pages/assessdata/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background": "#EEF2F5"
+				}
+			}
+
+		}, {
+			"path": "pages/supervise/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false,
+					"background": "#EEF2F5"
 				}
 			}
 		}
-        ,{
-            "path" : "pages/acceptance/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": false,
-					"background":"#EEF2F5"
-				}
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-		"rpxCalcMaxDeviceWidth": "100" 
+		"rpxCalcMaxDeviceWidth": "100"
 	}
 }

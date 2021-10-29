@@ -26,10 +26,10 @@
 					url:'/pages/acceptance/index'
 				}, {
 					name: '考核数据',
-					url:'/pages/index/index'
+					url:'/pages/assessdata/index'
 				}, {
 					name: '督察督办',
-					url:'/pages/login/index'
+					url:'/pages/supervise/index'
 				}, {
 					name: '数据分析',
 					url:'/pages/login/index'

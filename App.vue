@@ -8,6 +8,9 @@
 		},
 		onHide: function() {
 			console.log('App Hide')
+		},
+		onResize: function() {
+			console.log('App onResize')
 		}
 	}
 </script>

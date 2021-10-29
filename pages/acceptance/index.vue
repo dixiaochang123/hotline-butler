@@ -18,10 +18,10 @@
 					<!-- left -->
 					<view class="acceptance-data-show-left box-style">
 						<view class="box-style-head">
-							<view class="">当日受理数据</view>
+							<view class="">{{subname}}受理数据</view>
 							<view class="box-style-head-right">数据分析报告</view>
 						</view>
-						<view class="data-report">
+						<view class="data-report" @click="handleClickDatareport">
 							<view class="pmzd-font data-report-value">{{'2367'}}</view>
 							<view class="data-report-border"></view>
 							<view class="data-report-text">受理总量(件)</view>
@@ -57,68 +57,122 @@
 							<view class="box-style-head">
 								<view class="">当日热点诉求Top5 (二级归口)</view>
 							</view>
-							<view class="chart" id="container">
-								
+							<view class="charts-box">
+								<qiun-data-charts type="column"
+									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right2 box-style">
 							<view class="box-style-head">
 								<view class="">当日热点诉求Top5 (三级归口)</view>
 							</view>
-							<view class="chart" id="container1">
-								
+							<view class="charts-box">
+								<qiun-data-charts type="column"
+									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right3 box-style">
 							<view class="box-style-head">
 								<view class="">当日***单位办理数据</view>
 							</view>
-							<view class="chart" id="container2">
-								
+							<view class="charts-box">
+								<qiun-data-charts type="column"
+									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
 
 					</view>
 
 				</view>
-				<view class="word-order box-style" >
+				<view class="word-order box-style">
 					<view class="box-style-head">
 						<view class="">回访不满意工单</view>
 					</view>
-					<view style="width: 100%;">
-						
-						<uni-table border stripe emptyText="暂无更多数据" >
-							<!-- 表头行 -->
+
+					<view class="uni-container">
+						<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据"
+							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th width="30%" align="center">日期</uni-th>
-								<uni-th width="30%" align="center">姓名</uni-th>
-								<uni-th width="30%" align="left">地址</uni-th>
+								<uni-th align="center">日期</uni-th>
+								<uni-th width="25%" align="center">姓名</uni-th>
+								<uni-th width="25%" align="center">姓名</uni-th>
+								<uni-th width="25%" align="center">地址</uni-th>
+								<uni-th width="25%" align="center">设置</uni-th>
 							</uni-tr>
-							<!-- 表格数据行 -->
-							<uni-tr>
-								<uni-td>2020-10-20</uni-td>
-								<uni-td>Jeson</uni-td>
-								<uni-td>北京市海淀区</uni-td>
+							<uni-tr v-for="(item, index) in tableData" :key="index">
+								<uni-td align="center">{{ item.date }}</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.name }}</view>
+								</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.name }}</view>
+								</uni-td>
+								<uni-td align="center">{{ item.address }}</uni-td>
+								<uni-td align="center">
+									<view class="uni-group">
+										<button class="uni-button" size="mini" type="primary">修改</button>
+										<button class="uni-button" size="mini" type="warn">删除</button>
+									</view>
+								</uni-td>
 							</uni-tr>
-							<uni-tr>
-								<uni-td>2020-10-21</uni-td>
-								<uni-td>HanMeiMei</uni-td>
-								<uni-td>北京市海淀区</uni-td>
-							</uni-tr>
-							<uni-tr>
-								<uni-td>2020-10-22</uni-td>
-								<uni-td>LiLei</uni-td>
-								<uni-td>北京市海淀区</uni-td>
-							</uni-tr>
-							<uni-tr>
-								<uni-td>2020-10-23</uni-td>
-								<uni-td>Danner</uni-td>
-								<uni-td>北京市海淀区</uni-td>
-							</uni-tr>
-						
 						</uni-table>
+						<view v-if="false" class="uni-pagination-box">
+							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+								@change="change" />
+						</view>
 					</view>
+
 				</view>
+				<view class="order-details box-style">
+					<view class="box-style-head">
+						<view class="">一次不满意工单详情</view>
+					</view>
+					<view class="" style="width: 100%;">
+						<uni-collapse>
+							<uni-collapse-item title="标题文字" :border="true"
+								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+								<view class="content">
+									<text class="text">折叠内容主体，可自定义内容及样式</text>
+								</view>
+							</uni-collapse-item>
+							<uni-collapse-item title="标题文字" :border="true"
+								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+								<view class="content">
+									<text class="text">折叠内容主体，可自定义内容及样式</text>
+								</view>
+							</uni-collapse-item>
+							<uni-collapse-item title="标题文字" :border="true"
+								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+								<view class="content">
+									<text class="text">折叠内容主体，可自定义内容及样式</text>
+								</view>
+							</uni-collapse-item>
+							<uni-collapse-item title="标题文字" :border="true"
+								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+								<view class="content">
+									<text class="text">折叠内容主体，可自定义内容及样式</text>
+								</view>
+							</uni-collapse-item>
+						</uni-collapse>
+
+					</view>
+
+				</view>
+				<view class="order-details-pie box-style">
+					<view class="box-style-head">
+						<view class="">一次不满意工单详情</view>
+					</view>
+					<view class="charts-box">
+					<!-- 演示动态改变eopts -->
+					  <qiun-data-charts type="ring" :opts="{legend:{show:false}}" :chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true"/>
+					</view>
+					
+					
+				</view>
+				<view style="height: 150rpx;"></view>
 			</view>
 
 		</view>
@@ -126,12 +180,10 @@
 </template>
 
 <script>
-	import uniNavBar from '@/components/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue';
+	import demodata from '@/mockdata/demodata.json';
+	import mapdata from '@/mockdata/mapdata.json'
+	import tableData from './tableData.js'
 	import Tabs from '@/components/Tabs/index.vue';
-	import uniTable from '@/components/uni-table/components/uni-table/uni-table.vue';
-	import uniTr from '@/components/uni-table/components/uni-tr/uni-tr.vue';
-	import uniTh from '@/components/uni-table/components/uni-th/uni-th.vue';
-	import uniTd from '@/components/uni-table/components/uni-td/uni-td.vue';
 	import {
 		mapState,
 		mapActions,
@@ -140,169 +192,162 @@
 	let myChart;
 	export default {
 		components: {
-			uniNavBar,
 			Tabs,
-			uniTable,
-			uniTh,
-			uniTd
 		},
 		data() {
 			return {
+				isLandScape: true,
 				active: '受理情况', //左侧tabs
 				activetab: '当日诉求', //顶部tabs
+				subname: '当日', //顶部tabs
 				headtabs: [{
-					name: '当日诉求'
+					name: '当日诉求',
+					subname:'当日'
 				}, {
-					name: '近一周诉求'
+					name: '近一周诉求',
+					subname:'近一周'
 				}, {
-					name: '当月诉求'
+					name: '当月诉求',
+					subname:'当月'
 				}],
 				canvas: '',
+
+				searchVal: '',
+				tableData: [],
+				// 每页数据量
+				pageSize: 10,
+				// 当前页
+				pageCurrent: 1,
+				// 数据总量
+				total: 0,
+				loading: false,
+
+				chartsDataColumn5: {},
+				chartsDataPie2: {},
+				ringOpts:{},
 			}
+		},
+		onReady() {
+			//模拟从服务器获取数据
+			this.getServerData()
 		},
 		onLoad() {
-
+			this.selectedIndexs = []
+			this.getData(1)
+		},
+		onResize() {
+			console.log(this)
+			let _this = this
+			uni.getSystemInfo({
+				success: function(res) {
+					if (res.windowWidth > res.windowHeight) {
+						// 横屏
+						_this.isLandScape = true
+						console.log('横屏')
+					} else {
+						// 竖屏
+						_this.isLandScape = false
+						console.log('竖屏')
+					}
+				}
+			})
 		},
 		mounted() {
-			console.log(this.sdata);
-			// renderjs 里可以自由操作 window 、dom等浏览器环境属性
-			const container = document.getElementById('container')
-			// 创建 html5 canvas DOM
-			const canvas = document.createElement('canvas')
-			// id 不可重复
-			canvas.id = 'f2'
-			// canvas.width = uni.upx2px(750)
-			// canvas.height = uni.upx2px(750)
-			canvas.width = 1058;
-			canvas.height = 380;
-			console.log(canvas.width,canvas.height)
-			container.appendChild(canvas)
-			this.canvas = canvas;
-			
-			if (typeof window.F2 === 'function') {
-				this.initF4()
-			} else {
-				// 动态引入较大类库避免影响页面展示
-				const script = document.createElement('script')
-				script.src = 'static/echarts.min.js'
-				script.onload = this.initF4.bind(this)
-				document.head.appendChild(script)
-			
-			}
+
 		},
 		methods: {
+			getServerData() {
+				setTimeout(() => {
+					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
+					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
+					this.chartsDataColumn5=JSON.parse(JSON.stringify(demodata.Column))
+					this.chartsDataPie2=JSON.parse(JSON.stringify(demodata.PieA))
+					console.log(this.chartsDataPie2)
+				}, 1000);
+			},
 			clickLeft() {
 
 			},
+			handleClickDatareport() {
+				uni.navigateTo({
+			　　     url: '/pages/acceptance/datareport' //跳转地址
+			　　  })
+			},
 			handletabschange(item) {
-				this.activetab = item.name
+				this.activetab = item.name;
+				this.subname = item.subname;
 
 			},
-			init5: function() {
-				console.log(234);
+			// 多选处理
+			selectedItems() {
+				return this.selectedIndexs.map(i => this.tableData[i])
 			},
-			initF4() {
-				var myChart = echarts.init(this.canvas);
-				var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
-				var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
-				var yMax = 500;
-				var dataShadow = [];
-				
-				for (var i = 0; i < data.length; i++) {
-				    dataShadow.push(yMax);
+			// 多选
+			selectionChange(e) {
+				console.log(e.detail.index)
+				this.selectedIndexs = e.detail.index
+			},
+			//批量删除
+			delTable() {
+				console.log(this.selectedItems())
+			},
+			// 分页触发
+			change(e) {
+				this.$refs.table.clearSelection()
+				this.selectedIndexs.length = 0
+				this.getData(e.current)
+			},
+			// 搜索
+			search() {
+				this.getData(1, this.searchVal)
+			},
+			// 获取数据
+			getData(pageCurrent, value = '') {
+				this.loading = true
+				this.pageCurrent = pageCurrent
+				this.request({
+					pageSize: this.pageSize,
+					pageCurrent: pageCurrent,
+					value: value,
+					success: res => {
+						// console.log('data', res);
+						this.tableData = res.data
+						this.total = res.total
+						this.loading = false
+					}
+				})
+			},
+			// 伪request请求
+			request(options) {
+				const {
+					pageSize,
+					pageCurrent,
+					success,
+					value
+				} = options
+				let total = tableData.length
+				let data = tableData.filter((item, index) => {
+					const idx = index - (pageCurrent - 1) * pageSize
+					return idx < pageSize && idx >= 0
+				})
+				if (value) {
+					data = []
+					tableData.forEach(item => {
+						if (item.name.indexOf(value) !== -1) {
+							data.push(item)
+						}
+					})
+					total = data.length
 				}
-				
-				var option = {
-				    title: {
-				        text: '特性示例：渐变色 阴影 点击缩放',
-				        subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
-				    },
-				    xAxis: {
-				        data: dataAxis,
-				        axisLabel: {
-				            inside: true,
-				            textStyle: {
-				                color: '#fff'
-				            }
-				        },
-				        axisTick: {
-				            show: false
-				        },
-				        axisLine: {
-				            show: false
-				        },
-				        z: 10
-				    },
-				    yAxis: {
-				        axisLine: {
-				            show: false
-				        },
-				        axisTick: {
-				            show: false
-				        },
-				        axisLabel: {
-				            textStyle: {
-				                color: '#999'
-				            }
-				        }
-				    },
-				    dataZoom: [
-				        {
-				            type: 'inside'
-				        }
-				    ],
-				    series: [
-				        { // For shadow
-				            type: 'bar',
-				            itemStyle: {
-				                color: 'rgba(0,0,0,0.05)'
-				            },
-				            barGap: '-100%',
-				            barCategoryGap: '40%',
-				            data: dataShadow,
-				            animation: false
-				        },
-				        {
-				            type: 'bar',
-				            itemStyle: {
-				                color: new echarts.graphic.LinearGradient(
-				                    0, 0, 0, 1,
-				                    [
-				                        {offset: 0, color: '#83bff6'},
-				                        {offset: 0.5, color: '#188df0'},
-				                        {offset: 1, color: '#188df0'}
-				                    ]
-				                )
-				            },
-				            emphasis: {
-				                itemStyle: {
-				                    color: new echarts.graphic.LinearGradient(
-				                        0, 0, 0, 1,
-				                        [
-				                            {offset: 0, color: '#2378f7'},
-				                            {offset: 0.7, color: '#2378f7'},
-				                            {offset: 1, color: '#83bff6'}
-				                        ]
-				                    )
-				                }
-				            },
-				            data: data
-				        }
-				    ]
-				};
-				
-				// Enable data zoom when user click bar.
-				var zoomSize = 6;
-				myChart.on('click', function (params) {
-				    console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
-				    myChart.dispatchAction({
-				        type: 'dataZoom',
-				        startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
-				        endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
-				    });
-				});
-				myChart.setOption(option);
-			},
+
+				setTimeout(() => {
+					typeof success === 'function' &&
+						success({
+							data: data,
+							total: total
+						})
+				}, 500)
+			}
 		}
 	}
 </script>
@@ -517,22 +562,76 @@
 			.acceptance-data-show-right2 {
 				margin-bottom: rpx2multiple(40);
 			}
-			.acceptance-data-show-right3 {
-				
-			}
-			.chart {
+
+			.acceptance-data-show-right3 {}
+
+			.charts-box {
 				width: 100%;
 				height: 100%;
-				border:solid 1px red;
-				// canvas {
-				// 	width: 100% !important;
-				// 	height: 100% !important;
-				// }
+				padding:rpx2multiple(35) 0;
 			}
 		}
 	}
+
 	.word-order {
 		width: 100%;
 		margin-top: rpx2multiple(40);
+
+		.uni-container {
+			margin-top: rpx2multiple(50);
+		}
+
+		td {
+			font-size: rpx2multiple(24);
+			font-family: PingFang SC;
+			font-weight: 500;
+			color: #395176;
+		}
+	}
+
+	.order-details {
+		margin-top: rpx2multiple(40);
+		/deep/ .uni-collapse-item {
+			margin-bottom: rpx2multiple(30);
+			background: #F9FBFC;
+		}
+		/deep/ .uni-collapse-item__title-box {
+			height: rpx2multiple(150);
+			background: #F9FBFC;
+			font-size: rpx2multiple(24);
+			font-family: PingFang SC;
+			font-weight: bold;
+			color: #395176;
+		}
+		/deep/ .uni-collapse-item__wrap-content {
+			height: auto;
+			.content {
+				height: auto;
+				background: #F9FBFC;
+				border-top:solid 1px #000000;
+				padding:rpx2multiple(40) rpx2multiple(15);
+				font-size: rpx2multiple(24);
+				font-family: PingFang SC;
+				font-weight: 300;
+				color: #395176;
+				line-height: rpx2multiple(38);
+			}
+		}
+	}
+	.order-details-pie {
+		margin-top: rpx2multiple(40);
+		height:rpx2multiple(715) ;
+		.charts-box {
+			width: 100%;
+			height: 100%;
+			padding:rpx2multiple(35) 0;
+			box-sizing: border-box;
+		}
+	}
+
+
+	.uni-group {
+		display: flex;
+		align-items: center;
 	}
 </style>

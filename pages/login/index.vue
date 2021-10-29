@@ -1,25 +1,25 @@
 <template>
 	<view class="content">
 		<!-- <uni-nav-bar left-icon="back" left-text="返回" right-text="菜单" title="导航栏组件"></uni-nav-bar> -->
-		<view class="a-i-d">
+		<view :class="{'a-i-d': isLandScape, 'a-i-d-v': !isLandScape}">
 			<view class="a-i-c">
 				<text class="text1">热线管家</text>
 				<text class="text2">LOGIN</text>
 				<text class="text3">登录</text>
 			</view>
 			<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
-				<!-- <uniFormsItem label="">
-					<uniDataPicker placeholder="请选择班级"  :localdata="dataTree" v-model="classes" @nodeclick="onnodeclick"></uniDataPicker>
-				</uniFormsItem>
-				<uniFormsItem label="" name="name">
-					<uniEasyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
-				</uniFormsItem> -->
-				<uniFormsItem label="" name="phone">
-					<uniEasyinput class="input" v-model="formData.phone" type="number" placeholder="请输入您的账号" @input="binddata('phone',$event.detail.value)" />
-				</uniFormsItem>
-				<uniFormsItem label="" name="password">
-					<uniEasyinput class="input" v-model="formData.password" type="password" placeholder="请输入您的密码" @input="binddata('password',$event.detail.value)" />
-				</uniFormsItem>
+				<!-- <uni-forms-item label="">
+					<uni-data-picker placeholder="请选择班级"  :localdata="dataTree" v-model="classes" @nodeclick="onnodeclick"></uni-data-picker>
+				</uni-forms-item>
+				<uni-forms-item label="" name="name">
+					<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
+				</uni-forms-item> -->
+				<uni-forms-item label="" name="phone">
+					<uni-easyinput class="input" v-model="formData.phone" type="number" placeholder="请输入您的账号" @input="binddata('phone',$event.detail.value)" />
+				</uni-forms-item>
+				<uni-forms-item label="" name="password">
+					<uni-easyinput class="input" v-model="formData.password" type="password" placeholder="请输入您的密码" @input="binddata('password',$event.detail.value)" />
+				</uni-forms-item>
 				<text class="forget-password">忘记密码?</text>
 			</uni-forms>
 			<button style="visibility: hidden;">登 陆</button>
@@ -29,22 +29,23 @@
 </template>
 
 <script>
-	import uniNavBar from '@/components/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue'
-	import uniForms from '@/components/uni-forms/components/uni-forms/uni-forms.vue'
-	import uniFormsItem from '@/components/uni-forms/components/uni-forms-item/uni-forms-item.vue'
-	import uniEasyinput from '@/components/uni-easyinput/components/uni-easyinput/uni-easyinput.vue'
-	import uniDataPicker from '@/components/uni-data-picker/components/uni-data-picker/uni-data-picker.vue'
+	// import uni-nav-bar from '@/components/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue'
+	// import uniForms from '@/components/uni-forms/components/uni-forms/uni-forms.vue'
+	// import uni-forms-item from '@/components/uni-forms/components/uni-forms-item/uni-forms-item.vue'
+	// import uni-easyinput from '@/components/uni-easyinput/components/uni-easyinput/uni-easyinput.vue'
+	// import uni-data-picker from '@/components/uni-data-picker/components/uni-data-picker/uni-data-picker.vue'
 
 	export default {
 		components: {
-			uniNavBar,
-			uniForms,
-			uniFormsItem,
-			uniEasyinput,
-			uniDataPicker
+			// uni-nav-bar,
+			// uniForms,
+			// uni-forms-item,
+			// uni-easyinput,
+			// uni-data-picker
 		},
 		data() {
 			return {
+				isLandScape: true,
 				// 表单数据
 				formData: {
 					// name: '',
@@ -100,6 +101,23 @@
 				}
 			};
 		},
+		 onResize(){
+			 console.log(this)
+			let _this = this
+			uni.getSystemInfo({  
+				success: function(res) {  
+					if (res.windowWidth > res.windowHeight) {  
+					   // 横屏
+						_this.isLandScape = true
+						console.log('横屏')
+					} else {  
+					   // 竖屏
+						_this.isLandScape = false
+						console.log('竖屏')
+					}  
+				}  
+			})
+		},
 		methods: {
 			onnodeclick(e) {
 				this.classes = e.value;
@@ -150,6 +168,23 @@
 		text-align: center;
 		position: absolute;
 		right:128rpx;
+		top:0;
+		bottom:0;
+		margin:auto;
+		padding:0 100rpx;
+		box-sizing: border-box;
+	}
+	.a-i-d-v {
+		border:solid 1px;
+		width: rpx2multiple(600);
+		height: rpx2multiple(816);
+		background: #FFFFFF;
+		box-shadow: 0px 34px 88px 4px rgba(0, 20, 199, 0.04);
+		border-radius: 10rpx;
+		text-align: center;
+		position: absolute;
+		right:0;
+		left: 0;
 		top:0;
 		bottom:0;
 		margin:auto;
