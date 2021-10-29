@@ -96,14 +96,14 @@
 						<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th align="center">日期</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">地址</uni-th>
-								<uni-th width="25%" align="center">设置</uni-th>
+								<uni-th width="1%" align="center">序号</uni-th>
+								<uni-th  align="center">姓名</uni-th>
+								<uni-th  align="center">姓名</uni-th>
+								<uni-th  align="center">地址</uni-th>
+								<uni-th width="1%"  align="center">办结不满工单量</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
-								<uni-td align="center">{{ item.date }}</uni-td>
+								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
@@ -111,12 +111,7 @@
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
 								<uni-td align="center">{{ item.address }}</uni-td>
-								<uni-td align="center">
-									<view class="uni-group">
-										<button class="uni-button" size="mini" type="primary">修改</button>
-										<button class="uni-button" size="mini" type="warn">删除</button>
-									</view>
-								</uni-td>
+								<uni-td align="center">{{ index+1 }}</uni-td>
 							</uni-tr>
 						</uni-table>
 						<view v-if="false" class="uni-pagination-box">
@@ -599,6 +594,9 @@
 
 		.uni-container {
 			margin-top: rpx2multiple(50);
+			.uni-table-tr {
+				height: rpx2multiple(100);
+			}
 		}
 
 		td {

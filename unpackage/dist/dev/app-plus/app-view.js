@@ -13215,7 +13215,7 @@ var render = function() {
                             { attrs: { _i: 51 } },
                             [
                               _c("uni-th", { attrs: { _i: 52 } }, [
-                                _vm._v("日期")
+                                _vm._v("序号")
                               ]),
                               _c("uni-th", { attrs: { _i: 53 } }, [
                                 _vm._v("姓名")
@@ -13227,7 +13227,7 @@ var render = function() {
                                 _vm._v("地址")
                               ]),
                               _c("uni-th", { attrs: { _i: 56 } }, [
-                                _vm._v("设置")
+                                _vm._v("办结不满工单量")
                               ])
                             ],
                             1
@@ -13278,53 +13278,9 @@ var render = function() {
                                 _c("uni-td", { attrs: { _i: "63-" + $33 } }, [
                                   _vm._v(_vm._$g("63-" + $33, "t0-0"))
                                 ]),
-                                _c(
-                                  "uni-td",
-                                  { attrs: { _i: "64-" + $33 } },
-                                  [
-                                    _c(
-                                      "v-uni-view",
-                                      {
-                                        staticClass: _vm._$g("65-" + $33, "sc"),
-                                        attrs: { _i: "65-" + $33 }
-                                      },
-                                      [
-                                        _c(
-                                          "v-uni-button",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "66-" + $33,
-                                              "sc"
-                                            ),
-                                            attrs: {
-                                              size: "mini",
-                                              type: "primary",
-                                              _i: "66-" + $33
-                                            }
-                                          },
-                                          [_vm._v("修改")]
-                                        ),
-                                        _c(
-                                          "v-uni-button",
-                                          {
-                                            staticClass: _vm._$g(
-                                              "67-" + $33,
-                                              "sc"
-                                            ),
-                                            attrs: {
-                                              size: "mini",
-                                              type: "warn",
-                                              _i: "67-" + $33
-                                            }
-                                          },
-                                          [_vm._v("删除")]
-                                        )
-                                      ],
-                                      1
-                                    )
-                                  ],
-                                  1
-                                )
+                                _c("uni-td", { attrs: { _i: "64-" + $33 } }, [
+                                  _vm._v(_vm._$g("64-" + $33, "t0-0"))
+                                ])
                               ],
                               1
                             )
@@ -13343,13 +13299,13 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(70, "sc"), attrs: { _i: 70 } },
+                { staticClass: _vm._$g(67, "sc"), attrs: { _i: 67 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(71, "sc"), attrs: { _i: 71 } },
+                    { staticClass: _vm._$g(68, "sc"), attrs: { _i: 68 } },
                     [
-                      _c("v-uni-view", { attrs: { _i: 72 } }, [
+                      _c("v-uni-view", { attrs: { _i: 69 } }, [
                         _vm._v("一次不满意工单详情")
                       ])
                     ],
@@ -13357,12 +13313,37 @@ var render = function() {
                   ),
                   _c(
                     "v-uni-view",
-                    { staticStyle: { width: "100%" }, attrs: { _i: 73 } },
+                    { staticStyle: { width: "100%" }, attrs: { _i: 70 } },
                     [
                       _c(
                         "uni-collapse",
-                        { attrs: { _i: 74 } },
+                        { attrs: { _i: 71 } },
                         [
+                          _c(
+                            "uni-collapse-item",
+                            { attrs: { _i: 72 } },
+                            [
+                              _c(
+                                "v-uni-view",
+                                {
+                                  staticClass: _vm._$g(73, "sc"),
+                                  attrs: { _i: 73 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-text",
+                                    {
+                                      staticClass: _vm._$g(74, "sc"),
+                                      attrs: { _i: 74 }
+                                    },
+                                    [_vm._v("折叠内容主体，可自定义内容及样式")]
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
                           _c(
                             "uni-collapse-item",
                             { attrs: { _i: 75 } },
@@ -13437,31 +13418,6 @@ var render = function() {
                               )
                             ],
                             1
-                          ),
-                          _c(
-                            "uni-collapse-item",
-                            { attrs: { _i: 84 } },
-                            [
-                              _c(
-                                "v-uni-view",
-                                {
-                                  staticClass: _vm._$g(85, "sc"),
-                                  attrs: { _i: 85 }
-                                },
-                                [
-                                  _c(
-                                    "v-uni-text",
-                                    {
-                                      staticClass: _vm._$g(86, "sc"),
-                                      attrs: { _i: 86 }
-                                    },
-                                    [_vm._v("折叠内容主体，可自定义内容及样式")]
-                                  )
-                                ],
-                                1
-                              )
-                            ],
-                            1
                           )
                         ],
                         1
@@ -13474,13 +13430,13 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(87, "sc"), attrs: { _i: 87 } },
+                { staticClass: _vm._$g(84, "sc"), attrs: { _i: 84 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(88, "sc"), attrs: { _i: 88 } },
+                    { staticClass: _vm._$g(85, "sc"), attrs: { _i: 85 } },
                     [
-                      _c("v-uni-view", { attrs: { _i: 89 } }, [
+                      _c("v-uni-view", { attrs: { _i: 86 } }, [
                         _vm._v("一次不满意工单详情")
                       ])
                     ],
@@ -13488,8 +13444,8 @@ var render = function() {
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(90, "sc"), attrs: { _i: 90 } },
-                    [_c("qiun-data-charts", { attrs: { _i: 91 } })],
+                    { staticClass: _vm._$g(87, "sc"), attrs: { _i: 87 } },
+                    [_c("qiun-data-charts", { attrs: { _i: 88 } })],
                     1
                   )
                 ],
@@ -13497,7 +13453,7 @@ var render = function() {
               ),
               _c("v-uni-view", {
                 staticStyle: { height: "150rpx" },
-                attrs: { _i: 92 }
+                attrs: { _i: 89 }
               })
             ],
             1
@@ -18956,7 +18912,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../HBuilderX.2.6.16.20200424/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 13);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.content[data-v-58a82b63] {\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  background-color: #F4F7F9;\n}\n.box[data-v-58a82b63] {\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: flex-start;\n}\n.box-main[data-v-58a82b63] {\r\n  width: 100%;\r\n  min-height: 100vh;\r\n  overflow-y: auto;\r\n  padding: 0 40rpx;\r\n  padding: 0 60rpx;\r\n  border: solid 1px;\n}\n.uni-tabs[data-v-58a82b63] {\r\n  width: 40%;\r\n  height: 145rpx;\r\n  height: 217.5rpx;\r\n  margin: 0 auto;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\n.uni-tabs .uni-tabs-item[data-v-58a82b63] {\r\n  width: 300rpx;\r\n  height: 97.5rpx;\r\n  font-size: 36rpx;\r\n  line-height: 97.5rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 800;\r\n  color: #B8C0CB;\r\n  text-align: center;\n}\n.uni-tabs .uni-tabs-item-active[data-v-58a82b63] {\r\n  background: #4585F5;\r\n  border-radius: 49.5rpx;\r\n  color: #FFFFFF;\n}\n.acceptance-data-show[data-v-58a82b63] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  height: 100%;\r\n  height: 2550rpx;\n}\n.acceptance-data-show .acceptance-data-show-left[data-v-58a82b63] {\r\n  width: 40%;\r\n  height: 100%;\r\n  margin-right: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report[data-v-58a82b63] {\r\n  height: 375rpx;\r\n  border-radius: 20rpx;\r\n  background-color: #4585F5;\r\n  margin-top: 60rpx;\r\n  padding: 87rpx 75rpx;\r\n  color: #FFFFFF;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-value[data-v-58a82b63] {\r\n  font-size: 150rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-border[data-v-58a82b63] {\r\n  width: 112.5rpx;\r\n  height: 12rpx;\r\n  background: #51FFFD;\r\n  border-radius: 6rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-text[data-v-58a82b63] {\r\n  font-size: 37.5rpx;\r\n  font-weight: 500;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title[data-v-58a82b63] {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  font-size: 45rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: bold;\r\n  color: #395176;\r\n  margin: 60rpx 0 45rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title uni-text[data-v-58a82b63] {\r\n  width: 50%;\r\n  padding: 0;\r\n  text-align: left;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title .text1[data-v-58a82b63] {\r\n  margin-right: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title .text2[data-v-58a82b63] {\r\n  margin-left: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: calc(100% - 850rpx);\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content[data-v-58a82b63] {\r\n  height: 100%;\r\n  width: 50%;\r\n  margin-right: 30rpx;\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-appeal[data-v-58a82b63] {\r\n  height: 100%;\r\n  width: 50%;\r\n  margin-left: 30rpx;\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list[data-v-58a82b63] {\r\n  padding: 45rpx;\r\n  background: #DAEFFF;\r\n  border-radius: 15rpx;\r\n  margin-bottom: 30rpx;\r\n  font-family: PingFang SC;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list[data-v-58a82b63]:last-of-type {\r\n  margin-bottom: 0;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-1[data-v-58a82b63] {\r\n  font-size: 36rpx;\r\n  font-weight: 500;\r\n  color: #1EA2FF;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-2[data-v-58a82b63] {\r\n  width: 49.5rpx;\r\n  height: 6rpx;\r\n  background: #1EA2FF;\r\n  border-radius: 3rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-3[data-v-58a82b63] {\r\n  font-size: 75rpx;\r\n  color: #1EA2FF;\n}\n.acceptance-data-show .acceptance-data-show-right[data-v-58a82b63] {\r\n  width: 60%;\r\n  height: 100%;\r\n  margin-left: 30rpx;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-right > uni-view[data-v-58a82b63] {\r\n  height: 33%;\n}\n.acceptance-data-show .acceptance-data-show-right .acceptance-data-show-right1[data-v-58a82b63] {\r\n  margin-bottom: 60rpx;\n}\n.acceptance-data-show .acceptance-data-show-right .acceptance-data-show-right2[data-v-58a82b63] {\r\n  margin-bottom: 60rpx;\n}\n.acceptance-data-show .acceptance-data-show-right .charts-box[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 52.5rpx 0;\n}\n.word-order[data-v-58a82b63] {\r\n  width: 100%;\r\n  margin-top: 60rpx;\n}\n.word-order .uni-container[data-v-58a82b63] {\r\n  margin-top: 75rpx;\n}\n.word-order td[data-v-58a82b63] {\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 500;\r\n  color: #395176;\n}\n.order-details[data-v-58a82b63] {\r\n  margin-top: 60rpx;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item {\r\n  margin-bottom: 45rpx;\r\n  background: #F9FBFC;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__title-box {\r\n  height: 225rpx;\r\n  background: #F9FBFC;\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: bold;\r\n  color: #395176;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__wrap-content {\r\n  height: auto;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__wrap-content .content {\r\n  height: auto;\r\n  background: #F9FBFC;\r\n  border-top: solid 1px #000000;\r\n  padding: 60rpx 22.5rpx;\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 300;\r\n  color: #395176;\r\n  line-height: 57rpx;\n}\n.order-details-pie[data-v-58a82b63] {\r\n  margin-top: 60rpx;\r\n  height: 1072.5rpx;\n}\n.order-details-pie .charts-box[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 52.5rpx 0;\r\n  box-sizing: border-box;\n}\n.uni-group[data-v-58a82b63] {\r\n  display: flex;\r\n  align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.content[data-v-58a82b63] {\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  background-color: #F4F7F9;\n}\n.box[data-v-58a82b63] {\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: flex-start;\n}\n.box-main[data-v-58a82b63] {\r\n  width: 100%;\r\n  min-height: 100vh;\r\n  overflow-y: auto;\r\n  padding: 0 40rpx;\r\n  padding: 0 60rpx;\r\n  border: solid 1px;\n}\n.uni-tabs[data-v-58a82b63] {\r\n  width: 40%;\r\n  height: 145rpx;\r\n  height: 217.5rpx;\r\n  margin: 0 auto;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\n.uni-tabs .uni-tabs-item[data-v-58a82b63] {\r\n  width: 300rpx;\r\n  height: 97.5rpx;\r\n  font-size: 36rpx;\r\n  line-height: 97.5rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 800;\r\n  color: #B8C0CB;\r\n  text-align: center;\n}\n.uni-tabs .uni-tabs-item-active[data-v-58a82b63] {\r\n  background: #4585F5;\r\n  border-radius: 49.5rpx;\r\n  color: #FFFFFF;\n}\n.acceptance-data-show[data-v-58a82b63] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  height: 100%;\r\n  height: 2550rpx;\n}\n.acceptance-data-show .acceptance-data-show-left[data-v-58a82b63] {\r\n  width: 40%;\r\n  height: 100%;\r\n  margin-right: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report[data-v-58a82b63] {\r\n  height: 375rpx;\r\n  border-radius: 20rpx;\r\n  background-color: #4585F5;\r\n  margin-top: 60rpx;\r\n  padding: 87rpx 75rpx;\r\n  color: #FFFFFF;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-between;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-value[data-v-58a82b63] {\r\n  font-size: 150rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-border[data-v-58a82b63] {\r\n  width: 112.5rpx;\r\n  height: 12rpx;\r\n  background: #51FFFD;\r\n  border-radius: 6rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-report-text[data-v-58a82b63] {\r\n  font-size: 37.5rpx;\r\n  font-weight: 500;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title[data-v-58a82b63] {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  font-size: 45rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: bold;\r\n  color: #395176;\r\n  margin: 60rpx 0 45rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title uni-text[data-v-58a82b63] {\r\n  width: 50%;\r\n  padding: 0;\r\n  text-align: left;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title .text1[data-v-58a82b63] {\r\n  margin-right: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-title .text2[data-v-58a82b63] {\r\n  margin-left: 30rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: calc(100% - 850rpx);\r\n  display: flex;\r\n  justify-content: space-between;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content[data-v-58a82b63] {\r\n  height: 100%;\r\n  width: 50%;\r\n  margin-right: 30rpx;\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-appeal[data-v-58a82b63] {\r\n  height: 100%;\r\n  width: 50%;\r\n  margin-left: 30rpx;\r\n  display: flex;\r\n  justify-content: flex-start;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list[data-v-58a82b63] {\r\n  padding: 45rpx;\r\n  background: #DAEFFF;\r\n  border-radius: 15rpx;\r\n  margin-bottom: 30rpx;\r\n  font-family: PingFang SC;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list[data-v-58a82b63]:last-of-type {\r\n  margin-bottom: 0;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-1[data-v-58a82b63] {\r\n  font-size: 36rpx;\r\n  font-weight: 500;\r\n  color: #1EA2FF;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-2[data-v-58a82b63] {\r\n  width: 49.5rpx;\r\n  height: 6rpx;\r\n  background: #1EA2FF;\r\n  border-radius: 3rpx;\n}\n.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-3[data-v-58a82b63] {\r\n  font-size: 75rpx;\r\n  color: #1EA2FF;\n}\n.acceptance-data-show .acceptance-data-show-right[data-v-58a82b63] {\r\n  width: 60%;\r\n  height: 100%;\r\n  margin-left: 30rpx;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\n}\n.acceptance-data-show .acceptance-data-show-right > uni-view[data-v-58a82b63] {\r\n  height: 33%;\n}\n.acceptance-data-show .acceptance-data-show-right .acceptance-data-show-right1[data-v-58a82b63] {\r\n  margin-bottom: 60rpx;\n}\n.acceptance-data-show .acceptance-data-show-right .acceptance-data-show-right2[data-v-58a82b63] {\r\n  margin-bottom: 60rpx;\n}\n.acceptance-data-show .acceptance-data-show-right .charts-box[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 52.5rpx 0;\n}\n.word-order[data-v-58a82b63] {\r\n  width: 100%;\r\n  margin-top: 60rpx;\n}\n.word-order .uni-container[data-v-58a82b63] {\r\n  margin-top: 75rpx;\n}\n.word-order .uni-container .uni-table-tr[data-v-58a82b63] {\r\n  height: 150rpx;\n}\n.word-order td[data-v-58a82b63] {\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 500;\r\n  color: #395176;\n}\n.order-details[data-v-58a82b63] {\r\n  margin-top: 60rpx;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item {\r\n  margin-bottom: 45rpx;\r\n  background: #F9FBFC;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__title-box {\r\n  height: 225rpx;\r\n  background: #F9FBFC;\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: bold;\r\n  color: #395176;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__wrap-content {\r\n  height: auto;\n}\n.order-details[data-v-58a82b63] .uni-collapse-item__wrap-content .content {\r\n  height: auto;\r\n  background: #F9FBFC;\r\n  border-top: solid 1px #000000;\r\n  padding: 60rpx 22.5rpx;\r\n  font-size: 36rpx;\r\n  font-family: PingFang SC;\r\n  font-weight: 300;\r\n  color: #395176;\r\n  line-height: 57rpx;\n}\n.order-details-pie[data-v-58a82b63] {\r\n  margin-top: 60rpx;\r\n  height: 1072.5rpx;\n}\n.order-details-pie .charts-box[data-v-58a82b63] {\r\n  width: 100%;\r\n  height: 100%;\r\n  padding: 52.5rpx 0;\r\n  box-sizing: border-box;\n}\n.uni-group[data-v-58a82b63] {\r\n  display: flex;\r\n  align-items: center;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
