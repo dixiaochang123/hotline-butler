@@ -10,6 +10,9 @@
 	font-weight: 400;
 	font-style: normal;
 }
+* {
+	box-sizing: border-box;
+}
 .pmzd-font {
 	font-family: PangMenZhengDao;
 }
@@ -31,7 +34,7 @@
 }
 .box-style-head {
 	height: 68rpx;
-	font-size: 70rpx;
+	font-size: 60rpx;
 	font-family: PingFang SC;
 	font-weight: 600;
 	color: #395176;

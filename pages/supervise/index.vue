@@ -384,7 +384,20 @@
 				
 			},
 			clickLeft() {
-
+				const pages = getCurrentPages();
+				if (pages.length === 2) {
+					uni.navigateBack({
+						delta: 1
+					});
+				} else if (pages.length === 1) {
+					uni.switchTab({
+						url: '/pages/login/index',
+					})
+				} else {
+					uni.navigateBack({
+						delta: 1
+					});
+				}
 			},
 			handleClickDatareport() {
 				uni.navigateTo({

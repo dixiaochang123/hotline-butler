@@ -133,7 +133,8 @@
 						</view>
 					</view>
 				</view>
-				<view style="height: 300rpx;"></view>
+				
+				<view style="height: 80rpx;"></view>
 			</view>
 
 		</view>
@@ -437,7 +438,7 @@
 
 	.data-chart {
 		margin: rpx2multiple(40) 0;
-		height: rpx2multiple(518);
+		// height: rpx2multiple(518);
 		display: grid;
 		grid-template-columns: calc(50% - 80rpx) 50%;
 		grid-template-rows: rpx2multiple(518) rpx2multiple(518);

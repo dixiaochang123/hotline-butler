@@ -35,7 +35,7 @@
 					url:'/pages/dataanalysis/index'
 				}, {
 					name: '个人中心',
-					url:'/pages/login/index'
+					url:'/pages/personal/index'
 				}],
 			};
 		},

@@ -42,7 +42,7 @@
 							<view class="data-type-appeal">
 								<view class="data-type-content-list" v-for="(item) in 6" :key="item">
 									<view class="content-list-1">疫情防控 200件</view>
-									<view class="content-list-2"></view>
+									<view class="content-list-2 content-list-2-2"></view>
 									<view class="pmzd-font content-list-3">60.30%</view>
 								</view>
 
@@ -58,9 +58,8 @@
 								<view class="">当日热点诉求Top5 (二级归口)</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column"
-									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
+									:loadingType="1" :echartsApp="true" :echartsH5="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right2 box-style">
@@ -68,9 +67,8 @@
 								<view class="">当日热点诉求Top5 (三级归口)</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column"
-									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
+									:loadingType="1" :echartsApp="true" :echartsH5="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right3 box-style">
@@ -78,9 +76,8 @@
 								<view class="">当日***单位办理数据</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column"
-									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
+									:loadingType="1" :echartsApp="true" :echartsH5="true" />
 							</view>
 						</view>
 
@@ -97,10 +94,10 @@
 							@selection-change="selectionChange">
 							<uni-tr>
 								<uni-th width="1%" align="center">序号</uni-th>
-								<uni-th  align="center">姓名</uni-th>
-								<uni-th  align="center">姓名</uni-th>
-								<uni-th  align="center">地址</uni-th>
-								<uni-th width="1%"  align="center">办结不满工单量</uni-th>
+								<uni-th align="center">姓名</uni-th>
+								<uni-th align="center">姓名</uni-th>
+								<uni-th align="center">地址</uni-th>
+								<uni-th width="1%" align="center">办结不满工单量</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
@@ -160,10 +157,22 @@
 					<view class="box-style-head">
 						<view class="">一次不满意工单详情</view>
 					</view>
-					<view class="charts-box">
-						<!-- 演示动态改变eopts -->
-						<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-							:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+					<view class="chart-pie">
+						<view class="charts-box">
+							<!-- 演示动态改变eopts -->
+							<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+						</view>
+						<view class="chart-pie-legend">
+							<view class="data-type-content-list" v-for="item in 10" :key="item">
+								<view class="content-list-1"></view>
+								<view class="content-list-2">
+									<view class="content-list-2-1">2021-09-11</view>
+									<view class="content-list-2-2">日报</view>
+								</view>
+							</view>
+
+						</view>
 					</view>
 
 
@@ -180,6 +189,8 @@
 	import mapdata from '@/mockdata/mapdata.json'
 	import tableData from './tableData.js'
 	import Tabs from '@/components/Tabs/index.vue';
+	import request from '@/utils/request.js';
+	console.log(request)
 	import {
 		mapState,
 		mapActions,
@@ -221,6 +232,43 @@
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
 				ringOpts: {},
+				columnOpts: {
+					grid: {
+						left: 60,
+					},
+					xAxis: {
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 22,
+						},
+					},
+					yAxis: {
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 22,
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: "#E1E1E1",
+								type: "dashed"
+							}
+						}
+					},
+					legend: {
+						show: false
+					},
+					series:[{
+						itemStyle:{}
+					}]
+				},
 			}
 		},
 		onReady() {
@@ -256,10 +304,25 @@
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
-					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					// color:['#0073FA','#6CD67F','#FFE554','#FF9054','#9454FF']
+					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataColumn5.series[0].data = chartsDataColumn5.series[0].data.map((item,index)=>{
+						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
+						return {
+							name:'111',
+							value:item,
+							itemStyle:{
+								color:colorList[index]
+							}
+						}
+						
+					})
+					this.chartsDataColumn5 = chartsDataColumn5
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					this.ringOpts = {
-						color:['#E9A700','#E95F5E','#5E63FF','#5EC4FF','#EA7FE3','#9B8EFF','#6CDC2C','#672099','#F2984E','#0263FF'],
+						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+							'#672099', '#F2984E', '#0263FF'
+						],
 						legend: {
 							show: false
 						},
@@ -509,6 +572,7 @@
 				display: flex;
 				justify-content: flex-start;
 				flex-direction: column;
+				color: #1EA2FF;
 			}
 
 			// 诉求
@@ -519,6 +583,7 @@
 				display: flex;
 				justify-content: flex-start;
 				flex-direction: column;
+				color: #50D4E3;
 			}
 
 			.data-type-content-list {
@@ -540,7 +605,7 @@
 				.content-list-1 {
 					font-size: rpx2multiple(24);
 					font-weight: 500;
-					color: #1EA2FF;
+					// color: #1EA2FF;
 				}
 
 				.content-list-2 {
@@ -550,9 +615,16 @@
 					border-radius: rpx2multiple(2);
 				}
 
+				.content-list-2-2 {
+					width: rpx2multiple(33);
+					height: rpx2multiple(4);
+					background: #50D4E3;
+					border-radius: rpx2multiple(2);
+				}
+
 				.content-list-3 {
 					font-size: rpx2multiple(50);
-					color: #1EA2FF;
+					// color: #1EA2FF;
 				}
 			}
 		}
@@ -560,22 +632,23 @@
 		// width  58.2  60
 		.acceptance-data-show-right {
 			width: 60%;
-			height: 100%;
+			height: calc(100% - 120rpx);
 			margin-left: rpx2multiple(20);
 			display: flex;
 			justify-content: space-between;
 			flex-direction: column;
 
 			>view {
-				height: 33%;
+				// height: 33%;
+				height: calc(100% / 3);
 			}
 
 			.acceptance-data-show-right1 {
-				margin-bottom: rpx2multiple(40);
+				// margin-bottom: rpx2multiple(40);
 			}
 
 			.acceptance-data-show-right2 {
-				margin-bottom: rpx2multiple(40);
+				margin: rpx2multiple(40) 0;
 			}
 
 			.acceptance-data-show-right3 {}
@@ -594,6 +667,7 @@
 
 		.uni-container {
 			margin-top: rpx2multiple(50);
+
 			.uni-table-tr {
 				height: rpx2multiple(100);
 			}
@@ -645,11 +719,61 @@
 		margin-top: rpx2multiple(40);
 		height: rpx2multiple(715);
 
-		.charts-box {
+		.chart-pie {
 			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+		}
+
+		.charts-box {
+			width: 20%;
 			height: 100%;
 			padding: rpx2multiple(35) 0;
 			box-sizing: border-box;
+		}
+
+		.chart-pie-legend {
+			width: 80%;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: rpx2multiple(100);
+
+			.data-type-content-list {
+				width: 25%;
+				height: rpx2multiple(68);
+				// background: #4585F5;
+				border-radius: rpx2multiple(30);
+				display: flex;
+				justify-content: flex-start;
+				padding: rpx2multiple(30) rpx2multiple(39);
+				color: #395176;
+
+				.content-list-1 {
+					width: rpx2multiple(68);
+					height: rpx2multiple(68);
+					background-color: #E9A700;
+				}
+
+				.content-list-2 {
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					font-family: PangMenZhengDao;
+					font-size: rpx2multiple(24);
+					padding-left: rpx2multiple(20);
+
+					.content-list-2-2 {
+						font-size: rpx2multiple(36);
+					}
+				}
+
+			}
 		}
 	}
 
