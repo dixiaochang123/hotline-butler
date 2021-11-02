@@ -25,6 +25,9 @@
 							<view class="pmzd-font data-report-value">{{'2367'}}</view>
 							<view class="data-report-border"></view>
 							<view class="data-report-text">受理总量(件)</view>
+							<view class="data-report-text-right">
+								查看数据 <br/> 分析报告
+							</view>
 						</view>
 						<view class="data-type-title">
 							<text class="text1">按内容类别</text>
@@ -71,13 +74,29 @@
 									:loadingType="1" :echartsApp="true" :echartsH5="true" />
 							</view>
 						</view>
-						<view class="acceptance-data-show-right3 box-style">
+						<view class="acceptance-data-show-right3 box-style ">
 							<view class="box-style-head">
 								<view class="">当日***单位办理数据</view>
 							</view>
-							<view class="charts-box">
-								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
-									:loadingType="1" :echartsApp="true" :echartsH5="true" />
+							<view class="chart-pie">
+								<view class="charts-box">
+									<!-- 演示动态改变eopts -->
+									<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+										:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+								</view>
+								<view class="chart-pie-legend">
+									<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
+										<view class="content-list-1">
+											<!-- <image :src="item.url" mode="aspectFit"></image> -->
+											<uni-icons type="circle" :color="item.color" size="30"></uni-icons>
+										</view>
+										<view class="content-list-2">
+											<view class="content-list-2-1">{{item.name}}</view>
+											<view class="content-list-2-2">{{item.value}}</view>
+										</view>
+									</view>
+							
+								</view>
 							</view>
 						</view>
 
@@ -125,25 +144,25 @@
 					<view class="" style="width: 100%;">
 						<uni-collapse>
 							<uni-collapse-item title="标题文字" :border="true"
-								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+								thumb="/static/image/edit.svg">
 								<view class="content">
 									<text class="text">折叠内容主体，可自定义内容及样式</text>
 								</view>
 							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="true"
-								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+							<uni-collapse-item title="标题文字" :border="false"
+								thumb="/static/image/edit.svg">
 								<view class="content">
 									<text class="text">折叠内容主体，可自定义内容及样式</text>
 								</view>
 							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="true"
-								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+							<uni-collapse-item title="标题文字" :border="false"
+								thumb="/static/image/edit.svg">
 								<view class="content">
 									<text class="text">折叠内容主体，可自定义内容及样式</text>
 								</view>
 							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="true"
-								thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png">
+							<uni-collapse-item title="标题文字" :border="false"
+								thumb="/static/image/edit.svg">
 								<view class="content">
 									<text class="text">折叠内容主体，可自定义内容及样式</text>
 								</view>
@@ -164,11 +183,13 @@
 								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
 						</view>
 						<view class="chart-pie-legend">
-							<view class="data-type-content-list" v-for="item in 10" :key="item">
-								<view class="content-list-1"></view>
+							<view class="data-type-content-list" v-for="item in ringOptsLegend" :key="item.name">
+								<view class="content-list-1">
+									<image :src="item.url" mode="aspectFit"></image>
+								</view>
 								<view class="content-list-2">
-									<view class="content-list-2-1">2021-09-11</view>
-									<view class="content-list-2-2">日报</view>
+									<view class="content-list-2-1">{{item.name}}</view>
+									<view class="content-list-2-2">{{item.value}}</view>
 								</view>
 							</view>
 
@@ -269,6 +290,68 @@
 						itemStyle:{}
 					}]
 				},
+				ringOptsLegend:[{
+					name:'路况管理',
+					value:'15.63%',
+					url:"/static/image/lkgl.png"
+				},{
+					name:'社会保障',
+					value:'15.63%',
+					url:"/static/image/shbz.png"
+				},{
+					name:'政务热线',
+					value:'15.63%',
+					url:"/static/image/zwrx.png"
+				},{
+					name:'供水服务',
+					value:'15.63%',
+					url:"/static/image/gsfw.png"
+				},{
+					name:'车辆管理',
+					value:'15.63%',
+					url:"/static/image/clgl.png"
+				},{
+					name:'公共卫生',
+					value:'15.63%',
+					url:"/static/image/ggws.png"
+				},{
+					name:'物业管理',
+					value:'15.63%',
+					url:"/static/image/wygl.png"
+				},{
+					name:'园林管理',
+					value:'15.63%',
+					url:"/static/image/ylgl.png"
+				},{
+					name:'垂管行业',
+					value:'15.63%',
+					url:"/static/image/cghy.png"
+				},{
+					name:'计划生育',
+					value:'15.63%',
+					url:"/static/image/jhsy.png"
+				}],
+				ringOptsLegend0:[{
+					name:'国务院督办工单  99件',
+					value:'15.63%',
+					color:"#4585F5"
+				},{
+					name:'省工单  99件',
+					value:'15.63%',
+					color:"#6CD67F"
+				},{
+					name:'市工单  99件',
+					value:'15.63%',
+					color:"#FFE554"
+				},{
+					name:'涉企工单  99件',
+					value:'15.63%',
+					color:"#FF9054"
+				},{
+					name:'疫情单位  99件',
+					value:'15.63%',
+					color:"#9454FF"
+				}]
 			}
 		},
 		onReady() {
@@ -320,6 +403,16 @@
 					this.chartsDataColumn5 = chartsDataColumn5
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					this.ringOpts = {
+						title:{
+							text:"诉求问题",
+							left:"center",
+							top:"center",
+							textStyle:{
+								color:"#395176",
+								fontSize:20,
+								align:"center"
+							}
+						},
 						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
 							'#672099', '#F2984E', '#0263FF'
 						],
@@ -504,13 +597,16 @@
 			.data-report {
 				height: rpx2multiple(250);
 				border-radius: 20rpx;
-				background-color: #4585F5;
 				margin-top: rpx2multiple(40);
 				padding: rpx2multiple(58) rpx2multiple(50);
 				color: #FFFFFF;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
+				background: url(/static/image/slsjbg.png) no-repeat right center;
+				background-size: contain;
+				background-color: #4585F5;
+				position: relative;
 			}
 
 			.data-report-value {
@@ -527,6 +623,18 @@
 			.data-report-text {
 				font-size: rpx2multiple(25);
 				font-weight: 500;
+			}
+			.data-report-text-right {
+				position: absolute;
+				right: rpx2multiple(90);
+				top: 50%;
+				margin-top: -rpx2multiple(20);
+				font-family: DOUYU;
+				font-size: rpx2multiple(20);
+				font-weight: normal;
+				color: #4585F5;
+				z-index: 1;
+				line-height: rpx2multiple(27);
 			}
 
 			.data-type-title {
@@ -651,7 +759,59 @@
 				margin: rpx2multiple(40) 0;
 			}
 
-			.acceptance-data-show-right3 {}
+			.acceptance-data-show-right3 {
+				.charts-box {
+					width: 20%;
+					height: 100%;
+					padding: rpx2multiple(35) 0;
+					box-sizing: border-box;
+				}
+				.chart-pie-legend {
+					width: 80%;
+					height: 100%;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					flex-wrap: wrap;
+					padding: rpx2multiple(100);
+				
+					.data-type-content-list {
+						width: calc(100% / 3);
+						height: rpx2multiple(68);
+						// background: #4585F5;
+						border-radius: rpx2multiple(30);
+						display: flex;
+						justify-content: flex-start;
+						padding: rpx2multiple(30) rpx2multiple(39);
+						color: #395176;
+				
+						.content-list-1 {
+							width: rpx2multiple(10);
+							height: rpx2multiple(10);
+							// background-color: #E9A700;
+							margin-right: rpx2multiple(30);
+							image {
+								width: 100%; 
+								height: 100%; 
+							}
+						}
+				
+						.content-list-2 {
+							display: flex;
+							justify-content: space-between;
+							flex-direction: column;
+							font-family: PangMenZhengDao;
+							font-size: rpx2multiple(24);
+							padding-left: rpx2multiple(20);
+				
+							.content-list-2-2 {
+								font-size: rpx2multiple(36);
+							}
+						}
+				
+					}
+				}
+			}
 
 			.charts-box {
 				width: 100%;
@@ -719,6 +879,7 @@
 		margin-top: rpx2multiple(40);
 		height: rpx2multiple(715);
 
+	}
 		.chart-pie {
 			width: 100%;
 			height: 100%;
@@ -757,7 +918,11 @@
 				.content-list-1 {
 					width: rpx2multiple(68);
 					height: rpx2multiple(68);
-					background-color: #E9A700;
+					// background-color: #E9A700;
+					image {
+						width: 100%; 
+						height: 100%; 
+					}
 				}
 
 				.content-list-2 {
@@ -775,11 +940,13 @@
 
 			}
 		}
-	}
 
 
 	.uni-group {
 		display: flex;
 		align-items: center;
+	}
+	/deep/ .uni-collapse-item__title.uni-collapse-item-border {
+		border:none;
 	}
 </style>

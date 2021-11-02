@@ -2,8 +2,8 @@
 	<view class="content">
 		<view :class="[active==item.name ? 'item active-class' : '', 'item']" v-for="(item,index) in datalist"
 			:key="index" @click="handlechange(item)">
-			<image style="width: 80rpx; height: 80rpx; background-color: #eeeeee;" mode="aspectFit"
-				src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
+			<image style="width: 80rpx; height: 80rpx;" mode="aspectFit"
+				:src="item.imgurl"
 				@error="imageError"></image>
 			<view>{{item.name}}</view>
 		</view>
@@ -23,19 +23,24 @@
 			return {
 				datalist: [{
 					name: '受理情况',
-					url:'/pages/acceptance/index'
+					url:'/pages/acceptance/index',
+					imgurl:'/static/image/slqk.png',
 				}, {
 					name: '考核数据',
-					url:'/pages/assessdata/index'
+					url:'/pages/assessdata/index',
+					imgurl:'/static/image/khsj.png',
 				}, {
 					name: '督查督办',
-					url:'/pages/supervise/index'
+					url:'/pages/supervise/index',
+					imgurl:'/static/image/dcdb.png',
 				}, {
 					name: '数据分析',
-					url:'/pages/dataanalysis/index'
+					url:'/pages/dataanalysis/index',
+					imgurl:'/static/image/sjfx.png',
 				}, {
 					name: '个人中心',
-					url:'/pages/personal/index'
+					url:'/pages/personal/index',
+					imgurl:'/static/image/grzx.png',
 				}],
 			};
 		},

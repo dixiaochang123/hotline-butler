@@ -62,7 +62,7 @@
 						</view>
 						<view class="btns">
 							<view class="update" @click="updatepassword">修改密码</view>
-							<view class="loginout">退出登录</view>
+							<view class="loginout" @click="loginout">退出登录</view>
 
 						</view>
 					</view>
@@ -161,6 +161,11 @@
 			updatepassword() {
 				this.isChangePassword = true;
 			},
+			loginout() {
+				uni.navigateTo({
+					url: '/pages/login/index' //跳转地址
+				})
+			},
 			handleClickDatareport() {
 				uni.navigateTo({
 					url: '/pages/acceptance/datareport' //跳转地址
@@ -251,7 +256,7 @@
 			width: 100%;
 			height: rpx2multiple(300);
 			// background-color: linear-gradient(90deg, rgba(117, 162, 255, 0.7), rgba(0, 115, 250, 0.7));
-			background: url(../../image/个人中心头像背景.png) no-repeat center;
+			background: url(/static/image/个人中心头像背景.png) no-repeat center;
 			background-size: 100% 100%;
 			border-radius: rpx2multiple(30);
 			margin-bottom: rpx2multiple(50);

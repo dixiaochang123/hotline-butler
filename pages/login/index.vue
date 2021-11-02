@@ -153,34 +153,44 @@
 	@function rpx2multiple ($px) {
 	  @return ($px * 1.5) + rpx;
 	}
+	/deep/ .uni-app--maxwidth {
+		background:url(../../image/登录BG.png) no-repeat left center;
+		background-size: contain;
+	}
 	.content {
-		background-color: rgba(244, 247, 249, 1);
+		// background-color: rgba(244, 247, 249, 1);
+		background-color: #F4F7F9;
+		height: 100vh;
+		width: 100%;
+		background:url(../../image/登陆页BG.png) no-repeat rpx2multiple(128) center;
+		background-size: contain;
+		position: relative;
 	}
 	.a-i-d {
-		border:solid 1px;
+		// border:solid 1px;
 		// width: 600rpx;
 		// height: 816rpx;
 		width: rpx2multiple(600);
 		height: rpx2multiple(816);
 		background: #FFFFFF;
 		box-shadow: 0px 34px 88px 4px rgba(0, 20, 199, 0.04);
-		border-radius: 10rpx;
+		border-radius: rpx2multiple(10);
 		text-align: center;
 		position: absolute;
-		right:128rpx;
+		right:rpx2multiple(128);
 		top:0;
 		bottom:0;
 		margin:auto;
-		padding:0 100rpx;
+		padding:0 rpx2multiple(100);
 		box-sizing: border-box;
 	}
 	.a-i-d-v {
-		border:solid 1px;
+		// border:solid 1px;
 		width: rpx2multiple(600);
 		height: rpx2multiple(816);
 		background: #FFFFFF;
 		box-shadow: 0px 34px 88px 4px rgba(0, 20, 199, 0.04);
-		border-radius: 10rpx;
+		border-radius: rpx2multiple(10);
 		text-align: center;
 		position: absolute;
 		right:0;
@@ -188,7 +198,7 @@
 		top:0;
 		bottom:0;
 		margin:auto;
-		padding:0 100rpx;
+		padding:0 rpx2multiple(100);
 		box-sizing: border-box;
 	}
 	.a-i-c {

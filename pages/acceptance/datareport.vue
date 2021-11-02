@@ -32,9 +32,27 @@
 
 					</view>
 					<view class="chart">
-						<view class="charts-box">
+						<!-- <view class="charts-box">
 							<qiun-data-charts type="ring" :opts="{legend:{show:false},grid:{left: '10%',}}"
 								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+						</view> -->
+						<view class="charts-box">
+							<!-- 演示动态改变eopts -->
+							<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+						</view>
+						<view class="chart-pie-legend">
+							<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
+								<view class="content-list-1">
+									<!-- <image :src="item.url" mode="aspectFit"></image> -->
+									<uni-icons type="circle" :color="item.color" size="30"></uni-icons>
+								</view>
+								<view class="content-list-2">
+									<view class="content-list-2-1">{{item.name}}</view>
+									<view class="content-list-2-2">{{item.value}}</view>
+								</view>
+							</view>
+													
 						</view>
 					</view>
 					<view class="uni-container">
@@ -136,6 +154,28 @@
 				// 数据总量
 				total: 0,
 				loading: false,
+				ringOpts: {},
+				ringOptsLegend0:[{
+					name:'国务院督办工单  99件',
+					value:'15.63%',
+					color:"#4585F5"
+				},{
+					name:'省工单  99件',
+					value:'15.63%',
+					color:"#6CD67F"
+				},{
+					name:'市工单  99件',
+					value:'15.63%',
+					color:"#FFE554"
+				},{
+					name:'涉企工单  99件',
+					value:'15.63%',
+					color:"#FF9054"
+				},{
+					name:'疫情单位  99件',
+					value:'15.63%',
+					color:"#9454FF"
+				}]
 			};
 		},
 		onReady() {
@@ -377,8 +417,55 @@
 		height: rpx2multiple(444);
 
 		.charts-box {
-			width: 100%;
+			width: 20%;
 			height: 100%;
+			padding: rpx2multiple(35) 0;
+			box-sizing: border-box;
+		}
+		.chart-pie-legend {
+			width: 80%;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: rpx2multiple(100);
+		
+			.data-type-content-list {
+				width: calc(100% / 3);
+				height: rpx2multiple(68);
+				// background: #4585F5;
+				border-radius: rpx2multiple(30);
+				display: flex;
+				justify-content: flex-start;
+				padding: rpx2multiple(30) rpx2multiple(39);
+				color: #395176;
+		
+				.content-list-1 {
+					width: rpx2multiple(10);
+					height: rpx2multiple(10);
+					// background-color: #E9A700;
+					margin-right: rpx2multiple(30);
+					image {
+						width: 100%; 
+						height: 100%; 
+					}
+				}
+		
+				.content-list-2 {
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					font-family: PangMenZhengDao;
+					font-size: rpx2multiple(24);
+					padding-left: rpx2multiple(20);
+		
+					.content-list-2-2 {
+						font-size: rpx2multiple(36);
+					}
+				}
+		
+			}
 		}
 	}
 
