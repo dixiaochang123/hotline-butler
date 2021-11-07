@@ -31,7 +31,7 @@
 						</view>
 
 					</view>
-					<view class="chart">
+					<view class="chart chart-pie">
 						<!-- <view class="charts-box">
 							<qiun-data-charts type="ring" :opts="{legend:{show:false},grid:{left: '10%',}}"
 								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
@@ -45,7 +45,7 @@
 							<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
 								<view class="content-list-1">
 									<!-- <image :src="item.url" mode="aspectFit"></image> -->
-									<uni-icons type="circle" :color="item.color" size="30"></uni-icons>
+									<uni-icons type="circle" :color="item.color" size="10"></uni-icons>
 								</view>
 								<view class="content-list-2">
 									<view class="content-list-2-1">{{item.name}}</view>
@@ -224,6 +224,24 @@
 			getServerData() {
 				setTimeout(() => {
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					this.ringOpts = {
+						title:{
+							text:"14件",
+							left:"center",
+							top:"center",
+							textStyle:{
+								color:"#395176",
+								fontSize:20,
+								align:"center"
+							}
+						},
+						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+							'#672099', '#F2984E', '#0263FF'
+						],
+						legend: {
+							show: false
+						},
+					}
 				}, 1000);
 			},
 			// 多选处理
@@ -303,7 +321,7 @@
 
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
@@ -415,6 +433,9 @@
 
 	.chart {
 		height: rpx2multiple(444);
+		display: flex;
+		flex-wrap: nowrap;
+		
 
 		.charts-box {
 			width: 20%;
@@ -432,8 +453,8 @@
 			padding: rpx2multiple(100);
 		
 			.data-type-content-list {
-				width: calc(100% / 3);
-				height: rpx2multiple(68);
+				width: calc(100% / 6);
+				height: auto;
 				// background: #4585F5;
 				border-radius: rpx2multiple(30);
 				display: flex;
@@ -442,10 +463,10 @@
 				color: #395176;
 		
 				.content-list-1 {
-					width: rpx2multiple(10);
-					height: rpx2multiple(10);
+					// width: rpx2multiple(10);
+					// height: rpx2multiple(10);
 					// background-color: #E9A700;
-					margin-right: rpx2multiple(30);
+					// margin-right: rpx2multiple(30);
 					image {
 						width: 100%; 
 						height: 100%; 

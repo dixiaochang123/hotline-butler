@@ -20,14 +20,31 @@
 							@nodeclick="onnodeclick">
 						</uni-data-picker> -->
 						<picker class="uni-tabs-item-active" :range="years" @change="yearChange" mode="multiSelector">
-							{{  years[0][yearsIndex1] }} --- {{ years[1][yearsIndex2]  }}
+							{{  years[0][yearsIndex1] }} - {{ years[1][yearsIndex2]  }}
 						</picker>
-						<uni-easyinput suffixIcon="search" v-model="searchvalue" placeholder="请输入内容"
+						<uni-easyinput class="search-input" suffixIcon="search" v-model="searchvalue" placeholder="请输入关键字"
 							@iconClick="handlesearch"></uni-easyinput>
 					</view>
 				</view>
 				<view class="data-chart">
-					<view class="box-style datas" style="width: 100%;">
+					<view class="box-style datas" style="width: 100%;" v-for="item in 5">
+						<view class="data-type-content-list">
+							<view class="content-list-1">
+								<image class="images" src="/static/image/bg.png" mode="aspectFit"></image>
+							</view>
+							<view class="content-list-2">
+								<view class="">2021-09-11</view>
+								<view class="">日报</view>
+							</view>
+						</view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
+						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
+						<view class="data-type-appeal">
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
+							<view class="btn">查看报告</view>
+						</view>
+					</view>
+					<!-- <view class="box-style datas" style="width: 100%;">
 						<view class="data-type-content-list">
 							<view class="content-list-1"></view>
 							<view class="content-list-2">
@@ -116,22 +133,7 @@
 							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
 							<view class="btn">查看报告</view>
 						</view>
-					</view>
-					<view class="box-style datas" style="width: 100%;">
-						<view class="data-type-content-list">
-							<view class="content-list-1"></view>
-							<view class="content-list-2">
-								<view class="">2021-09-11</view>
-								<view class="">日报</view>
-							</view>
-						</view>
-						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text> 报告类型：日报</text></view>
-						<view class="data-type-appeal"><text><text class="bor" style="color: #FF9054;">●</text>报告状态：已生成</text></view>
-						<view class="data-type-appeal">
-							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
-							<view class="btn">查看报告</view>
-						</view>
-					</view>
+					</view> -->
 				</view>
 				
 				<view style="height: 80rpx;"></view>
@@ -173,8 +175,8 @@
 				}],
 				classes: '2021',
 				years:[
-					["请选择年份", 1998, 1999, 2000],
-					["请选择日期", 11, 12, 13]
+					["请选择", 1998, 1999, 2000],
+					["请选择", 11, 12, 13]
 				],
 				yearsIndex1: 0,
 				yearsIndex2: 0,
@@ -343,7 +345,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
@@ -410,11 +412,28 @@
 		}
 
 		.uni-tabs-item-selet {
-			width: 30%;
+			width: 35%;
+			height: rpx2multiple(65);
+			line-height: rpx2multiple(65);
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
 
+		}
+		.uni-tabs-item-active {
+			
+			padding:0 rpx2multiple(20);
+		}
+		.search-input {
+			margin-left: rpx2multiple(20);
+			// padding:0 rpx2multiple(40);
+			/deep/ .uni-input-input {
+				padding:0 rpx2multiple(20);
+			}
+			
+		}
+		/deep/ .is-input-border {
+			border-radius: rpx2multiple(65);
 		}
 
 		/deep/ .uni-data-tree {
@@ -440,8 +459,8 @@
 		margin: rpx2multiple(40) 0;
 		// height: rpx2multiple(518);
 		display: grid;
-		grid-template-columns: calc(50% - 80rpx) 50%;
-		grid-template-rows: rpx2multiple(518) rpx2multiple(518);
+		grid-template-columns: calc(50% - 60rpx) 50%;
+		grid-template-rows: rpx2multiple(390) rpx2multiple(518);
 		grid-row-gap: rpx2multiple(40);
 		grid-column-gap: rpx2multiple(40);
 
@@ -452,17 +471,22 @@
 
 			.data-type-content-list {
 				// width: 809px;
-				height: rpx2multiple(160);
+				height: rpx2multiple(140);
 				background: #4585F5;
-				border-radius: rpx2multiple(30);
+				border-radius: rpx2multiple(20);
 				display: flex;
 				justify-content: flex-start;
+				align-items: center;
 				padding: rpx2multiple(30) rpx2multiple(39);
 
 				.content-list-1 {
-					width: rpx2multiple(77);
-					height: rpx2multiple(98);
-					background-color: #FFFFFF;
+					width: rpx2multiple(70);
+					height: rpx2multiple(88);
+					// background-color: #FFFFFF;
+					.images {
+						width: rpx2multiple(70);
+						height: rpx2multiple(88);
+					}
 				}
 
 				.content-list-2 {
@@ -471,7 +495,7 @@
 					flex-direction: column;
 					font-family: PangMenZhengDao;
 					color: #FFFFFF;
-					font-size: rpx2multiple(48);
+					font-size: rpx2multiple(40);
 					padding-left: rpx2multiple(20);
 				}
 
@@ -494,12 +518,12 @@
 
 				.btn {
 					width: rpx2multiple(220);
-					height: rpx2multiple(80);
-					line-height: rpx2multiple(80);
+					height: rpx2multiple(70);
+					line-height: rpx2multiple(70);
 					text-align: center;
 					background: #DAEFFF;
 					border-radius: rpx2multiple(18);
-					font-size: rpx2multiple(35);
+					font-size: rpx2multiple(30);
 					font-family: PingFang;
 					font-weight: bold;
 					color: #1EA2FF;

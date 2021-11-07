@@ -84,8 +84,8 @@
 			"port": 8000,
 			"disableHostCheck": true,
 			"proxy": {
-				"/dpc": {
-					"target": "http://dpc.dapeis.net",
+				"/api": {
+					"target": "http://www.czssqw.net/zhzf_ly",
 					"changeOrigin": true,
 					"secure": false
 				}

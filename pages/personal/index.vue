@@ -37,6 +37,14 @@
 									<text>角色</text>
 									<text>员工</text>
 								</view>
+								<view class="">
+									<text>联系电话</text>
+									<text>025-83656073</text>
+								</view>
+								<view class="">
+									<text>邮箱</text>
+									<text>1234567@qq.com</text>
+								</view>
 							</view>
 						</view>
 						<view v-else class="">
@@ -46,21 +54,21 @@
 							<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
 								<uni-forms-item label="" name="password">
 									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请输入您的旧密码" @input="binddata('password',$event.detail.value)" />
+										placeholder="请输入您的旧密码" @input="binddata('password',$event)" />
 								</uni-forms-item>
 								<uni-forms-item label="" name="password">
 									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请输入您的新密码" @input="binddata('password',$event.detail.value)" />
+										placeholder="请输入您的新密码" @input="binddata('password',$event)" />
 								</uni-forms-item>
 								<uni-forms-item label="" name="password">
 									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请确认您的新密码" @input="binddata('password',$event.detail.value)" />
+										placeholder="请确认您的新密码" @input="binddata('password',$event)" />
 								</uni-forms-item>
 							</uni-forms>
 							<view class="" style="height: 80rpx;"></view>
 							<button type="primary" @click="submit">确认修改</button>
 						</view>
-						<view class="btns">
+						<view class="btns" v-if="isshow">
 							<view class="update" @click="updatepassword">修改密码</view>
 							<view class="loginout" @click="loginout">退出登录</view>
 
@@ -68,6 +76,9 @@
 					</view>
 				</view>
 				<view style="height: 80rpx;"></view>
+				<uni-popup ref="popup" type="dialog">
+				    <uni-popup-dialog mode="base" title="提示" content="是否确认退出?" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
+				</uni-popup>
 			</view>
 
 		</view>
@@ -91,6 +102,7 @@
 				isLandScape: true,
 				active: '个人中心', //左侧tabs
 				isChangePassword: false,
+				isshow:true,
 				formData: {
 					// name: '',
 					phone: '1361166910',
@@ -138,10 +150,28 @@
 				}
 			})
 		},
+		watch: {
+			password(newValue, oldValue) {
+				this.isshow = false
+			}
+		},
 		mounted() {
 
 		},
 		methods: {
+			close() {
+				this.$refs.popup.close()
+			},
+			confirm(value) {
+				// 输入框的值
+				console.log(value)
+				// TODO 做一些其他的事情，手动执行 close 才会关闭对话框
+				// ...
+				this.$refs.popup.close()
+				uni.navigateTo({
+					url: '/pages/login/index' //跳转地址
+				})
+			},
 			clickLeft() {
 				const pages = getCurrentPages();
 				if (pages.length === 2) {
@@ -162,9 +192,7 @@
 				this.isChangePassword = true;
 			},
 			loginout() {
-				uni.navigateTo({
-					url: '/pages/login/index' //跳转地址
-				})
+				this.$refs.popup.open()
 			},
 			handleClickDatareport() {
 				uni.navigateTo({
@@ -176,9 +204,11 @@
 			 * @param {String} name 字段名称
 			 * @param {String} value 表单域的值
 			 */
-			binddata(name, value) {
+			binddata(name,e) {
+				console.log(name,e)
+				this.isshow = false
 				// 通过 input 事件设置表单指定 name 的值
-				this.$refs.form.setValue(name, value)
+				// this.$refs.form.setValue(name, value)
 			},
 			// 触发提交表单
 			submit() {
@@ -200,7 +230,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
@@ -220,7 +250,7 @@
 	.box-main {
 		width: 100%;
 		height: 100vh;
-		height: calc(100vh - 200rpx);
+		height: calc(100vh - 140rpx);
 		padding: 0 40rpx;
 		padding: 0 rpx2multiple(40);
 	}
@@ -228,6 +258,7 @@
 	.data-chart {
 		height: calc(100% - 40rpx);
 		margin: rpx2multiple(40) 0;
+		margin-bottom: 0;
 		display: flex;
 		justify-content: space-between;
 
@@ -245,7 +276,8 @@
 			font-family: PingFang SC;
 			font-weight: 100;
 			color: #000000;
-			padding: rpx2multiple(50) 0;
+			padding: rpx2multiple(30) 0;
+			padding-top: 0;
 
 			.text2 {
 				font-weight: 500;
@@ -254,12 +286,12 @@
 
 		.banner {
 			width: 100%;
-			height: rpx2multiple(300);
+			height: rpx2multiple(250);
 			// background-color: linear-gradient(90deg, rgba(117, 162, 255, 0.7), rgba(0, 115, 250, 0.7));
 			background: url(/static/image/个人中心头像背景.png) no-repeat center;
 			background-size: 100% 100%;
-			border-radius: rpx2multiple(30);
-			margin-bottom: rpx2multiple(50);
+			border-radius: rpx2multiple(20);
+			margin-bottom: rpx2multiple(30);
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
@@ -312,7 +344,7 @@
 
 		.btns {
 			position: absolute;
-			bottom: rpx2multiple(80);
+			bottom: rpx2multiple(30);
 			left: 0;
 			right: 0;
 			margin: 0 auto;

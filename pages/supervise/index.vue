@@ -10,7 +10,7 @@
 					<view class="box-style datas" style="width: 50%;">
 						<view class="box-style-head">
 							<view class="">督办数据</view>
-							<view class="box-style-head-right">
+							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
 								</uni-data-picker>
@@ -24,33 +24,33 @@
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
+									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">695 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
+									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
+									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
 
@@ -62,9 +62,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
 						</view>
 					</view>
 
@@ -77,7 +75,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -87,9 +85,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
 						</view>
 					</view>
 
@@ -98,7 +94,7 @@
 					<view class="box-style datas" style="width: 50%;">
 						<view class="box-style-head">
 							<view class="">问题工单总量</view>
-							<view class="box-style-head-right">
+							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
 								</uni-data-picker>
@@ -152,9 +148,7 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="column"
-									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								<qiun-data-charts type="arcbar" :opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}" :chartData="chartsDataArcbar1"/>
 							</view>
 						</view>
 						<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -163,9 +157,7 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="column"
-									:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								<qiun-data-charts type="arcbar" :opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}" :chartData="chartsDataArcbar1"/>
 							</view>
 						</view>
 					</view>
@@ -212,11 +204,25 @@
 						<view class="box-style-head">
 							<view class="">回访不满意工单</view>
 						</view>
-						<view class="" style="height: 80rpx;"></view>
-						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+						<!-- <view class="" style="height: 80rpx;"></view> -->
+						<view class="chart-pie">
+							<view class="charts-box">
+								<!-- 演示动态改变eopts -->
+								<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+									:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+							</view>
+							<view class="chart-pie-legend">
+								<view class="data-type-content-list" v-for="item in ringOptsLegend" :key="item.name">
+									<view class="content-list-1">
+										<image class="images" :src="item.url" mode="aspectFit"></image>
+									</view>
+									<view class="content-list-2">
+										<view class="content-list-2-1">{{item.name}}</view>
+										<view class="content-list-2-2">{{item.value}}</view>
+									</view>
+								</view>
+						
+							</view>
 						</view>
 					</view>
 
@@ -229,7 +235,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -239,9 +245,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
 						</view>
 					</view>
 
@@ -249,7 +253,7 @@
 				<view style="height: 100rpx;"></view>
 			</view>
 			<uni-popup ref="popup" type="bottom">
-				<view class="box-style popup-box">
+				<view class="box-style popup-box popup-box1">
 					<view class="box-style-head">
 						<view class="">督办/催办信息</view>
 						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
@@ -325,6 +329,50 @@
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
 				ringOpts: {},
+				
+				chartsDataArcbar1:{},
+				chartsDataLine2:{},
+				ringOptsLegend:[{
+					name:'路况管理',
+					value:'15.63%',
+					url:"/static/image/lkgl.png"
+				},{
+					name:'社会保障',
+					value:'15.63%',
+					url:"/static/image/shbz.png"
+				},{
+					name:'政务热线',
+					value:'15.63%',
+					url:"/static/image/zwrx.png"
+				},{
+					name:'供水服务',
+					value:'15.63%',
+					url:"/static/image/gsfw.png"
+				},{
+					name:'车辆管理',
+					value:'15.63%',
+					url:"/static/image/clgl.png"
+				},{
+					name:'公共卫生',
+					value:'15.63%',
+					url:"/static/image/ggws.png"
+				},{
+					name:'物业管理',
+					value:'15.63%',
+					url:"/static/image/wygl.png"
+				},{
+					name:'园林管理',
+					value:'15.63%',
+					url:"/static/image/ylgl.png"
+				},{
+					name:'垂管行业',
+					value:'15.63%',
+					url:"/static/image/cghy.png"
+				},{
+					name:'计划生育',
+					value:'15.63%',
+					url:"/static/image/jhsy.png"
+				}],
 			}
 		},
 		onReady() {
@@ -375,6 +423,26 @@
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					this.chartsDataArcbar1=JSON.parse(JSON.stringify(demodata.Arcbar1))
+					this.chartsDataLine2=JSON.parse(JSON.stringify(demodata.Line))
+					this.ringOpts = {
+						title:{
+							text:"诉求问题",
+							left:"center",
+							top:"center",
+							textStyle:{
+								color:"#395176",
+								fontSize:16,
+								align:"center"
+							}
+						},
+						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+							'#672099', '#F2984E', '#0263FF'
+						],
+						legend: {
+							show: false
+						},
+					}
 					console.log(this.chartsDataPie2)
 				}, 1500);
 			},
@@ -486,7 +554,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
@@ -537,7 +605,9 @@
 			.data-type-content-list {
 				height: rpx2multiple(250);
 				padding: rpx2multiple(50) rpx2multiple(30);
-				background: #4585F5;
+				background: url(/static/image/wtgdzl.png) no-repeat right center;
+				background-size: contain;
+				background-color: #4585F5;
 				border-radius: rpx2multiple(10);
 				margin-bottom: rpx2multiple(40);
 				font-family: PingFang SC;
@@ -594,6 +664,9 @@
 						display: inline-block;
 						padding-left: rpx2multiple(10);
 					}
+					.t-2 {
+						font-size: rpx2multiple(24);
+					}
 				}
 
 			}
@@ -623,6 +696,9 @@
 	.popup-box {
 		width:rpx2multiple(980);
 		min-height:rpx2multiple(640);
+		background: url(../../image/督办催办信息已发送.png) no-repeat center top;
+		background-size: 70% 70%;
+		background-color: #FFFFFF;
 		
 		.textarea {
 			margin-top:rpx2multiple(40);
@@ -648,13 +724,80 @@
 			height: rpx2multiple(60);
 			line-height: rpx2multiple(60);
 			background: #0073FA;
-			border-radius: rpx2multiple(14);
-			font-size: 24px;
+			border-radius: rpx2multiple(10);
+			font-size: 24rpx;
 			font-family: PingFang;
 			font-weight: bold;
 			color: #FFFFFF;
 		}
 	}
+	.chart-pie {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+		.charts-box {
+			width: 30%;
+			height: 100%;
+			padding: rpx2multiple(35) 0;
+			box-sizing: border-box;
+		}
+		
+		.chart-pie-legend {
+			width: 70%;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: rpx2multiple(100);
+		
+			.data-type-content-list {
+				width: 25%;
+				// height: rpx2multiple(68);
+				// background: #4585F5;
+				border-radius: rpx2multiple(30);
+				display: flex;
+				justify-content: flex-start;
+				padding: rpx2multiple(30) rpx2multiple(39);
+				color: #395176;
+		
+				.content-list-1 {
+					width: rpx2multiple(68);
+					height: rpx2multiple(68);
+					// background-color: #E9A700;
+					.images,img {
+						width: rpx2multiple(68); 
+						height: rpx2multiple(68);
+					}
+				}
+		
+				.content-list-2 {
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					font-family: PangMenZhengDao;
+					font-size: rpx2multiple(24);
+					padding-left: rpx2multiple(20);
+		
+					.content-list-2-2 {
+						font-size: rpx2multiple(36);
+					}
+				}
+		
+			}
+		}
+	}
+	.uni-tabs-item-selet {
+		width: rpx2multiple(160);
+		/deep/ .input-value-border {
+			border-radius: rpx2multiple(65);
+			color: #4585F5;
+		}
+	}
+	
 
 	.uni-group {
 		display: flex;

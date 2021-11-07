@@ -61,7 +61,7 @@
 
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1.2)+rpx;
 	}
 
 	.content {

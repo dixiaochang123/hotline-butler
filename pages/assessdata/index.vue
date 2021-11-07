@@ -6,6 +6,52 @@
 			<Tabs :active="active" />
 			<!-- 右侧内容区 -->
 			<view class="box-main">
+				<!--  headtabs 日期-->
+				<view class="uni-tabs">
+					<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
+						v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
+						{{item}}
+					</view>
+					<view class="uni-tabs-item uni-tabs-item-selet">
+						<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
+							@nodeclick="onnodeclick">
+						</uni-data-picker>
+					</view>
+				</view>
+				<view class="box-style">
+									<view class="box-style-head">
+										<view class="">区级部门</view>
+									</view>
+									<view class="uni-container">
+										<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
+											@selection-change="selectionChange">
+											<uni-tr>
+												<uni-th align="center">日期</uni-th>
+												<uni-th width="25%" align="center">姓名</uni-th>
+												<uni-th width="25%" align="center">姓名</uni-th>
+												<uni-th width="25%" align="center">地址</uni-th>
+												<uni-th width="25%" align="center">设置</uni-th>
+											</uni-tr>
+											<uni-tr v-for="(item, index) in tableData" :key="index">
+												<uni-td align="center">{{ item.date }}</uni-td>
+												<uni-td align="center">
+													<view class="name">{{ item.name }}</view>
+												</uni-td>
+												<uni-td align="center">
+													<view class="name">{{ item.name }}</view>
+												</uni-td>
+												<uni-td align="center">{{ item.address }}</uni-td>
+												<uni-td align="center">
+													<view class="name">{{ item.name }}</view>
+												</uni-td>
+											</uni-tr>
+										</uni-table>
+										<view v-if="false" class="uni-pagination-box">
+											<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+												@change="change" />
+										</view>
+									</view>
+								</view>
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 35%;">
 						<view class="box-style-head">
@@ -21,7 +67,7 @@
 					<view class="box-style chats" style="width: 65%;height: 100%;">
 						<view class="box-style-head">
 							<view class="">区人社局当年综合评分月度变化趋势</view>
-							<view class="box-style-head-right">
+							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
 								</uni-data-picker>
@@ -30,7 +76,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -40,7 +86,7 @@
 					<view class="box-style datas" style="width: 50%;height: 100%;">
 						<view class="box-style-head">
 							<view class="">区人社局当年三率月度变化趋势</view>
-							<view class="box-style-head-right">
+							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
 								</uni-data-picker>
@@ -48,15 +94,16 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
+					<!-- 		<qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
+								<qiun-data-charts type="area" :opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}" :chartData="chartsDataArea1"/>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
 						<view class="box-style-head">
 							<view class="">区人社局当年月度考核排名分布情况</view>
-							<view class="box-style-head-right">
+							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
 								</uni-data-picker>
@@ -64,9 +111,10 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
+							<!-- <qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
+								<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
 						</view>
 					</view>
 
@@ -126,6 +174,9 @@
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
 				ringOpts: {},
+				
+				chartsDataArea1:{},
+				chartsDataLine2:{},
 			}
 		},
 		onReady() {
@@ -165,6 +216,8 @@
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					this.chartsDataArea1=JSON.parse(JSON.stringify(demodata.Line))
+					this.chartsDataLine2=JSON.parse(JSON.stringify(demodata.Line))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					console.log(this.chartsDataPie2)
 				}, 1500);
@@ -272,7 +325,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
@@ -295,7 +348,6 @@
 		overflow-y: auto;
 		padding: 0 40rpx;
 		padding: 0 rpx2multiple(40);
-		border: solid 1px;
 	}
 
 	.uni-container {
@@ -334,7 +386,11 @@
 		}
 
 		.uni-tabs-item-selet {
-			width: rpx2multiple(150);
+			width: rpx2multiple(160);
+			/deep/ .input-value-border {
+				border-radius: rpx2multiple(65);
+				color: #4585F5;
+			}
 		}
 
 		.uni-tabs-item-active {
@@ -344,6 +400,13 @@
 		}
 	}
 
+	.uni-tabs-item-selet {
+		width: rpx2multiple(160);
+		/deep/ .input-value-border {
+			border-radius: rpx2multiple(65);
+			color: #4585F5;
+		}
+	}
 	.data-chart {
 		margin: rpx2multiple(40) 0;
 		height: rpx2multiple(728);

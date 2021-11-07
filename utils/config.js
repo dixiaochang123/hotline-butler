@@ -1,10 +1,10 @@
 module.exports = {
 	'development': {
-		baseUrl: '/dpc',
-		mockUrl: 'http://dpc.dapeis.net:9088/'
+		baseUrl: '/api',
+		mockUrl: 'http://www.czssqw.net/zhzf_ly/'
 	},
 	'production': {
-		baseUrl: 'http://dpc.dapeis.net:9088',
-		mockUrl: 'http://dpc.dapeis.net:9088'
+		baseUrl: 'http://www.czssqw.net/zhzf_ly/',
+		mockUrl: 'http://www.czssqw.net/zhzf_ly/'
 	}
 }

@@ -61,7 +61,7 @@
 								<view class="">当日热点诉求Top5 (二级归口)</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
+								<qiun-data-charts type="column" :eopts="columnOpts" :opts="{extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true}}}" :chartData="chartsDataColumn5"
 									:loadingType="1" :echartsApp="true" :echartsH5="true" />
 							</view>
 						</view>
@@ -88,10 +88,10 @@
 									<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
 										<view class="content-list-1">
 											<!-- <image :src="item.url" mode="aspectFit"></image> -->
-											<uni-icons type="circle" :color="item.color" size="30"></uni-icons>
+											<uni-icons style="float: right;" type="circle" :color="item.color" size="10"></uni-icons>
 										</view>
 										<view class="content-list-2">
-											<view class="content-list-2-1">{{item.name}}</view>
+											<view class="content-list-2-1" style="white-space: nowrap;">{{item.name}}</view>
 											<view class="content-list-2-2">{{item.value}}</view>
 										</view>
 									</view>
@@ -109,7 +109,7 @@
 					</view>
 
 					<view class="uni-container">
-						<uni-table ref="table" :loading="loading" border stripe emptyText="暂无更多数据"
+						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
 								<uni-th width="1%" align="center">序号</uni-th>
@@ -185,7 +185,7 @@
 						<view class="chart-pie-legend">
 							<view class="data-type-content-list" v-for="item in ringOptsLegend" :key="item.name">
 								<view class="content-list-1">
-									<image :src="item.url" mode="aspectFit"></image>
+									<image class="images" :src="item.url" mode="aspectFit"></image>
 								</view>
 								<view class="content-list-2">
 									<view class="content-list-2-1">{{item.name}}</view>
@@ -210,8 +210,8 @@
 	import mapdata from '@/mockdata/mapdata.json'
 	import tableData from './tableData.js'
 	import Tabs from '@/components/Tabs/index.vue';
-	import request from '@/utils/request.js';
-	console.log(request)
+	import {wjpajsPaxc} from '@/utils/api.js';
+	console.log(wjpajsPaxc)
 	import {
 		mapState,
 		mapActions,
@@ -287,7 +287,9 @@
 						show: false
 					},
 					series:[{
-						itemStyle:{}
+						itemStyle:{
+							borderRadius:[15, 15, 0, 0]
+						}
 					}]
 				},
 				ringOptsLegend:[{
@@ -380,9 +382,37 @@
 			})
 		},
 		mounted() {
-
+			this.wjpajsPaxc()
 		},
 		methods: {
+			wjpajsPaxc() {
+				wjpajsPaxc({
+					// orgcode:'10010', //所属地区
+					// wgId:'1', //所属网格
+					// type:'4', //巡查网格类型 校园：1 园区：4
+					// sxType:'yqsx',//巡查事项类型 园区事项：yqsx 企业事项：qysx
+					// sjly:'1',//数据来源 一企来：1 其他：2
+					// paxxId:'1',//关联信息id
+					// jcdqId:'1',//巡查上报类型
+					// name:'111',//诉求目的
+					// text:'111',//诉求内容
+					// clqPic:'',//处理前照片
+					// userId:'',//巡查人id
+					
+
+				    "jcdqId": "1",
+				    "name": "111",
+				    "orgcode": "320412100002",
+				    "paxxId": "1450655270308429826",
+				    "sjly": "1",
+				    "sxType": "qysx",
+				    "type": "4",
+				    "wgId": "1450333190912315394"
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
 			getServerData() {
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
@@ -395,13 +425,15 @@
 							name:'111',
 							value:item,
 							itemStyle:{
-								color:colorList[index]
+								color:colorList[index],
+								borderRadius: [15, 15, 0, 0]
 							}
 						}
 						
 					})
 					this.chartsDataColumn5 = chartsDataColumn5
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					this.chartsDataPie2.series[0].radius= ['50%', '80%'];
 					this.ringOpts = {
 						title:{
 							text:"诉求问题",
@@ -409,7 +441,7 @@
 							top:"center",
 							textStyle:{
 								color:"#395176",
-								fontSize:20,
+								fontSize:16,
 								align:"center"
 							}
 						},
@@ -420,7 +452,7 @@
 							show: false
 						},
 					}
-					console.log(this.chartsDataPie2)
+					console.log(this.chartsDataPie2,this.chartsDataColumn5)
 				}, 1000);
 			},
 			clickLeft() {
@@ -527,7 +559,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.5)+rpx;
+		@return ($px * 1.2)+rpx;
 	}
 
 	.content {
@@ -550,7 +582,6 @@
 		overflow-y: auto;
 		padding: 0 40rpx;
 		padding: 0 rpx2multiple(40);
-		border: solid 1px;
 	}
 
 	// 顶部tabs
@@ -592,6 +623,7 @@
 		.acceptance-data-show-left {
 			width: 40%;
 			height: 100%;
+			height: calc(100% - 20rpx);
 			margin-right: rpx2multiple(20);
 
 			.data-report {
@@ -626,7 +658,7 @@
 			}
 			.data-report-text-right {
 				position: absolute;
-				right: rpx2multiple(90);
+				right: rpx2multiple(85);
 				top: 50%;
 				margin-top: -rpx2multiple(20);
 				font-family: DOUYU;
@@ -714,6 +746,10 @@
 					font-size: rpx2multiple(24);
 					font-weight: 500;
 					// color: #1EA2FF;
+					image {
+						width: 100%; 
+						height: 100%; 
+					}
 				}
 
 				.content-list-2 {
@@ -761,36 +797,36 @@
 
 			.acceptance-data-show-right3 {
 				.charts-box {
-					width: 20%;
+					width: 30%;
 					height: 100%;
 					padding: rpx2multiple(35) 0;
 					box-sizing: border-box;
 				}
 				.chart-pie-legend {
-					width: 80%;
+					width: 70%;
 					height: 100%;
 					display: flex;
 					justify-content: flex-start;
 					align-items: center;
-					flex-wrap: wrap;
-					padding: rpx2multiple(100);
+					flex-wrap: wrap-reverse;
+					padding: rpx2multiple(60) 0;
 				
 					.data-type-content-list {
 						width: calc(100% / 3);
-						height: rpx2multiple(68);
+						height: auto;
 						// background: #4585F5;
 						border-radius: rpx2multiple(30);
 						display: flex;
 						justify-content: flex-start;
-						padding: rpx2multiple(30) rpx2multiple(39);
+						padding: rpx2multiple(30) rpx2multiple(10);
 						color: #395176;
 				
 						.content-list-1 {
 							width: rpx2multiple(10);
 							height: rpx2multiple(10);
 							// background-color: #E9A700;
-							margin-right: rpx2multiple(30);
-							image {
+							// margin-right: rpx2multiple(30);
+							image,.images {
 								width: 100%; 
 								height: 100%; 
 							}
@@ -802,7 +838,7 @@
 							flex-direction: column;
 							font-family: PangMenZhengDao;
 							font-size: rpx2multiple(24);
-							padding-left: rpx2multiple(20);
+							padding-left: rpx2multiple(8);
 				
 							.content-list-2-2 {
 								font-size: rpx2multiple(36);
@@ -890,14 +926,14 @@
 		}
 
 		.charts-box {
-			width: 20%;
+			width: 30%;
 			height: 100%;
 			padding: rpx2multiple(35) 0;
 			box-sizing: border-box;
 		}
 
 		.chart-pie-legend {
-			width: 80%;
+			width: 70%;
 			height: 100%;
 			display: flex;
 			justify-content: flex-start;
@@ -907,7 +943,7 @@
 
 			.data-type-content-list {
 				width: 25%;
-				height: rpx2multiple(68);
+				// height: rpx2multiple(68);
 				// background: #4585F5;
 				border-radius: rpx2multiple(30);
 				display: flex;
@@ -919,9 +955,9 @@
 					width: rpx2multiple(68);
 					height: rpx2multiple(68);
 					// background-color: #E9A700;
-					image {
-						width: 100%; 
-						height: 100%; 
+					.images,img {
+						width: rpx2multiple(68); 
+						height: rpx2multiple(68);
 					}
 				}
 
