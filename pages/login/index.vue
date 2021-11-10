@@ -14,11 +14,13 @@
 				<uni-forms-item label="" name="name">
 					<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
 				</uni-forms-item> -->
-				<uni-forms-item label="" name="phone">
-					<uni-easyinput class="input" v-model="formData.phone" type="number" placeholder="请输入您的账号" @input="binddata('phone',$event.detail.value)" />
+				<uni-forms-item label="" name="username">
+					<uni-easyinput class="input" v-model="formData.username" type="number" placeholder="请输入您的账号"
+						@input="binddata('username',$event.detail.value)" />
 				</uni-forms-item>
 				<uni-forms-item label="" name="password">
-					<uni-easyinput class="input" v-model="formData.password" type="password" placeholder="请输入您的密码" @input="binddata('password',$event.detail.value)" />
+					<uni-easyinput class="input" v-model="formData.password" type="password" placeholder="请输入您的密码"
+						@input="binddata('password',$event.detail.value)" />
 				</uni-forms-item>
 				<text class="forget-password">忘记密码?</text>
 			</uni-forms>
@@ -29,47 +31,24 @@
 </template>
 
 <script>
-	// import uni-nav-bar from '@/components/uni-nav-bar/components/uni-nav-bar/uni-nav-bar.vue'
-	// import uniForms from '@/components/uni-forms/components/uni-forms/uni-forms.vue'
-	// import uni-forms-item from '@/components/uni-forms/components/uni-forms-item/uni-forms-item.vue'
-	// import uni-easyinput from '@/components/uni-easyinput/components/uni-easyinput/uni-easyinput.vue'
-	// import uni-data-picker from '@/components/uni-data-picker/components/uni-data-picker/uni-data-picker.vue'
-
+	import {
+		login
+	} from '@/utils/api.js';
+	import {
+		mapState,
+		mapActions,
+		mapMutations
+	} from "vuex";
 	export default {
-		components: {
-			// uni-nav-bar,
-			// uniForms,
-			// uni-forms-item,
-			// uni-easyinput,
-			// uni-data-picker
-		},
 		data() {
 			return {
 				isLandScape: true,
 				// 表单数据
 				formData: {
-					// name: '',
-					phone: '1361166910',
-					password:'111111',
+					username: '13461309556',
+					password: '1234',
 
 				},
-				// index: 0,
-				// array: ['中国', '美国', '巴西', '日本'],
-				// classes: '3-0',
-				// dataTree: [{
-				// 		text: "一年级",
-				// 		value: "1-0",
-				// 	}, {
-				// 		text: "二年级",
-				// 		value: "2-0"
-
-				// 	},
-				// 	{
-				// 		text: "三年级",
-				// 		value: "3-0",
-				// 		disable: true
-				// 	}
-				// ],
 				rules: {
 					// 对name字段进行必填验证
 					// name: {
@@ -84,14 +63,14 @@
 					// 		}
 					// 	]
 					// },
-					// 对phone字段进行必填验证
-					phone: {
+					// 对username字段进行必填验证
+					username: {
 						rules: [{
 							required: true,
 							errorMessage: '请输入您的账号',
 						}]
 					},
-					// 对phone字段进行必填验证
+					// 对username字段进行必填验证
 					password: {
 						rules: [{
 							required: true,
@@ -101,24 +80,25 @@
 				}
 			};
 		},
-		 onResize(){
-			 console.log(this)
+		onResize() {
+			console.log(this)
 			let _this = this
-			uni.getSystemInfo({  
-				success: function(res) {  
-					if (res.windowWidth > res.windowHeight) {  
-					   // 横屏
+			uni.getSystemInfo({
+				success: function(res) {
+					if (res.windowWidth > res.windowHeight) {
+						// 横屏
 						_this.isLandScape = true
 						console.log('横屏')
-					} else {  
-					   // 竖屏
+					} else {
+						// 竖屏
 						_this.isLandScape = false
 						console.log('竖屏')
-					}  
-				}  
+					}
+				}
 			})
 		},
 		methods: {
+			...mapActions(["setToken"]),
 			onnodeclick(e) {
 				this.classes = e.value;
 			},
@@ -135,10 +115,23 @@
 			submit() {
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
-					uni.navigateTo({
-			  　　     url: '../acceptance/index' //跳转地址
-			  　　  })
-					
+					login({
+						...this.formData
+					}).then(res => {
+						let {
+							code,
+							data
+						} = res.data
+						console.log(code, data)
+						if (code == 200) {
+							uni.setStorageSync('token', data.token)
+							this.setToken(data.token)
+							uni.navigateTo({
+								url: '../acceptance/index' //跳转地址
+							})
+						}
+					}).catch(error => console.log(error))
+
 				}).catch(err => {
 					console.log('表单错误信息：', err);
 				})
@@ -151,21 +144,24 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-	  @return ($px * 1.2) + rpx;
+		@return ($px * 1.2)+rpx;
 	}
+
 	/deep/ .uni-app--maxwidth {
-		background:url(../../image/登录BG.png) no-repeat left center;
+		background: url(../../image/登录BG.png) no-repeat left center;
 		background-size: contain;
 	}
+
 	.content {
 		// background-color: rgba(244, 247, 249, 1);
 		background-color: #F4F7F9;
 		height: 100vh;
 		width: 100%;
-		background:url(../../image/登陆页BG.png) no-repeat rpx2multiple(128) center;
+		background: url(../../image/登陆页BG.png) no-repeat rpx2multiple(128) center;
 		background-size: contain;
 		position: relative;
 	}
+
 	.a-i-d {
 		// border:solid 1px;
 		// width: 600rpx;
@@ -177,13 +173,14 @@
 		border-radius: rpx2multiple(10);
 		text-align: center;
 		position: absolute;
-		right:rpx2multiple(128);
-		top:0;
-		bottom:0;
-		margin:auto;
-		padding:0 rpx2multiple(100);
+		right: rpx2multiple(128);
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		padding: 0 rpx2multiple(100);
 		box-sizing: border-box;
 	}
+
 	.a-i-d-v {
 		// border:solid 1px;
 		width: rpx2multiple(600);
@@ -193,18 +190,20 @@
 		border-radius: rpx2multiple(10);
 		text-align: center;
 		position: absolute;
-		right:0;
+		right: 0;
 		left: 0;
-		top:0;
-		bottom:0;
-		margin:auto;
-		padding:0 rpx2multiple(100);
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		padding: 0 rpx2multiple(100);
 		box-sizing: border-box;
 	}
+
 	.a-i-c {
 		position: relative;
 		height: 233rpx;
 		height: rpx2multiple(233);
+
 		text {
 			display: block;
 			font-size: 50rpx;
@@ -212,6 +211,7 @@
 			color: #395176;
 			font-family: PingFang SC;
 		}
+
 		.text1 {
 			padding-top: 50rpx;
 			font-size: 32px;
@@ -222,6 +222,7 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
 		.text2 {
 			font-weight: bold;
 			opacity: 0.1;
@@ -229,9 +230,10 @@
 			bottom: 0;
 			left: 0;
 			right: 0;
-			margin:auto;
-			
+			margin: auto;
+
 		}
+
 		.text3 {
 			font-weight: 600;
 			position: absolute;
@@ -239,12 +241,14 @@
 			bottom: rpx2multiple(2);
 			left: 0;
 			right: 0;
-			margin:auto;
+			margin: auto;
 		}
 	}
+
 	.form {
 		position: relative;
 	}
+
 	.forget-password {
 		position: absolute;
 		bottom: 30rpx;
@@ -256,16 +260,19 @@
 		font-weight: 500;
 		color: #395176;
 	}
+
 	.uni-forms-item {
 		padding: 33rpx 0;
 		padding: rpx2multiple(33) 0;
 	}
+
 	/deep/ .uni-easyinput__content {
 		border-left: none;
 		border-right: none;
 		border-top: none;
 		border-radius: 0;
 	}
+
 	uni-button {
 		background: #0C24FF;
 		border-radius: 80prx;

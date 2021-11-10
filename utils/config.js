@@ -1,10 +1,10 @@
 module.exports = {
 	'development': {
-		baseUrl: '/api',
-		mockUrl: 'http://www.czssqw.net/zhzf_ly/'
+		baseUrl: '/wjrxgj',
+		mockUrl: 'http://218.93.116.190:18080/'
 	},
 	'production': {
-		baseUrl: 'http://www.czssqw.net/zhzf_ly/',
-		mockUrl: 'http://www.czssqw.net/zhzf_ly/'
+		baseUrl: 'http://218.93.116.190:18080/',
+		mockUrl: 'http://218.93.116.190:18080/'
 	}
 }

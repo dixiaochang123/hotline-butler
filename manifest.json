@@ -84,8 +84,8 @@
 			"port": 8000,
 			"disableHostCheck": true,
 			"proxy": {
-				"/api": {
-					"target": "http://www.czssqw.net/zhzf_ly",
+				"/wjrxgj": {
+					"target": "http://218.93.116.190:18080/",
 					"changeOrigin": true,
 					"secure": false
 				}

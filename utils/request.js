@@ -1,3 +1,5 @@
+import { mapState,mapGetters, mapActions,mapMutations } from "vuex";
+import store from '../store'
 const config = require('./config')
 console.log(config,process.env.NODE_ENV)
 // 全局请求路径，也就是后端的请求基准路径
@@ -6,11 +8,19 @@ const baseURL = config[process.env.NODE_ENV].baseUrl
 let ajaxTimes=0;
 // 封装请求方法，并向外暴露该方法
 const service = (options)=>{
+	// console.log(options.url)
 	// 解构请求头参数
 	let header = {...options.header};
 	// 当前请求不是登录时请求，在header中加上后端返回的token
-	if(options.url != 'login'){
-	    header["client-identity"] = uni.getStorageSync('session_id');
+	if(options.url != '/login'){
+	    // header["client-identity"] = uni.getStorageSync('session_id');
+		let token = store.getters.token;
+		if(!token) {
+			uni.navigateTo({
+		　　     url: '/pages/login/index' //跳转地址
+		　　 })
+		}
+	    header["Authorization"] = token;
 	}
 	ajaxTimes++;
 	// 显示加载中 效果

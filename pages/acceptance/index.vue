@@ -206,17 +206,12 @@
 </template>
 
 <script>
+	import { mapState,mapGetters, mapActions,mapMutations } from "vuex";
 	import demodata from '@/mockdata/demodata.json';
 	import mapdata from '@/mockdata/mapdata.json'
 	import tableData from './tableData.js'
 	import Tabs from '@/components/Tabs/index.vue';
-	import {wjpajsPaxc} from '@/utils/api.js';
-	console.log(wjpajsPaxc)
-	import {
-		mapState,
-		mapActions,
-		mapMutations
-	} from "vuex";
+	import {hfbmygd,log} from '@/utils/api.js';
 	let myChart;
 	export default {
 		components: {
@@ -292,7 +287,8 @@
 						}
 					}]
 				},
-				ringOptsLegend:[{
+				ringOptsLegend:[
+					{
 					name:'路况管理',
 					value:'15.63%',
 					url:"/static/image/lkgl.png"
@@ -363,6 +359,7 @@
 		onLoad() {
 			this.selectedIndexs = []
 			this.getData(1)
+			
 		},
 		onResize() {
 			console.log(this)
@@ -381,33 +378,17 @@
 				}
 			})
 		},
+		computed:{
+			...mapGetters(["token"])
+		},
 		mounted() {
-			this.wjpajsPaxc()
+			console.log(22,this.token)
+			this.hfbmygd()
 		},
 		methods: {
-			wjpajsPaxc() {
-				wjpajsPaxc({
-					// orgcode:'10010', //所属地区
-					// wgId:'1', //所属网格
-					// type:'4', //巡查网格类型 校园：1 园区：4
-					// sxType:'yqsx',//巡查事项类型 园区事项：yqsx 企业事项：qysx
-					// sjly:'1',//数据来源 一企来：1 其他：2
-					// paxxId:'1',//关联信息id
-					// jcdqId:'1',//巡查上报类型
-					// name:'111',//诉求目的
-					// text:'111',//诉求内容
-					// clqPic:'',//处理前照片
-					// userId:'',//巡查人id
+			hfbmygd() {
+				hfbmygd({
 					
-
-				    "jcdqId": "1",
-				    "name": "111",
-				    "orgcode": "320412100002",
-				    "paxxId": "1450655270308429826",
-				    "sjly": "1",
-				    "sxType": "qysx",
-				    "type": "4",
-				    "wgId": "1450333190912315394"
 				}).then(res=>{
 					console.log(res)
 					
@@ -559,7 +540,7 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.2)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	.content {
