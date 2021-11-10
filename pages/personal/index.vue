@@ -86,6 +86,7 @@
 </template>
 
 <script>
+	import {signout} from '@/utils/api.js';
 	import Tabs from '@/components/Tabs/index.vue';
 	import {
 		mapState,
@@ -162,12 +163,15 @@
 			close() {
 				this.$refs.popup.close()
 			},
-			confirm(value) {
+			confirm() {
 				// 输入框的值
-				console.log(value)
+				// console.log(value)
 				// TODO 做一些其他的事情，手动执行 close 才会关闭对话框
 				// ...
-				this.$refs.popup.close()
+				// this.$refs.popup.close()
+				signout({}).then(res=>{
+					console.log(res)
+				}).catch(error=>console.log(error))
 				uni.navigateTo({
 					url: '/pages/login/index' //跳转地址
 				})

@@ -211,7 +211,7 @@
 	import mapdata from '@/mockdata/mapdata.json'
 	import tableData from './tableData.js'
 	import Tabs from '@/components/Tabs/index.vue';
-	import {hfbmygd,log} from '@/utils/api.js';
+	import {hfbmygd,twojgk,threejgk,slsj,context,type,detail} from '@/utils/api.js';
 	let myChart;
 	export default {
 		components: {
@@ -384,10 +384,64 @@
 		mounted() {
 			console.log(22,this.token)
 			this.hfbmygd()
+			this.twojgk()
+			this.threejgk()
+			this.slsj()
+			this.context()
+			this.type()
+			this.detail()
 		},
 		methods: {
 			hfbmygd() {
 				hfbmygd({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			twojgk() {
+				twojgk({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			threejgk() {
+				threejgk({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			slsj() {
+				slsj({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			context() {
+				context({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			type() {
+				type({
+					
+				}).then(res=>{
+					console.log(res)
+					
+				}).catch(error=>console.log(error))
+			},
+			detail() {
+				detail({
 					
 				}).then(res=>{
 					console.log(res)
