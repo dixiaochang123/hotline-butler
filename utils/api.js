@@ -172,19 +172,82 @@ export function qjbm(data) {
     params:''
   })
 }
-// 区级部门
-export function qjbm(data) {
+// 区人社局当年三率月度变化趋势
+export function dnsltrend(data) {
   return request({
-    url: `/khsjcz/qjbm?date=${data}`,
+    url: `/khsjcz/qrsj/dnsl/trend?date=${data}`,
     method: 'get',
     params:''
   })
 }
 
-// 区人社局当年三率月度变化趋势
-export function trend(data) {
+// 区人社局当年月度考核排名分布情况
+export function dnydkhtrend(data) {
   return request({
-    url: `/khsjcz/qrsj/dnsl/trend?date=${data}`,
+    url: `/khsjcz/qrsj/dnydkh/trend?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 区人社局当年综合评分月度变化趋势
+export function dnzhpftrend(data) {
+  return request({
+    url: `/khsjcz/qrsj/dnzhpf/trend?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 区人社局得分情况
+export function score(data) {
+  return request({
+    url: `/khsjcz/qrsj/score?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 镇街道
+export function zjd(data) {
+  return request({
+    url: `/khsjcz/zjd?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 街道当年三率月度变化趋势
+export function zjddnsltrend(data) {
+  return request({
+    url: `/khsjcz/zjd/dnsl/trend?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 街道当年月度考核排名分布情况
+export function zjddnydkhtrend(data) {
+  return request({
+    url: `/khsjcz/zjd/dnydkh/trend?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 街道当年综合评分月度变化趋势
+export function zjddnzhpftrend(data) {
+  return request({
+    url: `/khsjcz/zjd/dnzhpf/trend?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 街道得分情况
+export function zjdscore(data) {
+  return request({
+    url: `/khsjcz/zjd/score?date=${data}`,
     method: 'get',
     params:''
   })
