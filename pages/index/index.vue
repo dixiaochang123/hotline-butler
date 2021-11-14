@@ -218,7 +218,7 @@
 		}
 
 		.content {
-			background: url(/static/image/app/index/bj.png) no-repeat left top;
+			background: url(~@/static/image/app/index/bj.png) no-repeat left top;
 			background-size: 100% 100%;
 		}
 
@@ -231,7 +231,7 @@
 				width: 100%;
 				height: 550rpx;
 				padding-top: 150rpx;
-				background: url(/static/image/app/login/loginbg.png) no-repeat left top;
+				background: url(~@/static/image/app/login/loginbg.png) no-repeat left top;
 				background-size: 100% 100%;
 
 				.logo {
@@ -262,24 +262,24 @@
 			.f-1 {
 				width: 365rpx;
 				height: 400rpx;
-				background: url(/static/image/app/index/slbj.png) no-repeat left top;
+				background: url(~@/static/image/app/index/slbj.png) no-repeat left top;
 				background-size: 100% 100%;
 				color: #ffffff;
 				padding-top: 80rpx;
 				padding-left: 40rpx;
 				position: relative;
 				&:nth-of-type(2) {
-					background: url(/static/image/app/index/khsjbj.png) no-repeat left top;
+					background: url(~@/static/image/app/index/khsjbj.png) no-repeat left top;
 					background-size: 100% 100%;
 				}
 			}
 			.f-1-2 {
 				&:nth-of-type(1) {
-					background: url(/static/image/app/index/dcbj.png) no-repeat left top;
+					background: url(~@/static/image/app/index/dcbj.png) no-repeat left top;
 					background-size: 100% 100%;
 				}
 				&:nth-of-type(2) {
-					background: url(/static/image/app/index/sjfxbj.png) no-repeat left top;
+					background: url(~@/static/image/app/index/sjfxbj.png) no-repeat left top;
 					background-size: 100% 100%;
 				}
 			}

@@ -35,9 +35,16 @@ const service = (options)=>{
 			data: options.data || {},
 			header,
 			success: (res)=>{
+				console.log(res)
+				if(res.statusCode = 403) {
+				// 	uni.navigateTo({
+				// 　　     url: '/pages/login/index' //跳转地址
+				// 　　 })
+				}
 				resolve(res)
 			},
 			fail: (err)=>{
+				console.log(err)
 				reject(err)
 			},
 			// 完成之后关闭加载效果

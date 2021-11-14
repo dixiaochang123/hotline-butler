@@ -205,7 +205,7 @@
 							<view class="charts-box">
 								<!-- 演示动态改变eopts -->
 								<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-									:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+									:chartData="chartsDataPie2" />
 							</view>
 							<view class="chart-pie-legend">
 								<view class="data-type-content-list" v-for="item in ringOptsLegend" :key="item.name">
@@ -612,7 +612,7 @@
 			.data-type-content-list {
 				height: rpx2multiple(250);
 				padding: rpx2multiple(50) rpx2multiple(30);
-				background: url(/static/image/wtgdzl.png) no-repeat right center;
+				background: url(~@/static/image/wtgdzl.png) no-repeat right center;
 				background-size: contain;
 				background-color: #4585F5;
 				border-radius: rpx2multiple(10);
@@ -705,7 +705,7 @@
 	.popup-box {
 		width: rpx2multiple(980);
 		min-height: rpx2multiple(640);
-		background: url(/static/image/dcdb1.png) no-repeat center top;
+		background: url(~@/static/image/dcdb1.png) no-repeat center top;
 		background-size: 70% 70%;
 		background-color: #FFFFFF;
 

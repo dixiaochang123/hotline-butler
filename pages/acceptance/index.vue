@@ -62,10 +62,13 @@
 								<view class="">当日热点诉求Top5 (二级归口)</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column" :eopts="columnOpts"
+								<!-- <qiun-data-charts type="column" :eopts="columnOpts"
 									:opts="{extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true}}}"
 									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true"
-									:echartsH5="true" />
+									:echartsH5="true" /> -->
+								<qiun-data-charts type="column" :eopts="columnOpts"
+									:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right2 box-style">
@@ -73,8 +76,11 @@
 								<view class="">当日热点诉求Top5 (三级归口)</view>
 							</view>
 							<view class="charts-box">
-								<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn6"
-									:loadingType="1" :echartsApp="true" :echartsH5="true" />
+								<!-- <qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
+									:loadingType="1" :echartsApp="true" :echartsH5="true" /> -->
+								<qiun-data-charts type="column" :eopts="columnOpts"
+									:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+									:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
 						<view class="acceptance-data-show-right3 box-style ">
@@ -84,8 +90,8 @@
 							<view class="chart-pie">
 								<view class="charts-box">
 									<!-- 演示动态改变eopts -->
-									<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-										:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+									<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}" :eopts="ringOpts"
+										:chartData="chartsDataPie2" />
 								</view>
 								<view class="chart-pie-legend">
 									<view class="data-type-content-list" v-for="item in ringOptsLegend0"
@@ -115,9 +121,9 @@
 							<view class="">当日热点诉求Top5 (二级归口)</view>
 						</view>
 						<view class="charts-box">
-							<qiun-data-charts type="column" :eopts="columnOpts"
-								:opts="{extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" :echartsH5="true" />
+								<qiun-data-charts type="column" :eopts="columnOpts"
+									:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
 					<view class="acceptance-data-show-right2 box-style">
@@ -125,8 +131,9 @@
 							<view class="">当日热点诉求Top5 (三级归口)</view>
 						</view>
 						<view class="charts-box">
-							<qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
-								:loadingType="1" :echartsApp="true" :echartsH5="true" />
+							<qiun-data-charts type="column" :eopts="columnOpts"
+								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+								:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
 					<view class="acceptance-data-show-right3 box-style ">
@@ -136,8 +143,8 @@
 						<view class="chart-pie">
 							<view class="charts-box">
 								<!-- 演示动态改变eopts -->
-								<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-									:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+								<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="{legend:{show:false}}"
+									:chartData="chartsDataPie2" />
 							</view>
 							<view class="chart-pie-legend">
 								<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
@@ -229,7 +236,7 @@
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
 							<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+								:chartData="chartsDataPie2" />
 						</view>
 						<view class="chart-pie-legend chart-pie-legend-app">
 							<view class="data-type-content-list data-type-content-list-app"
@@ -282,7 +289,7 @@
 		},
 		data() {
 			return {
-				sldata:'',
+				sldata: '',
 				isLandScape: true,
 				active: '受理情况', //左侧tabs
 				activetab: '当日诉求', //顶部tabs
@@ -312,7 +319,24 @@
 				chartsDataColumn5: {},
 				chartsDataColumn6: {},
 				chartsDataPie2: {},
-				ringOpts: {},
+				ringOpts: {
+					title: {
+						text: "诉求问题",
+						left: "center",
+						top: "center",
+						textStyle: {
+							color: "#395176",
+							fontSize: 12,
+							align: "center"
+						}
+					},
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+						'#672099', '#F2984E', '#0263FF'
+					],
+					legend: {
+						show: false
+					},
+				},
 				columnOpts: {
 					grid: {
 						left: 60,
@@ -345,12 +369,7 @@
 					},
 					legend: {
 						show: false
-					},
-					series: [{
-						itemStyle: {
-							borderRadius: [15, 15, 0, 0]
-						}
-					}]
+					}
 				},
 				ringOptsLegend: [{
 					name: '路况管理',
@@ -414,17 +433,23 @@
 					value: '15.63%',
 					color: "#9454FF"
 				}],
-				contextdata:[],
-				typedata:[]
+				contextdata: [],
+				typedata: []
 			}
 		},
 		onReady() {
 			//模拟从服务器获取数据
 			this.getServerData()
+			this.hfbmygd('day')
+			this.twojgk('day')
+			this.threejgk('day')
+			this.slsj()
+			this.context('day')
+			this.type('day')
 		},
 		onLoad() {
 			this.selectedIndexs = []
-			this.getData(1)
+			// this.getData(1)
 
 		},
 		onResize() {
@@ -449,20 +474,26 @@
 		},
 		mounted() {
 			console.log(22, this.token)
-			this.hfbmygd('day')
-			this.twojgk('day')
-			this.threejgk('day')
-			this.slsj()
-			this.context('day')
-			this.type('day')
+			// this.hfbmygd('day')
+			// this.twojgk('day')
+			// this.threejgk('day')
+			// this.slsj()
+			// this.context('day')
+			// this.type('day')
 			// this.detail()
 		},
 		methods: {
 			hfbmygd(params) {
 				hfbmygd(params).then(res => {
-					let {code,data} =res.data;
-					if(code==0) {
-						this.tableData = data;
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						// this.tableData = data;
+						data.map((item, index) => {
+							this.$set(this.tableData, index, item)
+						})
 						this.loading = false;
 					}
 
@@ -470,10 +501,13 @@
 			},
 			twojgk(params) {
 				twojgk(params).then(res => {
-					let {code,data} =res.data;
+					let {
+						code,
+						data
+					} = res.data;
 					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
 					console.log(chartsDataColumn5)
-					chartsDataColumn5.categories = data.map(item=>item.OPTNAME);
+					chartsDataColumn5.categories = data.map(item => item.OPTNAME);
 					chartsDataColumn5.series[0].data = data.map((item, index) => {
 						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
 						return {
@@ -491,9 +525,12 @@
 			},
 			threejgk(params) {
 				threejgk(params).then(res => {
-					let {code,data} =res.data;
+					let {
+						code,
+						data
+					} = res.data;
 					let chartsDataColumn6 = JSON.parse(JSON.stringify(demodata.Column));
-					chartsDataColumn6.categories = data.map(item=>item.OPTNAME);
+					chartsDataColumn6.categories = data.map(item => item.OPTNAME);
 					chartsDataColumn6.series[0].data = data.map((item, index) => {
 						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
 						return {
@@ -511,10 +548,13 @@
 			},
 			slsj() {
 				slsj().then(res => {
-					let {code,data} = res.data;
-					if(this.activetab=='当日诉求'){
+					let {
+						code,
+						data
+					} = res.data;
+					if (this.activetab == '当日诉求') {
 						this.sldata = data[0].TODAY
-					} else if(this.activetab=='近一周诉求') {
+					} else if (this.activetab == '近一周诉求') {
 						this.sldata = data[0].WEEK
 					} else {
 						this.sldata = data[0].MON
@@ -523,31 +563,37 @@
 			},
 			context(params) {
 				context(params).then(res => {
-					let {code,data} =res.data;
+					let {
+						code,
+						data
+					} = res.data;
 					let total = 0;
-					data.map(item=>{
-						total+=parseInt(item.TOTAL)
+					data.map(item => {
+						total += parseInt(item.TOTAL)
 					})
-					data.map(item=>{
-						item['percentage'] = (parseInt(item.TOTAL)/total).toFixed(2)
+					data.map(item => {
+						item['percentage'] = (parseInt(item.TOTAL) / total).toFixed(2)
 					})
 					this.contextdata = data
-					console.log(this.contextdata,total )
+					console.log(this.contextdata, total)
 
 				}).catch(error => console.log(error))
 			},
 			type(params) {
 				type(params).then(res => {
-					let {code,data} =res.data;
+					let {
+						code,
+						data
+					} = res.data;
 					let total = 0;
-					data.map(item=>{
-						total+=parseInt(item.TOTAL)
+					data.map(item => {
+						total += parseInt(item.TOTAL)
 					})
-					data.map(item=>{
-						item['percentage'] = (parseInt(item.TOTAL)/total).toFixed(2)
+					data.map(item => {
+						item['percentage'] = (parseInt(item.TOTAL) / total).toFixed(2)
 					})
 					this.typedata = data
-					console.log(this.typedata,total )
+					console.log(this.typedata, total)
 
 				}).catch(error => console.log(error))
 			},
@@ -573,6 +619,7 @@
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					// color:['#0073FA','#6CD67F','#FFE554','#FF9054','#9454FF']
 					// let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
+					// this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
 					// chartsDataColumn5.series[0].data = chartsDataColumn5.series[0].data.map((item, index) => {
 					// 	var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
 					// 	return {
@@ -587,15 +634,16 @@
 					// })
 					// this.chartsDataColumn5 = chartsDataColumn5
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
-					this.chartsDataPie2.series[0].radius = ['50%', '80%'];
+					this.chartsDataPie2.tooltip.show = false;
 					this.ringOpts = {
+						tooltip:{show:false},
 						title: {
 							text: "诉求问题",
 							left: "center",
 							top: "center",
 							textStyle: {
 								color: "#395176",
-								fontSize: windowWidth < 500 ? 12 : 16,
+								fontSize: 12,
 								align: "center"
 							}
 						},
@@ -607,7 +655,7 @@
 						},
 					}
 					console.log(this.chartsDataPie2, this.chartsDataColumn5)
-				}, 1000);
+				}, 500);
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
@@ -634,12 +682,12 @@
 				this.activetab = item.name;
 				this.subname = item.subname;
 				console.log(item)
-				if(item.name=='当日诉求'){
+				if (item.name == '当日诉求') {
 					this.hfbmygd('day')
 					this.twojgk('day')
 					this.threejgk('day')
 					this.context('day')
-				} else if(item.name=='近一周诉求') {
+				} else if (item.name == '近一周诉求') {
 					this.hfbmygd('week')
 					this.twojgk('week')
 					this.threejgk('week')
@@ -807,7 +855,7 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				background: url(/static/image/slsjbg.png) no-repeat right center;
+				background: url(~@/static/image/slsjbg.png) no-repeat right center;
 				background-size: contain;
 				background-color: #4585F5;
 				position: relative;
@@ -1179,9 +1227,8 @@
 	@media (max-width:500px) {
 		/deep/ .uni-nav-bar-text {
 			font-family: PingFang !important;
-			font-weight:900;
-			background: linear-gradient(
-			0deg, #000000 0%, #000000 100%);
+			font-weight: 900;
+			background: linear-gradient(0deg, #000000 0%, #000000 100%);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
@@ -1266,12 +1313,12 @@
 
 		.acceptance-data-show-right-app {
 			width: 100%;
-			height: calc(100% - 120rpx);
-			height: rpx2multiple(1700);
+			// height: calc(100% - 120rpx);
+			// height: rpx2multiple(2700);
 			display: flex;
 			justify-content: space-between;
 			flex-direction: column;
-			margin-bottom: rpx2multiple(100);
+			// margin-bottom: rpx2multiple(100);
 
 			>view {
 				// height: 33%;
@@ -1288,20 +1335,20 @@
 
 			.acceptance-data-show-right3 {
 				.charts-box {
-					width: 30%;
+					width: 100%;
 					height: 100%;
 					padding: rpx2multiple(35) 0;
 					box-sizing: border-box;
 				}
 
 				.chart-pie-legend {
-					width: 70%;
+					width: 100%;
 					height: 100%;
 					display: flex;
 					justify-content: flex-start;
 					align-items: center;
 					flex-wrap: wrap-reverse;
-					padding: rpx2multiple(60) 0;
+					padding: 0;
 
 					.data-type-content-list {
 						width: calc(100% / 3);
@@ -1351,7 +1398,7 @@
 		}
 
 		.order-details-pie[data-v-3c4f2293] {
-			height: 357px;
+			height: auto;
 			min-height: 357px !important;
 		}
 
@@ -1361,6 +1408,12 @@
 
 			.data-type-content-list {
 				padding: rpx2multiple(8);
+			}
+		}
+		.chart-pie {
+			flex-direction: column;
+			.charts-box,.chart-pie-legend-app {
+				width: 100%;
 			}
 		}
 

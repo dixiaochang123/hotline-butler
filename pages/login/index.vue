@@ -113,8 +113,8 @@
 			})
 		},
 		mounted() {
-			 this.testMediaQueryObserver()
-			            this.landscapeObserver()
+			 // this.testMediaQueryObserver()
+			            // this.landscapeObserver()
 		},
 		methods: {
 			...mapActions(["setToken"]),
@@ -218,7 +218,7 @@
 	}
 
 	/deep/ .uni-app--maxwidth {
-		background: url(/static/image/dlbg.png) no-repeat left center;
+		background: url(~@/static/image/dlbg.png) no-repeat left center;
 		background-size: contain;
 	}
 
@@ -227,7 +227,8 @@
 		background-color: #F4F7F9;
 		height: 100vh;
 		width: 100%;
-		background: url(/static/image/dlybg.png) no-repeat rpx2multiple(128) center;
+		// background: url(~@/static/image/dlybg.png) no-repeat rpx2multiple(128) center;
+		background: url('~@/static/image/dlybg.png')  no-repeat rpx2multiple(128) center;
 		background-size: contain;
 		position: relative;
 	}
@@ -376,7 +377,7 @@
 				width: 100%;
 				height: 550rpx;
 				padding-top: 150rpx;
-				background: url(/static/image/app/login/loginbg.png) no-repeat left top;
+				background: url(~@/static/image/app/login/loginbg.png) no-repeat left top;
 				background-size: cover;
 				.logo {
 					width: 75rpx;

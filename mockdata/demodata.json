@@ -256,6 +256,25 @@
 		}]
 	},
 	"PieA": {
+		"title":{
+			"text":"14件",
+			"left":"center",
+			"top":"center",
+			"textStyle":{
+				"color":"#395176",
+				"fontSize":16,
+				"align":"center"
+			}
+		},
+		"tooltip":{
+			"show":false
+		},
+		"color": ["#E9A700", "#E95F5E", "#5E63FF", "#5EC4FF", "#EA7FE3", "#9B8EFF", "#6CDC2C",
+			"#672099", "#F2984E", "#0263FF"
+		],
+		"legend": {
+			"show": false
+		},
 		"series": [{
 			"label": {
 				"show": false

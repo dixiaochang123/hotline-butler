@@ -81,15 +81,22 @@
             }
         },
         "devServer" : {
-            "port" : 8000,
+            "port" : 8848,
             "disableHostCheck" : true,
             "proxy" : {
                 "/wjrxgj" : {
-                    "target" : "http://218.93.116.190:18080/",
+                    "target" : "http://218.93.116.190:18080",
                     "changeOrigin" : true,
                     "secure" : false
                 }
-            }
-        }
+            },
+            "https" : false
+        },
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        },
+        "template" : "",
+        "title" : ""
     }
 }

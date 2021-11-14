@@ -39,7 +39,7 @@
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
 							<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}" :eopts="ringOpts"
-								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
+								:chartData="chartsDataPie2"  />
 						</view>
 						<view class="chart-pie-legend">
 							<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
@@ -142,7 +142,6 @@
 <script>
 	import Tabs from '@/components/Tabs/index.vue';
 	import demodata from '@/mockdata/demodata.json';
-	import mapdata from '@/mockdata/mapdata.json'
 	import tableData from './tableData.js'
 	export default {
 		components: {
@@ -210,22 +209,22 @@
 			})
 		},
 		mounted() {
-					login({
-						...this.formData
-					}).then(res => {
-						let {
-							code,
-							data
-						} = res.data
-						console.log(code, data)
-						if (code == 200) {
-							uni.setStorageSync('token', data.token)
-							this.setToken(data.token)
-							uni.navigateTo({
-								url: '../acceptance/index' //跳转地址
-							})
-						}
-					}).catch(error => console.log(error))
+					// login({
+					// 	...this.formData
+					// }).then(res => {
+					// 	let {
+					// 		code,
+					// 		data
+					// 	} = res.data
+					// 	console.log(code, data)
+					// 	if (code == 200) {
+					// 		uni.setStorageSync('token', data.token)
+					// 		this.setToken(data.token)
+					// 		uni.navigateTo({
+					// 			url: '../acceptance/index' //跳转地址
+					// 		})
+					// 	}
+					// }).catch(error => console.log(error))
 		},
 		methods: {
 			clickLeft() {
@@ -258,6 +257,7 @@
 					// this.chartsDataPie2.series[0].radius = ['70%', '90%'];
 					this.chartsDataPie2.series.legendHoverLink = false;
 					this.ringOpts = {
+						tooltip:{show:false},
 						title:{
 							text:"14件",
 							left:"center",
@@ -580,11 +580,15 @@
 				width: 35rpx !important;
 				    height: 4rpx !important;
 			}
+			.chart {
+				height: auto;
+				flex-direction: column;
+			}
 			.charts-box {
-				width: 30% !important;
+				width: 100% !important;
 			}
 			.chart-pie-legend {
-				width: 70% !important;
+				width: 100% !important;
 				padding-left:0 !important;
 				padding-right:0 !important;
 			}

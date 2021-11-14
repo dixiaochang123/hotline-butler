@@ -298,7 +298,7 @@
 			width: 100%;
 			height: rpx2multiple(250);
 			// background-color: linear-gradient(90deg, rgba(117, 162, 255, 0.7), rgba(0, 115, 250, 0.7));
-			background: url(/static/image/grzxhd.png) no-repeat center;
+			background: url(~@/static/image/grzxhd.png) no-repeat center;
 			background-size: 100% 100%;
 			border-radius: rpx2multiple(20);
 			margin-bottom: rpx2multiple(30);
