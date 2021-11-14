@@ -1,67 +1,84 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" title="考核数据" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="box">
 			<!-- 左侧tabs -->
-			<Tabs :active="active" />
+			<Tabs class="isapp" :active="active" />
 			<!-- 右侧内容区 -->
 			<view class="box-main">
 				<!--  headtabs 日期-->
 				<view class="uni-tabs">
-					<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
-						v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
+					<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item isapp']"
+						v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item,index)">
 						{{item}}
 					</view>
-					<view class="uni-tabs-item uni-tabs-item-selet">
+					<view class="uni-tabs-item uni-tabs-item-selet isapp">
 						<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 							@nodeclick="onnodeclick">
 						</uni-data-picker>
 					</view>
+					<view class="uni-tabs-item uni-tabs-item-selet app-nav">
+						<!-- <uni-data-picker placeholder="请选择" :localdata="yearsapp" v-model="classesapp"
+							@nodeclick="onnodeclick">
+						</uni-data-picker> -->
+						<picker class="uni-tabs-item-active" :range="yearsapp" @change="yearChange" mode="multiSelector">
+							{{  yearsapp[0][yearsIndex1] }} - {{ yearsapp[1][yearsIndex2]  }}
+						</picker>
+					</view>
 				</view>
 				<view class="box-style">
-									<view class="box-style-head">
-										<view class="">区级部门</view>
-									</view>
-									<view class="uni-container">
-										<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
-											@selection-change="selectionChange">
-											<uni-tr>
-												<uni-th align="center">日期</uni-th>
-												<uni-th width="25%" align="center">姓名</uni-th>
-												<uni-th width="25%" align="center">姓名</uni-th>
-												<uni-th width="25%" align="center">地址</uni-th>
-												<uni-th width="25%" align="center">设置</uni-th>
-											</uni-tr>
-											<uni-tr v-for="(item, index) in tableData" :key="index">
-												<uni-td align="center">{{ item.date }}</uni-td>
-												<uni-td align="center">
-													<view class="name">{{ item.name }}</view>
-												</uni-td>
-												<uni-td align="center">
-													<view class="name">{{ item.name }}</view>
-												</uni-td>
-												<uni-td align="center">{{ item.address }}</uni-td>
-												<uni-td align="center">
-													<view class="name">{{ item.name }}</view>
-												</uni-td>
-											</uni-tr>
-										</uni-table>
-										<view v-if="false" class="uni-pagination-box">
-											<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
-												@change="change" />
-										</view>
-									</view>
-								</view>
+					<view class="box-style-head">
+						<view class="">区级部门</view>
+					</view>
+					<view class="uni-container">
+						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
+							@selection-change="selectionChange">
+							<uni-tr>
+								<uni-th width="25%" align="center">序号</uni-th>
+								<uni-th width="25%" align="center">单位</uni-th>
+								<uni-th width="25%" align="center">综合得分</uni-th>
+								<uni-th width="25%" align="center">排名升降</uni-th>
+							</uni-tr>
+							<uni-tr v-for="(item, index) in tableData" :key="index">
+								<uni-td align="center">
+									<view class="name">{{ index+1 }}</view>
+								</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.DEPT_NAME }}</view>
+								</uni-td>
+								<uni-td align="center">{{ item.MARK }}</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.SJ==0?'/':item.SJ }} <text
+											style="visibility: hidden;">↑</text><text style="color: red;"
+											v-if="item.SJ>0">↑</text><text v-if="item.SJ<0"
+											style="color: #4585F5;">↓</text></view>
+								</uni-td>
+							</uni-tr>
+						</uni-table>
+						<view v-if="false" class="uni-pagination-box">
+							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+								@change="change" />
+						</view>
+					</view>
+				</view>
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 35%;">
 						<view class="box-style-head">
 							<view class="">区人社局得分详情</view>
 						</view>
-						<view class="" style="height: 80rpx;"></view>
-						<view class="data-type-content-list" v-for="(item) in 3" :key="item">
-							<view class="content-list-1">疫情防控 200件</view>
+						<view class="isapp" style="height: 80rpx;"></view>
+						<view class="app-nav" style="height: 40rpx;"></view>
+						<view class="data-type-content-list isapp" v-for="(item) in 3" :key="item">
+							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
-							<view class="pmzd-font content-list-3">60.30%</view>
+							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+						</view>
+						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
+							v-for="(item) in 3" :key="item">
+							<view class="content-list-1">响应率</view>
+							<view class="content-list-2"></view>
+							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 65%;height: 100%;">
@@ -87,17 +104,16 @@
 						<view class="box-style-head">
 							<view class="">区人社局当年三率月度变化趋势</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
-								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
-									@nodeclick="onnodeclick">
+								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes1"
+									@nodeclick="onnodeclick1">
 								</uni-data-picker>
 							</view>
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-					<!-- 		<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
-								<qiun-data-charts type="area" :opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}" :chartData="chartsDataArea1"/>
+							<qiun-data-charts type="area"
+								:opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
+								:chartData="chartsDataArea1" />
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -114,7 +130,8 @@
 							<!-- <qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
-								<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
 						</view>
 					</view>
 
@@ -132,6 +149,10 @@
 	import Tabs from '@/components/Tabs/index.vue';
 	import tableData from './tableData.js'
 	import {
+		qjbm,
+		dnsltrend
+	} from '@/utils/api.js'
+	import {
 		mapState,
 		mapActions,
 		mapMutations
@@ -147,17 +168,23 @@
 				active: '考核数据', //左侧tabs
 				array: ['中国', '美国', '巴西', '日本'],
 				years: [{
-					text: '2019',
-					value: '2019'
-				}, {
 					text: '2020',
 					value: '2020'
 				}, {
 					text: '2021',
 					value: '2021'
 				}],
+				yearsapp:[
+					["请选择年", '2020','2021'],
+					["请选择月", '01', '02', '03', '04', '05','06','07','08','09','10','11','12']
+				],
+				yearsIndex1: 0,
+				yearsIndex2: 0,
+				classesapp: '',
 				classes: '2021',
-				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
+				classes1: '2021',
+				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '当月', '12月'],
+				headtabs1: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 				activetab: '当月',
 				canvas: '',
 
@@ -174,9 +201,10 @@
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
 				ringOpts: {},
-				
-				chartsDataArea1:{},
-				chartsDataLine2:{},
+
+				chartsDataArea1: {},
+				chartsDataLine2: {},
+				dnsltrenddata: []
 			}
 		},
 		onReady() {
@@ -185,7 +213,7 @@
 		},
 		onLoad() {
 			this.selectedIndexs = []
-			this.getData(1)
+			// this.getData(1)
 		},
 		onResize() {
 			console.log(this)
@@ -205,19 +233,97 @@
 			})
 		},
 		mounted() {
-
+			let index = this.headtabs.indexOf(this.activetab);
+			let date = this.classes + '-' + this.headtabs1[index]
+			this.qjbm(date)
+			this.dnsltrend('2021')
 		},
 		methods: {
+			yearChange(e){
+				console.log(e)
+				//获得对象的 detail的 value
+				//通过数组的下标改变显示在页面的值
+				this.yearsIndex1 = e.detail.value[0];
+				this.yearsIndex2 = e.detail.value[1];
+				console.log(this.yearsIndex1)
+				console.log(this.yearsIndex2)
+			},
+			qjbm(date) {
+				qjbm(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					console.log(code, data)
+					if (code == 0) {
+						this.tableData = data
+					}
+				}).catch(error => console.log(error))
+			},
+			dnsltrend(date) {
+				dnsltrend(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					this.dnsltrenddata = this.sort_pro(data).map(item => {
+						item = item.map(key => {
+							key
+						})
+					})
+					// BJRATE: "1.0"
+					// DEPT_NAME: "武进自然资源局武进分局"
+					// MYRATE: "1.0"
+					// RQ: "2021-11"
+					// XYRATE: "0.7"
+					console.log(data, this.dnsltrenddata)
+				}).catch(error => console.log(error))
+			},
+			sort_pro(arr) {
+				const c = []
+				const d = {}
+				arr.forEach(item => {
+					if (d[item.DEPT_NAME] === undefined) {
+						d[item.DEPT_NAME] = c.length
+						c.push([item])
+					} else {
+						c[d[item.DEPT_NAME]].push(item)
+					}
+				})
+				return c;
+			},
 			onnodeclick(e) {
 				this.classes = e.value;
+				let index = this.headtabs.indexOf(this.activetab);
+				let date = this.classes + '-' + this.headtabs1[index];
+				this.qjbm(date)
+			},
+			onnodeclick1(e) {
+				this.classes1 = e.value;
+				this.dnsltrend(this.classes1)
 			},
 			getServerData() {
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
-					this.chartsDataArea1=JSON.parse(JSON.stringify(demodata.Line))
-					this.chartsDataLine2=JSON.parse(JSON.stringify(demodata.Line))
+					this.chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Line))
+					// "Line": {
+					// 	"categories": ["2016", "2017", "2018", "2019", "2020", "2021"],
+					// 	"series": [{
+					// 		"name": "成交量A",
+					// 		"data": [35, 8, 25, 37, 4, 20]
+					// 	}, {
+					// 		"name": "成交量B",
+					// 		"data": [70, 40, 65, 100, 44, 68]
+					// 	}, {
+					// 		"name": "成交量C",
+					// 		"data": [100, 80, 95, 150, 112, 132]
+					// 	}]
+					// },
+
+
+					this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					console.log(this.chartsDataPie2)
 				}, 1500);
@@ -243,8 +349,10 @@
 					url: '/pages/acceptance/datareport' //跳转地址
 				})
 			},
-			handletabschange(item) {
+			handletabschange(item, index) {
 				this.activetab = item;
+				let date = this.classes + '-' + this.headtabs1[index];
+				this.qjbm(date)
 
 			},
 			// 多选处理
@@ -351,6 +459,10 @@
 	}
 
 	.uni-container {
+		height: auto;
+		max-height: rpx2multiple(1000);
+		overflow-y: auto;
+
 		.uni-table-tr {
 			height: rpx2multiple(100);
 		}
@@ -387,6 +499,7 @@
 
 		.uni-tabs-item-selet {
 			width: rpx2multiple(160);
+
 			/deep/ .input-value-border {
 				border-radius: rpx2multiple(65);
 				color: #4585F5;
@@ -402,11 +515,13 @@
 
 	.uni-tabs-item-selet {
 		width: rpx2multiple(160);
+
 		/deep/ .input-value-border {
 			border-radius: rpx2multiple(65);
 			color: #4585F5;
 		}
 	}
+
 	.data-chart {
 		margin: rpx2multiple(40) 0;
 		height: rpx2multiple(728);
@@ -464,5 +579,99 @@
 	.uni-group {
 		display: flex;
 		align-items: center;
+	}
+	.app-nav {
+		display: none;
+	}
+	@media (max-width:500px) {
+		/deep/ .uni-nav-bar-text {
+			font-family: PingFang !important;
+			font-weight:900;
+			background: linear-gradient(
+			0deg, #000000 0%, #000000 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		.app-nav {
+			display: block !important;
+		}
+
+		.nav {
+			display: none !important;
+		}
+
+		.isapp {
+			display: none !important;
+		}
+
+		.box-style-head {
+			font-size: 35rpx;
+			padding-left: 12px;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 11px;
+				width: 4px;
+				height: 13px;
+				background: #0073FA;
+				border-radius: 2px;
+			}
+		}
+
+		.box-style-head-right {
+			font-size: 32rpx;
+		}
+
+		.uni-tabs .uni-tabs-item-selet {
+			width: 228rpx;
+		}
+
+		.data-chart {
+			display: block;
+			height: auto;
+			.datas {
+				margin-bottom: 40rpx;
+			}
+		}
+
+		.box-style {
+			width: 100% !important;
+			border-radius: 10rpx !important;
+		}
+
+		.data-chart .datas .data-type-content-list {
+			width: 48% !important;
+			display: inline-block;
+
+			&:nth-of-type(2) {
+				width: 48% !important;
+				float: right !important;
+			}
+
+			&:last-of-type {
+				width: 100% !important;
+				text-align: center !important;
+
+				.content-list-2 {
+					margin: 0 auto !important;
+				}
+			}
+		}
+
+		.data-chart .datas .data-type-content-list .content-list-3 {
+			font-size: 20rpx;
+			white-space: nowrap;
+		}
+
+
+
+
+
+
+
+
+
 	}
 </style>

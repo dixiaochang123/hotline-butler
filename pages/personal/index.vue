@@ -1,9 +1,10 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" title="个人中心" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="box">
 			<!-- 左侧tabs -->
-			<Tabs :active="active" />
+			<Tabs class="isapp" :active="active" />
 			<!-- 右侧内容区 -->
 			<view class="box-main">
 				<view class="data-chart">
@@ -47,7 +48,7 @@
 								</view>
 							</view>
 						</view>
-						<view v-else class="">
+						<view v-if="!!isChangePassword" class="">
 							<view class="box-style-head">
 								<view class="">修改密码</view>
 							</view>
@@ -167,10 +168,13 @@
 			confirm() {
 				try {
 				    uni.clearStorageSync();
+					uni.clearStorage();
+					uni.removeStorageSync('token');
 				} catch (e) {
 				    // error
 				}
-				this.setToken(null)
+				this.setToken('')
+				uni.setStorageSync('token', '')
 				uni.navigateTo({
 					url: '/pages/login/index' //跳转地址
 				})
@@ -193,6 +197,7 @@
 			},
 			updatepassword() {
 				this.isChangePassword = true;
+				this.isshow = false;
 			},
 			loginout() {
 				this.$refs.popup.open()
@@ -217,9 +222,11 @@
 			submit() {
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
-					uni.navigateTo({
-						url: '../acceptance/index' //跳转地址
-					})
+					this.isChangePassword = false;
+					this.isshow = true
+					// uni.navigateTo({
+					// 	url: '../acceptance/index' //跳转地址
+					// })
 
 				}).catch(err => {
 					console.log('表单错误信息：', err);
@@ -291,7 +298,7 @@
 			width: 100%;
 			height: rpx2multiple(250);
 			// background-color: linear-gradient(90deg, rgba(117, 162, 255, 0.7), rgba(0, 115, 250, 0.7));
-			background: url(/static/image/个人中心头像背景.png) no-repeat center;
+			background: url(/static/image/grzxhd.png) no-repeat center;
 			background-size: 100% 100%;
 			border-radius: rpx2multiple(20);
 			margin-bottom: rpx2multiple(30);
@@ -416,4 +423,103 @@
 		display: flex;
 		align-items: center;
 	}
+	.app-nav {
+			display: none;
+		}
+	
+		@media (max-width:500px) {
+			/deep/ .uni-nav-bar-text {
+				font-family: PingFang !important;
+				font-weight:900;
+				background: linear-gradient(
+				0deg, #000000 0%, #000000 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.app-nav {
+				display: block !important;
+			}
+	
+			.nav {
+				display: none !important;
+			}
+	
+			.isapp {
+				display: none !important;
+			}
+	
+			.box-style-head {
+				font-size: 35rpx;
+				padding-left: 12px;
+	
+				&::before {
+					content: "";
+					position: absolute;
+					left: 0;
+					top: 11px;
+					width: 4px;
+					height: 13px;
+					background: #0073FA;
+					border-radius: 2px;
+				}
+			}
+	
+			.box-style-head-right {
+				font-size: 32rpx;
+			}
+	
+			.uni-tabs .uni-tabs-item-selet {
+				width: 228rpx;
+			}
+	
+			.data-chart {
+				display: block;
+				height: auto;
+	
+				.datas {
+					margin-bottom: 40rpx;
+				}
+			}
+	
+			.box-style {
+				width: 100% !important;
+				border-radius: 10rpx !important;
+			}
+	
+			.data-chart .datas .data-type-content-list {
+				width: 100% !important;
+				display: inline-block;
+	
+				&:nth-of-type(2) {
+					width: 48% !important;
+					float: right !important;
+				}
+	
+				&:last-of-type {
+					width: 100% !important;
+					text-align: center !important;
+	
+					.content-list-2 {
+						margin: 0 auto !important;
+					}
+				}
+			}
+	
+			.data-chart .datas .data-type-content-list .content-list-3 {
+				font-size: 20rpx;
+				white-space: nowrap;
+			}
+			.popup-box {
+				width: 350px !important;
+			}
+	
+	
+	
+	
+	
+	
+	
+	
+		}
+	
 </style>

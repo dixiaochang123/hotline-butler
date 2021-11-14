@@ -100,7 +100,7 @@
 			margin: auto;
 			width: 6rpx;
 			height: rpx2multiple(100);
-			background: #4585F5;
+			background: #ffffff;
 			border-radius: 3rpx;
 
 		}

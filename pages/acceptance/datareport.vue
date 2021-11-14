@@ -2,28 +2,28 @@
 	<view class="content">
 		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="box">
-			<Tabs :active="active" />
+			<Tabs class="isapp" :active="active" />
 			<view class="box-main-parent">
 
 				<view class="box-main box-style">
-					<view class="box-style-head">
+					<view class="box-style-head isapp">
 						<view class="">数据分析报告</view>
 					</view>
 					<view class="title">
-						<view class="b-1"></view>
-						<view class="t-1">武进区政府便民热线服务中心</view>
-						<view class="b-1 b-2"></view>
+						<view class="b-1 b-1-app"></view>
+						<view class="t-1 t-1-app">武进区政府便民热线服务中心</view>
+						<view class="b-1 b-2 b-1-app"></view>
 					</view>
 					<view class="title1">
-						<view class="t-1">2021-09-11日报</view>
-						<view class="b-1"></view>
+						<view class="t-1 t-1-app">2021-09-11日报</view>
+						<view class="b-1 isapp"></view>
 					</view>
 					<view class="first-t">
 						<view class="f-t-1">
 							区便民服务中心积极发挥12345政府便民热线的载体和平台作用，紧紧围绕党委 政府中心工作，立足服务群众、方便群众、推动机关作风转变，在办好民生诉求、深化
 							诉接速办、提升服务质效上呈现了良好发展态势。现将有关运行情况汇报如下：
 						</view>
-						<view class="f-t-2">
+						<view class="f-t-2 t-1-app">
 							一、总体情况
 						</view>
 						<view class="f-t-3">
@@ -38,7 +38,7 @@
 						</view> -->
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
-							<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+							<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}" :eopts="ringOpts"
 								:chartData="chartsDataPie2" :echartsH5="true" :echartsApp="true" />
 						</view>
 						<view class="chart-pie-legend">
@@ -59,11 +59,12 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th align="center">日期</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">地址</uni-th>
-								<uni-th width="25%" align="center">设置</uni-th>
+								<uni-th align="center">诉求类型</uni-th>
+								<uni-th  align="center">总数</uni-th>
+								<uni-th  align="center">数量</uni-th>
+								<uni-th  align="center">环比</uni-th>
+								<uni-th  align="center">数量</uni-th>
+								<uni-th  align="center">环比</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
 								<uni-td align="center">{{ item.date }}</uni-td>
@@ -77,6 +78,9 @@
 								<uni-td align="center">
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.name }}</view>
+								</uni-td>
 							</uni-tr>
 						</uni-table>
 						<view v-if="false" class="uni-pagination-box">
@@ -85,7 +89,7 @@
 						</view>
 					</view>
 					<view class="first-t">
-						<view class="f-t-2">
+						<view class="f-t-2 t-1-app">
 							二、集中诉求
 						</view>
 						<view class="f-t-3">
@@ -99,11 +103,12 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th align="center">日期</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">地址</uni-th>
-								<uni-th width="25%" align="center">设置</uni-th>
+								<uni-th align="center">诉求类型</uni-th>
+								<uni-th  align="center">总数</uni-th>
+								<uni-th  align="center">数量</uni-th>
+								<uni-th  align="center">环比</uni-th>
+								<uni-th  align="center">数量</uni-th>
+								<uni-th  align="center">环比</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
 								<uni-td align="center">{{ item.date }}</uni-td>
@@ -114,6 +119,9 @@
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
 								<uni-td align="center">{{ item.address }}</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.name }}</view>
+								</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
@@ -202,7 +210,22 @@
 			})
 		},
 		mounted() {
-
+					login({
+						...this.formData
+					}).then(res => {
+						let {
+							code,
+							data
+						} = res.data
+						console.log(code, data)
+						if (code == 200) {
+							uni.setStorageSync('token', data.token)
+							this.setToken(data.token)
+							uni.navigateTo({
+								url: '../acceptance/index' //跳转地址
+							})
+						}
+					}).catch(error => console.log(error))
 		},
 		methods: {
 			clickLeft() {
@@ -222,8 +245,18 @@
 				}
 			},
 			getServerData() {
+				let windowWidth = 600
+				uni.getSystemInfo({
+				      success: function (res) {
+				        // _this.setWidth = res.windowWidth * 0.8
+						console.log(res.windowWidth)
+						windowWidth = res.windowWidth
+				      }
+				    })
 				setTimeout(() => {
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					// this.chartsDataPie2.series[0].radius = ['70%', '90%'];
+					this.chartsDataPie2.series.legendHoverLink = false;
 					this.ringOpts = {
 						title:{
 							text:"14件",
@@ -231,9 +264,12 @@
 							top:"center",
 							textStyle:{
 								color:"#395176",
-								fontSize:20,
+								fontSize:windowWidth<500?16:20,
 								align:"center"
 							}
+						},
+						tooltip:{
+							show:false
 						},
 						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
 							'#672099', '#F2984E', '#0263FF'
@@ -502,7 +538,71 @@
 			color: #395176;
 		}
 	}
+	@media (max-width:500px) {
+		.box-main-parent {
+			padding:0;
+		}
+			.app-nav {
+				display: block;
+			}
+	
+			.nav {
+				display: none;
+			}
+	
+			.isapp {
+				display: none !important;
+			}
+	
+			.box-style-head {
+				font-size: 35rpx;
+				padding-left: 12px;
+				&::before {
+					content: "";
+					position: absolute;
+					left: 0;
+					top: 11px;
+					width: 4px;
+					height: 13px;
+					background: #0073FA;
+					border-radius: 2px;
+				}
+			}
+	
+			.box-style-head-right {
+				font-size: 32rpx;
+			}
+			.t-1-app {
+				font-size: 36rpx !important;
+				padding:0 10rpx !important;
+			}
+			.b-1-app {
+				width: 35rpx !important;
+				    height: 4rpx !important;
+			}
+			.charts-box {
+				width: 30% !important;
+			}
+			.chart-pie-legend {
+				width: 70% !important;
+				padding-left:0 !important;
+				padding-right:0 !important;
+			}
+			.data-type-content-list {
+				width: calc(100% / 3)!important;
+			}
+	
+			
+	
+			
+			
+	
+	
+	
+		}
 </style>
 <style>
 	@import "../../static/style.css";
+	
+	
 </style>

@@ -1,9 +1,10 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" title="督查督办" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="box">
 			<!-- 左侧tabs -->
-			<Tabs :active="active" />
+			<Tabs class="isapp" :active="active" />
 			<!-- 右侧内容区 -->
 			<view class="box-main">
 				<view class="data-chart">
@@ -43,7 +44,7 @@
 									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
-							<view class="data-type-content-list-4">
+							<!-- <view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
@@ -52,7 +53,7 @@
 									<view class="">3 <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
-							</view>
+							</view> -->
 
 						</view>
 					</view>
@@ -62,7 +63,8 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
 						</view>
 					</view>
 
@@ -85,7 +87,8 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
 						</view>
 					</view>
 
@@ -108,39 +111,29 @@
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
+									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
-								</view>
-							</view>
-							<view class="data-type-content-list-4">
-								<image style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
-									@error="imageError"></image>
-								<view class="data-type-content-list-5">
-									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="" style="font-family: PingFang;">督办中</view>
+									<view class="">695 <text class="t-1"> 件</text></view>
+									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
 
 						</view>
 					</view>
-					<view class="datas-2" style="width: 50%;height::100%;">
+					<view class="datas-2" style="width: 50%;height:100%;">
 
 						<view class="box-style chats chats-main" style="width: 50%;height: 100%;">
 							<view class="box-style-head">
@@ -148,7 +141,9 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="arcbar" :opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}" :chartData="chartsDataArcbar1"/>
+								<qiun-data-charts type="arcbar"
+									:opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
+									:chartData="chartsDataArcbar1" />
 							</view>
 						</view>
 						<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -157,7 +152,9 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="arcbar" :opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}" :chartData="chartsDataArcbar1"/>
+								<qiun-data-charts type="arcbar"
+									:opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
+									:chartData="chartsDataArcbar1" />
 							</view>
 						</view>
 					</view>
@@ -171,24 +168,23 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th align="center">日期</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">姓名</uni-th>
-								<uni-th width="25%" align="center">地址</uni-th>
-								<uni-th width="25%" align="center">设置</uni-th>
+								<uni-th width="25%" align="center">序号</uni-th>
+								<uni-th width="25%" align="center">单位</uni-th>
+								<uni-th width="25%" align="center">办理单位</uni-th>
+								<uni-th width="25%" align="center">操作</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="index">
-								<uni-td align="center">{{ item.date }}</uni-td>
+								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.name }}</view>
 								</uni-td>
-								<uni-td align="center">{{ item.address }}</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button class="uni-button" size="mini" type="primary" @click="handleClickSupervise(item)">督办/催办</button>
+										<button class="uni-button" size="mini" type="primary"
+											@click="handleClickSupervise(item)">督办/催办</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -221,7 +217,7 @@
 										<view class="content-list-2-2">{{item.value}}</view>
 									</view>
 								</view>
-						
+
 							</view>
 						</view>
 					</view>
@@ -245,7 +241,8 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}" :chartData="chartsDataLine2"/>
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
 						</view>
 					</view>
 
@@ -256,9 +253,11 @@
 				<view class="box-style popup-box popup-box1">
 					<view class="box-style-head">
 						<view class="">督办/催办信息</view>
-						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
+						<view @click="close" class="box-style-head-right">
+							<uni-icons type="closeempty" size="30"></uni-icons>
+						</view>
 					</view>
-					<textarea class="textarea"  v-model="textarea" placeholder="输入字体"/>
+					<textarea class="textarea" v-model="textarea" placeholder="输入字体" />
 					<button class="btn" type="default" @click="sendinfo">发 送</button>
 					<view style="height:20rpx;"></view>
 				</view>
@@ -270,7 +269,7 @@
 						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
 					</view> -->
 					<view class="textarea" style="visibility: hidden;">
-						
+
 					</view>
 					<view class="info">督办/催办信息已发送</view>
 					<button class="btn" type="default" @click="closeinfo">确 定</button>
@@ -315,7 +314,7 @@
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
-				textarea:'',
+				textarea: '',
 				searchVal: '',
 				tableData: [],
 				// 每页数据量
@@ -329,49 +328,49 @@
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
 				ringOpts: {},
-				
-				chartsDataArcbar1:{},
-				chartsDataLine2:{},
-				ringOptsLegend:[{
-					name:'路况管理',
-					value:'15.63%',
-					url:"/static/image/lkgl.png"
-				},{
-					name:'社会保障',
-					value:'15.63%',
-					url:"/static/image/shbz.png"
-				},{
-					name:'政务热线',
-					value:'15.63%',
-					url:"/static/image/zwrx.png"
-				},{
-					name:'供水服务',
-					value:'15.63%',
-					url:"/static/image/gsfw.png"
-				},{
-					name:'车辆管理',
-					value:'15.63%',
-					url:"/static/image/clgl.png"
-				},{
-					name:'公共卫生',
-					value:'15.63%',
-					url:"/static/image/ggws.png"
-				},{
-					name:'物业管理',
-					value:'15.63%',
-					url:"/static/image/wygl.png"
-				},{
-					name:'园林管理',
-					value:'15.63%',
-					url:"/static/image/ylgl.png"
-				},{
-					name:'垂管行业',
-					value:'15.63%',
-					url:"/static/image/cghy.png"
-				},{
-					name:'计划生育',
-					value:'15.63%',
-					url:"/static/image/jhsy.png"
+
+				chartsDataArcbar1: {},
+				chartsDataLine2: {},
+				ringOptsLegend: [{
+					name: '路况管理',
+					value: '15.63%',
+					url: "/static/image/lkgl.png"
+				}, {
+					name: '社会保障',
+					value: '15.63%',
+					url: "/static/image/shbz.png"
+				}, {
+					name: '政务热线',
+					value: '15.63%',
+					url: "/static/image/zwrx.png"
+				}, {
+					name: '供水服务',
+					value: '15.63%',
+					url: "/static/image/gsfw.png"
+				}, {
+					name: '车辆管理',
+					value: '15.63%',
+					url: "/static/image/clgl.png"
+				}, {
+					name: '公共卫生',
+					value: '15.63%',
+					url: "/static/image/ggws.png"
+				}, {
+					name: '物业管理',
+					value: '15.63%',
+					url: "/static/image/wygl.png"
+				}, {
+					name: '园林管理',
+					value: '15.63%',
+					url: "/static/image/ylgl.png"
+				}, {
+					name: '垂管行业',
+					value: '15.63%',
+					url: "/static/image/cghy.png"
+				}, {
+					name: '计划生育',
+					value: '15.63%',
+					url: "/static/image/jhsy.png"
 				}],
 			}
 		},
@@ -418,22 +417,31 @@
 				this.classes = e.value;
 			},
 			getServerData() {
+				let windowWidth = 600
+				uni.getSystemInfo({
+				      success: function (res) {
+				        // _this.setWidth = res.windowWidth * 0.8
+						console.log(res.windowWidth)
+						windowWidth = res.windowWidth
+				      }
+				    })
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
-					this.chartsDataArcbar1=JSON.parse(JSON.stringify(demodata.Arcbar1))
-					this.chartsDataLine2=JSON.parse(JSON.stringify(demodata.Line))
+					this.chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
+					this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
+					this.chartsDataPie2.series[0].radius = ['50%', '80%'];
 					this.ringOpts = {
-						title:{
-							text:"诉求问题",
-							left:"center",
-							top:"center",
-							textStyle:{
-								color:"#395176",
-								fontSize:16,
-								align:"center"
+						title: {
+							text: "诉求问题",
+							left: "center",
+							top: "center",
+							textStyle: {
+								color: "#395176",
+								fontSize: windowWidth<500?12:16,
+								align: "center"
 							}
 						},
 						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
@@ -449,7 +457,7 @@
 			handleClickSupervise(item) {
 				console.log(item)
 				this.$refs.popup.open('center');
-				
+
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
@@ -577,7 +585,6 @@
 		overflow-y: auto;
 		padding: 0 40rpx;
 		padding: 0 rpx2multiple(40);
-		border: solid 1px;
 	}
 
 	.uni-container {
@@ -642,11 +649,12 @@
 
 			.data-type-content-list-3 {
 				display: flex;
-				justify-content: space-between;
+				justify-content: flex-start;
 
 				.data-type-content-list-4 {
 					display: flex;
 					justify-content: flex-start;
+					width: 41%;
 				}
 
 				.data-type-content-list-5 {
@@ -664,6 +672,7 @@
 						display: inline-block;
 						padding-left: rpx2multiple(10);
 					}
+
 					.t-2 {
 						font-size: rpx2multiple(24);
 					}
@@ -692,26 +701,27 @@
 			margin-right: rpx2multiple(40);
 		}
 	}
-	
+
 	.popup-box {
-		width:rpx2multiple(980);
-		min-height:rpx2multiple(640);
-		background: url(../../image/督办催办信息已发送.png) no-repeat center top;
+		width: rpx2multiple(980);
+		min-height: rpx2multiple(640);
+		background: url(/static/image/dcdb1.png) no-repeat center top;
 		background-size: 70% 70%;
 		background-color: #FFFFFF;
-		
+
 		.textarea {
-			margin-top:rpx2multiple(40);
-			margin-bottom:rpx2multiple(40);
+			margin-top: rpx2multiple(40);
+			margin-bottom: rpx2multiple(40);
 			width: 100%;
 			height: rpx2multiple(387);
 			background: #F2F2F2;
 			border-radius: rpx2multiple(18);
-			padding:rpx2multiple(21);
+			padding: rpx2multiple(21);
 			font-size: rpx2multiple(24);
 			font-family: PingFang;
 			font-weight: bold;
 		}
+
 		.info {
 			font-size: rpx2multiple(36);
 			font-family: PingFang;
@@ -719,6 +729,7 @@
 			color: #4585F5;
 			text-align: center;
 		}
+
 		.btn {
 			width: rpx2multiple(140);
 			height: rpx2multiple(60);
@@ -731,6 +742,7 @@
 			color: #FFFFFF;
 		}
 	}
+
 	.chart-pie {
 		width: 100%;
 		height: 100%;
@@ -738,13 +750,14 @@
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: nowrap;
+
 		.charts-box {
 			width: 30%;
 			height: 100%;
 			padding: rpx2multiple(35) 0;
 			box-sizing: border-box;
 		}
-		
+
 		.chart-pie-legend {
 			width: 70%;
 			height: 100%;
@@ -753,7 +766,7 @@
 			align-items: center;
 			flex-wrap: wrap;
 			padding: rpx2multiple(100);
-		
+
 			.data-type-content-list {
 				width: 25%;
 				// height: rpx2multiple(68);
@@ -763,17 +776,19 @@
 				justify-content: flex-start;
 				padding: rpx2multiple(30) rpx2multiple(39);
 				color: #395176;
-		
+
 				.content-list-1 {
 					width: rpx2multiple(68);
 					height: rpx2multiple(68);
+
 					// background-color: #E9A700;
-					.images,img {
-						width: rpx2multiple(68); 
+					.images,
+					img {
+						width: rpx2multiple(68);
 						height: rpx2multiple(68);
 					}
 				}
-		
+
 				.content-list-2 {
 					display: flex;
 					justify-content: space-between;
@@ -781,26 +796,139 @@
 					font-family: PangMenZhengDao;
 					font-size: rpx2multiple(24);
 					padding-left: rpx2multiple(20);
-		
+
 					.content-list-2-2 {
 						font-size: rpx2multiple(36);
 					}
 				}
-		
+
 			}
 		}
 	}
+
 	.uni-tabs-item-selet {
 		width: rpx2multiple(160);
+
 		/deep/ .input-value-border {
 			border-radius: rpx2multiple(65);
 			color: #4585F5;
 		}
 	}
-	
+
 
 	.uni-group {
 		display: flex;
 		align-items: center;
+	}
+
+	.app-nav {
+		display: none;
+	}
+
+	@media (max-width:500px) {
+		/deep/ .uni-nav-bar-text {
+			font-family: PingFang !important;
+			font-weight:900;
+			background: linear-gradient(
+			0deg, #000000 0%, #000000 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		.app-nav {
+			display: block !important;
+		}
+
+		.nav {
+			display: none !important;
+		}
+
+		.isapp {
+			display: none !important;
+		}
+
+		.box-style-head {
+			font-size: 35rpx;
+			padding-left: 12px;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 11px;
+				width: 4px;
+				height: 13px;
+				background: #0073FA;
+				border-radius: 2px;
+			}
+		}
+
+		.box-style-head-right {
+			font-size: 32rpx;
+		}
+
+		.uni-tabs .uni-tabs-item-selet {
+			width: 228rpx;
+		}
+
+		.data-chart {
+			display: block;
+			height: auto;
+
+			.datas {
+				margin-bottom: 40rpx;
+			}
+		}
+
+		.box-style {
+			width: 100% !important;
+			border-radius: 10rpx !important;
+		}
+		.chart-pie{
+			height: 470rpx;
+		}
+		.chart-pie .chart-pie-legend .data-type-content-list {
+			padding: rpx2multiple(10) rpx2multiple(30);
+		}
+
+		.data-chart .datas .data-type-content-list {
+			width: 100% !important;
+			display: inline-block;
+
+			&:nth-of-type(2) {
+				width: 48% !important;
+				float: right !important;
+			}
+
+			&:last-of-type {
+				width: 100% !important;
+				text-align: center !important;
+
+				.content-list-2 {
+					margin: 0 auto !important;
+				}
+			}
+		}
+
+		.data-chart .datas .data-type-content-list .content-list-3 {
+			font-size: 20rpx;
+			white-space: nowrap;
+		}
+		.popup-box {
+			width: 350px !important;
+		}
+		.chart-pie .chart-pie-legend {
+			padding: 0;
+		}
+		.chart-pie .chart-pie-legend .data-type-content-list {
+			width: 50%;
+		}
+
+
+
+
+
+
+
+
 	}
 </style>

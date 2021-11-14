@@ -1,6 +1,24 @@
 <template>
 	<view class="content">
 		<!-- <uni-nav-bar left-icon="back" left-text="返回" right-text="菜单" title="导航栏组件"></uni-nav-bar> -->
+		<view class="app">
+			<view class="logo-c">
+				<image class="logo" src="/static/image/app/login/logo.png" mode=""></image>
+				<view class="text1">武进12345热线管家</view>
+			</view>
+			<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
+				<uni-forms-item label="" name="username">
+					<uni-easyinput class="input" v-model="formData.username" type="number" placeholder="请输入您的账号"
+						@input="binddata('username',$event.detail.value)" />
+				</uni-forms-item>
+				<uni-forms-item label="" name="password">
+					<uni-easyinput class="input" v-model="formData.password" type="password" placeholder="请输入您的密码"
+						@input="binddata('password',$event.detail.value)" />
+				</uni-forms-item>
+				<text class="forget-password">忘记密码?</text>
+			</uni-forms>
+			<button type="primary" @click="appsubmit">登 陆</button>
+		</view>
 		<view :class="{'a-i-d': isLandScape, 'a-i-d-v': !isLandScape}">
 			<view class="a-i-c">
 				<text class="text1">热线管家</text>
@@ -8,12 +26,6 @@
 				<text class="text3">登录</text>
 			</view>
 			<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
-				<!-- <uni-forms-item label="">
-					<uni-data-picker placeholder="请选择班级"  :localdata="dataTree" v-model="classes" @nodeclick="onnodeclick"></uni-data-picker>
-				</uni-forms-item>
-				<uni-forms-item label="" name="name">
-					<uni-easyinput type="text" v-model="formData.name" placeholder="请输入姓名" />
-				</uni-forms-item> -->
 				<uni-forms-item label="" name="username">
 					<uni-easyinput class="input" v-model="formData.username" type="number" placeholder="请输入您的账号"
 						@input="binddata('username',$event.detail.value)" />
@@ -42,6 +54,9 @@
 	export default {
 		data() {
 			return {
+				 matches: false,
+				 landscape: false,
+				mediaQueryOb: null,
 				isLandScape: true,
 				// 表单数据
 				formData: {
@@ -97,8 +112,31 @@
 				}
 			})
 		},
+		mounted() {
+			 this.testMediaQueryObserver()
+			            this.landscapeObserver()
+		},
 		methods: {
 			...mapActions(["setToken"]),
+			testMediaQueryObserver() {
+				this.mediaQueryOb = uni.createMediaQueryObserver(this)
+
+				this.mediaQueryOb.observe({
+					minWidth: 375,  //页面最小宽度 375px
+					maxWidth: 500  //页面宽度最大 500px
+				}, matches => {
+					console.log(matches)
+					this.matches = matches;
+				})
+			},
+			landscapeObserver() {
+				landscapeOb = uni.createMediaQueryObserver(this)
+				landscapeOb.observe({
+					orientation: 'landscape'  //屏幕方向为纵向
+				}, matches => {
+						this.landscape = matches
+				})
+			},
 			onnodeclick(e) {
 				this.classes = e.value;
 			},
@@ -113,6 +151,10 @@
 			},
 			// 触发提交表单
 			submit() {
+				// uni.navigateTo({
+				// 	url: '/pages/acceptance/index' //跳转地址
+				// })
+				// return
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
 					login({
@@ -127,7 +169,35 @@
 							uni.setStorageSync('token', data.token)
 							this.setToken(data.token)
 							uni.navigateTo({
-								url: '../acceptance/index' //跳转地址
+								url: '/pages/acceptance/index' //跳转地址
+							})
+						}
+					}).catch(error => console.log(error))
+
+				}).catch(err => {
+					console.log('表单错误信息：', err);
+				})
+			},
+			appsubmit() {
+				// uni.navigateTo({
+				// 	url: '/pages/index/index' //跳转地址
+				// })
+				// return
+				this.$refs.form.validate().then(res => {
+					console.log('表单数据信息：', res);
+					login({
+						...this.formData
+					}).then(res => {
+						let {
+							code,
+							data
+						} = res.data
+						console.log(code, data)
+						if (code == 200) {
+							uni.setStorageSync('token', data.token)
+							this.setToken(data.token)
+							uni.navigateTo({
+								url: '/pages/index/index' //跳转地址
 							})
 						}
 					}).catch(error => console.log(error))
@@ -144,11 +214,11 @@
 </style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
-		@return ($px * 1.2)+rpx;
+		@return ($px * 1)+rpx;
 	}
 
 	/deep/ .uni-app--maxwidth {
-		background: url(../../image/登录BG.png) no-repeat left center;
+		background: url(/static/image/dlbg.png) no-repeat left center;
 		background-size: contain;
 	}
 
@@ -157,7 +227,7 @@
 		background-color: #F4F7F9;
 		height: 100vh;
 		width: 100%;
-		background: url(../../image/登陆页BG.png) no-repeat rpx2multiple(128) center;
+		background: url(/static/image/dlybg.png) no-repeat rpx2multiple(128) center;
 		background-size: contain;
 		position: relative;
 	}
@@ -280,5 +350,69 @@
 		color: #FFFFFF;
 		font-family: PingFang SC;
 		font-weight: 600;
+	}
+
+	.app {
+		display: none;
+	}
+
+	@media (max-width:500px) {
+
+		.a-i-d,
+		.a-i-d-v {
+			display: none;
+		}
+
+		.content {
+			background: none;
+		}
+
+		.app {
+			display: block;
+			width: 100%;
+
+			.logo-c {
+				text-align: center;
+				width: 100%;
+				height: 550rpx;
+				padding-top: 150rpx;
+				background: url(/static/image/app/login/loginbg.png) no-repeat left top;
+				background-size: cover;
+				.logo {
+					width: 75rpx;
+					height: 55rpx;
+					margin: 0 auto;
+				}
+
+				.text1 {
+					padding-top: 50rpx;
+					font-size: 32px;
+					font-size: rpx2multiple(32);
+					font-family: DOUYU;
+					font-weight: normal;
+					background: linear-gradient(0deg, #ffffff 0%, #ffffff 100%);
+					-webkit-background-clip: text;
+					-webkit-text-fill-color: transparent;
+					text-align: center;
+				}
+			}
+			.form {
+				padding:70rpx;
+			}
+			.forget-password {
+				right: 70rpx;
+			}
+			uni-button {
+				border-radius: 10rpx;
+				width: 90%;
+				position: fixed;
+				left: 0;
+				right: 0;
+				bottom: 100rpx;
+				margin:0 auto;
+				
+			}
+
+		}
 	}
 </style>
