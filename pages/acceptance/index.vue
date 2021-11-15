@@ -31,12 +31,12 @@
 							</view>
 						</view>
 						<view class="data-type-title">
-							<text class="text1">按内容类别</text>
 							<text class="text2">按诉求类别</text>
+							<text class="text1">按内容类别</text>
 						</view>
 						<view class="data-type">
 							<view class="data-type-content">
-								<view class="data-type-content-list" v-for="(item,index) in contextdata" :key="index">
+								<view class="data-type-content-list" v-for="(item,index) in typedata" :key="index">
 									<view class="content-list-1">{{item.OPTNAME}} {{item.TOTAL}}件</view>
 									<view class="content-list-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
@@ -44,7 +44,7 @@
 
 							</view>
 							<view class="data-type-appeal">
-								<view class="data-type-content-list" v-for="(item,index) in typedata" :key="index">
+								<view class="data-type-content-list" v-for="(item,index) in contextdata" :key="index">
 									<view class="content-list-1">{{item.PDKEY}} {{item.TOTAL}}件</view>
 									<view class="content-list-2 content-list-2-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
@@ -239,7 +239,7 @@
 								:chartData="chartsDataPie2" />
 						</view>
 						<view class="chart-pie-legend chart-pie-legend-app">
-							<view class="data-type-content-list data-type-content-list-app"
+							<!-- <view class="data-type-content-list data-type-content-list-app"
 								v-for="item in ringOptsLegend" :key="item.name">
 								<view class="content-list-1">
 									<image class="images" :src="item.url" mode="aspectFit"></image>
@@ -247,6 +247,16 @@
 								<view class="content-list-2">
 									<view class="content-list-2-1">{{item.name}}</view>
 									<view class="content-list-2-2">{{item.value}}</view>
+								</view>
+							</view> -->
+							<view class="data-type-content-list data-type-content-list-app"
+								v-for="item in detaildata" :key="item.name">
+								<view class="content-list-1">
+									<image class="images" src="/static/image/lkgl.png" mode="aspectFit"></image>
+								</view>
+								<view class="content-list-2">
+									<view class="content-list-2-1">{{item.OPTNAME}}</view>
+									<view class="content-list-2-2">{{item.RATE}}</view>
 								</view>
 							</view>
 
@@ -434,7 +444,8 @@
 					color: "#9454FF"
 				}],
 				contextdata: [],
-				typedata: []
+				typedata: [],
+				detaildata:[],
 			}
 		},
 		onReady() {
@@ -446,6 +457,7 @@
 			this.slsj()
 			this.context('day')
 			this.type('day')
+			this.detail('day')
 		},
 		onLoad() {
 			this.selectedIndexs = []
@@ -473,14 +485,7 @@
 			...mapGetters(["token"])
 		},
 		mounted() {
-			console.log(22, this.token)
-			// this.hfbmygd('day')
-			// this.twojgk('day')
-			// this.threejgk('day')
-			// this.slsj()
-			// this.context('day')
-			// this.type('day')
-			// this.detail()
+			
 		},
 		methods: {
 			hfbmygd(params) {
@@ -597,11 +602,14 @@
 
 				}).catch(error => console.log(error))
 			},
-			detail() {
-				detail({
-
-				}).then(res => {
-					console.log(res)
+			detail(params) {
+				detail(params).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.detaildata = data;
+					console.log(this.detaildata)
 
 				}).catch(error => console.log(error))
 			},
@@ -687,16 +695,22 @@
 					this.twojgk('day')
 					this.threejgk('day')
 					this.context('day')
+					this.type('day')
+					this.detail('day')
 				} else if (item.name == '近一周诉求') {
 					this.hfbmygd('week')
 					this.twojgk('week')
 					this.threejgk('week')
 					this.context('week')
+					this.type('week')
+					this.detail('week')
 				} else {
 					this.hfbmygd('mon')
 					this.twojgk('mon')
 					this.threejgk('mon')
 					this.context('mon')
+					this.type('mon')
+					this.detail('mon')
 				}
 				this.slsj()
 

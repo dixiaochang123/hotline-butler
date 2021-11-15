@@ -90,7 +90,7 @@
                     "secure" : false
                 }
             },
-            "https" : false
+            "https" : true
         },
         "router" : {
             "base" : "./",

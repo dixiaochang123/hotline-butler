@@ -15,3 +15,36 @@
 <code>
 http://www.czssqw.net/zhzf_ly/
 </code>
+
+## 适配移动端
+<code>
+@media (max-width:500px) or
+</code>
+
+<code>
+<!-- 获取屏幕宽度 -->
+let windowWidth = 600
+uni.getSystemInfo({
+	success: function(res) {
+		// _this.setWidth = res.windowWidth * 0.8
+		console.log(res.windowWidth)
+		windowWidth = res.windowWidth
+	}
+})
+</code>
+
+## 发布背景图不显示解决方法
+<code>
+background: url('~@/static/image/dlybg.png')  no-repeat rpx2multiple(128) center;
+</code>
+
+## 发布h5跨域解决方法
+<code>
+"router" : {
+	"base" : "./",
+	"mode" : "hash"
+}
+'production': {
+	baseUrl: 'http://218.93.116.190:18080/wjrxgj',
+}
+</code>

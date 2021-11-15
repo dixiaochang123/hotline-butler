@@ -34,6 +34,7 @@ const service = (options)=>{
 			method: options.method || 'POST',
 			data: options.data || {},
 			header,
+			sslVerify: false,
 			success: (res)=>{
 				console.log(res)
 				if(res.statusCode = 403) {

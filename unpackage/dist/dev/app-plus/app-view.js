@@ -13438,7 +13438,7 @@ var render = function() {
                               staticClass: _vm._$g(20, "sc"),
                               attrs: { _i: 20 }
                             },
-                            [_vm._v("按内容类别")]
+                            [_vm._v("按诉求类别")]
                           ),
                           _c(
                             "v-uni-text",
@@ -13446,7 +13446,7 @@ var render = function() {
                               staticClass: _vm._$g(21, "sc"),
                               attrs: { _i: 21 }
                             },
-                            [_vm._v("按诉求类别")]
+                            [_vm._v("按内容类别")]
                           )
                         ],
                         1
@@ -14209,7 +14209,7 @@ var render = function() {
                                   _c("v-uni-image", {
                                     staticClass: _vm._$g("128-" + $36, "sc"),
                                     attrs: {
-                                      src: _vm._$g("128-" + $36, "a-src"),
+                                      src: "/static/image/lkgl.png",
                                       mode: "aspectFit",
                                       _i: "128-" + $36
                                     }
@@ -21131,9 +21131,453 @@ var render = function() {
                 ],
                 1
               ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(74, "sc"), attrs: { _i: 74 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(75, "sc"), attrs: { _i: 75 } },
+                    [
+                      _c("v-uni-view", { attrs: { _i: 76 } }, [
+                        _vm._v("区级部门")
+                      ])
+                    ],
+                    1
+                  ),
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(77, "sc"), attrs: { _i: 77 } },
+                    [
+                      _c(
+                        "uni-table",
+                        {
+                          ref: "table",
+                          attrs: { _i: 78 },
+                          on: {
+                            "selection-change": function($event) {
+                              return _vm.$handleViewEvent($event)
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "uni-tr",
+                            { attrs: { _i: 79 } },
+                            [
+                              _c("uni-th", { attrs: { _i: 80 } }, [
+                                _vm._v("序号")
+                              ]),
+                              _c("uni-th", { attrs: { _i: 81 } }, [
+                                _vm._v("单位")
+                              ]),
+                              _c("uni-th", { attrs: { _i: 82 } }, [
+                                _vm._v("综合得分")
+                              ]),
+                              _c("uni-th", { attrs: { _i: 83 } }, [
+                                _vm._v("排名升降")
+                              ])
+                            ],
+                            1
+                          ),
+                          _vm._l(_vm._$g(84, "f"), function(
+                            item,
+                            index,
+                            $24,
+                            $34
+                          ) {
+                            return _c(
+                              "uni-tr",
+                              { key: item, attrs: { _i: "84-" + $34 } },
+                              [
+                                _c(
+                                  "uni-td",
+                                  { attrs: { _i: "85-" + $34 } },
+                                  [
+                                    _c(
+                                      "v-uni-view",
+                                      {
+                                        staticClass: _vm._$g("86-" + $34, "sc"),
+                                        attrs: { _i: "86-" + $34 }
+                                      },
+                                      [_vm._v(_vm._$g("86-" + $34, "t0-0"))]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _c(
+                                  "uni-td",
+                                  { attrs: { _i: "87-" + $34 } },
+                                  [
+                                    _c(
+                                      "v-uni-view",
+                                      {
+                                        staticClass: _vm._$g("88-" + $34, "sc"),
+                                        attrs: { _i: "88-" + $34 }
+                                      },
+                                      [_vm._v(_vm._$g("88-" + $34, "t0-0"))]
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _c("uni-td", { attrs: { _i: "89-" + $34 } }, [
+                                  _vm._v(_vm._$g("89-" + $34, "t0-0"))
+                                ]),
+                                _c(
+                                  "uni-td",
+                                  { attrs: { _i: "90-" + $34 } },
+                                  [
+                                    _c(
+                                      "v-uni-view",
+                                      {
+                                        staticClass: _vm._$g("91-" + $34, "sc"),
+                                        attrs: { _i: "91-" + $34 }
+                                      },
+                                      [
+                                        _vm._v(_vm._$g("91-" + $34, "t0-0")),
+                                        _c(
+                                          "v-uni-text",
+                                          {
+                                            staticStyle: {
+                                              visibility: "hidden"
+                                            },
+                                            attrs: { _i: "92-" + $34 }
+                                          },
+                                          [_vm._v("↑")]
+                                        ),
+                                        _vm._$g("93-" + $34, "i")
+                                          ? _c(
+                                              "v-uni-text",
+                                              {
+                                                staticStyle: { color: "red" },
+                                                attrs: { _i: "93-" + $34 }
+                                              },
+                                              [_vm._v("↑")]
+                                            )
+                                          : _vm._e(),
+                                        _vm._$g("94-" + $34, "i")
+                                          ? _c(
+                                              "v-uni-text",
+                                              {
+                                                staticStyle: {
+                                                  color: "#4585F5"
+                                                },
+                                                attrs: { _i: "94-" + $34 }
+                                              },
+                                              [_vm._v("↓")]
+                                            )
+                                          : _vm._e()
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      false
+                        ? undefined
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(97, "sc"), attrs: { _i: 97 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(98, "sc"),
+                      staticStyle: { width: "35%" },
+                      attrs: { _i: 98 }
+                    },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(99, "sc"), attrs: { _i: 99 } },
+                        [
+                          _c("v-uni-view", { attrs: { _i: 100 } }, [
+                            _vm._v("区人社局得分详情")
+                          ])
+                        ],
+                        1
+                      ),
+                      _c("v-uni-view", {
+                        staticClass: _vm._$g(101, "sc"),
+                        staticStyle: { height: "80rpx" },
+                        attrs: { _i: 101 }
+                      }),
+                      _c("v-uni-view", {
+                        staticClass: _vm._$g(102, "sc"),
+                        staticStyle: { height: "40rpx" },
+                        attrs: { _i: 102 }
+                      }),
+                      _vm._l(3, function(item, $15, $25, $35) {
+                        return _c(
+                          "v-uni-view",
+                          {
+                            key: item,
+                            staticClass: _vm._$g("103-" + $35, "sc"),
+                            attrs: { _i: "103-" + $35 }
+                          },
+                          [
+                            _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("104-" + $35, "sc"),
+                                attrs: { _i: "104-" + $35 }
+                              },
+                              [_vm._v("响应率")]
+                            ),
+                            _c("v-uni-view", {
+                              staticClass: _vm._$g("105-" + $35, "sc"),
+                              attrs: { _i: "105-" + $35 }
+                            }),
+                            _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("106-" + $35, "sc"),
+                                attrs: { _i: "106-" + $35 }
+                              },
+                              [_vm._v("100.00% I 30.00分")]
+                            )
+                          ],
+                          1
+                        )
+                      }),
+                      _vm._l(3, function(item, $16, $26, $36) {
+                        return _c(
+                          "v-uni-view",
+                          {
+                            key: item,
+                            staticClass: _vm._$g("107-" + $36, "sc"),
+                            style: _vm._$g("107-" + $36, "s"),
+                            attrs: { _i: "107-" + $36 }
+                          },
+                          [
+                            _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("108-" + $36, "sc"),
+                                attrs: { _i: "108-" + $36 }
+                              },
+                              [_vm._v("响应率")]
+                            ),
+                            _c("v-uni-view", {
+                              staticClass: _vm._$g("109-" + $36, "sc"),
+                              attrs: { _i: "109-" + $36 }
+                            }),
+                            _c(
+                              "v-uni-view",
+                              {
+                                staticClass: _vm._$g("110-" + $36, "sc"),
+                                attrs: { _i: "110-" + $36 }
+                              },
+                              [_vm._v("100.00% I 30.00分")]
+                            )
+                          ],
+                          1
+                        )
+                      })
+                    ],
+                    2
+                  ),
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(111, "sc"),
+                      staticStyle: { width: "65%", height: "100%" },
+                      attrs: { _i: 111 }
+                    },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(112, "sc"), attrs: { _i: 112 } },
+                        [
+                          _c("v-uni-view", { attrs: { _i: 113 } }, [
+                            _vm._v("区人社局当年综合评分月度变化趋势")
+                          ]),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(114, "sc"),
+                              attrs: { _i: 114 }
+                            },
+                            [
+                              _c("uni-data-picker", {
+                                attrs: { _i: 115 },
+                                on: {
+                                  nodeclick: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                },
+                                model: {
+                                  value: _vm._$g(115, "v-model"),
+                                  callback: function() {},
+                                  expression: "classes"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _c("v-uni-view", {
+                        staticStyle: { height: "80rpx" },
+                        attrs: { _i: 116 }
+                      }),
+                      _c(
+                        "v-uni-view",
+                        {
+                          staticClass: _vm._$g(117, "sc"),
+                          staticStyle: { height: "80%" },
+                          attrs: { _i: 117 }
+                        },
+                        [_c("qiun-data-charts", { attrs: { _i: 118 } })],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(119, "sc"), attrs: { _i: 119 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(120, "sc"),
+                      staticStyle: { width: "50%", height: "100%" },
+                      attrs: { _i: 120 }
+                    },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(121, "sc"), attrs: { _i: 121 } },
+                        [
+                          _c("v-uni-view", { attrs: { _i: 122 } }, [
+                            _vm._v("区人社局当年三率月度变化趋势")
+                          ]),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(123, "sc"),
+                              attrs: { _i: 123 }
+                            },
+                            [
+                              _c("uni-data-picker", {
+                                attrs: { _i: 124 },
+                                on: {
+                                  nodeclick: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                },
+                                model: {
+                                  value: _vm._$g(124, "v-model"),
+                                  callback: function() {},
+                                  expression: "classes1"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _c("v-uni-view", {
+                        staticStyle: { height: "80rpx" },
+                        attrs: { _i: 125 }
+                      }),
+                      _c(
+                        "v-uni-view",
+                        {
+                          staticClass: _vm._$g(126, "sc"),
+                          staticStyle: { height: "80%" },
+                          attrs: { _i: 126 }
+                        },
+                        [_c("qiun-data-charts", { attrs: { _i: 127 } })],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(128, "sc"),
+                      staticStyle: { width: "50%", height: "100%" },
+                      attrs: { _i: 128 }
+                    },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(129, "sc"), attrs: { _i: 129 } },
+                        [
+                          _c("v-uni-view", { attrs: { _i: 130 } }, [
+                            _vm._v("区人社局当年月度考核排名分布情况")
+                          ]),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(131, "sc"),
+                              attrs: { _i: 131 }
+                            },
+                            [
+                              _c("uni-data-picker", {
+                                attrs: { _i: 132 },
+                                on: {
+                                  nodeclick: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                },
+                                model: {
+                                  value: _vm._$g(132, "v-model"),
+                                  callback: function() {},
+                                  expression: "classes"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _c("v-uni-view", {
+                        staticStyle: { height: "80rpx" },
+                        attrs: { _i: 133 }
+                      }),
+                      _c(
+                        "v-uni-view",
+                        {
+                          staticClass: _vm._$g(134, "sc"),
+                          staticStyle: { height: "80%" },
+                          attrs: { _i: 134 }
+                        },
+                        [_c("qiun-data-charts", { attrs: { _i: 135 } })],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
               _c("v-uni-view", {
                 staticStyle: { height: "100rpx" },
-                attrs: { _i: 74 }
+                attrs: { _i: 136 }
               })
             ],
             1

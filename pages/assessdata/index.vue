@@ -136,6 +136,115 @@
 					</view>
 
 				</view>
+				<view class="box-style">
+					<view class="box-style-head">
+						<view class="">区级部门</view>
+					</view>
+					<view class="uni-container">
+						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
+							@selection-change="selectionChange">
+							<uni-tr>
+								<uni-th width="25%" align="center">序号</uni-th>
+								<uni-th width="25%" align="center">单位</uni-th>
+								<uni-th width="25%" align="center">综合得分</uni-th>
+								<uni-th width="25%" align="center">排名升降</uni-th>
+							</uni-tr>
+							<uni-tr v-for="(item, index) in tableData" :key="index">
+								<uni-td align="center">
+									<view class="name">{{ index+1 }}</view>
+								</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.DEPT_NAME }}</view>
+								</uni-td>
+								<uni-td align="center">{{ item.MARK }}</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.SJ==0?'/':item.SJ }} <text
+											style="visibility: hidden;">↑</text><text style="color: red;"
+											v-if="item.SJ>0">↑</text><text v-if="item.SJ<0"
+											style="color: #4585F5;">↓</text></view>
+								</uni-td>
+							</uni-tr>
+						</uni-table>
+						<view v-if="false" class="uni-pagination-box">
+							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+								@change="change" />
+						</view>
+					</view>
+				</view>
+				<view class="data-chart">
+					<view class="box-style datas" style="width: 35%;">
+						<view class="box-style-head">
+							<view class="">区人社局得分详情</view>
+						</view>
+						<view class="isapp" style="height: 80rpx;"></view>
+						<view class="app-nav" style="height: 40rpx;"></view>
+						<view class="data-type-content-list isapp" v-for="(item) in 3" :key="item">
+							<view class="content-list-1">响应率</view>
+							<view class="content-list-2"></view>
+							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+						</view>
+						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
+							v-for="(item) in 3" :key="item">
+							<view class="content-list-1">响应率</view>
+							<view class="content-list-2"></view>
+							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+						</view>
+					</view>
+					<view class="box-style chats" style="width: 65%;height: 100%;">
+						<view class="box-style-head">
+							<view class="">区人社局当年综合评分月度变化趋势</view>
+							<view class="box-style-head-right uni-tabs-item-selet">
+								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
+									@nodeclick="onnodeclick">
+								</uni-data-picker>
+							</view>
+						</view>
+						<view class="" style="height: 80rpx;"></view>
+						<view class="charts-box" style="height: 80%;">
+							<qiun-data-charts type="column"
+								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+						</view>
+					</view>
+				
+				</view>
+				<view class="data-chart">
+					<view class="box-style datas" style="width: 50%;height: 100%;">
+						<view class="box-style-head">
+							<view class="">区人社局当年三率月度变化趋势</view>
+							<view class="box-style-head-right uni-tabs-item-selet">
+								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes1"
+									@nodeclick="onnodeclick1">
+								</uni-data-picker>
+							</view>
+						</view>
+						<view class="" style="height: 80rpx;"></view>
+						<view class="charts-box" style="height: 80%;">
+							<qiun-data-charts type="area"
+								:opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
+								:chartData="chartsDataArea1" />
+						</view>
+					</view>
+					<view class="box-style chats" style="width: 50%;height: 100%;">
+						<view class="box-style-head">
+							<view class="">区人社局当年月度考核排名分布情况</view>
+							<view class="box-style-head-right uni-tabs-item-selet">
+								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
+									@nodeclick="onnodeclick">
+								</uni-data-picker>
+							</view>
+						</view>
+						<view class="" style="height: 80rpx;"></view>
+						<view class="charts-box" style="height: 80%;">
+							<!-- <qiun-data-charts type="column"
+								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
+								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
+						</view>
+					</view>
+				
+				</view>
 				<view style="height: 100rpx;"></view>
 			</view>
 
@@ -157,7 +266,6 @@
 		mapActions,
 		mapMutations
 	} from "vuex";
-	let myChart;
 	export default {
 		components: {
 			Tabs,
