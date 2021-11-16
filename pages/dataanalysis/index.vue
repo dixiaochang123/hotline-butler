@@ -89,14 +89,6 @@
 				isLandScape: true,
 				active: '数据分析', //左侧tabs
 				array: ['中国', '美国', '巴西', '日本'],
-				years: [{
-					text: '2020',
-					value: '2020'
-				}, {
-					text: '2021',
-					value: '2021'
-				}],
-				classes: '2021',
 				years: [
 					["请选择", '2018年', '2019年', '2020年', '2021年', '所有'],
 					["请选择", '1月', '自选范围月报', '周报', '月报', '日报', '所有']
@@ -167,7 +159,7 @@
 				console.log(this.searchvalue)
 			},
 			onnodeclick(e) {
-				this.classes = e.value;
+				// this.classes = e.value;
 			},
 			getServerData() {
 				setTimeout(() => {

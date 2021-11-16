@@ -201,26 +201,17 @@
 					<view class="box-style-head">
 						<view class="">一次不满意工单详情</view>
 					</view>
-					<view class="" style="width: 100%;">
+					<view class="order-details-list" style="width: 100%;">
 						<uni-collapse>
-							<uni-collapse-item title="标题文字" :border="true" thumb="/static/image/edit.svg">
+							<uni-collapse-item v-for="(item,index) in detaillistdata" :key="index" :title="item.TITLE" :border="true" thumb="/static/image/edit.svg">
 								<view class="content">
-									<text class="text">折叠内容主体，可自定义内容及样式</text>
-								</view>
-							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="false" thumb="/static/image/edit.svg">
-								<view class="content">
-									<text class="text">折叠内容主体，可自定义内容及样式</text>
-								</view>
-							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="false" thumb="/static/image/edit.svg">
-								<view class="content">
-									<text class="text">折叠内容主体，可自定义内容及样式</text>
-								</view>
-							</uni-collapse-item>
-							<uni-collapse-item title="标题文字" :border="false" thumb="/static/image/edit.svg">
-								<view class="content">
-									<text class="text">折叠内容主体，可自定义内容及样式</text>
+									<text class="text">{{item.CONTENT_TEXT}}</text>
+									<br />
+									<br />
+									<text class="text">办理单位：{{item.DEPT_NAME}}</text>
+									<br />
+									<br />
+									<text class="text">办理意见：{{item.ADV_CONTENT}}</text>
 								</view>
 							</uni-collapse-item>
 						</uni-collapse>
@@ -290,7 +281,8 @@
 		slsj,
 		context,
 		type,
-		detail
+		detail,
+		detaillist
 	} from '@/utils/api.js';
 	let myChart;
 	export default {
@@ -446,6 +438,7 @@
 				contextdata: [],
 				typedata: [],
 				detaildata:[],
+				detaillistdata:[],
 			}
 		},
 		onReady() {
@@ -458,6 +451,7 @@
 			this.context('day')
 			this.type('day')
 			this.detail('day')
+			this.detaillist('day')
 		},
 		onLoad() {
 			this.selectedIndexs = []
@@ -579,7 +573,7 @@
 					data.map(item => {
 						item['percentage'] = (parseInt(item.TOTAL) / total).toFixed(2)
 					})
-					this.contextdata = data
+					this.contextdata = data.slice(0,5)
 					console.log(this.contextdata, total)
 
 				}).catch(error => console.log(error))
@@ -597,7 +591,7 @@
 					data.map(item => {
 						item['percentage'] = (parseInt(item.TOTAL) / total).toFixed(2)
 					})
-					this.typedata = data
+					this.typedata = data.slice(0,5)
 					console.log(this.typedata, total)
 
 				}).catch(error => console.log(error))
@@ -610,6 +604,17 @@
 					} = res.data;
 					this.detaildata = data;
 					console.log(this.detaildata)
+
+				}).catch(error => console.log(error))
+			},
+			detaillist(params) {
+				detaillist(params).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.detaillistdata = data;
+					console.log(this.detaillistdata)
 
 				}).catch(error => console.log(error))
 			},
@@ -697,6 +702,7 @@
 					this.context('day')
 					this.type('day')
 					this.detail('day')
+					this.detaillist('day')
 				} else if (item.name == '近一周诉求') {
 					this.hfbmygd('week')
 					this.twojgk('week')
@@ -704,6 +710,7 @@
 					this.context('week')
 					this.type('week')
 					this.detail('week')
+					this.detaillist('week')
 				} else {
 					this.hfbmygd('mon')
 					this.twojgk('mon')
@@ -711,6 +718,7 @@
 					this.context('mon')
 					this.type('mon')
 					this.detail('mon')
+					this.detaillist('mon')
 				}
 				this.slsj()
 
@@ -1096,6 +1104,11 @@
 			}
 		}
 	}
+	
+	/deep/ .uni-table-scroll {
+		height: 800rpx;
+		overflow-y: auto;
+	}
 
 	.word-order {
 		width: 100%;
@@ -1119,6 +1132,10 @@
 
 	.order-details {
 		margin-top: rpx2multiple(40);
+		.order-details-list {
+			max-height: 800rpx;
+			overflow-y: auto;
+		}
 
 		/deep/ .uni-collapse-item {
 			margin-bottom: rpx2multiple(30);
@@ -1127,6 +1144,7 @@
 
 		/deep/ .uni-collapse-item__title-box {
 			height: rpx2multiple(150);
+			line-height: rpx2multiple(50);
 			background: #F9FBFC;
 			font-size: rpx2multiple(24);
 			font-family: PingFang SC;
@@ -1231,6 +1249,9 @@
 
 	/deep/ .uni-collapse-item__title.uni-collapse-item-border {
 		border: none;
+	}
+	/deep/ .order-details .uni-collapse-item__wrap-content .content {
+		    border-top: solid 1px #ccc;
 	}
 
 	// app

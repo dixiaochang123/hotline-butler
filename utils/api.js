@@ -76,6 +76,14 @@ export function detail(data) {
     params:''
   })
 }
+// 一次不满意工单详情
+export function detaillist(data) {
+  return request({
+    url: `/slqk/ycbmy/detail/list?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
 
 // 督办工单问题集中点--二级归口
 export function dbdc2jgk(data) {
@@ -226,10 +234,10 @@ export function zjddnsltrend(data) {
   })
 }
 
-// 街道当年月度考核排名分布情况
+// 区人社局当年月度考核排名分布情况
 export function zjddnydkhtrend(data) {
   return request({
-    url: `/khsjcz/zjd/dnydkh/trend?date=${data}`,
+    url: `/khsjcz/qrsj/dnydkh/trend?date=${data}`,
     method: 'get',
     params:''
   })
@@ -248,6 +256,14 @@ export function zjddnzhpftrend(data) {
 export function zjdscore(data) {
   return request({
     url: `/khsjcz/zjd/score?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
+// 街道当年月度考核排名分布情况
+export function zjddnydkhtrend1(data) {
+  return request({
+    url: `/khsjcz/zjd/dnydkh/trend?date=${data}`,
     method: 'get',
     params:''
   })

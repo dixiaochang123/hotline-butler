@@ -36,12 +36,19 @@ const service = (options)=>{
 			header,
 			sslVerify: false,
 			success: (res)=>{
-				console.log(res)
-				if(res.statusCode = 403) {
-				// 	uni.navigateTo({
-				// 　　     url: '/pages/login/index' //跳转地址
-				// 　　 })
-				}
+				console.log(res.statusCode)
+				// if(res.statusCode == 403) {
+				// 	uni.showLoading({
+				// 		title: "token失效或过期，请重新登陆",
+				// 	    mask: true,
+				// 	});
+				// 	setTimeout(()=>{
+				// 		uni.hideLoading();
+				// 		uni.navigateTo({
+				// 	　　     url: '/pages/login/index' //跳转地址
+				// 	　　 })
+				// 	},1000)
+				// }
 				resolve(res)
 			},
 			fail: (err)=>{

@@ -12,14 +12,14 @@
 						<view class="box-style-head">
 							<view class="">督办数据</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
-								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
-									@nodeclick="onnodeclick">
-								</uni-data-picker>
+								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years" @change="yearChange" mode="multiSelector">
+									{{ years[0][yearsIndex1] }} - {{ years[1][yearsIndex2]  }}
+								</picker>
 							</view>
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="data-type-content-list">
-							<view class="pmzd-font content-list-3">802</view>
+							<view class="pmzd-font content-list-3">{{dbtotal.TOTAL}}</view>
 							<view class="content-list-2"></view>
 							<view class="content-list-1">督办总量(件)</view>
 						</view>
@@ -30,7 +30,7 @@
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">3 <text class="t-1"> 件</text></view>
+									<view class="">{{dbtotal.DBZHONG}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
@@ -40,21 +40,10 @@
 									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">695 <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">督办中</view>
+									<view class="">{{dbtotal.ENDTOTAL}} <text class="t-1"> 件</text></view>
+									<view class="t-2" style="font-family: PingFang;">已结束</view>
 								</view>
 							</view>
-							<!-- <view class="data-type-content-list-4">
-								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
-									@error="imageError"></image>
-								<view class="data-type-content-list-5">
-									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">督办中</view>
-								</view>
-							</view> -->
-
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -290,6 +279,9 @@
 		mapActions,
 		mapMutations
 	} from "vuex";
+	import {
+		overview
+	} from '@/utils/api.js'
 	let myChart;
 	export default {
 		components: {
@@ -299,18 +291,21 @@
 			return {
 				isLandScape: true,
 				active: '督查督办', //左侧tabs
+				dbtotal:{
+					DBZHONG: "",
+					ENDTOTAL: "",
+					RQ: "",
+					TOTAL: "",
+				},
 				array: ['中国', '美国', '巴西', '日本'],
-				years: [{
-					text: '2019',
-					value: '2019'
-				}, {
-					text: '2020',
-					value: '2020'
-				}, {
-					text: '2021',
-					value: '2021'
-				}],
-				classes: '2021',
+				classes:'2011',
+				years: [
+					['2021', '2020'],
+					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+				],
+				yearsIndex1: 0,
+				yearsIndex2: 0,
+				date:'',
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
@@ -400,9 +395,35 @@
 			})
 		},
 		mounted() {
-
+			let date = this.years[0][this.yearsIndex1]+ "-" +this.years[1][this.yearsIndex2];
+			console.log(date)
+			this.overview(date)
 		},
 		methods: {
+			yearChange: function(e) {
+				console.log(e)
+				//获得对象的 detail的 value
+				//通过数组的下标改变显示在页面的值
+				this.yearsIndex1 = e.detail.value[0];
+				this.yearsIndex2 = e.detail.value[1];
+				let date = this.years[0][this.yearsIndex1]+ "-" +this.years[1][this.yearsIndex2];
+				this.overview(date)
+			},
+			overview(date) {
+				overview(date).then(res=>{
+					let {code,data} = res.data;
+					// DBZHONG: "9.0"
+					// ENDTOTAL: "0.0"
+					// RQ: "2021-10"
+					// TOTAL: "9.0"
+						
+					if(!!data[0]) {
+						this.dbtotal = data[0]
+					}
+					console.log(this.dbtotal)
+				}).catch(error=>console.log(error))
+				
+			},
 			close() {
 				this.$refs.popup.close();
 			},
@@ -807,11 +828,13 @@
 	}
 
 	.uni-tabs-item-selet {
-		width: rpx2multiple(160);
-
+		width: rpx2multiple(260);
+		border-radius: rpx2multiple(65);
+		border:solid 1px #4585F5;
+		padding:10rpx;
 		/deep/ .input-value-border {
-			border-radius: rpx2multiple(65);
-			color: #4585F5;
+			// border-radius: rpx2multiple(65);
+			color: #000000;
 		}
 	}
 

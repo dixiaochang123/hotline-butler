@@ -10,7 +10,7 @@
 				<!--  headtabs 日期-->
 				<view class="uni-tabs">
 					<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item isapp']"
-						v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item,index)">
+						v-for="(item,index) in headtabs" :key="'index-'+index" @click="handletabschange(item,index)">
 						{{item}}
 					</view>
 					<view class="uni-tabs-item uni-tabs-item-selet isapp">
@@ -40,7 +40,7 @@
 								<uni-th width="25%" align="center">综合得分</uni-th>
 								<uni-th width="25%" align="center">排名升降</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="index">
+							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">
 									<view class="name">{{ index+1 }}</view>
 								</uni-td>
@@ -69,16 +69,16 @@
 						</view>
 						<view class="isapp" style="height: 80rpx;"></view>
 						<view class="app-nav" style="height: 40rpx;"></view>
-						<view class="data-type-content-list isapp" v-for="(item) in 3" :key="item">
+						<view class="data-type-content-list isapp" v-for="(item,index) in scoredata" :key="'index-'+index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
-							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
-							v-for="(item) in 3" :key="item">
+							v-for="(item,index) in scoredata" :key="'index-'+index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
-							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 65%;height: 100%;">
@@ -136,9 +136,9 @@
 					</view>
 
 				</view>
-				<view class="box-style">
+				<view class="box-stdex">
 					<view class="box-style-head">
-						<view class="">区级部门</view>
+						<view class="">镇街道</view>
 					</view>
 					<view class="uni-container">
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
@@ -149,7 +149,7 @@
 								<uni-th width="25%" align="center">综合得分</uni-th>
 								<uni-th width="25%" align="center">排名升降</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="index">
+							<uni-tr v-for="(item, index) in tableData1" :key="'info2-'+index">
 								<uni-td align="center">
 									<view class="name">{{ index+1 }}</view>
 								</uni-td>
@@ -174,25 +174,25 @@
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 35%;">
 						<view class="box-style-head">
-							<view class="">区人社局得分详情</view>
+							<view class="">西湖街道得分详情</view>
 						</view>
 						<view class="isapp" style="height: 80rpx;"></view>
 						<view class="app-nav" style="height: 40rpx;"></view>
-						<view class="data-type-content-list isapp" v-for="(item) in 3" :key="item">
+						<view class="data-type-content-list isapp" v-for="(item,index) in zjdscoredata" :key="'index-'+index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
-							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
-							v-for="(item) in 3" :key="item">
+							v-for="(item,index) in zjdscoredata" :key="'index-'+index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
-							<view class="pmzd-font content-list-3">100.00% I 30.00分</view>
+							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 65%;height: 100%;">
 						<view class="box-style-head">
-							<view class="">区人社局当年综合评分月度变化趋势</view>
+							<view class="">西湖街道当年综合评分月度变化趋势</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
@@ -203,7 +203,7 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
 				
@@ -211,7 +211,7 @@
 				<view class="data-chart">
 					<view class="box-style datas" style="width: 50%;height: 100%;">
 						<view class="box-style-head">
-							<view class="">区人社局当年三率月度变化趋势</view>
+							<view class="">西湖街道当年三率月度变化趋势</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes1"
 									@nodeclick="onnodeclick1">
@@ -222,12 +222,12 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="area"
 								:opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
-								:chartData="chartsDataArea1" />
+								:chartData="chartsDataArea2" />
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
 						<view class="box-style-head">
-							<view class="">区人社局当年月度考核排名分布情况</view>
+							<view class="">西湖街道当年月度考核排名分布情况</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
 								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
@@ -240,7 +240,7 @@
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
 							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
-								:chartData="chartsDataLine2" />
+								:chartData="chartsDataLine3" />
 						</view>
 					</view>
 				
@@ -259,7 +259,15 @@
 	import tableData from './tableData.js'
 	import {
 		qjbm,
-		dnsltrend
+		dnsltrend,
+		score,
+		dnzhpftrend,
+		dnydkhtrend,
+		zjd,
+		zjddnsltrend,
+		zjdscore,
+		zjddnzhpftrend,
+		zjddnydkhtrend1
 	} from '@/utils/api.js'
 	import {
 		mapState,
@@ -298,6 +306,7 @@
 
 				searchVal: '',
 				tableData: [],
+				tableData1: [],
 				// 每页数据量
 				pageSize: 10,
 				// 当前页
@@ -307,12 +316,22 @@
 				loading: false,
 
 				chartsDataColumn5: {},
+				chartsDataColumn6: {},
 				chartsDataPie2: {},
 				ringOpts: {},
 
 				chartsDataArea1: {},
+				chartsDataArea2: {},
 				chartsDataLine2: {},
-				dnsltrenddata: []
+				chartsDataLine3: {},
+				dnsltrenddata: [],
+				scoredata:[],
+				zjdscoredata:[],
+				dnzhpftrenddata:[],
+				zjddnzhpftrenddata:[],
+				dnydkhtrenddata:[],
+				zjddnydkhtrenddata:[],
+				zjddnsltrenddata:[]
 			}
 		},
 		onReady() {
@@ -344,7 +363,16 @@
 			let index = this.headtabs.indexOf(this.activetab);
 			let date = this.classes + '-' + this.headtabs1[index]
 			this.qjbm(date)
+			this.score(date)
+			this.dnzhpftrend('2021')
 			this.dnsltrend('2021')
+			this.dnydkhtrend('2021')
+			
+			this.zjd(date)
+			this.zjdscore(date)
+			this.zjddnsltrend('2021')
+			this.zjddnzhpftrend('2021')
+			this.zjddnydkhtrend1('2021')
 		},
 		methods: {
 			yearChange(e){
@@ -362,9 +390,19 @@
 						code,
 						data
 					} = res.data
-					console.log(code, data)
 					if (code == 0) {
 						this.tableData = data
+					}
+				}).catch(error => console.log(error))
+			},
+			zjd(date) {
+				zjd(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					if (code == 0) {
+						this.tableData1 = data
 					}
 				}).catch(error => console.log(error))
 			},
@@ -374,18 +412,144 @@
 						code,
 						data
 					} = res.data
-					this.dnsltrenddata = this.sort_pro(data).map(item => {
-						item = item.map(key => {
-							key
-						})
+					this.dnsltrenddata = this.sort_pro(data)[0]
+					let chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataArea1.categories = this.dnsltrenddata.map(item => item.RQ);
+					chartsDataArea1.series[0].data = this.dnsltrenddata.map((item, index) => {
+						return {
+							name: item.RQ,
+							value: item.XYRATE,
+						}
 					})
-					// BJRATE: "1.0"
-					// DEPT_NAME: "武进自然资源局武进分局"
-					// MYRATE: "1.0"
-					// RQ: "2021-11"
-					// XYRATE: "0.7"
-					console.log(data, this.dnsltrenddata)
+					this.chartsDataArea1 = chartsDataArea1
+					console.log( this.dnsltrenddata)
+				}).catch(error => console.log(error));
+			},
+			zjddnsltrend(date) {
+				zjddnsltrend(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					let zjddnsltrenddata = this.sort_pro(data)[0]
+					let chartsDataArea2 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataArea2.categories = zjddnsltrenddata.map(item => item.RQ);
+					chartsDataArea2.series[0].data = zjddnsltrenddata.map((item, index) => {
+						return {
+							name: item.RQ,
+							value: item.XYRATE,
+						}
+					})
+					this.chartsDataArea2 = chartsDataArea2;
 				}).catch(error => console.log(error))
+				
+			},
+			dnydkhtrend(date) {
+				dnydkhtrend(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					this.dnydkhtrenddata = this.sort_pro(data)[0]
+					// let chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Column));
+					let chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Column))
+					chartsDataLine2.categories = this.dnydkhtrenddata.map(item => item.RQ);
+					chartsDataLine2.series[0].data = this.dnydkhtrenddata.map((item, index) => {
+						return {
+							name: item.RQ,
+							value: item.RN,
+						}
+					})
+					this.chartsDataLine2 = chartsDataLine2
+					console.log( this.dnydkhtrenddata)
+				}).catch(error => console.log(error))
+			},
+			zjddnydkhtrend1(date) {
+				zjddnydkhtrend1(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					this.zjddnydkhtrenddata = this.sort_pro(data)[0]
+					// let chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Column));
+					let chartsDataLine3 = JSON.parse(JSON.stringify(demodata.Column))
+					chartsDataLine3.categories = this.zjddnydkhtrenddata.map(item => item.RQ);
+					chartsDataLine3.series[0].data = this.zjddnydkhtrenddata.map((item, index) => {
+						return {
+							name: item.RQ,
+							value: item.RN,
+						}
+					})
+					this.chartsDataLine3 = chartsDataLine3
+					console.log( this.zjddnydkhtrenddata)
+				}).catch(error => console.log(error))
+			},
+			dnzhpftrend(date) {
+				dnzhpftrend(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					// console.log(data)
+					this.dnzhpftrenddata = this.sort_pro(data)[0]
+					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataColumn5.categories = this.dnzhpftrenddata.map(item => item.RQ);
+					chartsDataColumn5.series[0].data = this.dnzhpftrenddata.map((item, index) => {
+						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
+						return {
+							name: item.RQ,
+							value: item.RN,
+							itemStyle: {
+								color: colorList[index],
+								borderRadius: [15, 15, 0, 0]
+							}
+						}
+					})
+					this.chartsDataColumn5 = chartsDataColumn5
+				}).catch(error => console.log(error))
+			},
+			zjddnzhpftrend(date) {
+				zjddnzhpftrend(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					console.log(3333,data)
+					this.zjddnzhpftrenddata = this.sort_pro(data)[0];
+					let chartsDataColumn6 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataColumn6.categories = this.zjddnzhpftrenddata.map(item => item.RQ);
+					chartsDataColumn6.series[0].data = this.zjddnzhpftrenddata.map((item, index) => {
+						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
+						return {
+							name: item.RQ,
+							value: item.RN,
+							itemStyle: {
+								color: colorList[index],
+								borderRadius: [15, 15, 0, 0]
+							}
+						}
+					})
+					this.chartsDataColumn6 = chartsDataColumn6
+				}).catch(error => console.log(error))
+			},
+			score(date) {
+				score(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data
+					this.scoredata = this.sort_pro(data)[0].slice(0,3)
+				}).catch(error => console.log(error));
+			},
+			zjdscore(date) {
+				
+			zjdscore(date).then(res => {
+				let {
+					code,
+					data
+				} = res.data
+				this.zjdscoredata = this.sort_pro(data)[0].slice(0,3)
+			}).catch(error => console.log(error))
 			},
 			sort_pro(arr) {
 				const c = []
@@ -406,6 +570,7 @@
 				let date = this.classes + '-' + this.headtabs1[index];
 				this.qjbm(date)
 			},
+			// 区人社局当年三率月度变化趋势
 			onnodeclick1(e) {
 				this.classes1 = e.value;
 				this.dnsltrend(this.classes1)
@@ -414,24 +579,10 @@
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
-					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
-					this.chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Line))
-					// "Line": {
-					// 	"categories": ["2016", "2017", "2018", "2019", "2020", "2021"],
-					// 	"series": [{
-					// 		"name": "成交量A",
-					// 		"data": [35, 8, 25, 37, 4, 20]
-					// 	}, {
-					// 		"name": "成交量B",
-					// 		"data": [70, 40, 65, 100, 44, 68]
-					// 	}, {
-					// 		"name": "成交量C",
-					// 		"data": [100, 80, 95, 150, 112, 132]
-					// 	}]
-					// },
+					// this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					// this.chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Line))
 
-
-					this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
+					// this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					console.log(this.chartsDataPie2)
 				}, 1500);
@@ -689,7 +840,7 @@
 		align-items: center;
 	}
 	.app-nav {
-		display: none;
+		display: none !important;
 	}
 	@media (max-width:500px) {
 		/deep/ .uni-nav-bar-text {
