@@ -12,7 +12,8 @@
 						<view class="box-style-head">
 							<view class="">督办数据</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
-								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years" @change="yearChange" mode="multiSelector">
+								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
+									@change="yearChange" mode="multiSelector">
 									{{ years[0][yearsIndex1] }} - {{ years[1][yearsIndex2]  }}
 								</picker>
 							</view>
@@ -131,7 +132,7 @@
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
 								<qiun-data-charts type="arcbar"
-									:opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
+									:opts="{title:{name:'80',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
 									:chartData="chartsDataArcbar1" />
 							</view>
 						</view>
@@ -142,7 +143,7 @@
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
 								<qiun-data-charts type="arcbar"
-									:opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
+									:opts="opts"
 									:chartData="chartsDataArcbar1" />
 							</view>
 						</view>
@@ -162,13 +163,13 @@
 								<uni-th width="25%" align="center">办理单位</uni-th>
 								<uni-th width="25%" align="center">操作</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="index">
+							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.DEPT_NAME }}</view>
 								</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.DEPT_NAME }}</view>
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
@@ -197,13 +198,14 @@
 									:chartData="chartsDataPie2" />
 							</view>
 							<view class="chart-pie-legend">
-								<view class="data-type-content-list" v-for="item in ringOptsLegend" :key="item.name">
+								<view class="data-type-content-list" v-for="item in detaildata" :key="item.OPTNAME">
 									<view class="content-list-1">
-										<image class="images" :src="item.url" mode="aspectFit"></image>
+										<!-- <image class="images" :src="item.url" mode="aspectFit"></image> -->
+										<image class="images" src="/static/image/lkgl.png" mode="aspectFit"></image>
 									</view>
 									<view class="content-list-2">
-										<view class="content-list-2-1">{{item.name}}</view>
-										<view class="content-list-2-2">{{item.value}}</view>
+										<view class="content-list-2-1">{{item.OPTNAME}}</view>
+										<view class="content-list-2-2">{{item.TOTAL}}</view>
 									</view>
 								</view>
 
@@ -280,7 +282,12 @@
 		mapMutations
 	} from "vuex";
 	import {
-		overview
+		overview,
+		dbdc2jgk,
+		dbdc3jgk,
+		wtgd,
+		dbdchfbmygd,
+		lzdtbhb
 	} from '@/utils/api.js'
 	let myChart;
 	export default {
@@ -291,21 +298,21 @@
 			return {
 				isLandScape: true,
 				active: '督查督办', //左侧tabs
-				dbtotal:{
+				dbtotal: {
 					DBZHONG: "",
 					ENDTOTAL: "",
 					RQ: "",
 					TOTAL: "",
 				},
 				array: ['中国', '美国', '巴西', '日本'],
-				classes:'2011',
+				classes: '2011',
 				years: [
 					['2021', '2020'],
 					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				],
 				yearsIndex1: 0,
 				yearsIndex2: 0,
-				date:'',
+				date: '',
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
@@ -367,6 +374,28 @@
 					value: '15.63%',
 					url: "/static/image/jhsy.png"
 				}],
+				detaildata: [],
+				lzdtbhbdata: {
+					HBRATE: 0,
+					TBRATE: 0,
+				},
+				opts: {
+					title: {
+						name:'0',
+						color: '#2fc25b',
+						fontSize: 35
+					},
+					subtitle: {
+						name: ''
+					},
+					extra: {
+						arcbar: {
+							type: 'circle',
+							startAngle: 1.5
+						}
+					}
+				}
+
 			}
 		},
 		onReady() {
@@ -375,7 +404,7 @@
 		},
 		onLoad() {
 			this.selectedIndexs = []
-			this.getData(1)
+			// this.getData(1)
 		},
 		onResize() {
 			console.log(this)
@@ -395,9 +424,14 @@
 			})
 		},
 		mounted() {
-			let date = this.years[0][this.yearsIndex1]+ "-" +this.years[1][this.yearsIndex2];
+			let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
 			console.log(date)
 			this.overview(date)
+			this.dbdc2jgk(date)
+			this.dbdc3jgk(date)
+			this.wtgd(date)
+			this.dbdchfbmygd(date)
+			this.lzdtbhb(date)
 		},
 		methods: {
 			yearChange: function(e) {
@@ -406,23 +440,84 @@
 				//通过数组的下标改变显示在页面的值
 				this.yearsIndex1 = e.detail.value[0];
 				this.yearsIndex2 = e.detail.value[1];
-				let date = this.years[0][this.yearsIndex1]+ "-" +this.years[1][this.yearsIndex2];
+				let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
 				this.overview(date)
+				this.dbdc2jgk(date)
+				this.dbdc3jgk(date)
+				this.wtgd(date)
+				this.dbdchfbmygd(date)
+				this.lzdtbhb(date)
 			},
 			overview(date) {
-				overview(date).then(res=>{
-					let {code,data} = res.data;
-					// DBZHONG: "9.0"
-					// ENDTOTAL: "0.0"
-					// RQ: "2021-10"
-					// TOTAL: "9.0"
-						
-					if(!!data[0]) {
+				overview(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
 						this.dbtotal = data[0]
 					}
-					console.log(this.dbtotal)
-				}).catch(error=>console.log(error))
-				
+				}).catch(error => console.log(error))
+
+			},
+			dbdc2jgk(date) {
+				dbdc2jgk(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+				}).catch(error => console.log(error))
+
+			},
+			dbdc3jgk(date) {
+				dbdc3jgk(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+				}).catch(error => console.log(error))
+
+			},
+			wtgd(date) {
+				wtgd(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.tableData = data
+
+				}).catch(error => console.log(error))
+
+			},
+			dbdchfbmygd(date) {
+				dbdchfbmygd(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(data)
+					this.detaildata = data;
+				}).catch(error => console.log(error))
+
+			},
+			lzdtbhb(date) {
+				lzdtbhb(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						data[0].HBRATE = data[0].HBRATE.substring(0, data[0].HBRATE.length - 1)
+						data[0].TBRATE = data[0].TBRATE.substring(0, data[0].TBRATE.length - 1)
+						this.chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
+						this.chartsDataArcbar1.series[0].data = data[0].HBRATE
+						this.opts.title.name = data[0].HBRATE
+						this.$set(this.opts,'name',data[0].HBRATE)
+					}
+					this.lzdtbhbdata = data[0];
+					console.log(this.lzdtbhbdata)
+				}).catch(error => console.log(error))
+
 			},
 			close() {
 				this.$refs.popup.close();
@@ -440,12 +535,12 @@
 			getServerData() {
 				let windowWidth = 600
 				uni.getSystemInfo({
-				      success: function (res) {
-				        // _this.setWidth = res.windowWidth * 0.8
+					success: function(res) {
+						// _this.setWidth = res.windowWidth * 0.8
 						console.log(res.windowWidth)
 						windowWidth = res.windowWidth
-				      }
-				    })
+					}
+				})
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
@@ -461,7 +556,7 @@
 							top: "center",
 							textStyle: {
 								color: "#395176",
-								fontSize: windowWidth<500?12:16,
+								fontSize: windowWidth < 500 ? 12 : 16,
 								align: "center"
 							}
 						},
@@ -830,12 +925,18 @@
 	.uni-tabs-item-selet {
 		width: rpx2multiple(260);
 		border-radius: rpx2multiple(65);
-		border:solid 1px #4585F5;
-		padding:10rpx;
+		border: solid 1px #4585F5;
+		padding: 10rpx;
+
 		/deep/ .input-value-border {
 			// border-radius: rpx2multiple(65);
 			color: #000000;
 		}
+	}
+
+	.uni-table-scroll {
+		height: 800rpx;
+		overflow-y: auto;
 	}
 
 
@@ -851,12 +952,12 @@
 	@media (max-width:500px) {
 		/deep/ .uni-nav-bar-text {
 			font-family: PingFang !important;
-			font-weight:900;
-			background: linear-gradient(
-			0deg, #000000 0%, #000000 100%);
+			font-weight: 900;
+			background: linear-gradient(0deg, #000000 0%, #000000 100%);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
 		.app-nav {
 			display: block !important;
 		}
@@ -906,9 +1007,11 @@
 			width: 100% !important;
 			border-radius: 10rpx !important;
 		}
-		.chart-pie{
+
+		.chart-pie {
 			height: 470rpx;
 		}
+
 		.chart-pie .chart-pie-legend .data-type-content-list {
 			padding: rpx2multiple(10) rpx2multiple(30);
 		}
@@ -936,12 +1039,15 @@
 			font-size: 20rpx;
 			white-space: nowrap;
 		}
+
 		.popup-box {
 			width: 350px !important;
 		}
+
 		.chart-pie .chart-pie-legend {
 			padding: 0;
 		}
+
 		.chart-pie .chart-pie-legend .data-type-content-list {
 			width: 50%;
 		}
