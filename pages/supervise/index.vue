@@ -78,7 +78,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
-								:chartData="chartsDataLine2" />
+								:chartData="chartsDataLine3" />
 						</view>
 					</view>
 
@@ -88,9 +88,13 @@
 						<view class="box-style-head">
 							<view class="">问题工单总量</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
-								<uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
+								<!-- <uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 									@nodeclick="onnodeclick">
-								</uni-data-picker>
+								</uni-data-picker> -->
+								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
+									@change="yearChange" mode="multiSelector">
+									{{ years[0][yearsIndex1] }} - {{ years[1][yearsIndex2]  }}
+								</picker>
 							</view>
 						</view>
 						<view class="" style="height: 80rpx;"></view>
@@ -132,7 +136,7 @@
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
 								<qiun-data-charts type="arcbar"
-									:opts="{title:{name:'80',color:'#2fc25b',fontSize:35},subtitle:{name:''},extra:{arcbar:{type:'circle',startAngle:1.5}}}"
+									:opts="opts"
 									:chartData="chartsDataArcbar1" />
 							</view>
 						</view>
@@ -143,8 +147,8 @@
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
 								<qiun-data-charts type="arcbar"
-									:opts="opts"
-									:chartData="chartsDataArcbar1" />
+									:opts="opts1"
+									:chartData="chartsDataArcbar2" />
 							</view>
 						</view>
 					</view>
@@ -205,7 +209,7 @@
 									</view>
 									<view class="content-list-2">
 										<view class="content-list-2-1">{{item.OPTNAME}}</view>
-										<view class="content-list-2-2">{{item.TOTAL}}</view>
+										<view class="content-list-2-2">{{item.rate}}%</view>
 									</view>
 								</view>
 
@@ -221,9 +225,9 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine2" />
+							
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -232,8 +236,9 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
-								:chartData="chartsDataLine2" />
+							<qiun-data-charts type="column"
+								:opts="{enableScroll:true,xAxis:{scrollShow:true,itemCount:10,disableGrid:true},legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+								:ontouch="true" :chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
 
@@ -283,11 +288,14 @@
 	} from "vuex";
 	import {
 		overview,
+		gldept,
 		dbdc2jgk,
 		dbdc3jgk,
 		wtgd,
 		dbdchfbmygd,
-		lzdtbhb
+		lzdtbhb,
+		sqlbhqs,
+		zysjbm
 	} from '@/utils/api.js'
 	let myChart;
 	export default {
@@ -311,7 +319,7 @@
 					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 0,
+				yearsIndex2: 10,
 				date: '',
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
@@ -328,11 +336,14 @@
 				loading: false,
 
 				chartsDataColumn5: {},
+				chartsDataColumn6: {},
 				chartsDataPie2: {},
 				ringOpts: {},
 
 				chartsDataArcbar1: {},
+				chartsDataArcbar2: {},
 				chartsDataLine2: {},
+				chartsDataLine3: {},
 				ringOptsLegend: [{
 					name: '路况管理',
 					value: '15.63%',
@@ -394,7 +405,23 @@
 							startAngle: 1.5
 						}
 					}
-				}
+				},
+				opts1: {
+					title: {
+						name:'0',
+						color: '#2fc25b',
+						fontSize: 35
+					},
+					subtitle: {
+						name: ''
+					},
+					extra: {
+						arcbar: {
+							type: 'circle',
+							startAngle: 1.5
+						}
+					}
+				},
 
 			}
 		},
@@ -427,11 +454,14 @@
 			let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
 			console.log(date)
 			this.overview(date)
+			this.gldept(date)
 			this.dbdc2jgk(date)
 			this.dbdc3jgk(date)
 			this.wtgd(date)
 			this.dbdchfbmygd(date)
 			this.lzdtbhb(date)
+			this.sqlbhqs(date)
+			this.zysjbm(date)
 		},
 		methods: {
 			yearChange: function(e) {
@@ -442,11 +472,14 @@
 				this.yearsIndex2 = e.detail.value[1];
 				let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
 				this.overview(date)
+				this.gldept(date)
 				this.dbdc2jgk(date)
 				this.dbdc3jgk(date)
 				this.wtgd(date)
 				this.dbdchfbmygd(date)
 				this.lzdtbhb(date)
+				this.sqlbhqs(date)
+				this.zysjbm(date)
 			},
 			overview(date) {
 				overview(date).then(res => {
@@ -460,12 +493,47 @@
 				}).catch(error => console.log(error))
 
 			},
+			gldept(date) {
+				gldept(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataColumn5.categories = data.map(item => item.DEPT_NAME);
+					chartsDataColumn5.series[0].data = data.map((item, index) => {
+						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
+						return {
+							name: item.DEPT_NAME,
+							value: item.TOTAL,
+							itemStyle: {
+								color: colorList[index],
+								borderRadius: [15, 15, 0, 0]
+							}
+						}
+					})
+					this.chartsDataColumn5 = chartsDataColumn5
+					
+					
+				}).catch(error => console.log(error))
+			},
 			dbdc2jgk(date) {
 				dbdc2jgk(date).then(res => {
 					let {
 						code,
 						data
 					} = res.data;
+					let chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Column))
+					chartsDataLine2.categories = data.map(item => item.OPTNAME);
+					chartsDataLine2.series[0].data = data.map((item, index) => {
+						return {
+							name: item.OPTNAME,
+							value: item.TOTAL,
+						}
+					})
+					this.chartsDataLine2 = chartsDataLine2
+					
+					
 				}).catch(error => console.log(error))
 
 			},
@@ -475,6 +543,15 @@
 						code,
 						data
 					} = res.data;
+					let chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Column))
+					chartsDataLine2.categories = data.map(item => item.OPTNAME);
+					chartsDataLine2.series[0].data = data.map((item, index) => {
+						return {
+							name: item.OPTNAME,
+							value: item.TOTAL,
+						}
+					})
+					this.chartsDataLine3 = chartsDataLine2
 				}).catch(error => console.log(error))
 
 			},
@@ -485,7 +562,6 @@
 						data
 					} = res.data;
 					this.tableData = data
-
 				}).catch(error => console.log(error))
 
 			},
@@ -495,7 +571,14 @@
 						code,
 						data
 					} = res.data;
-					console.log(data)
+					let total = 0
+					data.map(item=>{
+						total+=parseFloat(item.TOTAL)
+					})
+					data.map(item=>{
+						item['rate'] = (parseFloat(item.TOTAL)/total).toFixed(3)
+						
+					})
 					this.detaildata = data;
 				}).catch(error => console.log(error))
 
@@ -509,15 +592,52 @@
 					if (!!data[0]) {
 						data[0].HBRATE = data[0].HBRATE.substring(0, data[0].HBRATE.length - 1)
 						data[0].TBRATE = data[0].TBRATE.substring(0, data[0].TBRATE.length - 1)
-						this.chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
-						this.chartsDataArcbar1.series[0].data = data[0].HBRATE
-						this.opts.title.name = data[0].HBRATE
-						this.$set(this.opts,'name',data[0].HBRATE)
+						let chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
+						let chartsDataArcbar2 = JSON.parse(JSON.stringify(demodata.Arcbar1))
+						chartsDataArcbar1.series[0].data = data[0].TBRATE
+						chartsDataArcbar2.series[0].data = data[0].HBRATE
+						this.chartsDataArcbar1 = chartsDataArcbar1;
+						this.chartsDataArcbar2 = chartsDataArcbar2;
+						this.opts.title.name = data[0].TBRATE
+						this.opts1.title.name = data[0].HBRATE
 					}
 					this.lzdtbhbdata = data[0];
-					console.log(this.lzdtbhbdata)
 				}).catch(error => console.log(error))
 
+			},
+			sqlbhqs(date) {
+				sqlbhqs(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(data)
+					
+				}).catch(error => console.log(error))
+			},
+			zysjbm(date) {
+				zysjbm(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(data)
+					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
+					chartsDataColumn5.categories = data.map(item => item.DEPT_NAME);
+					chartsDataColumn5.series[0].data = data.map((item, index) => {
+						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
+						return {
+							name: item.DEPT_NAME,
+							value: item.TOTAL,
+							itemStyle: {
+								color: colorList[index],
+								borderRadius: [15, 15, 0, 0]
+							}
+						}
+					})
+					this.chartsDataColumn6 = chartsDataColumn5
+					
+				}).catch(error => console.log(error))
 			},
 			close() {
 				this.$refs.popup.close();
@@ -544,10 +664,10 @@
 				setTimeout(() => {
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
-					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
+					// this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					this.chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
-					this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
+					// this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
 					this.chartsDataPie2.series[0].radius = ['50%', '80%'];
 					this.ringOpts = {
 						title: {

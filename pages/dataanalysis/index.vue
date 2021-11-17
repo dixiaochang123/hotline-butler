@@ -16,13 +16,14 @@
 						</picker>
 					</view> -->
 					<view class=" uni-tabs-item-selet app-nav">
-						<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years" @change="yearChange" mode="multiSelector">
+						<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
+							@change="yearChange" mode="multiSelector">
 							{{ years[0][yearsIndex1] }} - {{ years[1][yearsIndex2]  }}
 						</picker>
 						<uni-easyinput class="search-input" suffixIcon="search" v-model="searchvalue"
 							placeholder="请输入关键字" @iconClick="handlesearch"></uni-easyinput>
 					</view>
-					<view class="uni-tabs-item-parent">
+					<view style="visibility: hidden;" class="uni-tabs-item-parent">
 						<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
 							v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
 							{{item}}
@@ -41,23 +42,23 @@
 					</view>
 				</view>
 				<view class="data-chart">
-					<view class="box-style datas" style="width: 100%;" v-for="item in 5">
+					<view class="box-style datas" style="width: 100%;" v-for="(item,index) in report" :key="'info'+index">
 						<view class="data-type-content-list">
 							<view class="content-list-1">
 								<image class="images" src="/static/image/bg.png" mode="aspectFit"></image>
 							</view>
 							<view class="content-list-2">
-								<view class="">2021-09-11</view>
-								<view class="">日报</view>
+								<view class="">{{item.titlenew}}</view>
+								<view class="">{{item.edit}}</view>
 							</view>
 						</view>
 						<view class="data-type-appeal"><text><text class="bor" style="color: #29CCB6;">●</text>
-								报告类型：日报</text></view>
+								报告类型：{{item.edit}}</text></view>
 						<view class="data-type-appeal"><text><text class="bor"
 									style="color: #FF9054;">●</text>报告状态：已生成</text></view>
 						<view class="data-type-appeal">
-							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：2021-09-11 13:00:00</text>
-							<view class="btn" @click="handleClickDatareport">查看报告</view>
+							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：{{item.createDate}}</text>
+							<view class="btn" @click="handleClickDatareport(item)">查看报告</view>
 						</view>
 					</view>
 				</view>
@@ -79,6 +80,9 @@
 		mapActions,
 		mapMutations
 	} from "vuex";
+	import {
+		reportcase
+	} from '@/utils/api.js'
 	let myChart;
 	export default {
 		components: {
@@ -90,11 +94,13 @@
 				active: '数据分析', //左侧tabs
 				array: ['中国', '美国', '巴西', '日本'],
 				years: [
-					["请选择", '2018年', '2019年', '2020年', '2021年', '所有'],
-					["请选择", '1月', '自选范围月报', '周报', '月报', '日报', '所有']
+					['2021年'],
+					['日报', '周报', '月报', '季报', '年报', '所有'],
 				],
+				params: ['d', 'w', 'm', 'q', 'y', null],
 				yearsIndex1: 0,
 				yearsIndex2: 0,
+				report:[],
 
 
 				headtabs: ['12345报告', '网络报告', '综合报告'],
@@ -126,8 +132,7 @@
 			this.getData(1)
 		},
 		onResize() {
-			console.log(this)
-			let _this = this
+			let _this = this;
 			uni.getSystemInfo({
 				success: function(res) {
 					if (res.windowWidth > res.windowHeight) {
@@ -143,7 +148,7 @@
 			})
 		},
 		mounted() {
-
+			this.reportcase(this.params[0])
 		},
 		methods: {
 			yearChange: function(e) {
@@ -152,14 +157,26 @@
 				//通过数组的下标改变显示在页面的值
 				this.yearsIndex1 = e.detail.value[0];
 				this.yearsIndex2 = e.detail.value[1];
-				console.log(this.yearsIndex1)
-				console.log(this.yearsIndex2)
+				this.reportcase(this.params[this.yearsIndex2])
 			},
 			handlesearch() {
 				console.log(this.searchvalue)
 			},
-			onnodeclick(e) {
-				// this.classes = e.value;
+			reportcase(type) {
+				reportcase(type).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if(!!data) {
+						data.map(item=>{
+							item['titlenew'] = item.title.substring(0,item.title.length-2)
+							item['edit'] = item.title.substring(item.title.length-2)
+						})
+						this.report = data;
+					console.log(data)
+					}
+				}).catch(error => console.log(error))
 			},
 			getServerData() {
 				setTimeout(() => {
@@ -186,9 +203,9 @@
 					});
 				}
 			},
-			handleClickDatareport() {
+			handleClickDatareport(item) {
 				uni.navigateTo({
-					url: '/pages/acceptance/datareport' //跳转地址
+					url: '/pages/acceptance/datareport?title='+item.title+'&type='+item.edit//跳转地址
 				})
 			},
 			handletabschange(item) {
@@ -381,9 +398,10 @@
 		}
 
 		.uni-tabs-item-active {
-			background: #4585F5;
+			background: none;
+			border: solid 1px;
 			border-radius: rpx2multiple(33);
-			color: #FFFFFF;
+			color: #4585F5;
 		}
 	}
 
@@ -503,16 +521,18 @@
 			position: absolute;
 			top: 0;
 			z-index: 1;
-			color: #4585F5!important;
-			background: none!important;
+			color: #4585F5 !important;
+			background: none !important;
+
 			&::after {
 				content: "|";
 				position: absolute;
 				right: 0;
 				top: 0;
-				
+
 			}
 		}
+
 		/deep/ .uni-easyinput__content-input {
 			padding-left: 300rpx !important;
 		}

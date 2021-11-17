@@ -268,3 +268,39 @@ export function zjddnydkhtrend1(data) {
     params:''
   })
 }
+
+// 查询所有报告生成情况
+export function reportcase(type) {
+  return request({
+    url: `/sjfx/all/report/case?type=${type}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-日报-总体情况
+export function dayall(title) {
+  return request({
+    url: `/sjfx/day/all/case?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-日报-表格部分
+export function dayform(title) {
+  return request({
+    url: `/sjfx/day/form?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-日报-集中诉求
+export function dayjzsu(title) {
+  return request({
+    url: `/sjfx/day/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}

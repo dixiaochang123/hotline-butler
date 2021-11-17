@@ -143,6 +143,11 @@
 	import Tabs from '@/components/Tabs/index.vue';
 	import demodata from '@/mockdata/demodata.json';
 	import tableData from './tableData.js'
+	import {
+		dayall,
+		dayform,
+		dayjzsu,
+	} from '@/utils/api.js';
 	export default {
 		components: {
 			Tabs,
@@ -188,9 +193,19 @@
 		onReady() {
 			this.getServerData()
 		},
-		onLoad() {
-			this.selectedIndexs = []
-			this.getData(1)
+		onLoad(option) {
+			try{
+			console.log(option.title,option.type)
+			if(option.type=='日报') {
+				this.dayall(option.title)
+				
+			}
+			
+			}catch(e){
+				//TODO handle the exception
+			}
+			// this.selectedIndexs = []
+			// this.getData(1)
 		},
 		onResize() {
 			let _this = this
@@ -208,25 +223,24 @@
 				}
 			})
 		},
-		mounted() {
-					// login({
-					// 	...this.formData
-					// }).then(res => {
-					// 	let {
-					// 		code,
-					// 		data
-					// 	} = res.data
-					// 	console.log(code, data)
-					// 	if (code == 200) {
-					// 		uni.setStorageSync('token', data.token)
-					// 		this.setToken(data.token)
-					// 		uni.navigateTo({
-					// 			url: '../acceptance/index' //跳转地址
-					// 		})
-					// 	}
-					// }).catch(error => console.log(error))
-		},
+		mounted() {},
 		methods: {
+			dayall(title) {
+				dayall(title).then(res=>{
+
+				}).catch(error=>console.log(error));
+				dayform(title).then(res=>{
+					let {code,data} = res.data;
+					console.log(data)
+					if(code==0) {
+						this.tableData = data
+						
+					}
+				}).catch(error=>console.log(error));
+				dayjzsu(title).then(res=>{
+
+				}).catch(error=>console.log(error));
+			},
 			clickLeft() {
 				const pages = getCurrentPages();
 				if (pages.length === 2) {

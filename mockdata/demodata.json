@@ -310,7 +310,7 @@
 	"Arcbar1": {
 		"series": [{
 			"name": "正确率",
-			"data": 0.8,
+			"data": 0.0,
 			"color": "#2fc25b"
 		}]
 	},
