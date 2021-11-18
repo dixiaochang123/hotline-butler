@@ -37,18 +37,23 @@ const service = (options)=>{
 			sslVerify: false,
 			success: (res)=>{
 				console.log(res.statusCode)
-				// if(res.statusCode == 403) {
-				// 	uni.showLoading({
-				// 		title: "token失效或过期，请重新登陆",
-				// 	    mask: true,
-				// 	});
-				// 	setTimeout(()=>{
-				// 		uni.hideLoading();
-				// 		uni.navigateTo({
-				// 	　　     url: '/pages/login/index' //跳转地址
-				// 	　　 })
-				// 	},1000)
-				// }
+				if(res.statusCode == 403) {
+					uni.showModal({
+					    title: '提示',
+					    content: 'token过期，请重新登陆',
+						showCancel:false,
+					    success: function (res) {
+					        if (res.confirm) {
+					            console.log('用户点击确定');
+									uni.navigateTo({
+								　　     url: '/pages/login/index' //跳转地址
+								　　 })
+					        } else if (res.cancel) {
+					            console.log('用户点击取消');
+					        }
+					    }
+					});
+				}
 				resolve(res)
 			},
 			fail: (err)=>{

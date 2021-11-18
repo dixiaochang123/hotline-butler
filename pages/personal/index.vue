@@ -311,7 +311,7 @@
 				width: rpx2multiple(175);
 				height: rpx2multiple(175);
 				border-radius: 50%;
-				border: solid 1px;
+				border: solid 1px #FFFFFF;
 				margin-right: rpx2multiple(54);
 			}
 

@@ -15,7 +15,7 @@
 						<view class="b-1 b-2 b-1-app"></view>
 					</view>
 					<view class="title1">
-						<view class="t-1 t-1-app">2021-09-11日报</view>
+						<view class="t-1 t-1-app">{{TITLE}}</view>
 						<view class="b-1 isapp"></view>
 					</view>
 					<view class="first-t">
@@ -27,7 +27,7 @@
 							一、总体情况
 						</view>
 						<view class="f-t-3">
-							2021年09月11日00:00至14：00・区12345热线共受理群众诉求14件，整体接通率0.00%。其中，投诉类11件，占78.57%，咨询类3件，占21.43%建议类0件,占0.00%，求助类0件，占。00%，表扬类0件，占0.00%，举报类0件，占0.00%。
+							{{totaldatas.CREATE_DATE}}・区12345热线共受理群众诉求{{GDTOTAL}}件，整体接通率{{JTRATE}}。其中，投诉类{{totaldatas.TS}}件，占{{totaldatas.TSRATE}}，咨询类{{totaldatas.ZX}}件，占{{totaldatas.ZXRATE}},建议类{{totaldatas.JY}}件,占{{totaldatas.JYRATE}}，求助类{{totaldatas.QZ}}件，占{{totaldatas.QZRATE}}，表扬类{{totaldatas.BY}}件，占{{totaldatas.BYRATE}}，举报类{{totaldatas.JB}}件，占{{totaldatas.JBRATE}}。
 						</view>
 
 					</view>
@@ -38,8 +38,8 @@
 						</view> -->
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
-							<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}" :eopts="ringOpts"
-								:chartData="chartsDataPie2"  />
+							<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}"
+								:eopts="ringOpts" :chartData="chartsDataPie2" />
 						</view>
 						<view class="chart-pie-legend">
 							<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
@@ -52,7 +52,7 @@
 									<view class="content-list-2-2">{{item.value}}</view>
 								</view>
 							</view>
-													
+
 						</view>
 					</view>
 					<view class="uni-container">
@@ -60,26 +60,26 @@
 							@selection-change="selectionChange">
 							<uni-tr>
 								<uni-th align="center">诉求类型</uni-th>
-								<uni-th  align="center">总数</uni-th>
-								<uni-th  align="center">数量</uni-th>
-								<uni-th  align="center">环比</uni-th>
-								<uni-th  align="center">数量</uni-th>
-								<uni-th  align="center">环比</uni-th>
+								<uni-th align="center">总数</uni-th>
+								<uni-th align="center">数量</uni-th>
+								<uni-th align="center">环比</uni-th>
+								<uni-th align="center">数量</uni-th>
+								<uni-th align="center">环比</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="index">
-								<uni-td align="center">{{ item.date }}</uni-td>
+							<uni-tr v-for="(item, index) in tableData" :key="'info'+index">
+								<uni-td align="center">{{ item.type }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.total }}</view>
 								</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.lasttotal }}</view>
 								</uni-td>
-								<uni-td align="center">{{ item.address }}</uni-td>
+								<uni-td align="center">{{ item.rate }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.lasttotal }}</view>
 								</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.rate }}</view>
 								</uni-td>
 							</uni-tr>
 						</uni-table>
@@ -93,10 +93,12 @@
 							二、集中诉求
 						</view>
 						<view class="f-t-3">
-							市民通过热线反映诉求.主要诉求集中以下几个方面：
-							1.建筑施I：噪声类⑴件）.昨日受理54件,环比下降79.63%。集中反映区域有: 西湖街道，洛阳镇，前黄镇等.
-							2其他噪声污染类（2件）.昨日受理30件.环比下降93.33%.集中反映区域有: 西湖街道，前黄镇等.
-							工其他服务类（1件）.昨日受理132件,环比下降99
+							<view class="jzsqlist">
+								市民通过热线反映诉求.主要诉求集中以下几个方面：
+							</view>
+							<view class="jzsqlist" v-for="(item,index) in tableData1" :key="'info'+index">
+								{{index+1}}.{{item.OPTNAME}}({{item.TOTAL}}件)，昨日受理{{item.LASTTOTAL}}件，环比下降{{item.RATETOTAL}}.集中反映区域有：{{item.DIQU}}
+							</view>
 						</view>
 					</view>
 					<view class="uni-container">
@@ -104,26 +106,24 @@
 							@selection-change="selectionChange">
 							<uni-tr>
 								<uni-th align="center">诉求类型</uni-th>
-								<uni-th  align="center">总数</uni-th>
-								<uni-th  align="center">数量</uni-th>
-								<uni-th  align="center">环比</uni-th>
-								<uni-th  align="center">数量</uni-th>
-								<uni-th  align="center">环比</uni-th>
+								<uni-th align="center">总数</uni-th>
+								<uni-th align="center">数量</uni-th>
+								<uni-th align="center">环比</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="index">
-								<uni-td align="center">{{ item.date }}</uni-td>
+							<uni-tr v-for="(item, index) in tableData1" :key="'info'+index">
+								<!-- DIQU: "武进区湖塘镇,武进区嘉泽镇,武进区礼嘉镇,武进区洛阳镇,武进区南夏墅街道,武进区牛塘镇,武进区前黄镇,武进区西湖街道,武进区雪堰镇,武进区湟里镇"
+								LASTTOTAL: "111.0"
+								OPTNAME: "住房保障"
+								RATETOTAL: "-18.02%"
+								TITLE: "2021-11-08至2021-11-14周报"
+								TOTAL: "91.0" -->
+								<uni-td align="center">{{ item.OPTNAME }}</uni-td>
+								<uni-td align="center">{{ item.TOTAL }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.LASTTOTAL }}</view>
 								</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
-								</uni-td>
-								<uni-td align="center">{{ item.address }}</uni-td>
-								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
-								</uni-td>
-								<uni-td align="center">
-									<view class="name">{{ item.name }}</view>
+									<view class="name">{{ item.RATETOTAL }}</view>
 								</uni-td>
 							</uni-tr>
 						</uni-table>
@@ -147,6 +147,22 @@
 		dayall,
 		dayform,
 		dayjzsu,
+
+		weekall,
+		weekform,
+		weekjzsu,
+
+		monall,
+		monform,
+		monjzsu,
+
+		quaall,
+		quaform,
+		quajzsu,
+
+		yearall,
+		yearform,
+		yearjzsu,
 	} from '@/utils/api.js';
 	export default {
 		components: {
@@ -156,9 +172,49 @@
 			return {
 				isLandScape: true,
 				active: '受理情况', //左侧tabs
+				TITLE: '',
+				GDTOTAL: '',
+				JTRATE: '',
 				chartsDataPie2: {},
 				searchVal: '',
-				tableData: [],
+				tableData1: [],
+				// DIQU: "武进区湖塘镇,武进区嘉泽镇,武进区礼嘉镇,武进区洛阳镇,武进区南夏墅街道,武进区牛塘镇,武进区前黄镇,武进区西湖街道,武进区雪堰镇,武进区湟里镇"
+				// LASTTOTAL: "111.0"
+				// OPTNAME: "住房保障"
+				// RATETOTAL: "-18.02%"
+				// TITLE: "2021-11-08至2021-11-14周报"
+				// TOTAL: "91.0"
+				tableData: [{
+					type: '投诉',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}, {
+					type: '咨询',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}, {
+					type: '建议',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}, {
+					type: '求助',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}, {
+					type: '表扬',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}, {
+					type: '举报',
+					total: '0',
+					lasttotal: '0',
+					rate: '0',
+				}],
 				// 每页数据量
 				pageSize: 10,
 				// 当前页
@@ -167,41 +223,57 @@
 				total: 0,
 				loading: false,
 				ringOpts: {},
-				ringOptsLegend0:[{
-					name:'国务院督办工单  99件',
-					value:'15.63%',
-					color:"#4585F5"
-				},{
-					name:'省工单  99件',
-					value:'15.63%',
-					color:"#6CD67F"
-				},{
-					name:'市工单  99件',
-					value:'15.63%',
-					color:"#FFE554"
-				},{
-					name:'涉企工单  99件',
-					value:'15.63%',
-					color:"#FF9054"
-				},{
-					name:'疫情单位  99件',
-					value:'15.63%',
-					color:"#9454FF"
-				}]
+				totaldatas: {},
+				ringOptsLegend0: [{
+					name: '投诉',
+					value: '0%',
+					color: "#4585F5"
+				}, {
+					name: '咨询',
+					value: '0%',
+					color: "#6CD67F"
+				}, {
+					name: '建议',
+					value: '0%',
+					color: "#FFE554"
+				}, {
+					name: '求助',
+					value: '0%',
+					color: "#FF9054"
+				}, {
+					name: '表扬',
+					value: '0%',
+					color: "#9454FF"
+				}, {
+					name: '举报',
+					value: '0%',
+					color: "#9454FF"
+				}],
 			};
 		},
 		onReady() {
-			this.getServerData()
+			// this.getServerData()
 		},
 		onLoad(option) {
-			try{
-			console.log(option.title,option.type)
-			if(option.type=='日报') {
-				this.dayall(option.title)
-				
-			}
-			
-			}catch(e){
+			try {
+				console.log(option.title, option.type)
+				if (option.type == '日报') {
+					this.dayall(option.title)
+				}
+				if (option.type == '周报') {
+					this.weekall(option.title)
+				}
+				if (option.type == '月报') {
+					this.monall(option.title)
+				}
+				if (option.type == '季报') {
+					this.quaall(option.title)
+				}
+				if (option.type == '年报') {
+					this.yearall(option.title)
+				}
+
+			} catch (e) {
 				//TODO handle the exception
 			}
 			// this.selectedIndexs = []
@@ -226,20 +298,239 @@
 		mounted() {},
 		methods: {
 			dayall(title) {
-				dayall(title).then(res=>{
-
-				}).catch(error=>console.log(error));
-				dayform(title).then(res=>{
-					let {code,data} = res.data;
-					console.log(data)
-					if(code==0) {
-						this.tableData = data
-						
+				dayall(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						this.getotalfn(data)
 					}
-				}).catch(error=>console.log(error));
-				dayjzsu(title).then(res=>{
 
-				}).catch(error=>console.log(error));
+				}).catch(error => console.log(error));
+				dayform(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+
+							this.getotaltablefn(data)
+
+						}
+
+					}
+				}).catch(error => console.log(error));
+				dayjzsu(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.tableData1 = data;
+						}
+					}
+				}).catch(error => console.log(error));
+			},
+			weekall(title) {
+				weekall(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						this.getotalfn(data)
+					}
+
+				}).catch(error => console.log(error));
+				weekform(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+
+							this.getotaltablefn(data)
+
+						}
+
+					}
+				}).catch(error => console.log(error));
+				weekjzsu(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.tableData1 = data;
+							console.log(this.tableData1)
+						}
+					}
+				}).catch(error => console.log(error));
+			},
+			monall(title) {
+				monall(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						this.getotalfn(data)
+					}
+
+				}).catch(error => console.log(error));
+				monform(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+
+							this.getotaltablefn(data)
+
+						}
+
+					}
+				}).catch(error => console.log(error));
+				monjzsu(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.tableData1 = data;
+							console.log(this.tableData1)
+						}
+					}
+				}).catch(error => console.log(error));
+			},
+			quaall(title) {
+				quaall(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						this.getotalfn(data)
+					}
+
+				}).catch(error => console.log(error));
+				quaform(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.getotaltablefn(data)
+
+						}
+
+					}
+				}).catch(error => console.log(error));
+				quajzsu(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.tableData1 = data;
+							console.log(this.tableData1)
+						}
+					}
+				}).catch(error => console.log(error));
+			},
+			yearall(title) {
+				yearall(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (!!data[0]) {
+						this.getotalfn(data)
+					}
+
+				}).catch(error => console.log(error));
+				yearform(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.getotaltablefn(data)
+
+						}
+
+					}
+				}).catch(error => console.log(error));
+				yearjzsu(title).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					if (code == 0) {
+						if (!!data[0]) {
+							this.tableData1 = data;
+						}
+					}
+				}).catch(error => console.log(error));
+			},
+			getotalfn(data) {
+				this.TITLE = data[0].TITLE;
+				this.GDTOTAL = data[0].GDTOTAL;
+				this.JTRATE = data[0].JTRATE;
+				this.totaldatas = data[0];
+
+				this.ringOptsLegend0[0].name = '投诉 ' + data[0].TS + '件';
+				this.ringOptsLegend0[0].value = data[0].TSRATE;
+
+				this.ringOptsLegend0[1].name = '咨询 ' + data[0].ZX + '件';
+				this.ringOptsLegend0[1].value = data[0].ZXRATE;
+
+				this.ringOptsLegend0[2].name = '建议 ' + data[0].JY + '件';
+				this.ringOptsLegend0[2].value = data[0].JYRATE;
+
+				this.ringOptsLegend0[3].name = '求助 ' + data[0].QZ + '件';
+				this.ringOptsLegend0[3].value = data[0].QZRATE;
+
+				this.ringOptsLegend0[4].name = '表扬 ' + data[0].BYS + '件';
+				this.ringOptsLegend0[4].value = data[0].BYSRATE;
+
+				this.ringOptsLegend0[5].name = '举报 ' + data[0].JB + '件';
+				this.ringOptsLegend0[5].value = data[0].JBRATE;
+			},
+			getotaltablefn(data) {
+				this.tableData[0].total = data[0].TS
+				this.tableData[0].lasttotal = data[0].LASTTS
+				this.tableData[0].rate = data[0].RATETS
+
+				this.tableData[1].total = data[0].ZX
+				this.tableData[1].lasttotal = data[0].LASTZX
+				this.tableData[1].rate = data[0].RATEZX
+
+				this.tableData[2].total = data[0].JY
+				this.tableData[2].lasttotal = data[0].LASTJY
+				this.tableData[2].rate = data[0].RATEJY
+
+				this.tableData[3].total = data[0].QZ
+				this.tableData[3].lasttotal = data[0].LASTQZ
+				this.tableData[3].rate = data[0].RATEQZ
+
+				this.tableData[4].total = data[0].BYS
+				this.tableData[4].lasttotal = data[0].LASTBYS
+				this.tableData[4].rate = data[0].RATEBYS
+
+				this.tableData[5].total = data[0].JB
+				this.tableData[5].lasttotal = data[0].LASTJB
+				this.tableData[5].rate = data[0].RATEJB
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
@@ -260,30 +551,32 @@
 			getServerData() {
 				let windowWidth = 600
 				uni.getSystemInfo({
-				      success: function (res) {
-				        // _this.setWidth = res.windowWidth * 0.8
+					success: function(res) {
+						// _this.setWidth = res.windowWidth * 0.8
 						console.log(res.windowWidth)
 						windowWidth = res.windowWidth
-				      }
-				    })
+					}
+				})
 				setTimeout(() => {
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					// this.chartsDataPie2.series[0].radius = ['70%', '90%'];
 					this.chartsDataPie2.series.legendHoverLink = false;
 					this.ringOpts = {
-						tooltip:{show:false},
-						title:{
-							text:"14件",
-							left:"center",
-							top:"center",
-							textStyle:{
-								color:"#395176",
-								fontSize:windowWidth<500?16:20,
-								align:"center"
+						tooltip: {
+							show: false
+						},
+						title: {
+							text: "14件",
+							left: "center",
+							top: "center",
+							textStyle: {
+								color: "#395176",
+								fontSize: windowWidth < 500 ? 16 : 20,
+								align: "center"
 							}
 						},
-						tooltip:{
-							show:false
+						tooltip: {
+							show: false
 						},
 						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
 							'#672099', '#F2984E', '#0263FF'
@@ -485,7 +778,7 @@
 		height: rpx2multiple(444);
 		display: flex;
 		flex-wrap: nowrap;
-		
+
 
 		.charts-box {
 			width: 20%;
@@ -493,6 +786,7 @@
 			padding: rpx2multiple(35) 0;
 			box-sizing: border-box;
 		}
+
 		.chart-pie-legend {
 			width: 80%;
 			height: 100%;
@@ -501,7 +795,7 @@
 			align-items: center;
 			flex-wrap: wrap;
 			padding: rpx2multiple(100);
-		
+
 			.data-type-content-list {
 				width: calc(100% / 6);
 				height: auto;
@@ -511,18 +805,19 @@
 				justify-content: flex-start;
 				padding: rpx2multiple(30) rpx2multiple(39);
 				color: #395176;
-		
+
 				.content-list-1 {
+
 					// width: rpx2multiple(10);
 					// height: rpx2multiple(10);
 					// background-color: #E9A700;
 					// margin-right: rpx2multiple(30);
 					image {
-						width: 100%; 
-						height: 100%; 
+						width: 100%;
+						height: 100%;
 					}
 				}
-		
+
 				.content-list-2 {
 					display: flex;
 					justify-content: space-between;
@@ -530,14 +825,18 @@
 					font-family: PangMenZhengDao;
 					font-size: rpx2multiple(24);
 					padding-left: rpx2multiple(20);
-		
+
 					.content-list-2-2 {
 						font-size: rpx2multiple(36);
 					}
 				}
-		
+
 			}
 		}
+	}
+
+	.jzsqlist {
+		line-height: 48rpx;
 	}
 
 	.uni-container {
@@ -552,75 +851,82 @@
 			color: #395176;
 		}
 	}
+
 	@media (max-width:500px) {
 		.box-main-parent {
-			padding:0;
+			padding: 0;
 		}
-			.app-nav {
-				display: block;
-			}
-	
-			.nav {
-				display: none;
-			}
-	
-			.isapp {
-				display: none !important;
-			}
-	
-			.box-style-head {
-				font-size: 35rpx;
-				padding-left: 12px;
-				&::before {
-					content: "";
-					position: absolute;
-					left: 0;
-					top: 11px;
-					width: 4px;
-					height: 13px;
-					background: #0073FA;
-					border-radius: 2px;
-				}
-			}
-	
-			.box-style-head-right {
-				font-size: 32rpx;
-			}
-			.t-1-app {
-				font-size: 36rpx !important;
-				padding:0 10rpx !important;
-			}
-			.b-1-app {
-				width: 35rpx !important;
-				    height: 4rpx !important;
-			}
-			.chart {
-				height: auto;
-				flex-direction: column;
-			}
-			.charts-box {
-				width: 100% !important;
-			}
-			.chart-pie-legend {
-				width: 100% !important;
-				padding-left:0 !important;
-				padding-right:0 !important;
-			}
-			.data-type-content-list {
-				width: calc(100% / 3)!important;
-			}
-	
-			
-	
-			
-			
-	
-	
-	
+
+		.app-nav {
+			display: block;
 		}
+
+		.nav {
+			display: none;
+		}
+
+		.isapp {
+			display: none !important;
+		}
+
+		.box-style-head {
+			font-size: 35rpx;
+			padding-left: 12px;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 11px;
+				width: 4px;
+				height: 13px;
+				background: #0073FA;
+				border-radius: 2px;
+			}
+		}
+
+		.box-style-head-right {
+			font-size: 32rpx;
+		}
+
+		.t-1-app {
+			font-size: 36rpx !important;
+			padding: 0 10rpx !important;
+		}
+
+		.b-1-app {
+			width: 35rpx !important;
+			height: 4rpx !important;
+		}
+
+		.chart {
+			height: auto;
+			flex-direction: column;
+		}
+
+		.charts-box {
+			width: 100% !important;
+		}
+
+		.chart-pie-legend {
+			width: 100% !important;
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+
+		.data-type-content-list {
+			width: calc(100% / 3) !important;
+		}
+
+
+
+
+
+
+
+
+	}
 </style>
 <style>
 	@import "../../static/style.css";
-	
-	
 </style>

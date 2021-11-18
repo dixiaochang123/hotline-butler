@@ -304,3 +304,111 @@ export function dayjzsu(title) {
     params:''
   })
 }
+
+// 数据分析-周报-总体情况
+export function weekall(title) {
+  return request({
+    url: `/sjfx/week/all/case?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-周报-表格部分
+export function weekform(title) {
+  return request({
+    url: `/sjfx/week/form?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-周报-集中诉求
+export function weekjzsu(title) {
+  return request({
+    url: `/sjfx/week/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-月报-总体情况
+export function monall(title) {
+  return request({
+    url: `/sjfx/mon/all/case?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-月报-表格部分
+export function monform(title) {
+  return request({
+    url: `/sjfx/mon/form?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-月报-集中诉求
+export function monjzsu(title) {
+  return request({
+    url: `/sjfx/mon/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-季报-集中诉求
+export function quaall(title) {
+  return request({
+    url: `/sjfx/qua/all/case?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-季报-表格部分
+export function quaform(title) {
+  return request({
+    url: `/sjfx/qua/form?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-季报-集中诉求
+export function quajzsu(title) {
+  return request({
+    url: `/sjfx/qua/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-年报-集中诉求
+export function yearall(title) {
+  return request({
+    url: `/sjfx/year/all/case?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-年报-表格部分
+export function yearform(title) {
+  return request({
+    url: `/sjfx/year/form?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 数据分析-年报-集中诉求
+export function yearjzsu(title) {
+  return request({
+    url: `/sjfx/year/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}

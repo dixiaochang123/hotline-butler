@@ -10,7 +10,7 @@
 				<!--  headtabs 日期-->
 				<view class="uni-tabs">
 					<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item isapp']"
-						v-for="(item,index) in headtabs" :key="'index-'+index" @click="handletabschange(item,index)">
+						v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item,index)">
 						{{item}}
 					</view>
 					<view class="uni-tabs-item uni-tabs-item-selet isapp">
@@ -40,7 +40,7 @@
 								<uni-th width="25%" align="center">综合得分</uni-th>
 								<uni-th width="25%" align="center">排名升降</uni-th>
 							</uni-tr>
-							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
+							<uni-tr v-for="(item, index) in tableData" :key="index">
 								<uni-td align="center">
 									<view class="name">{{ index+1 }}</view>
 								</uni-td>
@@ -69,13 +69,13 @@
 						</view>
 						<view class="isapp" style="height: 80rpx;"></view>
 						<view class="app-nav" style="height: 40rpx;"></view>
-						<view class="data-type-content-list isapp" v-for="(item,index) in scoredata" :key="'index-'+index">
+						<view class="data-type-content-list isapp" v-for="(item,index) in scoredata" :key="index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
 							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
-							v-for="(item,index) in scoredata" :key="'index-'+index">
+							v-for="(item,index) in scoredata" :key="index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
 							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
@@ -178,13 +178,13 @@
 						</view>
 						<view class="isapp" style="height: 80rpx;"></view>
 						<view class="app-nav" style="height: 40rpx;"></view>
-						<view class="data-type-content-list isapp" v-for="(item,index) in zjdscoredata" :key="'index-'+index">
+						<view class="data-type-content-list isapp" v-for="(item,index) in zjdscoredata" :key="index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
 							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
 						</view>
 						<view class="data-type-content-list app-nav" :style="{float:item==1?'right':'none'}"
-							v-for="(item,index) in zjdscoredata" :key="'index-'+index">
+							v-for="(item,index) in zjdscoredata" :key="index">
 							<view class="content-list-1">响应率</view>
 							<view class="content-list-2"></view>
 							<view class="pmzd-font content-list-3">{{item.XYRATE}}% I {{item.XYMARK}}分</view>
@@ -885,6 +885,11 @@
 
 		.uni-tabs .uni-tabs-item-selet {
 			width: 228rpx;
+		}
+		.uni-tabs-item-active {
+			background: #4585F5;
+			border-radius: rpx2multiple(33);
+			color: #FFFFFF;
 		}
 
 		.data-chart {
