@@ -291,11 +291,11 @@
 					value: '2021'
 				}],
 				yearsapp:[
-					["请选择年", '2020','2021'],
-					["请选择月", '01', '02', '03', '04', '05','06','07','08','09','10','11','12']
+					['2021'],
+					['01', '02', '03', '04', '05','06','07','08','09','10','11','12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 0,
+				yearsIndex2: 10,
 				classesapp: '',
 				classes: '2021',
 				classes1: '2021',
@@ -381,8 +381,14 @@
 				//通过数组的下标改变显示在页面的值
 				this.yearsIndex1 = e.detail.value[0];
 				this.yearsIndex2 = e.detail.value[1];
-				console.log(this.yearsIndex1)
-				console.log(this.yearsIndex2)
+				console.log(this.yearsIndex1,e.detail)
+				console.log(this.yearsIndex2,e.detail)
+				let date = this.yearsapp[this.yearsIndex1]+'-'+this.yearsIndex2[this.yearsIndex2];
+				this.qjbm(date)
+				this.score(date)
+				this.zjd(date)
+				this.zjdscore(date)
+				
 			},
 			qjbm(date) {
 				qjbm(date).then(res => {
@@ -568,7 +574,12 @@
 				this.classes = e.value;
 				let index = this.headtabs.indexOf(this.activetab);
 				let date = this.classes + '-' + this.headtabs1[index];
-				this.qjbm(date)
+				this.dnzhpftrend(this.classes)
+				this.dnsltrend(this.classes)
+				this.dnydkhtrend(this.classes)
+				this.zjddnsltrend(this.classes)
+				this.zjddnzhpftrend(this.classes)
+				this.zjddnydkhtrend1(this.classes)
 			},
 			// 区人社局当年三率月度变化趋势
 			onnodeclick1(e) {
@@ -765,11 +776,11 @@
 			}
 		}
 
-		.uni-tabs-item-active {
-			background: #4585F5;
-			border-radius: rpx2multiple(33);
-			color: #FFFFFF;
-		}
+		// .uni-tabs-item-active {
+		// 	background: #4585F5;
+		// 	border-radius: rpx2multiple(33);
+		// 	color: #FFFFFF;
+		// }
 	}
 
 	.uni-tabs-item-selet {
@@ -887,9 +898,10 @@
 			width: 228rpx;
 		}
 		.uni-tabs-item-active {
-			background: #4585F5;
+			// background: #4585F5;
+			border: solid 1px;
 			border-radius: rpx2multiple(33);
-			color: #FFFFFF;
+			color: #4585F5;
 		}
 
 		.data-chart {
