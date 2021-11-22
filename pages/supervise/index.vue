@@ -177,7 +177,7 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button class="uni-button" size="mini" type="primary"
+										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise(item)">督办/催办</button>
 									</view>
 								</uni-td>

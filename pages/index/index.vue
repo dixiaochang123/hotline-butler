@@ -85,6 +85,9 @@
 		// background-size: contain;
 		position: relative;
 	}
+	.app {
+		background-color: #0d2454;
+	}
 
 	.a-i-d {
 		// border:solid 1px;

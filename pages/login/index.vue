@@ -167,6 +167,7 @@
 						console.log(code, data)
 						if (code == 200) {
 							uni.setStorageSync('token', data.token)
+							uni.setStorageSync('password', this.formData.password)
 							this.setToken(data.token)
 							uni.navigateTo({
 								url: '/pages/acceptance/index' //跳转地址

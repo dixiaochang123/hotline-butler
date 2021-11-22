@@ -28,23 +28,23 @@
 							<view class="info">
 								<view class="">
 									<text>部门</text>
-									<text>研发中心</text>
+									<text>{{dataInfo.dept}}</text>
 								</view>
 								<view class="">
 									<text>岗位</text>
-									<text>研发工程师</text>
+									<text>{{dataInfo.station}}</text>
 								</view>
 								<view class="">
 									<text>角色</text>
-									<text>员工</text>
+									<text>{{dataInfo.role}}</text>
 								</view>
 								<view class="">
 									<text>联系电话</text>
-									<text>025-83656073</text>
+									<text>{{dataInfo.phone}}</text>
 								</view>
 								<view class="">
 									<text>邮箱</text>
-									<text>1234567@qq.com</text>
+									<text>{{dataInfo.mail}}</text>
 								</view>
 							</view>
 						</view>
@@ -53,17 +53,18 @@
 								<view class="">修改密码</view>
 							</view>
 							<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
-								<uni-forms-item label="" name="password">
-									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请输入您的旧密码" @input="binddata('password',$event)" />
+								<uni-forms-item label="" name="oldPassword">
+									<uni-easyinput class="input" v-model="formData.oldPassword" type="password"
+										placeholder="请输入您的旧密码" />
 								</uni-forms-item>
-								<uni-forms-item label="" name="password">
-									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请输入您的新密码" @input="binddata('password',$event)" />
+								<uni-forms-item label="" name="newPassword">
+									<uni-easyinput class="input" v-model="formData.newPassword" type="password"
+										placeholder="请输入您的新密码" @blur="binddata('newPassword',$event)" />
 								</uni-forms-item>
-								<uni-forms-item label="" name="password">
-									<uni-easyinput class="input" v-model="formData.password" type="password"
-										placeholder="请确认您的新密码" @input="binddata('password',$event)" />
+								<uni-forms-item label="" name="newPassword1">
+									<uni-easyinput class="input" v-model="formData.newPassword1" type="password"
+										placeholder="请确认您的新密码" @blur="binddata('newPassword1',$event)" />
+										<text v-if="error" class="error">两次密码输入不一致</text>
 								</uni-forms-item>
 							</uni-forms>
 							<view class="" style="height: 80rpx;"></view>
@@ -80,6 +81,12 @@
 				<uni-popup ref="popup" type="dialog">
 				    <uni-popup-dialog mode="base" title="提示" content="是否确认退出?" :duration="2000" :before-close="true" @close="close" @confirm="confirm"></uni-popup-dialog>
 				</uni-popup>
+				<uni-popup ref="popup1" type="message">
+				    <uni-popup-message type="success" message="密码修改成功" :duration="2000"></uni-popup-message>
+				</uni-popup>
+				<uni-popup ref="popup2" type="dialog">
+				    <uni-popup-dialog mode="base" title="提示" :content="content" :duration="2000" :before-close="true" @close="close1" @confirm="confirm1"></uni-popup-dialog>
+				</uni-popup>
 			</view>
 
 		</view>
@@ -94,6 +101,11 @@
 		mapActions,
 		mapMutations
 	} from "vuex";
+	import {
+		findMySelf,
+		updatePassword
+	} from '@/utils/api.js'
+	
 	let myChart;
 	export default {
 		components: {
@@ -105,24 +117,44 @@
 				active: '个人中心', //左侧tabs
 				isChangePassword: false,
 				isshow:true,
+				error:false,
+				dataInfo:{
+					dept: "",
+					mail: "",
+					name: "",
+					phone: "",
+					role: "",
+					station: "",
+					username: "",
+				},
+				content:'',
 				formData: {
 					// name: '',
 					phone: '1361166910',
 					password: '111111',
+					oldPassword:'111111',
+					newPassword:'111111',
+					newPassword1:'',
 
 				},
 				rules: {
-					phone: {
+					oldPassword: {
 						rules: [{
 							required: true,
-							errorMessage: '请输入您的账号',
+							errorMessage: '请输入旧密码',
+						}]
+					},
+					newPassword: {
+						rules: [{
+							required: true,
+							errorMessage: '请输入新密码',
 						}]
 					},
 					// 对phone字段进行必填验证
-					password: {
+					newPassword1: {
 						rules: [{
 							required: true,
-							errorMessage: '请输入您的密码',
+							errorMessage: '请确认新密码',
 						}]
 					}
 				}
@@ -158,10 +190,26 @@
 			}
 		},
 		mounted() {
-
+			this.findMySelf()
 		},
 		methods: {
 			...mapActions(["setToken"]),
+			findMySelf() {
+				findMySelf().then(res=>{
+					let {code,data} = res.data
+					// dept: "武进自然资源局武进分局"
+					// mail: null
+					// name: "张三"
+					// phone: "13461309556"
+					// role: null
+					// station: null
+					// username: "13461309556"
+					if(code==200) {
+						this.dataInfo = data;
+					}
+					console.log(code,data)
+				}).catch(error=>console.log(error))
+			},
 			close() {
 				this.$refs.popup.close()
 			},
@@ -178,6 +226,12 @@
 				uni.navigateTo({
 					url: '/pages/login/index' //跳转地址
 				})
+			},
+			close1() {
+				this.$refs.popup2.close()
+			},
+			confirm1() {
+				this.$refs.popup2.close()
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
@@ -214,6 +268,14 @@
 			 */
 			binddata(name,e) {
 				console.log(name,e)
+				if(name=='newPassword1') {
+					if(!!this.formData.newPassword && !!this.formData.newPassword1&& this.formData.newPassword1!==this.formData.newPassword) {
+						this.error = true;
+							return
+					} else {
+						this.error = false;
+					}
+				}
 				this.isshow = false
 				// 通过 input 事件设置表单指定 name 的值
 				// this.$refs.form.setValue(name, value)
@@ -222,8 +284,25 @@
 			submit() {
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
-					this.isChangePassword = false;
-					this.isshow = true
+					if(this.formData.newPassword1!==this.formData.newPassword) {
+						return
+					}
+					updatePassword({
+						newPassword:this.formData.newPassword,
+						oldPassword:this.formData.oldPassword,
+					}).then(res=>{
+						let {code,data,msg} = res.data;
+						console.log(code,data,msg)
+						if(code==200) {
+							this.$refs.popup1.open()
+							this.isChangePassword = false;
+							this.isshow = true
+							
+						} else {
+							this.content = msg;
+							this.$refs.popup2.open()
+						}
+					}).catch(error=>console.log(error))
 					// uni.navigateTo({
 					// 	url: '../acceptance/index' //跳转地址
 					// })
@@ -521,5 +600,8 @@
 	
 	
 		}
-	
+	.error {
+		font-size: 20rpx;
+		color: red;
+	}
 </style>

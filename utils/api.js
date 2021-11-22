@@ -16,6 +16,15 @@ export function signout(data) {
 	
   })
 }
+
+// 当日单位办理数据
+export function drdwblsj(data) {
+  return request({
+    url: `/slqk/drdwblsj?date=${data}`,
+    method: 'get',
+	params:''
+  })
+}
 // 回访不满意工单
 export function hfbmygd(data) {
   return request({
@@ -408,6 +417,24 @@ export function yearform(title) {
 export function yearjzsu(title) {
   return request({
     url: `/sjfx/year/jzsu?title=${title}`,
+    method: 'get',
+    params:''
+  })
+}
+
+//查询个人信息
+export function findMySelf() {
+  return request({
+    url: `/user/findMySelf`,
+    method: 'get',
+    params:''
+  })
+}
+
+//修改密码
+export function updatePassword(data) {
+  return request({
+    url: `/user/updatePassword?newPassword=${data.newPassword}&oldPassword=${data.oldPassword}`,
     method: 'get',
     params:''
   })
