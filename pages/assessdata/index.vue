@@ -93,8 +93,8 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								:opts="columnOpts"
+								:chartData="chartsDataColumn5" :loadingType="1" />
 						</view>
 					</view>
 
@@ -202,7 +202,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}"
+								:opts="columnOpts"
 								:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -331,7 +331,57 @@
 				zjddnzhpftrenddata:[],
 				dnydkhtrenddata:[],
 				zjddnydkhtrenddata:[],
-				zjddnsltrenddata:[]
+				zjddnsltrenddata:[],
+				columnOpts: {
+					legend: {
+						show: false
+					},
+					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+					xAxis: {
+						disabled: false,
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+					},
+					yAxis: {
+						disabled: false,
+						disableGrid: false,
+						splitNumber: 5,
+						gridType: "dash",
+						dashLength: 5,
+						gridColor: "#CCCCCC",
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: "#E1E1E1",
+								type: "dashed"
+							}
+						}
+					},
+					extra: {
+						column: {
+							seriesGap: 5,
+							linearOpacity: 0.5,
+							barBorderCircle: true,
+							customColor: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+						}
+					}
+				},
 			}
 		},
 		onReady() {

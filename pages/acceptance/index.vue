@@ -62,11 +62,6 @@
 								<view class="">当日热点诉求Top5 (二级归口)</view>
 							</view>
 							<view class="charts-box">
-								<!-- <qiun-data-charts type="column" :eopts="columnOpts"
-									:opts="{extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true}}}"
-									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true"
-									:echartsH5="true" /> -->
-								<!-- :opts="{legend:{show:false},color:['#0073FA','#0073FA'],extra:{column:{seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#0073FA','#0073FA']}}}" -->
 								<qiun-data-charts type="column" :eopts="columnOpts" :opts="columnOpts"
 									:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 							</view>
@@ -78,8 +73,7 @@
 							<view class="charts-box">
 								<!-- <qiun-data-charts type="column" :eopts="columnOpts" :chartData="chartsDataColumn5"
 									:loadingType="1" :echartsApp="true" :echartsH5="true" /> -->
-								<qiun-data-charts type="column" :eopts="columnOpts"
-									:opts="columnOpts"
+								<qiun-data-charts type="column" :eopts="columnOpts" :opts="columnOpts"
 									:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 							</view>
 						</view>
@@ -90,8 +84,8 @@
 							<view class="chart-pie">
 								<view class="charts-box">
 									<!-- 演示动态改变eopts -->
-									<qiun-data-charts type="ring" :opts="ringOpts"
-										:eopts="ringOpts" :chartData="chartsDataPie2" />
+									<qiun-data-charts type="ring" :opts="ringOpts" :eopts="ringOpts"
+										:chartData="chartsDataPie2" />
 								</view>
 								<view class="chart-pie-legend">
 									<view class="data-type-content-list" v-for="item in ringOptsLegend0"
@@ -121,8 +115,7 @@
 							<view class="">当日热点诉求Top5 (二级归口)</view>
 						</view>
 						<view class="charts-box">
-							<qiun-data-charts type="column" :eopts="columnOpts"
-								:opts="columnOpts"
+							<qiun-data-charts type="column" :eopts="columnOpts" :opts="columnOpts"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -131,8 +124,7 @@
 							<view class="">当日热点诉求Top5 (三级归口)</view>
 						</view>
 						<view class="charts-box">
-							<qiun-data-charts type="column" :eopts="columnOpts"
-								:opts="columnOpts"
+							<qiun-data-charts type="column" :eopts="columnOpts" :opts="columnOpts"
 								:chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
 						</view>
 					</view>
@@ -143,8 +135,8 @@
 						<view class="chart-pie">
 							<view class="charts-box">
 								<!-- 演示动态改变eopts -->
-								<qiun-data-charts type="ring" :opts="ringOpts"
-									:eopts="ringOpts" :chartData="chartsDataPie2" />
+								<qiun-data-charts type="ring" :opts="ringOpts" :eopts="ringOpts"
+									:chartData="chartsDataPie2" />
 							</view>
 							<view class="chart-pie-legend">
 								<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
@@ -227,20 +219,10 @@
 					<view class="chart-pie">
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
-							<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
-								:chartData="chartsDataPie2" />
+							<qiun-data-charts type="ring" :opts="ringOpts1" :eopts="ringOpts1"
+								:chartData="chartsDataPie3" />
 						</view>
 						<view class="chart-pie-legend chart-pie-legend-app">
-							<!-- <view class="data-type-content-list data-type-content-list-app"
-								v-for="item in ringOptsLegend" :key="item.name">
-								<view class="content-list-1">
-									<image class="images" :src="item.url" mode="aspectFit"></image>
-								</view>
-								<view class="content-list-2">
-									<view class="content-list-2-1">{{item.name}}</view>
-									<view class="content-list-2-2">{{item.value}}</view>
-								</view>
-							</view> -->
 							<view class="data-type-content-list data-type-content-list-app" v-for="item in detaildata"
 								:key="item.name">
 								<view class="content-list-1">
@@ -323,6 +305,7 @@
 				chartsDataColumn5: {},
 				chartsDataColumn6: {},
 				chartsDataPie2: {},
+				chartsDataPie3: {},
 				ringOpts: {
 					title: {
 						text: "1234件",
@@ -334,13 +317,98 @@
 							align: "center"
 						}
 					},
-					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
-						'#672099', '#F2984E', '#0263FF'
-					],
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C','#672099', '#F2984E', '#0263FF'],
 					legend: {
 						show: false
 					},
+					"type": "ring",
+					"canvasId": "",
+					"canvas2d": false,
+					"background": "none",
+					"animation": true,
+					"timing": "easeOut",
+					"duration": 1000,
+					"color": ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+					"padding": [5,5,5,5],
+					"rotate": false,
+					"errorReload": false,
+					"fontSize": 13,
+					"fontColor": "#666666",
+					"enableScroll": false,
+					"touchMoveLimit": 60,
+					"enableMarkLine": false,
+					"dataLabel": false,
+					"dataPointShape": false,
+					"dataPointShapeType": "solid",
+					"tapLegend": false,
+					"legend": {
+						"show": false,
+						"position": "right",
+						"float": "center",
+						"padding": 5,
+						"margin": 5,
+						"backgroundColor": "rgba(0,0,0,0)",
+						"borderColor": "rgba(0,0,0,0)",
+						"borderWidth": 0,
+						"fontSize": 13,
+						"fontColor": "#666666",
+						"lineHeight": 25,
+						"hiddenColor": "#CECECE",
+						"itemGap": 10
+					},
+					"title": {
+					    "name": "1234件",
+					    "fontSize": 15,
+					    "color": "#666666",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"subtitle": {
+					    "name": "",
+					    "fontSize": 25,
+					    "color": "#7cb5ec",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"extra": {
+						"ring": {
+							"ringWidth": 30,
+							"centerColor": "#FFFFFF",
+							"activeOpacity": 0.5,
+							"activeRadius": 10,
+							"offsetAngle": 0,
+							"customRadius": 0,
+							"labelWidth": 15,
+							"border": true,
+							"borderWidth": 3,
+							"borderColor": "#FFFFFF",
+							"linearType": "none"
+						},
+						"tooltip": {
+							"showBox": true,
+							"showArrow": true,
+							"showCategory": false,
+							"borderWidth": 0,
+							"borderRadius": 0,
+							"borderColor": "#000000",
+							"borderOpacity": 0.7,
+							"bgColor": "#000000",
+							"bgOpacity": 0.7,
+							"gridType": "solid",
+							"dashLength": 4,
+							"gridColor": "#CCCCCC",
+							"fontColor": "#FFFFFF",
+							"splitLine": true,
+							"horizentalLine": false,
+							"xAxisLabel": false,
+							"yAxisLabel": false,
+							"labelBgColor": "#FFFFFF",
+							"labelBgOpacity": 0.7,
+							"labelFontColor": "#666666"
+						}
+					}
 				},
+				ringOpts1:{},
 				columnOpts: {
 					grid: {
 						left: 60,
@@ -383,55 +451,55 @@
 					}
 				},
 				columnOpts: {
-						legend: {
+					legend: {
+						show: false
+					},
+					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+					xAxis: {
+						disabled: false,
+						axisLine: {
 							show: false
 						},
-						color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
-						xAxis: {
-							disabled: false,
-							axisLine: {
-								show: false
-							},
-							axisLabel: {
-								show: true,
-								color: "#395176",
-								margin: 20,
-								fontSize: 16,
-							},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
 						},
-						yAxis: {
-							disabled: false,
-							disableGrid: false,
-							splitNumber: 5,
-							gridType: "dash",
-							dashLength: 5,
-							gridColor: "#CCCCCC",
-							axisLine: {
-								show: false
-							},
-							axisLabel: {
-								show: true,
-								color: "#395176",
-								margin: 20,
-								fontSize: 16,
-							},
-							splitLine: {
-								show: true,
-								lineStyle: {
-									color: "#E1E1E1",
-									type: "dashed"
-								}
-							}
+					},
+					yAxis: {
+						disabled: false,
+						disableGrid: false,
+						splitNumber: 5,
+						gridType: "dash",
+						dashLength: 5,
+						gridColor: "#CCCCCC",
+						axisLine: {
+							show: false
 						},
-						extra: {
-							column: {
-								seriesGap: 5,
-								linearOpacity: 0.5,
-								barBorderCircle: true,
-								customColor: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: "#E1E1E1",
+								type: "dashed"
 							}
 						}
 					},
+					extra: {
+						column: {
+							seriesGap: 5,
+							linearOpacity: 0.5,
+							barBorderCircle: true,
+							customColor: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+						}
+					}
+				},
 				ringOptsLegend: [{
 					name: '路况管理',
 					value: '15.63%',
@@ -559,17 +627,36 @@
 							parseFloat(data[0].SHI) + parseFloat(data[0].YQ);
 						this.ringOptsLegend0[0].name = this.ringOptsLegend0[0].name + ' ' + data[0].DB + '件';
 						this.ringOptsLegend0[0].value = (parseFloat(data[0].DB) / total).toFixed(3);
+						this.ringOptsLegend0[0].value1 = parseFloat(data[0].DB);
 						this.ringOptsLegend0[1].name = this.ringOptsLegend0[1].name + ' ' + data[0].SHENG + '件';
 						this.ringOptsLegend0[1].value = (parseFloat(data[0].SHENG) / total).toFixed(3);
+						this.ringOptsLegend0[1].value1 = parseFloat(data[0].SHENG);
 						this.ringOptsLegend0[2].name = this.ringOptsLegend0[2].name + ' ' + data[0].SHI + '件';
 						this.ringOptsLegend0[2].value = (parseFloat(data[0].SHI) / total).toFixed(3);
+						this.ringOptsLegend0[2].value1 = parseFloat(data[0].SHI);
 						this.ringOptsLegend0[3].name = this.ringOptsLegend0[3].name + ' ' + data[0].QY + '件';
 						this.ringOptsLegend0[3].value = (parseFloat(data[0].QY) / total).toFixed(3);
+						this.ringOptsLegend0[3].value1 = parseFloat(data[0].QY);
 						this.ringOptsLegend0[4].name = this.ringOptsLegend0[4].name + ' ' + data[0].YQ + '件';
 						this.ringOptsLegend0[4].value = (parseFloat(data[0].YQ) / total).toFixed(3);
-						console.log(data, this.ringOptsLegend0)
-						// this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+						this.ringOptsLegend0[4].value1 = parseFloat(data[0].YQ);
+						this.ringOpts.title.name = total+'件'
+						let chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA));
+						chartsDataPie2.series[0].data = this.ringOptsLegend0.map(item=>{
+							return {
+								name:item.name,
+								value:item.value1
+							}
+						})
+						this.chartsDataPie2 = chartsDataPie2
+						console.log(demodata.PieA, this.chartsDataPie2 )
+						// setTimeout(() => {
+						// 	this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 						// this.chartsDataPie2.series[0].data = this.ringOptsLegend0
+						// 	this.chartsDataPie2.tooltip.show = false;
+						// 	console.log(this.chartsDataPie2, this.chartsDataColumn5)
+						// }, 500);
+						// this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					}
 
 				}).catch(error => console.log(error))
@@ -696,6 +783,16 @@
 					} = res.data;
 					this.detaildata = data;
 					console.log(this.detaildata)
+					this.ringOpts1 = JSON.parse(JSON.stringify(this.ringOpts))
+					this.ringOpts1.title.name = '诉求问题'
+					let chartsDataPie3 = JSON.parse(JSON.stringify(demodata.PieA));
+					chartsDataPie3.series[0].data = this.detaildata.map(item=>{
+						return {
+							name:item.OPTNAME,
+							value: parseFloat(item.RATE.substring(0,item.RATE.length-2))
+						}
+					})
+					this.chartsDataPie3 = chartsDataPie3
 
 				}).catch(error => console.log(error))
 			},
@@ -719,32 +816,12 @@
 						windowWidth = res.windowWidth
 					}
 				})
-				setTimeout(() => {
-					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
-					this.chartsDataPie2.tooltip.show = false;
-					// this.ringOpts = {
-					// 	tooltip: {
-					// 		show: false
-					// 	},
-					// 	title: {
-					// 		text: "诉求问题",
-					// 		left: "center",
-					// 		top: "center",
-					// 		textStyle: {
-					// 			color: "#395176",
-					// 			fontSize: 12,
-					// 			align: "center"
-					// 		}
-					// 	},
-					// 	color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
-					// 		'#672099', '#F2984E', '#0263FF'
-					// 	],
-					// 	legend: {
-					// 		show: false
-					// 	},
-					// }
-					console.log(this.chartsDataPie2, this.chartsDataColumn5)
-				}, 500);
+				this.ringOpts1 = JSON.parse(JSON.stringify(this.ringOpts))
+				// setTimeout(() => {
+				// 	this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+				// 	this.chartsDataPie2.tooltip.show = false;
+				// 	console.log(this.chartsDataPie2, this.chartsDataColumn5)
+				// }, 500);
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
