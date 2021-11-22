@@ -38,7 +38,7 @@
 						</view> -->
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
-							<qiun-data-charts type="ring" :opts="{legend:{show:false},tooltip:{show:false}}"
+							<qiun-data-charts type="ring" :opts="ringOpts"
 								:eopts="ringOpts" :chartData="chartsDataPie2" />
 						</view>
 						<view class="chart-pie-legend">
@@ -222,7 +222,108 @@
 				// 数据总量
 				total: 0,
 				loading: false,
-				ringOpts: {},
+				ringOpts: {
+					title: {
+						text: "1234件",
+						left: "center",
+						top: "center",
+						textStyle: {
+							color: "#395176",
+							fontSize: 12,
+							align: "center"
+						}
+					},
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C','#672099', '#F2984E', '#0263FF'],
+					legend: {
+						show: false
+					},
+					"type": "ring",
+					"canvasId": "",
+					"canvas2d": false,
+					"background": "none",
+					"animation": true,
+					"timing": "easeOut",
+					"duration": 1000,
+					"color": ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+					"padding": [5,5,5,5],
+					"rotate": false,
+					"errorReload": false,
+					"fontSize": 13,
+					"fontColor": "#666666",
+					"enableScroll": false,
+					"touchMoveLimit": 60,
+					"enableMarkLine": false,
+					"dataLabel": false,
+					"dataPointShape": false,
+					"dataPointShapeType": "solid",
+					"tapLegend": false,
+					"legend": {
+						"show": false,
+						"position": "right",
+						"float": "center",
+						"padding": 5,
+						"margin": 5,
+						"backgroundColor": "rgba(0,0,0,0)",
+						"borderColor": "rgba(0,0,0,0)",
+						"borderWidth": 0,
+						"fontSize": 13,
+						"fontColor": "#666666",
+						"lineHeight": 25,
+						"hiddenColor": "#CECECE",
+						"itemGap": 10
+					},
+					"title": {
+					    "name": "1234件",
+					    "fontSize": 15,
+					    "color": "#666666",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"subtitle": {
+					    "name": "",
+					    "fontSize": 25,
+					    "color": "#7cb5ec",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"extra": {
+						"ring": {
+							"ringWidth": 30,
+							"centerColor": "#FFFFFF",
+							"activeOpacity": 0.5,
+							"activeRadius": 10,
+							"offsetAngle": 0,
+							"customRadius": 0,
+							"labelWidth": 15,
+							"border": true,
+							"borderWidth": 3,
+							"borderColor": "#FFFFFF",
+							"linearType": "none"
+						},
+						"tooltip": {
+							"showBox": true,
+							"showArrow": true,
+							"showCategory": false,
+							"borderWidth": 0,
+							"borderRadius": 0,
+							"borderColor": "#000000",
+							"borderOpacity": 0.7,
+							"bgColor": "#000000",
+							"bgOpacity": 0.7,
+							"gridType": "solid",
+							"dashLength": 4,
+							"gridColor": "#CCCCCC",
+							"fontColor": "#FFFFFF",
+							"splitLine": true,
+							"horizentalLine": false,
+							"xAxisLabel": false,
+							"yAxisLabel": false,
+							"labelBgColor": "#FFFFFF",
+							"labelBgOpacity": 0.7,
+							"labelFontColor": "#666666"
+						}
+					}
+				},
 				totaldatas: {},
 				ringOptsLegend0: [{
 					name: '投诉',
@@ -488,24 +589,42 @@
 				this.GDTOTAL = data[0].GDTOTAL;
 				this.JTRATE = data[0].JTRATE;
 				this.totaldatas = data[0];
-
+				
 				this.ringOptsLegend0[0].name = '投诉 ' + data[0].TS + '件';
 				this.ringOptsLegend0[0].value = data[0].TSRATE;
+				this.ringOptsLegend0[0].value1 = parseFloat(data[0].TS);
 
 				this.ringOptsLegend0[1].name = '咨询 ' + data[0].ZX + '件';
 				this.ringOptsLegend0[1].value = data[0].ZXRATE;
+				this.ringOptsLegend0[1].value1 = parseFloat(data[0].ZX);
 
 				this.ringOptsLegend0[2].name = '建议 ' + data[0].JY + '件';
 				this.ringOptsLegend0[2].value = data[0].JYRATE;
+				this.ringOptsLegend0[2].value1 = parseFloat(data[0].JY);
 
 				this.ringOptsLegend0[3].name = '求助 ' + data[0].QZ + '件';
 				this.ringOptsLegend0[3].value = data[0].QZRATE;
+				this.ringOptsLegend0[3].value1 = parseFloat(data[0].QZ);
 
 				this.ringOptsLegend0[4].name = '表扬 ' + data[0].BYS + '件';
 				this.ringOptsLegend0[4].value = data[0].BYSRATE;
+				this.ringOptsLegend0[4].value1 = parseFloat(data[0].BYS);
 
 				this.ringOptsLegend0[5].name = '举报 ' + data[0].JB + '件';
 				this.ringOptsLegend0[5].value = data[0].JBRATE;
+				this.ringOptsLegend0[5].value1 = parseFloat(data[0].JB);
+				
+				let total = 0
+				let chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA));
+				chartsDataPie2.series[0].data = this.ringOptsLegend0.map(item=>{
+					total+=item.value1
+					return {
+						name:item.name,
+						value:item.value1
+					}
+				})
+				this.ringOpts.title.name = total+'件'
+				this.chartsDataPie2 = chartsDataPie2
 			},
 			getotaltablefn(data) {
 				this.tableData[0].total = data[0].TS
@@ -558,33 +677,33 @@
 					}
 				})
 				setTimeout(() => {
-					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
-					// this.chartsDataPie2.series[0].radius = ['70%', '90%'];
-					this.chartsDataPie2.series.legendHoverLink = false;
-					this.ringOpts = {
-						tooltip: {
-							show: false
-						},
-						title: {
-							text: "14件",
-							left: "center",
-							top: "center",
-							textStyle: {
-								color: "#395176",
-								fontSize: windowWidth < 500 ? 16 : 20,
-								align: "center"
-							}
-						},
-						tooltip: {
-							show: false
-						},
-						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
-							'#672099', '#F2984E', '#0263FF'
-						],
-						legend: {
-							show: false
-						},
-					}
+					// this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					// // this.chartsDataPie2.series[0].radius = ['70%', '90%'];
+					// this.chartsDataPie2.series.legendHoverLink = false;
+					// this.ringOpts = {
+					// 	tooltip: {
+					// 		show: false
+					// 	},
+					// 	title: {
+					// 		text: "14件",
+					// 		left: "center",
+					// 		top: "center",
+					// 		textStyle: {
+					// 			color: "#395176",
+					// 			fontSize: windowWidth < 500 ? 16 : 20,
+					// 			align: "center"
+					// 		}
+					// 	},
+					// 	tooltip: {
+					// 		show: false
+					// 	},
+					// 	color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+					// 		'#672099', '#F2984E', '#0263FF'
+					// 	],
+					// 	legend: {
+					// 		show: false
+					// 	},
+					// }
 				}, 1000);
 			},
 			// 多选处理
