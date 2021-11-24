@@ -68,7 +68,7 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
 								:opts="columnOpts"
-								:chartData="chartsDataColumn5" :loadingType="1"/>
+								:ontouch="true" :chartData="chartsDataColumn5" :loadingType="1"/>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -158,7 +158,7 @@
 					<view class="box-style-head">
 						<view class="">问题工单列表</view>
 					</view>
-					<view class="uni-container">
+					<view class="uni-container isapp">
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
@@ -188,6 +188,36 @@
 								@change="change" />
 						</view>
 					</view>
+					<view class="uni-container app-nav">
+						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
+							@selection-change="selectionChange">
+							<uni-tr>
+								<uni-th width="25%" align="center">序号</uni-th>
+								<uni-th width="25%" align="center">单位</uni-th>
+								<uni-th width="25%" align="center">办理单位</uni-th>
+								<uni-th width="25%" align="center">操作</uni-th>
+							</uni-tr>
+							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
+								<uni-td align="center">{{ index+1 }}</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.DEPT_NAME }}</view>
+								</uni-td>
+								<uni-td align="center">
+									<view class="name">{{ item.DEPT_NAME }}</view>
+								</uni-td>
+								<uni-td align="center">
+									<view class="uni-group">
+										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+											@click="handleClickSupervise1(item)">督办/催办</button>
+									</view>
+								</uni-td>
+							</uni-tr>
+						</uni-table>
+						<view v-if="false" class="uni-pagination-box">
+							<uni-pagination show-icon :page-size="pageSize" :current="pageCurrent" :total="total"
+								@change="change" />
+						</view>
+					</view>
 				</view>
 				<view class="data-chart">
 					<view class="box-style chats" style="width: 100%;height: 100%;">
@@ -198,7 +228,7 @@
 						<view class="chart-pie">
 							<view class="charts-box">
 								<!-- 演示动态改变eopts -->
-								<qiun-data-charts type="ring" :opts="{legend:{show:false}}" :eopts="ringOpts"
+								<qiun-data-charts type="ring" :opts="ringOpts" :eopts="ringOpts"
 									:chartData="chartsDataPie2" />
 							</view>
 							<view class="chart-pie-legend">
@@ -338,7 +368,6 @@
 				chartsDataColumn5: {},
 				chartsDataColumn6: {},
 				chartsDataPie2: {},
-				ringOpts: {},
 
 				chartsDataArcbar1: {},
 				chartsDataArcbar2: {},
@@ -419,6 +448,108 @@
 						arcbar: {
 							type: 'circle',
 							startAngle: 1.5
+						}
+					}
+				},
+				ringOpts: {
+					title: {
+						text: "诉求问题",
+						left: "center",
+						top: "center",
+						textStyle: {
+							color: "#395176",
+							fontSize: 12,
+							align: "center"
+						}
+					},
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C','#672099', '#F2984E', '#0263FF'],
+					legend: {
+						show: false
+					},
+					"type": "ring",
+					"canvasId": "",
+					"canvas2d": false,
+					"background": "none",
+					"animation": true,
+					"timing": "easeOut",
+					"duration": 1000,
+					"color": ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+					"padding": [5,5,5,5],
+					"rotate": false,
+					"errorReload": false,
+					"fontSize": 13,
+					"fontColor": "#666666",
+					"enableScroll": false,
+					"touchMoveLimit": 60,
+					"enableMarkLine": false,
+					"dataLabel": false,
+					"dataPointShape": false,
+					"dataPointShapeType": "solid",
+					"tapLegend": false,
+					"legend": {
+						"show": false,
+						"position": "right",
+						"float": "center",
+						"padding": 5,
+						"margin": 5,
+						"backgroundColor": "rgba(0,0,0,0)",
+						"borderColor": "rgba(0,0,0,0)",
+						"borderWidth": 0,
+						"fontSize": 13,
+						"fontColor": "#666666",
+						"lineHeight": 25,
+						"hiddenColor": "#CECECE",
+						"itemGap": 10
+					},
+					"title": {
+					    "name": "诉求问题",
+					    "fontSize": 15,
+					    "color": "#666666",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"subtitle": {
+					    "name": "",
+					    "fontSize": 25,
+					    "color": "#7cb5ec",
+					    "offsetX": 0,
+					    "offsetY": 0
+					},
+					"extra": {
+						"ring": {
+							"ringWidth": 30,
+							"centerColor": "#FFFFFF",
+							"activeOpacity": 0.5,
+							"activeRadius": 10,
+							"offsetAngle": 0,
+							"customRadius": 0,
+							"labelWidth": 15,
+							"border": true,
+							"borderWidth": 3,
+							"borderColor": "#FFFFFF",
+							"linearType": "none"
+						},
+						"tooltip": {
+							"showBox": true,
+							"showArrow": true,
+							"showCategory": false,
+							"borderWidth": 0,
+							"borderRadius": 0,
+							"borderColor": "#000000",
+							"borderOpacity": 0.7,
+							"bgColor": "#000000",
+							"bgOpacity": 0.7,
+							"gridType": "solid",
+							"dashLength": 4,
+							"gridColor": "#CCCCCC",
+							"fontColor": "#FFFFFF",
+							"splitLine": true,
+							"horizentalLine": false,
+							"xAxisLabel": false,
+							"yAxisLabel": false,
+							"labelBgColor": "#FFFFFF",
+							"labelBgOpacity": 0.7,
+							"labelFontColor": "#666666"
 						}
 					}
 				},
@@ -569,6 +700,7 @@
 						}
 					})
 					this.chartsDataColumn5 = chartsDataColumn5
+					console.log(this.chartsDataColumn5)
 					
 					
 				}).catch(error => console.log(error))
@@ -636,6 +768,15 @@
 						
 					})
 					this.detaildata = data;
+					let chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA));
+					chartsDataPie2.series[0].data = data.map(item=>{
+						return {
+							name:item.OPTNAME,
+							value:parseFloat(item.TOTAL)
+						}
+					})
+					
+					this.chartsDataPie2 = chartsDataPie2
 				}).catch(error => console.log(error))
 
 			},
@@ -685,10 +826,10 @@
 						return {
 							name: item.DEPT_NAME,
 							value: item.TOTAL,
-							itemStyle: {
-								color: colorList[index],
-								borderRadius: [15, 15, 0, 0]
-							}
+							// itemStyle: {
+							// 	color: colorList[index],
+							// 	borderRadius: [15, 15, 0, 0]
+							// }
 						}
 					})
 					this.chartsDataColumn6 = chartsDataColumn5
@@ -721,34 +862,41 @@
 					//因部分数据格式一样，这里不同图表引用同一数据源的话，需要深拷贝一下构造不同的对象
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					// this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
-					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					// this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
 					this.chartsDataArcbar1 = JSON.parse(JSON.stringify(demodata.Arcbar1))
 					// this.chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Line))
-					this.chartsDataPie2.series[0].radius = ['50%', '80%'];
-					this.ringOpts = {
-						title: {
-							text: "诉求问题",
-							left: "center",
-							top: "center",
-							textStyle: {
-								color: "#395176",
-								fontSize: windowWidth < 500 ? 12 : 16,
-								align: "center"
-							}
-						},
-						color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
-							'#672099', '#F2984E', '#0263FF'
-						],
-						legend: {
-							show: false
-						},
-					}
+					// this.chartsDataPie2.series[0].radius = ['50%', '80%'];
+					// this.ringOpts = {
+					// 	title: {
+					// 		text: "诉求问题",
+					// 		left: "center",
+					// 		top: "center",
+					// 		textStyle: {
+					// 			color: "#395176",
+					// 			fontSize: windowWidth < 500 ? 12 : 16,
+					// 			align: "center"
+					// 		}
+					// 	},
+					// 	color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
+					// 		'#672099', '#F2984E', '#0263FF'
+					// 	],
+					// 	legend: {
+					// 		show: false
+					// 	},
+					// }
 					console.log(this.chartsDataPie2)
 				}, 1500);
 			},
 			handleClickSupervise(item) {
 				console.log(item)
 				this.$refs.popup.open('center');
+
+			},
+			handleClickSupervise1(item) {
+				console.log(item)
+				uni.navigateTo({
+					url: '/pages/supervise/submit?BUSI_NUMBER='+item.BUSI_NUMBER //跳转地址
+				})
 
 			},
 			clickLeft() {
@@ -1185,7 +1333,15 @@
 		}
 
 		.chart-pie {
-			height: 470rpx;
+			// height: 470rpx;
+			height: auto;
+			flex-wrap: wrap;
+			.charts-box {
+				width: 100%;
+			}
+			.chart-pie-legend {
+				width: 100%;
+			}
 		}
 
 		.chart-pie .chart-pie-legend .data-type-content-list {
