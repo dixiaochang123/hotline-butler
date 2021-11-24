@@ -68,7 +68,7 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
 								:opts="columnOpts"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" />
+								:chartData="chartsDataColumn5" :loadingType="1"/>
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -238,7 +238,7 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
 								:opts="columnOpts"
-								:ontouch="true" :chartData="chartsDataColumn6" :loadingType="1" :echartsApp="true" />
+								:ontouch="true" :chartData="chartsDataColumn6" :loadingType="1" />
 						</view>
 					</view>
 
@@ -423,11 +423,16 @@
 					}
 				},
 				columnOpts: {
+					padding:[15,0,10,0],
 					legend: {
 						show: false
 					},
 					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+					enableScroll:true,
 					xAxis: {
+						fontSize:10,
+						rotateLabel:true,
+						itemCount:5,
 						disabled: false,
 						axisLine: {
 							show: false
@@ -465,6 +470,7 @@
 					},
 					extra: {
 						column: {
+							width:20,
 							seriesGap: 5,
 							linearOpacity: 0.5,
 							barBorderCircle: true,
@@ -556,10 +562,10 @@
 						return {
 							name: item.DEPT_NAME,
 							value: item.TOTAL,
-							itemStyle: {
-								color: colorList[index],
-								borderRadius: [15, 15, 0, 0]
-							}
+							// itemStyle: {
+							// 	color: colorList[index],
+							// 	borderRadius: [15, 15, 0, 0]
+							// }
 						}
 					})
 					this.chartsDataColumn5 = chartsDataColumn5

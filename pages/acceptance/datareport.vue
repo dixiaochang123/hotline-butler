@@ -38,8 +38,8 @@
 						</view> -->
 						<view class="charts-box">
 							<!-- 演示动态改变eopts -->
-							<qiun-data-charts type="ring" :opts="ringOpts"
-								:eopts="ringOpts" :chartData="chartsDataPie2" />
+							<qiun-data-charts type="ring" :opts="ringOpts" :eopts="ringOpts"
+								:chartData="chartsDataPie2" />
 						</view>
 						<view class="chart-pie-legend">
 							<view class="data-type-content-list" v-for="item in ringOptsLegend0" :key="item.name">
@@ -61,10 +61,10 @@
 							<uni-tr>
 								<uni-th align="center">诉求类型</uni-th>
 								<uni-th align="center">总数</uni-th>
-								<uni-th align="center">数量</uni-th>
-								<uni-th align="center">环比</uni-th>
-								<uni-th align="center">数量</uni-th>
-								<uni-th align="center">环比</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangesqsl">上期数量</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangesqhb">上期环比</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangetqsl">同期数量</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangetqhb">同期环比</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="'info'+index">
 								<uni-td align="center">{{ item.type }}</uni-td>
@@ -107,8 +107,8 @@
 							<uni-tr>
 								<uni-th align="center">诉求类型</uni-th>
 								<uni-th align="center">总数</uni-th>
-								<uni-th align="center">数量</uni-th>
-								<uni-th align="center">环比</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangesqsl1">上期数量</uni-th>
+								<uni-th align="center" sortable @sort-change="sortchangesqhb1">上期环比</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData1" :key="'info'+index">
 								<!-- DIQU: "武进区湖塘镇,武进区嘉泽镇,武进区礼嘉镇,武进区洛阳镇,武进区南夏墅街道,武进区牛塘镇,武进区前黄镇,武进区西湖街道,武进区雪堰镇,武进区湟里镇"
@@ -233,7 +233,9 @@
 							align: "center"
 						}
 					},
-					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C','#672099', '#F2984E', '#0263FF'],
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C', '#672099',
+						'#F2984E', '#0263FF'
+					],
 					legend: {
 						show: false
 					},
@@ -244,8 +246,10 @@
 					"animation": true,
 					"timing": "easeOut",
 					"duration": 1000,
-					"color": ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
-					"padding": [5,5,5,5],
+					"color": ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					"padding": [5, 5, 5, 5],
 					"rotate": false,
 					"errorReload": false,
 					"fontSize": 13,
@@ -273,18 +277,18 @@
 						"itemGap": 10
 					},
 					"title": {
-					    "name": "1234件",
-					    "fontSize": 15,
-					    "color": "#666666",
-					    "offsetX": 0,
-					    "offsetY": 0
+						"name": "1234件",
+						"fontSize": 15,
+						"color": "#666666",
+						"offsetX": 0,
+						"offsetY": 0
 					},
 					"subtitle": {
-					    "name": "",
-					    "fontSize": 25,
-					    "color": "#7cb5ec",
-					    "offsetX": 0,
-					    "offsetY": 0
+						"name": "",
+						"fontSize": 25,
+						"color": "#7cb5ec",
+						"offsetX": 0,
+						"offsetY": 0
 					},
 					"extra": {
 						"ring": {
@@ -430,6 +434,11 @@
 					} = res.data;
 					if (code == 0) {
 						if (!!data[0]) {
+							data.map(item => {
+								item['LASTTOTAL'] = parseFloat(item.LASTTOTAL)
+								item['RATETOTAL1'] = !!item.RATETOTAL ? parseFloat((item.RATETOTAL)
+									.toString(0, item.RATETOTAL.length - 2)) : 0
+							})
 							this.tableData1 = data;
 						}
 					}
@@ -467,6 +476,11 @@
 					} = res.data;
 					if (code == 0) {
 						if (!!data[0]) {
+							data.map(item => {
+								item.LASTTOTAL = parseFloat(item.LASTTOTAL)
+								item['RATETOTAL1'] = !!item.RATETOTAL ? parseFloat((item.RATETOTAL)
+									.toString(0, item.RATETOTAL.length - 2)) : 0
+							})
 							this.tableData1 = data;
 							console.log(this.tableData1)
 						}
@@ -505,6 +519,11 @@
 					} = res.data;
 					if (code == 0) {
 						if (!!data[0]) {
+							data.map(item => {
+								item.LASTTOTAL = parseFloat(item.LASTTOTAL)
+								item['RATETOTAL1'] = !!item.RATETOTAL ? parseFloat((item.RATETOTAL)
+									.toString(0, item.RATETOTAL.length - 2)) : 0
+							})
 							this.tableData1 = data;
 							console.log(this.tableData1)
 						}
@@ -542,6 +561,11 @@
 					} = res.data;
 					if (code == 0) {
 						if (!!data[0]) {
+							data.map(item => {
+								item['LASTTOTAL'] = parseFloat(item.LASTTOTAL)
+								item['RATETOTAL1'] = !!item.RATETOTAL ? parseFloat((item.RATETOTAL)
+									.toString(0, item.RATETOTAL.length - 2)) : 0
+							})
 							this.tableData1 = data;
 							console.log(this.tableData1)
 						}
@@ -579,7 +603,13 @@
 					} = res.data;
 					if (code == 0) {
 						if (!!data[0]) {
+							data.map(item => {
+								item['LASTTOTAL'] = parseFloat(item.LASTTOTAL)
+								item['RATETOTAL1'] = !!item.RATETOTAL ? parseFloat((item.RATETOTAL)
+									.toString(0, item.RATETOTAL.length - 2)) : 0
+							})
 							this.tableData1 = data;
+							console.log(this.tableData1)
 						}
 					}
 				}).catch(error => console.log(error));
@@ -589,7 +619,7 @@
 				this.GDTOTAL = data[0].GDTOTAL;
 				this.JTRATE = data[0].JTRATE;
 				this.totaldatas = data[0];
-				
+
 				this.ringOptsLegend0[0].name = '投诉 ' + data[0].TS + '件';
 				this.ringOptsLegend0[0].value = data[0].TSRATE;
 				this.ringOptsLegend0[0].value1 = parseFloat(data[0].TS);
@@ -613,43 +643,55 @@
 				this.ringOptsLegend0[5].name = '举报 ' + data[0].JB + '件';
 				this.ringOptsLegend0[5].value = data[0].JBRATE;
 				this.ringOptsLegend0[5].value1 = parseFloat(data[0].JB);
-				
+
 				let total = 0
 				let chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA));
-				chartsDataPie2.series[0].data = this.ringOptsLegend0.map(item=>{
-					total+=item.value1
+				chartsDataPie2.series[0].data = this.ringOptsLegend0.map(item => {
+					total += item.value1
 					return {
-						name:item.name,
-						value:item.value1
+						name: item.name,
+						value: item.value1
 					}
 				})
-				this.ringOpts.title.name = total+'件'
+				this.ringOpts.title.name = total + '件'
 				this.chartsDataPie2 = chartsDataPie2
 			},
 			getotaltablefn(data) {
 				this.tableData[0].total = data[0].TS
-				this.tableData[0].lasttotal = data[0].LASTTS
+				this.tableData[0].lasttotal = parseFloat(data[0].LASTTS)
 				this.tableData[0].rate = data[0].RATETS
+				this.tableData[0].rate1 = !!data[0].RATETS ? parseFloat((data[0].RATETS).toString(0, data[0].RATETS
+					.length - 2)) : 0
 
 				this.tableData[1].total = data[0].ZX
-				this.tableData[1].lasttotal = data[0].LASTZX
+				this.tableData[1].lasttotal = parseFloat(data[0].LASTZX)
 				this.tableData[1].rate = data[0].RATEZX
+				this.tableData[1].rate1 = !!data[0].RATEZX ? parseFloat((data[0].RATEZX).toString(0, data[0].RATEZX
+					.length - 2)) : 0
 
 				this.tableData[2].total = data[0].JY
-				this.tableData[2].lasttotal = data[0].LASTJY
+				this.tableData[2].lasttotal = parseFloat(data[0].LASTJY)
 				this.tableData[2].rate = data[0].RATEJY
+				this.tableData[2].rate1 = !!data[0].RATEJY ? parseFloat((data[0].RATEJY).toString(0, data[0].RATEJY
+					.length - 2)) : 0
 
 				this.tableData[3].total = data[0].QZ
-				this.tableData[3].lasttotal = data[0].LASTQZ
+				this.tableData[3].lasttotal = parseFloat(data[0].LASTQZ)
 				this.tableData[3].rate = data[0].RATEQZ
+				this.tableData[3].rate1 = !!data[0].RATEQZ ? parseFloat((data[0].RATEQZ).toString(0, data[0].RATEQZ
+					.length - 2)) : 0
 
 				this.tableData[4].total = data[0].BYS
-				this.tableData[4].lasttotal = data[0].LASTBYS
+				this.tableData[4].lasttotal = parseFloat(data[0].LASTBYS)
 				this.tableData[4].rate = data[0].RATEBYS
+				this.tableData[4].rate1 = !!data[0].RATEBYS ? parseFloat((data[0].RATEBYS).toString(0, data[0].RATEBYS
+					.length - 2)) : 0
 
 				this.tableData[5].total = data[0].JB
-				this.tableData[5].lasttotal = data[0].LASTJB
+				this.tableData[5].lasttotal = parseFloat(data[0].LASTJB)
 				this.tableData[5].rate = data[0].RATEJB
+				this.tableData[5].rate1 = !!data[0].RATEJB ? parseFloat((data[0].RATEJB).toString(0, data[0].RATEJB
+					.length - 2)) : 0
 			},
 			clickLeft() {
 				const pages = getCurrentPages();
@@ -676,35 +718,76 @@
 						windowWidth = res.windowWidth
 					}
 				})
-				setTimeout(() => {
-					// this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
-					// // this.chartsDataPie2.series[0].radius = ['70%', '90%'];
-					// this.chartsDataPie2.series.legendHoverLink = false;
-					// this.ringOpts = {
-					// 	tooltip: {
-					// 		show: false
-					// 	},
-					// 	title: {
-					// 		text: "14件",
-					// 		left: "center",
-					// 		top: "center",
-					// 		textStyle: {
-					// 			color: "#395176",
-					// 			fontSize: windowWidth < 500 ? 16 : 20,
-					// 			align: "center"
-					// 		}
-					// 	},
-					// 	tooltip: {
-					// 		show: false
-					// 	},
-					// 	color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C',
-					// 		'#672099', '#F2984E', '#0263FF'
-					// 	],
-					// 	legend: {
-					// 		show: false
-					// 	},
-					// }
-				}, 1000);
+			},
+			// 排序
+			sortchangesqsl({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData, 'lasttotal', order)
+				console.log(this.tableData)
+			}, // 排序
+			sortchangesqhb({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData, 'rate1', order)
+				console.log(this.tableData)
+			},
+			sortchangetqsl({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData, 'lasttotal', order)
+				console.log(this.tableData)
+			},
+			sortchangetqhb({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData, 'lasttotal', order)
+				console.log(this.tableData)
+			},
+			// 排序
+			sortchangesqsl1({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData1, 'LASTTOTAL', order)
+			}, // 排序
+			sortchangesqhb1({
+				order
+			}) {
+				// ascending 升序
+				// descending 降序
+				console.log(order)
+				this.sortKey(this.tableData1, 'RATETOTAL1', order)
+			},
+			sortKey(array, key, order) {
+				if (order == "ascending") {
+					return array.sort(function(a, b) {
+						var x = a[key];
+						var y = b[key];
+						return ((x > y) ? -1 : (x < y) ? 1 : 0)
+					})
+				}
+				if (order == "descending") {
+					return array.sort(function(a, b) {
+						var x = b[key];
+						var y = a[key];
+						return ((x > y) ? -1 : (x < y) ? 1 : 0)
+					})
+				}
 			},
 			// 多选处理
 			selectedItems() {
@@ -926,6 +1009,8 @@
 				color: #395176;
 
 				.content-list-1 {
+					display: flex;
+					justify-content: center;
 
 					// width: rpx2multiple(10);
 					// height: rpx2multiple(10);

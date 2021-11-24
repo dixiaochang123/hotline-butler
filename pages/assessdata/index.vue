@@ -112,7 +112,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="area"
-								:opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
+								:opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
 								:chartData="chartsDataArea1" />
 						</view>
 					</view>
@@ -127,10 +127,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<!-- <qiun-data-charts type="column"
-								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
-								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+							<qiun-data-charts type="line" :opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{line:{type:'curve'}}}"
 								:chartData="chartsDataLine2" />
 						</view>
 					</view>
@@ -221,7 +218,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="area"
-								:opts="{legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
+								:opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
 								:chartData="chartsDataArea2" />
 						</view>
 					</view>
@@ -239,7 +236,7 @@
 							<!-- <qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+							<qiun-data-charts type="line" :opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{line:{type:'curve'}}}"
 								:chartData="chartsDataLine3" />
 						</view>
 					</view>
@@ -333,12 +330,15 @@
 				zjddnydkhtrenddata:[],
 				zjddnsltrenddata:[],
 				columnOpts: {
+					padding:[15,0,10,0],
 					legend: {
 						show: false
 					},
 					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
 					xAxis: {
+						rotateLabel:true,
 						disabled: false,
+						fontSize:10,
 						axisLine: {
 							show: false
 						},
@@ -375,6 +375,7 @@
 					},
 					extra: {
 						column: {
+							width:20,
 							seriesGap: 5,
 							linearOpacity: 0.5,
 							barBorderCircle: true,

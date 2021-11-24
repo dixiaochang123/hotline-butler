@@ -410,53 +410,15 @@
 				},
 				ringOpts1:{},
 				columnOpts: {
-					grid: {
-						left: 60,
-					},
-					xAxis: {
-						disabled: false,
-						axisLabel: {
-							show: true,
-							color: "#395176",
-							margin: 20,
-							fontSize: 16,
-						},
-					},
-					yAxis: {
-						disabled: false,
-						disableGrid: false,
-						splitNumber: 5,
-						gridType: "dash",
-						dashLength: 5,
-						gridColor: "#CCCCCC",
-						axisLine: {
-							show: false
-						},
-						axisLabel: {
-							show: true,
-							color: "#395176",
-							margin: 20,
-							fontSize: 16,
-						},
-						splitLine: {
-							show: true,
-							lineStyle: {
-								color: "#E1E1E1",
-								type: "dashed"
-							}
-						}
-					},
-					legend: {
-						show: false
-					}
-				},
-				columnOpts: {
+					padding:[15,0,10,0],
 					legend: {
 						show: false
 					},
 					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
 					xAxis: {
+						rotateLabel:true,
 						disabled: false,
+						fontSize:10,
 						axisLine: {
 							show: false
 						},
@@ -464,7 +426,7 @@
 							show: true,
 							color: "#395176",
 							margin: 20,
-							fontSize: 16,
+							fontSize: 13,
 						},
 					},
 					yAxis: {
@@ -493,6 +455,7 @@
 					},
 					extra: {
 						column: {
+							width:20,
 							seriesGap: 5,
 							linearOpacity: 0.5,
 							barBorderCircle: true,
