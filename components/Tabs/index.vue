@@ -24,23 +24,23 @@
 				datalist: [{
 					name: '受理情况',
 					url:'/pages/acceptance/index',
-					imgurl:'/static/image/slqk.png',
+					imgurl:'/static/image/update/slqk.png',
 				}, {
 					name: '考核数据',
 					url:'/pages/assessdata/index',
-					imgurl:'/static/image/khsj.png',
+					imgurl:'/static/image/update/khsj.png',
 				}, {
 					name: '督查督办',
 					url:'/pages/supervise/index',
-					imgurl:'/static/image/dcdb.png',
+					imgurl:'/static/image/update/dcdb.png',
 				}, {
 					name: '数据分析',
 					url:'/pages/dataanalysis/index',
-					imgurl:'/static/image/sjfx.png',
+					imgurl:'/static/image/update/sjfx.png',
 				}, {
 					name: '个人中心',
 					url:'/pages/personal/index',
-					imgurl:'/static/image/grzx.png',
+					imgurl:'/static/image/update/grzx.png',
 				}],
 			};
 		},
@@ -68,7 +68,8 @@
 		width: 150rpx;
 		width: rpx2multiple(150);
 		height: 100%;
-		background: #1E427B !important;
+		background: #ffffff !important;
+		border-top-right-radius: 30rpx;
 	}
 
 	.item {
@@ -85,7 +86,7 @@
 		font-family: PingFang SC;
 		font-weight: bold;
 		color: #395176;
-		color: #FFFFFF;
+		color: #395176;
 		position: relative;
 
 	}
@@ -100,7 +101,7 @@
 			margin: auto;
 			width: 6rpx;
 			height: rpx2multiple(100);
-			background: #ffffff;
+			background: #4585F5;
 			border-radius: 3rpx;
 
 		}

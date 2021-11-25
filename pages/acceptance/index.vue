@@ -1,7 +1,9 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="受理情况" @clickLeft="clickLeft"></uni-nav-bar>
+		<view class="bg nav"></view>
+		<view class="bg bg1 nav"></view>
 		<view class="box">
 			<!-- 左侧tabs -->
 			<Tabs class="isapp" :active="active" />
@@ -923,13 +925,36 @@
 	.content {
 		height: 100vh;
 		overflow: hidden;
+		// background: url(../../static/image/1125/城市底纹.png) no-repeat left top;
+		// background-size: 100% 500rpx;
 		background-color: #F4F7F9;
+		position: relative;
+	}
+	.bg {
+		width: 100%;
+		height: 425rpx;
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		background: linear-gradient(0deg, #F4F7F9 0%, #2D72FF 100%);
+	}
+	.bg1 {
+		width: 100%;
+		height: 425rpx;
+		position: absolute;
+		top: 0;
+		background: url(../../static/image/update/bg.png) no-repeat left top;
+		background-size: 100% 90%;
+		z-index: 2;
 	}
 
 	.box {
 		height: 100%;
 		display: flex;
 		justify-content: flex-start;
+		position: relative;
+		background-color: transparent;
+		z-index: 2;
 
 	}
 
@@ -945,8 +970,8 @@
 	// 顶部tabs
 	.uni-tabs {
 		width: 40%;
-		height: 145rpx;
-		height: rpx2multiple(145);
+		height: 165rpx;
+		height: rpx2multiple(165);
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
@@ -964,9 +989,9 @@
 		}
 
 		.uni-tabs-item-active {
-			background: #4585F5;
+			background: #FFFFFF;
 			border-radius: rpx2multiple(33);
-			color: #FFFFFF;
+			color: #4B93F7;
 		}
 	}
 

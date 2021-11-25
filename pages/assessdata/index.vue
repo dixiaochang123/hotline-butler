@@ -1,7 +1,9 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="考核数据" @clickLeft="clickLeft"></uni-nav-bar>
+		<view class="bg nav"></view>
+		<view class="bg bg1 nav"></view>
 		<view class="box">
 			<!-- 左侧tabs -->
 			<Tabs class="isapp" :active="active" />
@@ -767,6 +769,9 @@
 		height: 100%;
 		display: flex;
 		justify-content: flex-start;
+		position: relative;
+		background-color: transparent;
+		z-index: 2;
 
 	}
 
@@ -814,7 +819,7 @@
 			line-height: rpx2multiple(65);
 			font-family: PingFang SC;
 			font-weight: 800;
-			color: #B8C0CB;
+			color: #ffffff;
 			text-align: center;
 		}
 
@@ -825,6 +830,12 @@
 				border-radius: rpx2multiple(65);
 				color: #4585F5;
 			}
+		}
+		.uni-tabs-item-active {
+			// background: #4585F5;
+			border: solid 1px #ffffff;
+			border-radius: rpx2multiple(33);
+			color: #4585F5;
 		}
 
 		// .uni-tabs-item-active {
@@ -950,7 +961,7 @@
 		}
 		.uni-tabs-item-active {
 			// background: #4585F5;
-			border: solid 1px;
+			border: solid 1px #ffffff;
 			border-radius: rpx2multiple(33);
 			color: #4585F5;
 		}

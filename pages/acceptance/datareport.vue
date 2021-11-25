@@ -1,6 +1,8 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" title="热线管家" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<view class="bg nav"></view>
+		<view class="bg bg1 nav"></view>
 		<view class="box">
 			<Tabs class="isapp" :active="active" />
 			<view class="box-main-parent">
@@ -863,7 +865,9 @@
 	}
 </script>
 
-
+<style>
+	@import "../../static/style.css";
+</style>
 <style lang="scss" scoped>
 	@function rpx2multiple ($px) {
 		@return ($px * 1)+rpx;
@@ -873,12 +877,16 @@
 		height: 100vh;
 		overflow: hidden;
 		background-color: #F4F7F9;
+		position: relative;
 	}
 
 	.box {
 		height: 100%;
 		display: flex;
 		justify-content: flex-start;
+		position: relative;
+		background-color: transparent;
+		z-index: 2;
 
 	}
 
