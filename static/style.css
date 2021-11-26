@@ -43,6 +43,11 @@
 	line-height: inherit !important;
 	text-align: center !important;
 }
+/deep/ .uni-navbar__content_view .uni-icons span {
+	border-radius: 50%;
+	background-color: #FFFFFF;
+	color: #0073FA;
+}
 .box-style {
 	background-color: #FFFFFF;
 	border-radius: 30rpx;
