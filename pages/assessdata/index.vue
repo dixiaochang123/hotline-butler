@@ -833,7 +833,7 @@
 		}
 		.uni-tabs-item-active {
 			// background: #4585F5;
-			border: solid 1px #ffffff;
+			border: solid 1px #4585F5;
 			border-radius: rpx2multiple(33);
 			color: #4585F5;
 		}

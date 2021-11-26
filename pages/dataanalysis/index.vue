@@ -405,7 +405,7 @@
 
 		.uni-tabs-item-active {
 			background: none;
-			border: solid 1px;
+			border: solid 1px #FFFFFF;
 			border-radius: rpx2multiple(33);
 			color: #4585F5;
 		}

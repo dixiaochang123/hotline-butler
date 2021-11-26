@@ -439,7 +439,7 @@
 
 		.btns {
 			position: absolute;
-			bottom: rpx2multiple(30);
+			bottom: rpx2multiple(100);
 			left: 0;
 			right: 0;
 			margin: 0 auto;

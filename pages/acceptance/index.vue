@@ -984,7 +984,7 @@
 			line-height: rpx2multiple(65);
 			font-family: PingFang SC;
 			font-weight: 800;
-			color: #B8C0CB;
+			color: #FFFFFF;
 			text-align: center;
 		}
 
