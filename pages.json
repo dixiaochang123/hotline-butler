@@ -3,6 +3,8 @@
 			"path": "pages/login/index",
 			"style": {
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#F4F7F9"
 				}
@@ -19,6 +21,8 @@
 			"style": {
 				"navigationBarTitleText": "uni-app",
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#F4F7F9"
 				}
@@ -29,6 +33,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -40,6 +46,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -51,6 +59,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -62,6 +72,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -72,6 +84,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -82,6 +96,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}
@@ -92,6 +108,8 @@
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false,
 				"app-plus": {
+					"animationType": "fade-in",
+					"animationDuration": 300,
 					"titleNView": false,
 					"background": "#EEF2F5"
 				}

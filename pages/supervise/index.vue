@@ -30,7 +30,7 @@
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
+									src="/static/image/tdl.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.DBZHONG}} <text class="t-1"> 件</text></view>
@@ -40,7 +40,7 @@
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
+									src="/static/image/qsl.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.ENDTOTAL}} <text class="t-1"> 件</text></view>
