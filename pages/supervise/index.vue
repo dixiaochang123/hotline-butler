@@ -27,13 +27,23 @@
 							<view class="content-list-1">督办总量(件)</view>
 						</view>
 						<view class="data-type-content-list-3">
+							<view class="data-type-content-list-4" @click="gotosuperviselist">
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
+									mode="aspectFit"
+									src="/static/image/ddb.png"
+									@error="imageError"></image>
+								<view class="data-type-content-list-5">
+									<view class="">{{dbtotal.dbbsl}} <text class="t-1"> 件</text></view>
+									<view class="t-2" style="font-family: PingFang;">待督办</view>
+								</view>
+							</view>
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="/static/image/tdl.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">{{dbtotal.DBZHONG}} <text class="t-1"> 件</text></view>
+									<view class="">{{dbtotal.dbzsl}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">督办中</view>
 								</view>
 							</view>
@@ -43,7 +53,7 @@
 									src="/static/image/qsl.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">{{dbtotal.ENDTOTAL}} <text class="t-1"> 件</text></view>
+									<view class="">{{dbtotal.dbyjssl}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">已结束</view>
 								</view>
 							</view>
@@ -285,7 +295,7 @@
 							<uni-icons type="closeempty" size="30"></uni-icons>
 						</view>
 					</view>
-					<textarea class="textarea" v-model="textarea" placeholder="输入字体" />
+					<textarea class="textarea" v-model="contentText" placeholder="输入字体" />
 					<button class="btn" type="default" @click="sendinfo">发 送</button>
 					<view style="height:20rpx;"></view>
 				</view>
@@ -327,7 +337,10 @@
 		dbdchfbmygd,
 		lzdtbhb,
 		sqlbhqs,
-		zysjbm
+		zysjbm,
+		addNetWorkOrder,
+		ddbgdList,
+		ddbgdType
 	} from '@/utils/api.js'
 	let myChart;
 	export default {
@@ -336,6 +349,8 @@
 		},
 		data() {
 			return {
+				message:'',
+				BUSI_NUMBER:'',//工单编号
 				isLandScape: true,
 				active: '督查督办', //左侧tabs
 				dbtotal: {
@@ -343,6 +358,9 @@
 					ENDTOTAL: "",
 					RQ: "",
 					TOTAL: "",
+					dbbsl:0,
+					dbzsl:0,
+					dbyjssl:0,
 				},
 				array: ['中国', '美国', '巴西', '日本'],
 				classes: '2011',
@@ -356,7 +374,7 @@
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
-				textarea: '',
+				contentText: '',
 				searchVal: '',
 				tableData: [],
 				// 每页数据量
@@ -641,6 +659,7 @@
 		},
 		mounted() {
 			let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
+			this.date = date;
 			console.log(date)
 			this.overview(date)
 			this.gldept(date)
@@ -651,8 +670,39 @@
 			this.lzdtbhb(date)
 			this.sqlbhqs(date)
 			this.zysjbm(date)
+			this.zysjbm(date)
+			// 待督办数量
+			this.ddbgdType(date)
 		},
 		methods: {
+			ddbgdType(date) {
+				ddbgdType(date,1).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.dbtotal.dbbsl = data
+				}).catch(error => console.log(error));
+				ddbgdType(date,2).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.dbtotal.dbzsl = data
+				}).catch(error => console.log(error));
+				ddbgdType(date,3).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					this.dbtotal.dbyjssl = data
+				}).catch(error => console.log(error))
+			},
+			gotosuperviselist() {
+				uni.navigateTo({
+					url: `/pages/supervise/superviselist?date=${this.date}` //跳转地址
+				})
+			},
 			yearChange: function(e) {
 				console.log(e)
 				//获得对象的 detail的 value
@@ -660,6 +710,7 @@
 				this.yearsIndex1 = e.detail.value[0];
 				this.yearsIndex2 = e.detail.value[1];
 				let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
+				this.date = date;
 				this.overview(date)
 				this.gldept(date)
 				this.dbdc2jgk(date)
@@ -669,6 +720,7 @@
 				this.lzdtbhb(date)
 				this.sqlbhqs(date)
 				this.zysjbm(date)
+				this.ddbgdType(date)
 			},
 			overview(date) {
 				overview(date).then(res => {
@@ -677,7 +729,7 @@
 						data
 					} = res.data;
 					if (!!data[0]) {
-						this.dbtotal = data[0]
+						this.dbtotal.TOTAL = data[0].TOTAL
 					}
 				}).catch(error => console.log(error))
 
@@ -842,8 +894,36 @@
 				this.$refs.popup.close();
 			},
 			sendinfo() {
-				this.$refs.popup.close();
-				this.$refs.popup1.open('center');
+				let params = {
+					id:this.BUSI_NUMBER,
+					context:this.contentText
+				}
+				addNetWorkOrder(params).then(res=>{
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(code,data,data.operMsg)
+					if(data.success=="true") {
+						this.$refs.popup.close();
+						this.$refs.popup1.open('center');
+					} else {
+						this.message = data.operMsg
+						this.$refs.popup.close();
+						uni.showModal({
+						    title: '提示',
+							showCancel:false,
+						    content: data.operMsg,
+						    success: function (res) {
+						        if (res.confirm) {
+						            console.log('用户点击确定');
+						        } else if (res.cancel) {
+						            console.log('用户点击取消');
+						        }
+						    }
+						});
+					}
+				}).catch(error=>console.log(error))
 			},
 			closeinfo() {
 				this.$refs.popup1.close();
@@ -892,6 +972,7 @@
 			handleClickSupervise(item) {
 				console.log(item)
 				this.$refs.popup.open('center');
+				this.BUSI_NUMBER = item.BUSI_NUMBER
 
 			},
 			handleClickSupervise1(item) {

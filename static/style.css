@@ -47,6 +47,8 @@
 	border-radius: 50%;
 	background-color: #FFFFFF;
 	color: #0073FA;
+	position: relative;
+	z-index: 10000;
 }
 .box-style {
 	background-color: #FFFFFF;

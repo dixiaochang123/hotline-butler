@@ -804,9 +804,55 @@
 					});
 				}
 			},
+			getFirstDayOfWeek (date) {
+			    var day = date.getDay() || 7;
+			    return new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1 - day);
+			},
 			handleClickDatareport() {
+				let todayDate = new Date();
+				let date = (todayDate.getDate()<10?"0":"")+todayDate.getDate();
+				let month= ((todayDate.getMonth()+1)<10?"0":"")+(todayDate.getMonth()+1)
+				let year= 1900+todayDate.getYear();
+				let dateweek = "今天是:";
+				let title = year + "-" + month + "-" + date;
+				let type="日报"
+				if (this.activetab == '当日诉求') {
+					title = title+"日报"
+					type = "日报"
+				} else if (this.activetab == '近一周诉求') {
+					let now = new Date();
+					let nowTime = now.getTime() ; 
+					let day = now.getDay();
+					let oneDayTime = 24*60*60*1000 ; 
+					
+					//显示周一
+					let MondayTime = nowTime - (day+6)*oneDayTime ; 
+					//显示周日
+					
+					let SundayTime =  nowTime + (day)*oneDayTime ; 
+					
+					
+					//初始化日期时间
+					let monday = new Date(MondayTime);
+					let sunday = new Date(SundayTime);
+					let mondaystr = this.getFirstDayOfWeek(monday)
+					let sundaystr = this.getFirstDayOfWeek(sunday)
+					
+					let date = (monday.getDate()<10?"0":"")+monday.getDate();
+					let month= ((monday.getMonth()+1)<10?"0":"")+(monday.getMonth()+1)
+					let year= 1900+monday.getYear();
+					let date1 = (sunday.getDate()<10?"0":"")+sunday.getDate();
+					let month1= ((sunday.getMonth()+1)<10?"0":"")+(sunday.getMonth()+1)
+					let year1= 1900+sunday.getYear();
+					console.log(year+ "-" +month+ "-" +date)
+					title = year+ "-" +month+ "-" +date+"至"+year1+ "-" +month1+ "-" +date1+"周报"
+					type = "周报"
+				} else {
+					title = year + "-" + month +"月报"
+					type = "月报"
+				}
 				uni.navigateTo({
-					url: '/pages/acceptance/datareport' //跳转地址
+					url: '/pages/acceptance/datareport?title='+title+'&type='+type//跳转地址
 				})
 			},
 			handletabschange(item) {

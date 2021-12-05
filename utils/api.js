@@ -439,3 +439,38 @@ export function updatePassword(data) {
     params:''
   })
 }
+
+//督办工单提交
+export function addNetWorkOrder(data) {
+  return request({
+    url: `/dbdc/dbgd?id=${data.id}&context=${data.context}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 待督办工单列表
+export function ddbgdList(data) {
+  return request({
+    url: `/dbdc/ddbgdList?type=${data.type}&date=${data.date}`,
+    method: 'get',
+    params:''
+  })
+}
+// 督办工单分类统计
+export function ddbgdType(date,type) {
+  return request({
+    url: `/dbdc/ddbgdType?date=${date}&type=${type}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 工单详情
+export function gdDetail(id) {
+  return request({
+    url: `/dbdc/gdDetail?rowId=${id}`,
+    method: 'get',
+    params:''
+  })
+}

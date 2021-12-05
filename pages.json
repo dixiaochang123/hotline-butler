@@ -79,6 +79,27 @@
 				}
 			}
 		}, {
+				"path": "pages/supervise/superviselist",
+				"style": {
+					"app-plus": {
+						"animationType": "fade-in",
+						"animationDuration": 300,
+						"titleNView": false,
+						"background": "#EEF2F5"
+					}
+				}
+		}, {
+            "path" : "pages/supervise/supervisedetails",
+            "style": {
+            	"app-plus": {
+            		"animationType": "fade-in",
+            		"animationDuration": 300,
+            		"titleNView": false,
+            		"background": "#EEF2F5"
+            	}
+            }
+            
+        }, {
 			"path": "pages/dataanalysis/index",
 			"style": {
 				"navigationBarTitleText": "",
@@ -115,7 +136,7 @@
 				}
 			}
 		}
-	],
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "热线管家",

@@ -22,14 +22,13 @@
 					</view>
 					<view class="first-t">
 						<view class="f-t-1">
-							区便民服务中心积极发挥12345政府便民热线的载体和平台作用，紧紧围绕党委 政府中心工作，立足服务群众、方便群众、推动机关作风转变，在办好民生诉求、深化
-							诉接速办、提升服务质效上呈现了良好发展态势。现将有关运行情况汇报如下：
+							武进区区域社会治理现代化指挥中心积极发挥12345政府便民热线的载体和平台作用，紧紧围绕区委区政府中心工作，立足服务群众、 方便群众、推动机关作风转变，在办好民生诉求、深化诉接速办、提升服务质效上呈现了良好发展态势。现将有关运行情况汇报如下:
 						</view>
 						<view class="f-t-2 t-1-app">
 							一、总体情况
 						</view>
 						<view class="f-t-3">
-							{{totaldatas.CREATE_DATE}}・区12345热线共受理群众诉求{{GDTOTAL}}件，整体接通率{{JTRATE}}。其中，投诉类{{totaldatas.TS}}件，占{{totaldatas.TSRATE}}，咨询类{{totaldatas.ZX}}件，占{{totaldatas.ZXRATE}},建议类{{totaldatas.JY}}件,占{{totaldatas.JYRATE}}，求助类{{totaldatas.QZ}}件，占{{totaldatas.QZRATE}}，表扬类{{totaldatas.BY}}件，占{{totaldatas.BYRATE}}，举报类{{totaldatas.JB}}件，占{{totaldatas.JBRATE}}。
+							{{totaldatas.CREATE_DATE}}，区12345热线共受理群众诉求{{GDTOTAL}}件，整体接通率{{JTRATE}}。其中，投诉类{{totaldatas.TS}}件，占{{totaldatas.TSRATE}}，咨询类{{totaldatas.ZX}}件，占{{totaldatas.ZXRATE}},建议类{{totaldatas.JY}}件,占{{totaldatas.JYRATE}}，求助类{{totaldatas.QZ}}件，占{{totaldatas.QZRATE}}，表扬类{{totaldatas.BY}}件，占{{totaldatas.BYRATE}}，举报类{{totaldatas.JB}}件，占{{totaldatas.JBRATE}}。
 						</view>
 
 					</view>

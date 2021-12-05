@@ -170,7 +170,7 @@
 							uni.setStorageSync('password', this.formData.password)
 							this.setToken(data.token)
 							uni.navigateTo({
-								url: '/pages/acceptance/index' //跳转地址
+								url: '/pages/supervise/index' //跳转地址
 							})
 						}
 					}).catch(error => console.log(error))

@@ -22,6 +22,10 @@
 		data() {
 			return {
 				datalist: [{
+					name: '督查督办',
+					url:'/pages/supervise/index',
+					imgurl:'/static/image/update/dcdb.png',
+				}, {
 					name: '受理情况',
 					url:'/pages/acceptance/index',
 					imgurl:'/static/image/update/slqk.png',
@@ -29,10 +33,6 @@
 					name: '考核数据',
 					url:'/pages/assessdata/index',
 					imgurl:'/static/image/update/khsj.png',
-				}, {
-					name: '督查督办',
-					url:'/pages/supervise/index',
-					imgurl:'/static/image/update/dcdb.png',
 				}, {
 					name: '数据分析',
 					url:'/pages/dataanalysis/index',
