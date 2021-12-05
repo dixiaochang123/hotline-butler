@@ -983,6 +983,7 @@
 
 			},
 			clickLeft() {
+				console.log('返回上一页')
 				const pages = getCurrentPages();
 				if (pages.length === 2) {
 					uni.navigateBack({
