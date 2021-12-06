@@ -878,7 +878,7 @@
 				}
 
 				.content-list-1 {
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(40);
 					font-weight: 500;
 					color: #1EA2FF;
 				}
@@ -891,7 +891,7 @@
 				}
 
 				.content-list-3 {
-					font-size: rpx2multiple(50);
+					font-size: rpx2multiple(80);
 					color: #1EA2FF;
 				}
 			}
@@ -999,7 +999,7 @@
 		}
 
 		.data-chart .datas .data-type-content-list .content-list-3 {
-			font-size: 20rpx;
+			font-size: 40rpx;
 			white-space: nowrap;
 		}
 

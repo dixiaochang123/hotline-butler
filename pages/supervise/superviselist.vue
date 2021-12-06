@@ -24,19 +24,19 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th width="25%" align="center">序号</uni-th>
-								<uni-th width="25%" align="center">工单标题</uni-th>
-								<uni-th v-if="activetab=='已督办'" width="25%" align="center">处理人员</uni-th>
-								<uni-th width="25%" align="center">紧急程度</uni-th>
-								<uni-th width="25%" align="center">创建时间</uni-th>
-								<uni-th width="25%" align="center">操作</uni-th>
+								<uni-th width="20%" align="center">序号</uni-th>
+								<uni-th width="800" align="center">工单标题</uni-th>
+								<uni-th v-if="activetab=='已督办'" width="20%" align="center">处理人员</uni-th>
+								<uni-th width="20%" align="center">紧急程度</uni-th>
+								<uni-th width="20%" align="center">创建时间</uni-th>
+								<uni-th width="20%" align="center">操作</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.content }}</view>
 								</uni-td>
-								<uni-td align="center">
+								<uni-td v-if="activetab=='已督办'" align="center">
 									<view class="name">{{ item.createUserId }}</view>
 								</uni-td>
 								<uni-td align="center">
@@ -48,7 +48,7 @@
 								<uni-td align="center">
 									<view class="uni-group">
 										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise(item)">查看详情</button>
+											@click="handleClickSupervise(item)">督办</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -62,19 +62,19 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th align="center">序号</uni-th>
-								<uni-th align="center">工单标题</uni-th>
-								<uni-th v-if="activetab=='已督办'" align="center">处理人员</uni-th>
-								<uni-th align="center">紧急程度</uni-th>
-								<uni-th align="center">创建时间</uni-th>
-								<uni-th align="center">操作</uni-th>
+								<uni-th width="100" align="center">序号</uni-th>
+								<uni-th width="300" align="center">工单标题</uni-th>
+								<uni-th width="100" v-if="activetab=='已督办'" align="center">处理人员</uni-th>
+								<uni-th width="100" align="center">紧急程度</uni-th>
+								<uni-th width="100" align="center">创建时间</uni-th>
+								<uni-th width="100" align="center">操作</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
 									<view class="name">{{ item.content }}</view>
 								</uni-td>
-								<uni-td align="center">
+								<uni-td v-if="activetab=='已督办'" align="center">
 									<view class="name">{{ item.createUserId }}</view>
 								</uni-td>
 								<uni-td align="center">
@@ -86,7 +86,7 @@
 								<uni-td align="center">
 									<view class="uni-group">
 										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise1(item)">查看详情</button>
+											@click="handleClickSupervise1(item)">督办</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -149,11 +149,20 @@
 			this.getServerData()
 		},
 		onLoad(option) {
+			console.log(option)
 			this.date = option.date;
+			let type = 1
+			if(option.activetab=='已督办') {
+				type = 2
+				this.activetab = '已督办'
+			} else {
+				type = 1
+			}
 			let params ={
 				date:option.date,
-				type:1
+				type
 			}
+			
 			this.ddbgdList(params)
 
 		},
@@ -215,14 +224,14 @@
 			handleClickSupervise(item) {
 				console.log(item)
 				uni.navigateTo({
-					url: `/pages/supervise/supervisedetails?formId=${item.formId}`
+					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}`
 				})
 			
 			},
 			handleClickSupervise1(item) {
 				console.log(item)
 				uni.navigateTo({
-					url: `/pages/supervise/supervisedetails?formId=${item.formId}`
+					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}`
 				})
 			
 			},

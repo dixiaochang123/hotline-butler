@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
-		<uni-nav-bar class="app-nav" left-icon="back" title="督查督办" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" title="督办" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
 		<view class="box">
@@ -22,7 +22,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="data-type-content-list">
-							<view class="pmzd-font content-list-3">{{dbtotal.TOTAL}}</view>
+							<view class="pmzd-font content-list-3">{{dbtotal.dbbsl+dbtotal.dbzsl+dbtotal.dbyjssl}}</view>
 							<view class="content-list-2"></view>
 							<view class="content-list-1">督办总量(件)</view>
 						</view>
@@ -37,7 +37,7 @@
 									<view class="t-2" style="font-family: PingFang;">待督办</view>
 								</view>
 							</view>
-							<view class="data-type-content-list-4">
+							<view class="data-type-content-list-4" @click="gotosuperviselist1">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
 									src="/static/image/tdl.png"
@@ -111,29 +111,39 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="data-type-content-list">
-							<view class="pmzd-font content-list-3">60.30%</view>
+							<view class="pmzd-font content-list-3">{{WTTOTAL}}</view>
 							<view class="content-list-2"></view>
-							<view class="content-list-1">疫情防控 200件</view>
+							<view class="content-list-1">问题工单总量(件)</view>
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
+									src="/static/image/ddb.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">3 <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">督办中</view>
+									<view class="">{{TH}} <text class="t-1"> 件</text></view>
+									<view class="t-2" style="font-family: PingFang;">退单率</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
 									mode="aspectFit"
-									src="https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-uni-app-doc/6acec660-4f31-11eb-a16f-5b3e54966275.jpg"
+									src="/static/image/tdl.png"
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">695 <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">督办中</view>
+									<view class="">{{QSLV}} <text class="t-1"></text></view>
+									<view class="t-2" style="font-family: PingFang;">签收率</view>
+								</view>
+							</view>
+							<view class="data-type-content-list-4">
+								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
+									mode="aspectFit"
+									src="/static/image/qsl.png"
+									@error="imageError"></image>
+								<view class="data-type-content-list-5">
+									<view class="">{{DC}} <text class="t-1"> 件</text></view>
+									<view class="t-2" style="font-family: PingFang;">多次流转</view>
 								</view>
 							</view>
 
@@ -340,7 +350,8 @@
 		zysjbm,
 		addNetWorkOrder,
 		ddbgdList,
-		ddbgdType
+		ddbgdType,
+		wtgdzl
 	} from '@/utils/api.js'
 	let myChart;
 	export default {
@@ -349,6 +360,10 @@
 		},
 		data() {
 			return {
+				WTTOTAL:0,
+				TH:0,
+				DC:0,
+				QSLV:0,
 				message:'',
 				BUSI_NUMBER:'',//工单编号
 				isLandScape: true,
@@ -369,7 +384,7 @@
 					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 10,
+				yearsIndex2: 11,
 				date: '',
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
@@ -629,7 +644,7 @@
 						}
 					}
 				},
-
+					
 			}
 		},
 		onReady() {
@@ -673,8 +688,22 @@
 			this.zysjbm(date)
 			// 待督办数量
 			this.ddbgdType(date)
+			this.wtgdzl(date)
 		},
 		methods: {
+			wtgdzl(date) {
+				wtgdzl(date).then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(data)
+					this.WTTOTAL = data[0].WTTOTAL;
+					this.TH = data[0].TH;
+					this.DC = data[0].DC;
+					this.QSLV = data[0].QSLV;
+				}).catch(error => console.log(error));
+			},
 			ddbgdType(date) {
 				ddbgdType(date,1).then(res => {
 					let {
@@ -701,6 +730,11 @@
 			gotosuperviselist() {
 				uni.navigateTo({
 					url: `/pages/supervise/superviselist?date=${this.date}` //跳转地址
+				})
+			},
+			gotosuperviselist1() {
+				uni.navigateTo({
+					url: `/pages/supervise/superviselist?date=${this.date}&activetab=已督办` //跳转地址
 				})
 			},
 			yearChange: function(e) {
@@ -1155,7 +1189,7 @@
 				}
 
 				.content-list-1 {
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(48);
 					font-weight: 500;
 					color: #1EA2FF;
 					color: #FFFFFF;
@@ -1169,7 +1203,7 @@
 				}
 
 				.content-list-3 {
-					font-size: rpx2multiple(50);
+					font-size: rpx2multiple(70);
 					color: #1EA2FF;
 					color: #FFFFFF;
 				}
@@ -1456,7 +1490,7 @@
 		}
 
 		.data-chart .datas .data-type-content-list .content-list-3 {
-			font-size: 20rpx;
+			font-size: 80rpx;
 			white-space: nowrap;
 		}
 

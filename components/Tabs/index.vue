@@ -22,7 +22,7 @@
 		data() {
 			return {
 				datalist: [{
-					name: '督查督办',
+					name: '督办',
 					url:'/pages/supervise/index',
 					imgurl:'/static/image/update/dcdb.png',
 				}, {

@@ -8,26 +8,38 @@
 			</view>
 			<view class="" style="height:50rpx;"></view>
 			<view class="view-f">
-				<view class="f-1" @click="handleclickgettogo('/pages/acceptance/index')">
+				<view class="f-1 f-1-2" @click="handleclickgettogo('/pages/supervise/index')">
+					<view class="p-1">督办</view>
+					<view class="p-2"></view>
+					<view class="p-3">Supervision</view>
+					<image class="img-icon" src="/static/image/app/index/dcdb.png" mode=""></image>
+				</view>
+				<view class="f-1 shabi" @click="handleclickgettogo('/pages/acceptance/index')">
 					<view class="p-1">受理情况</view>
 					<view class="p-2"></view>
 					<view class="p-3">Acceptance</view>
 					<image class="img-icon" src="/static/image/app/index/slqk.png" mode=""></image>
 				</view>
-				<view class="f-1" @click="handleclickgettogo('/pages/assessdata/index')">
+				<!-- <view class="f-1" @click="handleclickgettogo('/pages/assessdata/index')">
 					<view class="p-1">考核数据</view>
 					<view class="p-2"></view>
 					<view class="p-3">Assessment data</view>
 					<image class="img-icon" src="/static/image/app/index/khsj.png" mode=""></image>
-				</view>
+				</view> -->
 
 			</view>
 			<view class="view-f">
-				<view class="f-1 f-1-2" @click="handleclickgettogo('/pages/supervise/index')">
+				<!-- <view class="f-1 f-1-2" @click="handleclickgettogo('/pages/supervise/index')">
 					<view class="p-1">督查督办</view>
 					<view class="p-2"></view>
 					<view class="p-3">Supervision</view>
 					<image class="img-icon" src="/static/image/app/index/dcdb.png" mode=""></image>
+				</view> -->
+				<view class="f-1 shabi1" @click="handleclickgettogo('/pages/assessdata/index')">
+					<view class="p-1">考核数据</view>
+					<view class="p-2"></view>
+					<view class="p-3">Assessment data</view>
+					<image class="img-icon" src="/static/image/app/index/khsj.png" mode=""></image>
 				</view>
 				<view class="f-1 f-1-2" @click="handleclickgettogo('/pages/dataanalysis/index')">
 					<view class="p-1">数据分析</view>
@@ -275,6 +287,14 @@
 					background: url(~@/static/image/app/index/khsjbj.png) no-repeat left top;
 					background-size: 100% 100%;
 				}
+			}
+			.f-1.shabi {
+				background: url(~@/static/image/app/index/slbj.png) no-repeat left top;
+				background-size: 100% 100%;
+			}
+			.f-1.shabi1 {
+				background: url(~@/static/image/app/index/khsjbj.png) no-repeat left top;
+				background-size: 100% 100%;
 			}
 			.f-1-2 {
 				&:nth-of-type(1) {

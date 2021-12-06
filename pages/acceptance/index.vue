@@ -39,7 +39,7 @@
 						<view class="data-type">
 							<view class="data-type-content">
 								<view class="data-type-content-list" v-for="(item,index) in typedata" :key="index">
-									<view class="content-list-1">{{item.OPTNAME}} {{item.TOTAL}}件</view>
+									<view class="content-list-1">{{item.PDKEY}} {{item.TOTAL}}件</view>
 									<view class="content-list-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
 								</view>
@@ -47,7 +47,7 @@
 							</view>
 							<view class="data-type-appeal">
 								<view class="data-type-content-list" v-for="(item,index) in contextdata" :key="index">
-									<view class="content-list-1">{{item.PDKEY}} {{item.TOTAL}}件</view>
+									<view class="content-list-1">{{item.OPTNAME}} {{item.TOTAL}}件</view>
 									<view class="content-list-2 content-list-2-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
 								</view>
@@ -200,6 +200,9 @@
 							<uni-collapse-item v-for="(item,index) in detaillistdata" :key="index" :title="item.TITLE"
 								:border="true" thumb="/static/image/edit.svg">
 								<view class="content">
+									<!-- OPTNAME: "住房保障"
+									RATE: "21.43%"
+									RQ: "day" -->
 									<text class="text">{{item.CONTENT_TEXT}}</text>
 									<br />
 									<br />
@@ -1458,11 +1461,11 @@
 		}
 
 		.app-nav {
-			display: block;
+			display: block !important;
 		}
 
 		.nav {
-			display: none;
+			display: none !important;
 		}
 
 		.isapp {
@@ -1602,11 +1605,11 @@
 							justify-content: space-between;
 							flex-direction: column;
 							font-family: PangMenZhengDao;
-							font-size: rpx2multiple(24);
+							font-size: rpx2multiple(28);
 							padding-left: rpx2multiple(8);
 
 							.content-list-2-2 {
-								font-size: rpx2multiple(36);
+								font-size: rpx2multiple(38);
 							}
 						}
 

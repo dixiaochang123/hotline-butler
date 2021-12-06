@@ -30,19 +30,22 @@
 							<uni-list-item title="派发时间" :rightText="item.paiFaShiJian"></uni-list-item>
 							<uni-list-item title="处理意见" :note="item.chuLiYiJian"></uni-list-item>
 						</uni-list>
-						<uni-list v-if="false">
+						<view>
 							<view class="box-style-head">
-								<view class="">办理信息</view>
+								<view class="">审批意见</view>
 							</view>
-							<uni-list-item title="审批意见"></uni-list-item>
-							<textarea v-model="textarea" auto-height />
+							<!-- <uni-list-item title="审批意见"></uni-list-item> -->
+							<view class="textareabox" >
+								
+								<textarea v-model="contentText" auto-height />
+							</view>
 							<!-- <uni-list-item title="派发时间" rightText="这里是标题名称"></uni-list-item>
 							<uni-list-item title="处理意见" note="文字是人类用符号记录表达信息以传之久远的方式和工具。现代文字大多是记录语言的工具。人类往往先有口头的语言后产生书面文字，很多小语种，有语言但没有
 						   字。文字的不同体现了国家和民族的书面表达的方式和思维不同。文字使人类进入有历史记录的文明社会。"></uni-list-item> -->
-						</uni-list>
-						<view class="btn" v-if="false">
+						</view>
+						<view class="btn">
 
-							<button size="mini" type="primary" @click="save">提 交</button>
+							<button size="mini" type="primary" @click="save">督办提交</button>
 						</view>
 
 					</view>
@@ -50,13 +53,17 @@
 				</view>
 				<view style="height: 150rpx;"></view>
 			</view>
-			<uni-popup ref="popup" type="bottom">
-				<view class="box-style popup-box popup-box1">
-					<uni-easyinput suffixIcon="search"  v-model="value" placeholder="请输入内容" @iconClick="onClick"></uni-easyinput>
-					<uni-list-item>
-						
-					</uni-list-item>
-					<button class="btn" type="default" @click="sendinfo">确 定</button>
+			<uni-popup ref="popup1" type="bottom">
+				<view class="box-style popup-box">
+					<!-- <view class="box-style-head" style="visibility: hidden;">
+						<view class="">督办/催办信息</view>
+						<view @click="close" class="box-style-head-right"><uni-icons type="closeempty" size="30"></uni-icons></view>
+					</view> -->
+					<view class="textarea" style="visibility: hidden;">
+			
+					</view>
+					<view class="info">办理信息已提交</view>
+					<button class="btn" type="default" @click="closeinfo">确 定</button>
 					<view style="height:20rpx;"></view>
 				</view>
 			</uni-popup>
@@ -69,7 +76,7 @@
 					<view class="textarea" style="visibility: hidden;">
 			
 					</view>
-					<view class="info">办理信息已提交</view>
+					<view class="info">督办/催办信息已发送</view>
 					<button class="btn" type="default" @click="closeinfo">确 定</button>
 					<view style="height:20rpx;"></view>
 				</view>
@@ -88,7 +95,8 @@
 	} from "vuex";
 	import Tabs from '@/components/Tabs/index.vue';
 	import {
-		gdDetail
+		gdDetail,
+		addNetWorkOrder
 	} from '@/utils/api.js';
 	let myChart;
 	export default {
@@ -97,12 +105,13 @@
 		},
 		data() {
 			return {value:'',
-				textarea: '',
+				contentText: '',
 				sldata: '',
 				isLandScape: true,
 				active: '督查督办', //左侧tabs
 				detail:{},
-				indexs:['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五']
+				indexs:['一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五'],
+				date:''
 				
 			}
 		},
@@ -111,6 +120,7 @@
 		},
 		onLoad(option) {
 			this.gdDetail(option.formId)
+			this.date = option.date
 
 		},
 		onResize() {
@@ -146,8 +156,37 @@
 				}).catch(error=>console.log(error))
 			},
 			save() {
-				// this.$refs.popup.open('center');
-				this.$refs.popup1.open('center');
+				// this.$refs.popup1.open('center');
+				let params = {
+					id:this.detail.busiNum,
+					context:this.contentText
+				}
+				addNetWorkOrder(params).then(res=>{
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(code,data,data.operMsg)
+					if(data.operMsg=="提交成功") {
+						// this.$refs.popup.close();
+						this.$refs.popup1.open('center');
+					} else {
+						this.message = data.operMsg
+						// this.$refs.popup.close();
+						uni.showModal({
+						    title: '提示',
+							showCancel:false,
+						    content: data.operMsg,
+						    success: function (res) {
+						        if (res.confirm) {
+						            console.log('用户点击确定');
+						        } else if (res.cancel) {
+						            console.log('用户点击取消');
+						        }
+						    }
+						});
+					}
+				}).catch(error=>console.log(error))
 			},
 			sendinfo() {
 				this.$refs.popup.close();
@@ -155,6 +194,9 @@
 			},
 			closeinfo() {
 				this.$refs.popup1.close();
+				uni.navigateTo({
+					url: `/pages/supervise/superviselist?activetab=已督办&date=${this.date}`
+				})
 			},
 			
 			clickLeft() {
@@ -280,6 +322,46 @@
 		max-height: 80vh;
 		overflow-y: auto;
 	}
+	.popup-box {
+		width: rpx2multiple(980);
+		min-height: rpx2multiple(640);
+		background: url(~@/static/image/dcdb1.png) no-repeat center top;
+		background-size: 70% 70%;
+		background-color: #FFFFFF;
+	
+		.textarea {
+			margin-top: rpx2multiple(40);
+			margin-bottom: rpx2multiple(40);
+			width: 100%;
+			height: rpx2multiple(387);
+			background: #F2F2F2;
+			border-radius: rpx2multiple(18);
+			padding: rpx2multiple(21);
+			font-size: rpx2multiple(24);
+			font-family: PingFang;
+			font-weight: bold;
+		}
+	
+		.info {
+			font-size: rpx2multiple(36);
+			font-family: PingFang;
+			font-weight: bold;
+			color: #4585F5;
+			text-align: center;
+		}
+	
+		.btn {
+			width: rpx2multiple(140);
+			height: rpx2multiple(60);
+			line-height: rpx2multiple(60);
+			background: #0073FA;
+			border-radius: rpx2multiple(10);
+			font-size: 24rpx;
+			font-family: PingFang;
+			font-weight: bold;
+			color: #FFFFFF;
+		}
+	}
 
 	.btn {
 		display: flex;
@@ -287,6 +369,31 @@
 		margin-top: 20px;
 		align-items: center;
 	}
+	.textareabox {
+			// border:solid 1px #CCCCCC;
+			border-radius: 5rpx;
+			background-color: #fcfafa;
+			overflow: hidden;
+			padding:10rpx;
+			color: #3b4144;
+		// 	min-height:200rpx !important;
+		// height:auto !important;
+	}
+	/deep/ uni-textarea {
+		min-height:200rpx !important;
+		height:auto !important;
+		width: 100% !important;
+		// border: solid 1px !important;
+	}
+	// /deep/ .uni-textarea-textarea {
+	// 	height:100rpx;
+	// 	border:solid 1px #CCCCCC;
+	// 	border-radius: 5rpx;
+	// 	background-color: #EEEEEE;
+	// 	overflow: hidden;
+	// 	padding:10rpx;
+	// 	color: #3b4144;
+	// }
 
 
 	// app
@@ -344,6 +451,14 @@
 				height: 13px;
 				background: #0073FA;
 				border-radius: 2px;
+			}
+		}
+		.popup-box {
+			width: 550rpx !important;
+			min-height: 200rpx;
+			background-size: 70% 50%;
+			.textarea {
+				height: 200rpx;
 			}
 		}
 

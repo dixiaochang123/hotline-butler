@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
-		<uni-nav-bar left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" title="分析报告" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
 		<view class="box">
@@ -1034,11 +1035,11 @@
 					justify-content: space-between;
 					flex-direction: column;
 					font-family: PangMenZhengDao;
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(30);
 					padding-left: rpx2multiple(20);
 
 					.content-list-2-2 {
-						font-size: rpx2multiple(36);
+						font-size: rpx2multiple(40);
 					}
 				}
 
@@ -1064,6 +1065,13 @@
 	}
 
 	@media (max-width:500px) {
+		/deep/ .uni-nav-bar-text {
+			font-family: PingFang !important;
+			font-weight: 900;
+			background: linear-gradient(0deg, #000000 0%, #000000 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
 		.box-main-parent {
 			padding: 0;
 		}
@@ -1137,7 +1145,4 @@
 
 
 	}
-</style>
-<style>
-	@import "../../static/style.css";
 </style>

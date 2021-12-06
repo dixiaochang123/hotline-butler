@@ -93,6 +93,14 @@ export function detaillist(data) {
     params:''
   })
 }
+// 一次不满意工单list
+export function detaillist1(data) {
+  return request({
+    url: `/slqk/ycbmy/detail?date=${data}`,
+    method: 'get',
+    params:''
+  })
+}
 
 // 督办工单问题集中点--二级归口
 export function dbdc2jgk(data) {
