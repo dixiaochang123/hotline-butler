@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="督办" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -9,7 +9,7 @@
 			<Tabs class="isapp" :active="active" />
 			<!-- 右侧内容区 -->
 			<view class="box-main">
-				<view class="data-chart">
+				<view class="data-chart data-chart1">
 					<view class="box-style datas" style="width: 50%;">
 						<view class="box-style-head">
 							<view class="">督办数据</view>
@@ -1167,6 +1167,9 @@
 		height: rpx2multiple(658);
 		display: flex;
 		justify-content: space-between;
+		&.data-chart1 {
+			margin-top: 0;
+		}
 
 		.datas {
 			margin-right: rpx2multiple(40);

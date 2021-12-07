@@ -352,7 +352,7 @@
 
 	.data-chart {
 		height: calc(100% - 40rpx);
-		margin: rpx2multiple(40) 0;
+		// margin: rpx2multiple(40) 0;
 		margin-bottom: 0;
 		display: flex;
 		justify-content: space-between;
@@ -363,7 +363,8 @@
 
 		.datas-info {
 			width: 100%;
-			height: 100%;
+			height: 90%;
+			margin-bottom: 20rpx;
 		}
 
 		.welcome {
@@ -438,10 +439,10 @@
 		}
 
 		.btns {
-			position: absolute;
-			bottom: rpx2multiple(100);
-			left: 0;
-			right: 0;
+			// position: absolute;
+			// bottom: rpx2multiple(100);
+			// left: 0;
+			// right: 0;
 			margin: 0 auto;
 			display: flex;
 			justify-content: center;
