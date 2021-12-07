@@ -18,7 +18,7 @@
 				</view>
 				<view class="box-style">
 					<view class="box-style-head isapp">
-						<view class="">待督办工单详情</view>
+						<view class="">待{{text}}工单详情</view>
 					</view>
 					<view class="uni-container isapp">
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
@@ -48,7 +48,7 @@
 								<uni-td align="center">
 									<view class="uni-group">
 										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise(item)">督办</button>
+											@click="handleClickSupervise(item)">{{text}}</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -86,7 +86,7 @@
 								<uni-td align="center">
 									<view class="uni-group">
 										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise1(item)">督办</button>
+											@click="handleClickSupervise1(item)">{{text}}</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -125,6 +125,7 @@
 		},
 		data() {
 			return {
+				text:'督办',
 				loading:false,
 				sldata: '',
 				isLandScape: true,

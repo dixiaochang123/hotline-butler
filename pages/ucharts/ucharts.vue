@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <qiun-title-bar title="基本柱状图"/>
+    <<!-- qiun-title-bar --> title="基本柱状图"/>
     <!--
     极简调用示例，只需指定type及chartData即可。
     图表默认配置请修改js_sdk/u-charts/config-ucharts.js对应图表类型下配置 
@@ -12,165 +12,165 @@
     <view class="charts-box">
       <qiun-data-charts type="column" :chartData="chartsDataColumn1" />
     </view>
-    <qiun-title-bar title="堆叠柱状图"/>
+    <<!-- qiun-title-bar --> title="堆叠柱状图"/>
     <!-- 只需要在:opts中传入与config-ucharts.js中默认配置不同的属性即可覆盖默认配置，既保证了全局图表样式的统一性，也减少了代码量与包体积 -->
     <view class="charts-box">
       <qiun-data-charts type="column" :opts="{extra:{column:{type:'stack'}}}" :chartData="chartsDataColumn2"/>
     </view>
-    <qiun-title-bar title="温度计图表"/>
+    <<!-- qiun-title-bar --> title="温度计图表"/>
     <view class="charts-box">
       <qiun-data-charts type="column" :opts="{extra:{column:{type:'meter'}}}" :chartData="chartsDataColumn3"/>
     </view>
-    <qiun-title-bar title="柱状图滚动条"/>
+    <<!-- qiun-title-bar --> title="柱状图滚动条"/>
     <!-- 开启滚动条，需要开启拖动功能，即:ontouch="true" ，微信小程序需要开启canvas2d，否则会很卡，开启2d需要指定canvasId -->
     <view class="charts-box">
       <qiun-data-charts type="column" canvasId="scrollcolumnid" :opts="{enableScroll:true,xAxis:{scrollShow:true,itemCount:4,disableGrid:true}}" :ontouch="true" :canvas2d="true" :chartData="chartsDataColumn4"/>
     </view>
-    <qiun-title-bar title="圆角+渐变+半透明柱状图"/>
+    <<!-- qiun-title-bar --> title="圆角+渐变+半透明柱状图"/>
     <view class="charts-box">
       <qiun-data-charts type="column" :opts="{color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}" :chartData="chartsDataColumn5"/>
     </view>
-    <qiun-title-bar title="全圆角柱状图+标记线"/>
+    <<!-- qiun-title-bar --> title="全圆角柱状图+标记线"/>
     <view class="charts-box">
       <qiun-data-charts type="column" :opts="{yAxis:{data:[{min:0}]},enableMarkLine:true,extra:{column:{seriesGap:5,barBorderRadius:[6,6,6,6]},markLine:{data:[{value:21,showLabel:true}]}}}" :chartData="chartsDataColumn6" />
     </view>
-    <qiun-title-bar title="柱状图横屏模式"/>
+    <<!-- qiun-title-bar --> title="柱状图横屏模式"/>
     <view style="width: 100%;height: 500px;">
       <qiun-data-charts type="column" :opts="{rotate:true}" :chartData="chartsDataColumn1" />
     </view>
-    <qiun-title-bar title="基本条状图"/>
+    <<!-- qiun-title-bar --> title="基本条状图"/>
     <view class="charts-box">
       <qiun-data-charts type="bar" :opts="{xAxis:{max:40}}" :chartData="chartsDataColumn1"/>
     </view>
-    <qiun-title-bar title="圆角条状图+渐变色"/>
+    <<!-- qiun-title-bar --> title="圆角条状图+渐变色"/>
     <view class="charts-box">
       <qiun-data-charts type="bar" :opts="{xAxis:{max:40},extra:{bar:{linearType:'custom',barBorderCircle:true}}}" :chartData="chartsDataColumn1"/>
     </view>
-    <qiun-title-bar title="堆叠条状图"/>
+    <<!-- qiun-title-bar --> title="堆叠条状图"/>
     <view class="charts-box">
       <qiun-data-charts type="bar" :opts="{xAxis:{max:70},extra:{bar:{type:'stack'}}}" :chartData="chartsDataColumn1"/>
     </view>
-    <qiun-title-bar title="基本折线图"/>
+    <<!-- qiun-title-bar --> title="基本折线图"/>
     <view class="charts-box">
       <qiun-data-charts type="line" :chartData="chartsDataLine1"/>
     </view>
-    <qiun-title-bar title="基本曲线图(自定义图表类型)"/>
+    <<!-- qiun-title-bar --> title="基本曲线图(自定义图表类型)"/>
     <view class="charts-box">
       <!-- 这里的type="demotype"演示了自定义图表类型的demo，您可以根据需求自己定义一种额外的图表类型 -->
       <qiun-data-charts type="demotype" :opts="{xAxis:{boundaryGap:'justify'}}" :chartData="chartsDataLine2"/>
       <!-- 如果不定义"demotype"这个图表类型，可以通过传递opts来覆盖line下的默认配置，如下 -->
       <!-- <qiun-data-charts type="line" :opts="{extra:{line:{type:'curve'}}}" :chartData="chartsData.Line2"/> -->
     </view>
-    <qiun-title-bar title="基本时序图"/>
+    <<!-- qiun-title-bar --> title="基本时序图"/>
     <view class="charts-box">
       <qiun-data-charts type="line" :opts="{extra:{line:{type:'step'}}}" :chartData="chartsDataLine3"/>
     </view>
-    <qiun-title-bar title="折线图滚动条"/>
+    <<!-- qiun-title-bar --> title="折线图滚动条"/>
     <!-- 开启滚动条，需要开启拖动功能，即:ontouch="true"，微信小程序需要开启canvas2d，否则会很卡，开启2d需要指定canvasId -->
     <view class="charts-box">
       <qiun-data-charts type="line" canvasId="scrolllineid" :opts="{enableScroll:true,xAxis:{scrollShow:true,itemCount:4,disableGrid:true}}" :chartData="chartsDataLine4" :ontouch="true" :canvas2d="true"/>
     </view>
-    <qiun-title-bar title="折线图+断点续连connectNulls"/>
+    <<!-- qiun-title-bar --> title="折线图+断点续连connectNulls"/>
     <view class="charts-box">
       <qiun-data-charts type="line" :chartData="chartsDataLine5"/>
     </view>
-    <qiun-title-bar title="时间轴(矢量轴)折线图"/>
+    <<!-- qiun-title-bar --> title="时间轴(矢量轴)折线图"/>
     <!-- 矢量轴图表支持折线图、区域图、散点图、气泡图。需要注意chartData中，如果是矢量轴，则不能带categories -->
     <view class="charts-box">
       <qiun-data-charts type="tline" :opts="{yAxis:{data:[{min:0,max:80}]}}" :chartData="chartsDataTLine" />
     </view>
-    <qiun-title-bar title="基本折线区域图"/>
+    <<!-- qiun-title-bar --> title="基本折线区域图"/>
     <view class="charts-box">
       <qiun-data-charts type="area" :chartData="chartsDataArea1"/>
     </view>
-    <qiun-title-bar title="渐变色时序区域图"/>
+    <<!-- qiun-title-bar --> title="渐变色时序区域图"/>
     <view class="charts-box">
       <qiun-data-charts type="area" :opts="{extra:{area:{type:'step',addLine:true,gradient:true}}}" :chartData="chartsDataArea2"/>
     </view>
-    <qiun-title-bar title="渐变色曲线区域图"/>
+    <<!-- qiun-title-bar --> title="渐变色曲线区域图"/>
     <view class="charts-box">
       <qiun-data-charts type="area" :opts="{extra:{area:{type:'curve',addLine:true,gradient:true}}}" :chartData="chartsDataArea2"/>
     </view>
-    <qiun-title-bar title="时间轴(矢量轴)区域图"/>
+    <<!-- qiun-title-bar --> title="时间轴(矢量轴)区域图"/>
     <!-- 矢量轴图表支持折线图、区域图、散点图、气泡图。需要注意chartData中，如果是矢量轴，则不能带categories -->
     <view class="charts-box">
       <qiun-data-charts type="tarea" :opts="{xAxis:{format:'xAxisDemo2'},yAxis:{data:[{min:0,max:80}]}}" :chartData="chartsDataTLine" />
     </view>
-    <qiun-title-bar title="散点图"/>
+    <<!-- qiun-title-bar --> title="散点图"/>
     <view class="charts-box">
       <qiun-data-charts type="scatter" :chartData="chartsDataScatter" />
     </view>
-    <qiun-title-bar title="气泡图"/>
+    <<!-- qiun-title-bar --> title="气泡图"/>
     <view class="charts-box">
       <qiun-data-charts type="bubble" :chartData="chartsDataBubble" />
     </view>
-    <qiun-title-bar title="多坐标系混合图"/>
+    <<!-- qiun-title-bar --> title="多坐标系混合图"/>
     <view class="charts-box" style="height: 400px;">
       <qiun-data-charts type="mix" :opts="{yAxis:{data:[{position: 'left',title: '折线'},{position: 'right',min: 0,max: 200,title: '柱状图',textAlign: 'left'},{position: 'right',min: 0,max: 200,title: '点',textAlign: 'left'}]}}" :chartData="chartsDataMix1"/>
     </view>
-    <qiun-title-bar title="基本饼状图"/>
+    <<!-- qiun-title-bar --> title="基本饼状图"/>
     <view class="charts-box">
       <qiun-data-charts type="pie" :chartData="chartsDataPie1"/>
     </view>
-    <qiun-title-bar title="环形图+渐变色"/>
+    <<!-- qiun-title-bar --> title="环形图+渐变色"/>
     <view class="charts-box">
       <qiun-data-charts type="ring" :opts="{legend:{position: 'bottom'},extra:{ring:{ringWidth: 60,linearType:'custom',centerColor:'#FF0'}}}" :chartData="chartsDataRing1"/>
     </view>
-    <qiun-title-bar title="面积玫瑰图"/>
+    <<!-- qiun-title-bar --> title="面积玫瑰图"/>
     <view class="charts-box">
       <qiun-data-charts type="rose" :opts="{legend:{position: 'bottom'}}" :chartData="chartsDataRose1"/>
     </view>
-    <qiun-title-bar title="半径玫瑰图"/>
+    <<!-- qiun-title-bar --> title="半径玫瑰图"/>
     <view class="charts-box">
       <qiun-data-charts type="rose" :opts="{legend:{position: 'bottom'},extra:{rose:{type:'radius'}}}" :chartData="chartsDataRose2"/>
     </view>
-    <qiun-title-bar title="圆弧进度条"/>
+    <<!-- qiun-title-bar --> title="圆弧进度条"/>
     <!-- 这里的title.name和subtitle.name如果需要联动chartData，请定义一个变量同步传入:opts和:chartData中 -->
     <view class="charts-box">
       <qiun-data-charts type="arcbar" :opts="{title:{name:'80%',color:'#2fc25b',fontSize:35},subtitle:{name:'正确率',color:'#666666',fontSize:25}}" :chartData="chartsDataArcbar1"/>
     </view>
-    <qiun-title-bar title="多重圆弧进度条"/>
+    <<!-- qiun-title-bar --> title="多重圆弧进度条"/>
     <view class="charts-box">
       <qiun-data-charts type="arcbar" :opts="{title:{name:'指标',color:'#1890ff',fontSize:35},subtitle:{},extra:{arcbar:{type:'circle',startAngle:1.5}}}" :chartData="chartsDataArcbar2"/>
     </view>
-    <qiun-title-bar title="多边形雷达图"/>
+    <<!-- qiun-title-bar --> title="多边形雷达图"/>
     <view class="charts-box">
       <qiun-data-charts type="radar" :opts="{legend:{position: 'bottom'},extra:{radar:{border:true}}}" :chartData="chartsDataRadar1"/>
     </view>
-    <qiun-title-bar title="圆形雷达图"/>
+    <<!-- qiun-title-bar --> title="圆形雷达图"/>
     <view class="charts-box">
       <qiun-data-charts type="radar" :opts="{legend:{position: 'bottom'},extra:{radar:{gridType:'circle'}}}" :chartData="chartsDataRadar2"/>
     </view>
-    <qiun-title-bar title="基本仪表盘"/>
+    <<!-- qiun-title-bar --> title="基本仪表盘"/>
     <!-- 这里的title.name和subtitle.name如果需要联动chartData，请定义一个变量同步传入:opts和:chartData中 -->
     <view class="charts-box">
       <qiun-data-charts type="gauge" :opts="{title:{name: '60Km/H',color: '#2fc25b',fontSize: 25,offsetY:50},subtitle: {name: '实时速度',color: '#666666',fontSize: 15,offsetY:-50}}" :chartData="chartsDataGauge1"/>
     </view>
-    <qiun-title-bar title="其他仪表盘"/>
+    <<!-- qiun-title-bar --> title="其他仪表盘"/>
     <view class="charts-box">
       <qiun-data-charts type="gauge" :opts="{title:{offsetY:0},subtitle:{offsetY:0},extra:{gauge:{type:'progress',width:20,splitLine:{fixRadius:-10,width:15,},}}}" :chartData="chartsDataGauge2"/>
     </view>
-    <qiun-title-bar title="词云图"/>
+    <<!-- qiun-title-bar --> title="词云图"/>
     <view class="charts-box">
       <qiun-data-charts type="word" :chartData="chartsDataWord1"/>
     </view>
-    <qiun-title-bar title="漏斗图+渐变色"/>
+    <<!-- qiun-title-bar --> title="漏斗图+渐变色"/>
     <view class="charts-box">
       <qiun-data-charts type="funnel" :opts="{extra:{funnel:{linearType:'custom'}}}" :chartData="chartsDataFunnel1"/>
     </view>
-    <qiun-title-bar title="倒三角形漏斗图"/>
+    <<!-- qiun-title-bar --> title="倒三角形漏斗图"/>
     <view class="charts-box">
       <qiun-data-charts type="funnel" :opts="{extra:{funnel:{type:'triangle'}}}" :chartData="chartsDataFunnel1"/>
     </view>
-    <qiun-title-bar title="金字塔形漏斗图"/>
+    <<!-- qiun-title-bar --> title="金字塔形漏斗图"/>
     <view class="charts-box">
       <qiun-data-charts type="funnel" :opts="{extra:{funnel:{type:'pyramid',labelAlign:'left'}}}" :chartData="chartsDataFunnel1"/>
     </view>
-    <qiun-title-bar title="K线图"/>
+    <<!-- qiun-title-bar --> title="K线图"/>
     <view class="charts-box" style="height: 400px;">
       <qiun-data-charts type="candle" :opts="{extra:{tooltip:{showCategory:true}}}" :ontouch="true" :canvas2d="true" canvasId="klineid" :chartData="chartsDataCandle1"/>
     </view>
-    <qiun-title-bar title="地图"/>
+    <<!-- qiun-title-bar --> title="地图"/>
     <view class="charts-box" style="height: 400px;">
       <qiun-data-charts type="map" :opts="{extra:{map:{mercator:true}}}" :chartData="chartsDataMap1"/>
     </view>

@@ -12,7 +12,7 @@
 				<view class="data-chart data-chart1">
 					<view class="box-style datas" style="width: 50%;">
 						<view class="box-style-head">
-							<view class="">督办数据</view>
+							<view class="">{{text}}数据</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
 								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
 									@change="yearChange" mode="multiSelector">
@@ -24,7 +24,7 @@
 						<view class="data-type-content-list">
 							<view class="pmzd-font content-list-3">{{dbtotal.dbbsl+dbtotal.dbzsl+dbtotal.dbyjssl}}</view>
 							<view class="content-list-2"></view>
-							<view class="content-list-1">督办总量(件)</view>
+							<view class="content-list-1">{{text}}总量(件)</view>
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4" @click="gotosuperviselist">
@@ -34,7 +34,7 @@
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbbsl}} <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">待督办</view>
+									<view class="t-2" style="font-family: PingFang;">待{{text}}</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4" @click="gotosuperviselist1">
@@ -44,7 +44,7 @@
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbzsl}} <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">督办中</view>
+									<view class="t-2" style="font-family: PingFang;">{{text}}中</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
@@ -54,7 +54,7 @@
 									@error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbyjssl}} <text class="t-1"> 件</text></view>
-									<view class="t-2" style="font-family: PingFang;">已结束</view>
+									<view class="t-2" style="font-family: PingFang;">已{{text}}</view>
 								</view>
 							</view>
 						</view>
@@ -360,6 +360,7 @@
 		},
 		data() {
 			return {
+				text:'督办',
 				WTTOTAL:0,
 				TH:0,
 				DC:0,

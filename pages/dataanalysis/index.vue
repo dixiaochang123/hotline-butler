@@ -11,6 +11,13 @@
 			<view class="box-main">
 				<!--  headtabs 日期-->
 				<view class="uni-tabs">
+					<view  class="uni-tabs-item-parent">
+						<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
+							v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
+							{{item}}
+						</view>
+					
+					</view>
 					<!-- <view class=" uni-tabs-item-selet app-nav">
 						<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
 							@change="yearChange" mode="multiSelector">
@@ -25,13 +32,6 @@
 						<uni-easyinput class="search-input" suffixIcon="search" v-model="searchvalue"
 							placeholder="请输入关键字" @iconClick="handlesearch"></uni-easyinput>
 					</view>
-					<view style="visibility: hidden;" class="uni-tabs-item-parent">
-						<view :class="[activetab==item ? 'uni-tabs-item uni-tabs-item-active' : '', 'uni-tabs-item']"
-							v-for="(item,index) in headtabs" :key="index" @click="handletabschange(item)">
-							{{item}}
-						</view>
-
-					</view>
 					<view class=" uni-tabs-item-selet nav">
 						<!-- <uni-data-picker placeholder="请选择" :localdata="years" v-model="classes"
 							@nodeclick="onnodeclick">
@@ -43,7 +43,7 @@
 							placeholder="请输入关键字" @iconClick="handlesearch"></uni-easyinput>
 					</view>
 				</view>
-				<view class="data-chart">
+				<view class="data-chart" v-if="activetab=='分析报告'">
 					<view class="box-style datas" style="width: 100%;" v-for="(item,index) in report" :key="'info'+index">
 						<view class="data-type-content-list">
 							<view class="content-list-1">
@@ -62,6 +62,52 @@
 							<text><text class="bor" style="color: #9454FF;">●</text>创建时间：{{item.createDate}}</text>
 							<view class="btn" @click="handleClickDatareport(item)">查看报告</view>
 						</view>
+					</view>
+				</view>
+				<view class="data-chart" v-else>
+					<view class="box-style datas acceptance-data-show-right3" style="width: 100%;" v-for="(item,index) in report" :key="'info'+index">
+						<view class="box-style-head">
+							<view class="">当日***单位办理数据</view>
+						</view>
+						<view class="chart-pie">
+							<view class="charts-box">
+								<!-- 演示动态改变eopts -->
+								<qiun-data-charts type="pie" :opts="ringOpts" :eopts="ringOpts" :chartData="chartsDataPie1"/>
+							</view>
+							<view class="chart-pie-legend isapp">
+								<view class="data-type-content-list data-type-content-list1" v-for="item in ringOptsLegend0"
+									:key="item.name">
+									<view class="content-list-1">
+										<!-- <image :src="item.url" mode="aspectFit"></image> -->
+										<uni-icons style="float: right;" type="circle" :color="item.color"
+											size="10"></uni-icons>
+									</view>
+									<view class="content-list-2">
+										<view class="content-list-2-1" style="">{{item.name}}
+										</view>
+										<view class="content-list-2-2">{{item.value}}%</view>
+									</view>
+								</view>
+						
+							</view>
+							<view class="app-nav chart-pie-legend111111">
+								<view class="data-type-content-list data-type-content-list1" v-for="item in ringOptsLegend0"
+									:key="item.name">
+									<view class="content-list-1">
+										<!-- <image :src="item.url" mode="aspectFit"></image> -->
+										<uni-icons style="float: right;" type="circle" :color="item.color"
+											size="10"></uni-icons>
+									</view>
+									<view class="content-list-2">
+										<view class="content-list-2-1" style="">{{item.name}}
+										</view>
+										<view class="content-list-2-2">{{item.value}}%</view>
+									</view>
+								</view>
+						
+							</view>
+						</view>
+						
 					</view>
 				</view>
 
@@ -105,8 +151,8 @@
 				report:[],
 
 
-				headtabs: ['12345报告', '网络报告', '综合报告'],
-				activetab: '12345报告',
+				headtabs: ['分析报告','满意度统计'],
+				activetab: '分析报告',
 				searchvalue: '',
 				canvas: '',
 
@@ -122,7 +168,33 @@
 
 				chartsDataColumn5: {},
 				chartsDataPie2: {},
-				ringOpts: {},
+				ringOpts: {
+					legend: {
+						show: false
+					},
+				},
+				chartsDataPie1:{},
+				ringOptsLegend0: [{
+					name: '国务院督办工单',
+					value: '15.63%',
+					color: "#4585F5"
+				}, {
+					name: '省工单',
+					value: '15.63%',
+					color: "#6CD67F"
+				}, {
+					name: '市工单',
+					value: '15.63%',
+					color: "#FFE554"
+				}, {
+					name: '涉企工单',
+					value: '15.63%',
+					color: "#FF9054"
+				}, {
+					name: '疫情单位',
+					value: '15.63%',
+					color: "#9454FF"
+				}],
 			}
 		},
 		onReady() {
@@ -186,6 +258,7 @@
 					//开发者需要自行处理服务器返回的数据，应与标准数据格式一致，注意series的data数值应为数字格式
 					this.chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column))
 					this.chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA))
+					this.chartsDataPie1 = JSON.parse(JSON.stringify(demodata.PieA))
 					console.log(this.chartsDataPie2)
 				}, 1500);
 			},
@@ -212,6 +285,9 @@
 			},
 			handletabschange(item) {
 				this.activetab = item;
+				if(item=='满意度统计') {
+					
+				}
 
 			},
 			// 多选处理
@@ -345,7 +421,7 @@
 
 		.uni-tabs-item-parent {
 			height: 100%;
-			width: 30%;
+			width: 20%;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
@@ -358,7 +434,7 @@
 			line-height: rpx2multiple(65);
 			font-family: PingFang SC;
 			font-weight: 800;
-			color: #B8C0CB;
+			color: rgba(0, 46, 108, 0.3);
 			text-align: center;
 		}
 
@@ -404,7 +480,7 @@
 		}
 
 		.uni-tabs-item-active {
-			background: none;
+			background: #FFFFFF;
 			border: solid 1px #FFFFFF;
 			border-radius: rpx2multiple(33);
 			color: #4585F5;
@@ -428,7 +504,7 @@
 			.data-type-content-list {
 				// width: 809px;
 				height: rpx2multiple(140);
-				background: #4585F5;
+				// background: #4585F5;
 				border-radius: rpx2multiple(20);
 				display: flex;
 				justify-content: flex-start;
@@ -451,7 +527,7 @@
 					justify-content: space-between;
 					flex-direction: column;
 					font-family: PangMenZhengDao;
-					color: #FFFFFF;
+					// color: #FFFFFF;
 					font-size: rpx2multiple(40);
 					padding-left: rpx2multiple(20);
 				}
@@ -502,6 +578,70 @@
 	.uni-group {
 		display: flex;
 		align-items: center;
+	}
+	.chart-pie {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: nowrap;
+	}
+	.acceptance-data-show-right3 {
+		.charts-box {
+			width: 50%;
+			height: 100%;
+			padding: rpx2multiple(35) 0;
+			box-sizing: border-box;
+		}
+	
+		.chart-pie-legend {
+			width: 50%;
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			flex-wrap: wrap;
+			padding: rpx2multiple(60) 0;
+	
+			.data-type-content-list {
+				width: calc(100% / 2);
+				height: auto;
+				// background: #4585F5;
+				border-radius: rpx2multiple(30);
+				display: flex;
+				justify-content: flex-start;
+				padding: rpx2multiple(30) rpx2multiple(10);
+				color: #395176;
+	
+				.content-list-1 {
+					width: rpx2multiple(10);
+					height: rpx2multiple(10);
+	
+					// background-color: #E9A700;
+					// margin-right: rpx2multiple(30);
+					image,
+					.images {
+						width: 100%;
+						height: 100%;
+					}
+				}
+	
+				.content-list-2 {
+					display: flex;
+					justify-content: space-between;
+					flex-direction: column;
+					font-family: PangMenZhengDao;
+					font-size: rpx2multiple(24);
+					padding-left: rpx2multiple(8);
+	
+					.content-list-2-2 {
+						font-size: rpx2multiple(36);
+					}
+				}
+	
+			}
+		}
 	}
 
 	.app-nav {
@@ -638,6 +778,80 @@
 
 		.data-chart .datas .data-type-content-list {
 			display: flex;
+		}
+		
+		.acceptance-data-show-right3 {
+			.charts-box {
+				width: 100%;
+				height: 100%;
+				padding: rpx2multiple(35) 0;
+				box-sizing: border-box;
+			}
+		
+			.chart-pie-legend111111 {
+				width: 100%;
+				height: 100%;
+				display: flex !important;
+				justify-content: flex-start;
+				align-items: center;
+				flex-wrap: wrap;
+				padding: 0;
+		
+				.data-type-content-list1 {
+					width: calc(100% / 2) !important;
+					height: auto;
+					// background: #4585F5;
+					border-radius: rpx2multiple(30);
+					display: flex;
+					justify-content: flex-start;
+					padding: rpx2multiple(30) rpx2multiple(10);
+					color: #395176;
+					&.data-type-content-list {
+						width: calc(100% / 2) !important;
+						text-align: left !important;
+						.content-list-2 {
+							margin:0 !important;
+						}
+					}
+		
+					.content-list-1 {
+						width: rpx2multiple(10);
+						height: rpx2multiple(10);
+		
+						// background-color: #E9A700;
+						// margin-right: rpx2multiple(30);
+						image,
+						.images {
+							width: 100%;
+							height: 100%;
+						}
+					}
+		
+					.content-list-2 {
+						display: flex;
+						justify-content: space-between;
+						flex-direction: column;
+						font-family: PangMenZhengDao;
+						font-size: rpx2multiple(28);
+						padding-left: rpx2multiple(8);
+		
+						.content-list-2-2 {
+							font-size: rpx2multiple(38);
+						}
+					}
+		
+				}
+			}
+		}
+		.chart-pie {
+			flex-direction: column;
+		
+		}
+		
+		.charts-box {
+			width: 100%;
+			height: 100%;
+			padding: rpx2multiple(35) 0;
 		}
 
 
