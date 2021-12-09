@@ -2,7 +2,7 @@
 	<view class="content">
 		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft">
 		</uni-nav-bar>
-		<uni-nav-bar class="app-nav" left-icon="back" title="督办工单" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="app-nav" left-icon="back" :title="text+'工单'" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
 		<view class="box">
@@ -12,7 +12,7 @@
 			<view class="box-main">
 				<view class="box-style">
 					<view class="box-style-head">
-						<view class="">待督办工单详情</view>
+						<view class="">待{{text}}工单详情</view>
 					</view>
 					<view class="uni-container">
 						<uni-list>
@@ -22,44 +22,63 @@
 							<uni-list-item class="app-nav" title="诉求目的" :note="detail.suQiuMuDi"></uni-list-item>
 							<uni-list-item title="内容描述" :note="detail.neiRong"></uni-list-item>
 						</uni-list>
+						<view class="box-style-head">
+							<view class="">第一次流转</view>
+						</view>
 						<uni-list v-for="(item,index) in detail.processList" :key="'info'+index">
-							<view class="box-style-head">
-								<view class="">第{{indexs[index]}}次流转</view>
+							<view v-if="!!item.i" class="box-style-head">
+								<view class="">第{{indexs[item.i]}}次流转</view>
 							</view>
 							<uni-list-item class="lzbm" title="流转部门" :rightText="item.deptName"></uni-list-item>
 							<uni-list-item title="派发时间" :rightText="item.paiFaShiJian"></uni-list-item>
 							<!-- <uni-list-item title="处理意见" :note="item.chuLiYiJian"></uni-list-item> -->
-							<uni-list-item title="处理意见" :rightText="item.paiFaShiJian"></uni-list-item>
+							<uni-list-item title="处理意见" :rightText="item.chuLiShiJian"></uni-list-item>
 							<view class="clyj">{{item.chuLiYiJian}}</view>
 						</uni-list>
 						<view>
 							<view class="box-style-head">
 								<view class="">中心信息</view>
 							</view>
-							<uni-list-item title="中心建议" rightText="11111111111"></uni-list-item>
-							<view class="clyj">1111111111111111</view>
+							<uni-list-item title="中心建议" :rightText="CENTER_ADVICE_TIME"></uni-list-item>
+							<view v-if="text=='督办'" class="clyj">{{CENTER_ADVICE}}</view>
+							<view v-if="text!='督办'" class="textareabox">
+								<textarea maxlength="200" placeholder="请输入您的意见" v-model="CENTER_ADVICE" auto-height />
+							</view>
 						</view>
 						<view>
-							<view class="box-style-head">
+							<view v-if="text!='审核'" class="box-style-head">
 								<view class="">办理信息</view>
 							</view>
-							<uni-list-item title="签批意见"></uni-list-item>
-							<view class="textareabox">
+							<uni-list-item v-if="text!='审核'" title="签批意见"></uni-list-item>
+							<view v-if="text!='审核'" class="textareabox" >
 								<textarea maxlength="200" placeholder="请输入您的意见" v-model="contentText" auto-height />
 							</view>
-							<uni-list-item title="办理领导"></uni-list-item>
-							<view class="ld">
+							<uni-list-item v-if="text!='审核'" title="办理领导"></uni-list-item>
+							<view class="tjld" v-if="text=='审核'">
+								<view class="">提交领导</view>
+								<view class="">
+									<uni-data-checkbox v-model="value2" :localdata="range2" @change="change2">
+									</uni-data-checkbox>
+								</view>
+							</view>
+							<view v-if="value2==1" class="ld">
 								<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change">
 								</uni-data-checkbox>
+								<uni-list-item class="err" v-if="text=='审核' && value.length==0" title="请选择提交领导"></uni-list-item>
 							</view>
-							<uni-list-item title="办理单位"></uni-list-item>
-							<view class="ld">
-								<uni-data-checkbox multiple v-model="value1" :localdata="range1" @change="change">
+							<view v-if="text!='审核'" class="ld">
+								<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change">
+								</uni-data-checkbox>
+								<uni-list-item class="err" v-if="text=='审核' && value.length==0" title="请选择提交领导"></uni-list-item>
+							</view>
+							<uni-list-item v-if="text!='审核'" title="办理单位"></uni-list-item>
+							<view v-if="text!='审核'" class="ld">
+								<uni-data-checkbox  multiple v-model="value1" :localdata="range1" @change="change1">
 								</uni-data-checkbox>
 							</view>
 						</view>
 						<view class="btn">
-							<button size="mini" type="primary" @click="save">督办提交</button>
+							<button size="mini" type="primary" @click="save">{{text}}提交</button>
 						</view>
 
 					</view>
@@ -80,7 +99,7 @@
 			<uni-popup ref="popup1" type="bottom">
 				<view class="box-style popup-box">
 					<view class="textarea" style="visibility: hidden;"></view>
-					<view class="info">督办/催办信息已发送</view>
+					<view class="info">{{text}}/催办信息已发送</view>
 					<button class="btn" type="default" @click="closeinfo">确 定</button>
 					<view style="height:20rpx;"></view>
 				</view>
@@ -100,7 +119,10 @@
 	import Tabs from '@/components/Tabs/index.vue';
 	import {
 		gdDetail,
-		addNetWorkOrder
+		addNetWorkOrder,
+		getLeaders,
+		gdDeptByLeader,
+		tjsh
 	} from '@/utils/api.js';
 	let myChart;
 	export default {
@@ -109,53 +131,30 @@
 		},
 		data() {
 			return {
-				value: [0, 2],
-				range: [{
-					"value": 0,
-					"text": "领导1"
-				}, {
-					"value": 1,
-					"text": "领导2"
-				}, {
-					"value": 2,
-					"text": "领导3"
-				}, {
-					"value": 3,
-					"text": "领导4"
-				}, {
-					"value": 4,
-					"text": "领导5"
-				}, {
-					"value": 5,
-					"text": "领导6"
-				}],
-				value1: [0, 2],
-				range1: [{
-					"value": 0,
-					"text": "部门1"
-				}, {
-					"value": 1,
-					"text": "部门2"
-				}, {
-					"value": 2,
-					"text": "部门3"
-				}, {
-					"value": 3,
-					"text": "部门4"
-				}, {
-					"value": 4,
-					"text": "部门5"
-				}, {
-					"value": 5,
-					"text": "部门6"
+				text:'督办',
+				value: [],
+				range: [],
+				value1: [],
+				range1: [],
+				value2: 2,
+				range2: [{
+					text:'是',
+					value:1
+				},{
+					text:'否',
+					value:2
 				}],
 				contentText: '',
+				CENTER_ADVICE: '',
+				CENTER_ADVICE_TIME: '',
 				sldata: '',
 				isLandScape: true,
-				active: '督查督办', //左侧tabs
+				active: '督办', //左侧tabs
 				detail: {},
 				indexs: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二', '十三', '十四', '十五'],
-				date: ''
+				date: '',
+				depts:'',
+				deptLeaders:'',
 
 			}
 		},
@@ -163,8 +162,20 @@
 			//模拟从服务器获取数据
 		},
 		onLoad(option) {
+			let role = uni.getStorageSync('role')
+			console.log('role',role)
+			if(role==='区领导账号') {
+				this.text = '督办'
+			};
+			if(role==='区中心账号') {
+				this.text = '审核'
+			};
+			if(role==='部门账号') {
+				this.text = '办理'
+			}
 			this.gdDetail(option.formId)
 			this.date = option.date
+			this.getLeaders()
 
 		},
 		onResize() {
@@ -191,8 +202,70 @@
 
 		},
 		methods: {
+			getLeaders() {
+				getLeaders().then(res => {
+					let {
+						code,
+						data
+					} = res.data;
+					console.log(code, data)
+					this.range = data.map(item=>{
+						return {
+							value:item,
+							text:item,
+						}
+					})
+				}).catch(error => console.log(error))
+			},
+			gdDeptByLeader(rowId){
+				return new Promise((resolve,reject)=>{
+					gdDeptByLeader(rowId).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						console.log(code, data)
+						let range1 = data.map(item=>{
+							return {
+								value:item.dept_leader_id,
+								text:item.dept_leader,
+							}
+						})
+						resolve(range1)
+					}).catch(error => reject(error))
+					
+				})
+			},
 			change(e) {
-				console.log('e:', e);
+				let deptLeaders = e.detail.value;
+				this.deptLeaders = e.detail.value.toString();
+				if(this.text=='审核')return;
+				let arr= [];
+				let arrAll = []
+				if(deptLeaders.length==0) {
+					this.range1 = []
+				} else {
+					deptLeaders.map((item,index)=>{
+						let range = this.gdDeptByLeader(item);
+						arr.push(range)
+						Promise.all(arr).then(function(values) {
+						  console.log(values);
+						  arrAll = values.flat()
+						  this.range1 = arrAll
+						  console.log(range,arrAll)
+						}.bind(this));
+					})
+					
+				}
+				
+			},
+			change1(e) {
+				let depts = e.detail.value.toString()
+				this.depts = depts;
+				console.log('e:', depts);
+			},
+			change2(e) {
+				
 			},
 			gdDetail(id) {
 				gdDetail(id).then(res => {
@@ -202,22 +275,59 @@
 					} = res.data
 					// console.log(res)
 					console.log(code, data)
+					this.CENTER_ADVICE = data.busiFormAdvice.CENTER_ADVICE
+					this.CENTER_ADVICE_TIME = data.busiFormAdvice.CENTER_ADVICE_TIME
+					let i= 0
+					!!data.processList && data.processList.map((item,index)=>{
+						// if(item.deptName.search('局')==true) {
+						if(item.deptName.indexOf("局") != -1) {
+							i+=1
+							// item['i'] = i
+							data.processList[index+1]['i'] = i
+						}
+					})
 					this.detail = data
+					console.log(this.detail)
 				}).catch(error => console.log(error))
 			},
 			save() {
-				// this.$refs.popup1.open('center');
-				let params = {
-					id: this.detail.busiNum,
-					context: this.contentText
+				// LEAD_ADVICE 领导建议
+				// deptLeaders 单位负责人ID eg:单位1,单位2,单位3
+				// depts 办理单位 eg:单位1,单位2,单位3
+				// flag 是否提交到领导账号 1-是 2-否
+				// leaders 提交到那些领导账号 eg:领导1,领导2,领导3
+				let params = {}
+				if(this.text == '审核') {
+					
+					 params = {
+						id: this.detail.busiNum,
+						// context: this.contentText,
+						CENTER_ADVICE:this.CENTER_ADVICE,
+						leaders:this.deptLeaders,
+						flag:this.value2,
+					}
 				}
-				addNetWorkOrder(params).then(res => {
+				if(this.text == '督办') {
+					
+					 params = {
+						id: this.detail.busiNum,
+						// context: this.contentText,
+						// CENTER_ADVICE:this.CENTER_ADVICE,
+						LEAD_ADVICE: this.contentText,
+						leaders:this.deptLeaders,
+						deptLeaders:this.depts,
+					}
+				}
+				if(this.flag==1 && value.length==0)return;
+				console.log(params)
+				// return;
+				tjsh(params).then(res => {
 					let {
 						code,
 						data
 					} = res.data;
 					console.log(code, data, data.operMsg)
-					if (data.operMsg == "提交成功") {
+					if (code==0) {
 						// this.$refs.popup.close();
 						this.$refs.popup1.open('center');
 					} else {
@@ -245,7 +355,7 @@
 			closeinfo() {
 				this.$refs.popup1.close();
 				uni.navigateTo({
-					url: `/pages/supervise/superviselist?activetab=已督办&date=${this.date}`
+					url: `/pages/supervise/superviselist?activetab=已${this.text}&date=${this.date}`
 				})
 			},
 
@@ -592,5 +702,16 @@
 		}
 
 
+	}
+	.tjld {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.err {
+		/deep/ .uni-list-item__container .uni-list-item__content-title {
+			color: red !important;
+			
+		}
 	}
 </style>

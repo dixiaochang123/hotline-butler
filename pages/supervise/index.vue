@@ -12,7 +12,7 @@
 				<view class="data-chart data-chart1">
 					<view class="box-style datas" style="width: 50%;">
 						<view class="box-style-head">
-							<view class="">{{text}}数据</view>
+							<view class="">{{text}}工单</view>
 							<view class="box-style-head-right uni-tabs-item-selet">
 								<picker class="uni-tabs-item-active uni-tabs-item-active-picker" :range="years"
 									@change="yearChange" mode="multiSelector">
@@ -368,7 +368,7 @@
 				message:'',
 				BUSI_NUMBER:'',//工单编号
 				isLandScape: true,
-				active: '督查督办', //左侧tabs
+				active: '督办', //左侧tabs
 				dbtotal: {
 					DBZHONG: "",
 					ENDTOTAL: "",
@@ -690,6 +690,17 @@
 			// 待督办数量
 			this.ddbgdType(date)
 			this.wtgdzl(date)
+			let role = uni.getStorageSync('role')
+			console.log('role',role)
+			if(role==='区领导账号') {
+				this.text = '督办'
+			};
+			if(role==='区中心账号') {
+				this.text = '审核'
+			};
+			if(role==='部门账号') {
+				this.text = '办理'
+			}
 		},
 		methods: {
 			wtgdzl(date) {

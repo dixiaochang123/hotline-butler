@@ -129,7 +129,7 @@
 				loading:false,
 				sldata: '',
 				isLandScape: true,
-				active: '督查督办', //左侧tabs
+				active: '督办', //左侧tabs
 				activetab: '待督办', //顶部tabs
 				subname: '待督办', //顶部tabs
 				headtabs: [{
@@ -151,11 +151,32 @@
 		},
 		onLoad(option) {
 			console.log(option)
+			let role = uni.getStorageSync('role')
+			console.log('role',role)
+			if(role==='区领导账号') {
+				this.text = '督办'
+			};
+			if(role==='区中心账号') {
+				this.text = '审核'
+			};
+			if(role==='部门账号') {
+				this.text = '办理'
+			}
+			this.activetab = '待'+this.text;
+			this.headtabs.map(item=>{
+				item.name = '待'+this.text
+				item.name = '待'+this.text
+			})
+			this.headtabs[0].name = '待'+this.text
+			this.headtabs[0].subname = '待'+this.text
+			this.headtabs[1].name = '已'+this.text
+			this.headtabs[1].name = '已'+this.text
+			
 			this.date = option.date;
 			let type = 1
-			if(option.activetab=='已督办') {
+			if(option.activetab=='已'+this.text) {
 				type = 2
-				this.activetab = '已督办'
+				this.activetab = '已'+this.text
 			} else {
 				type = 1
 			}
@@ -163,6 +184,7 @@
 				date:option.date,
 				type
 			}
+			
 			
 			this.ddbgdList(params)
 

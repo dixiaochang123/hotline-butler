@@ -482,3 +482,36 @@ export function gdDetail(id) {
     params:''
   })
 }
+
+// 查询所有领导 /dbdc/getLeaders
+export function getLeaders() {
+  return request({
+    url: `/dbdc/getLeaders`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 根据领导名称获取部门 
+export function gdDeptByLeader(leaderName) {
+  return request({
+    url: `/dbdc/gdDeptByLeader?leaderName=${leaderName}`,
+    method: 'get',
+    params:''
+  })
+}
+
+// 提交审核
+export function tjsh(data) {
+	let str ='';
+	 for (let i in data) {
+		 str+=`${i}=${data[i]}&`
+	 }
+	 str = str.substring(0, str.length-1)
+	 console.log(str)
+  return request({
+    url: `/dbdc/tjsh?${str}`,
+    method: 'get',
+    params:''
+  })
+}

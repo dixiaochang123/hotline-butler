@@ -8,7 +8,7 @@
 			</view>
 			<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
 				<uni-forms-item label="" name="username">
-					<uni-easyinput class="input" v-model="formData.username" type="number" placeholder="请输入您的账号"
+					<uni-easyinput class="input" v-model="formData.username" type="text" placeholder="请输入您的账号"
 						@input="binddata('username',$event.detail.value)" />
 				</uni-forms-item>
 				<uni-forms-item label="" name="password">
@@ -27,7 +27,7 @@
 			</view>
 			<uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
 				<uni-forms-item label="" name="username">
-					<uni-easyinput class="input" v-model="formData.username" type="number" placeholder="请输入您的账号"
+					<uni-easyinput class="input" v-model="formData.username" type="text" placeholder="请输入您的账号"
 						@input="binddata('username',$event.detail.value)" />
 				</uni-forms-item>
 				<uni-forms-item label="" name="password">
@@ -62,6 +62,12 @@
 				formData: {
 					username: '13461309556',
 					password: '1234',
+					// liuzhifeng czzw99999 领导
+					username: 'liuzhifeng',
+					password: '1234',
+					// wjqzfb001 czzw99999 部门
+					// username: 'wjqzfb001',
+					// password: '1234',
 
 				},
 				rules: {
@@ -166,9 +172,10 @@
 						} = res.data
 						console.log(code, data)
 						if (code == 200) {
-							uni.setStorageSync('token', data.token)
+							uni.setStorageSync('token', data.token.token)
+							uni.setStorageSync('role', data.role)
 							uni.setStorageSync('password', this.formData.password)
-							this.setToken(data.token)
+							this.setToken(data.token.token)
 							uni.navigateTo({
 								url: '/pages/supervise/index' //跳转地址
 							})
@@ -195,6 +202,7 @@
 						} = res.data
 						console.log(code, data)
 						if (code == 200) {
+							uni.setStorageSync('role', data.role)
 							uni.setStorageSync('token', data.token)
 							this.setToken(data.token)
 							uni.navigateTo({
