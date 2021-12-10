@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft">
+		<uni-nav-bar class="nav" left-icon="back" title="●武进热线管家●" @clickLeft="clickLeft">
 		</uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" :title="text+'工单'" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
@@ -12,7 +12,8 @@
 			<view class="box-main">
 				<view class="box-style">
 					<view class="box-style-head">
-						<view class="">待{{text}}工单详情</view>
+						<view v-if="type==1" class="">待{{text}}工单详情</view>
+						<view v-if="type==2" class="">已{{text}}工单详情</view>
 					</view>
 					<view class="uni-container">
 						<uni-list>
@@ -40,8 +41,8 @@
 								<view class="">中心信息</view>
 							</view>
 							<uni-list-item title="中心建议" :rightText="CENTER_ADVICE_TIME"></uni-list-item>
-							<view v-if="text=='督办'" class="clyj">{{CENTER_ADVICE}}</view>
-							<view v-if="text!='督办'" class="textareabox">
+							<view v-if="type==2 && text=='督办' || text=='办理'" class="clyj">{{CENTER_ADVICE}}</view>
+							<view v-if="text=='审核' && type==1" class="textareabox">
 								<textarea maxlength="200" placeholder="请输入您的意见" v-model="CENTER_ADVICE" auto-height />
 							</view>
 						</view>
@@ -49,8 +50,9 @@
 							<view v-if="text!='审核'" class="box-style-head">
 								<view class="">办理信息</view>
 							</view>
-							<uni-list-item v-if="text!='审核'" title="签批意见"></uni-list-item>
-							<view v-if="text!='审核'" class="textareabox" >
+							<uni-list-item v-if="text!='审核'" title="签批意见" :rightText="LEAD_ADVICE_TIME"></uni-list-item>
+							<view v-if="text=='办理' || type==2" class="clyj">{{contentText}}</view>
+							<view v-if="type==1 && text=='督办'" class="textareabox" >
 								<textarea maxlength="200" placeholder="请输入您的意见" v-model="contentText" auto-height />
 							</view>
 							<uni-list-item v-if="text!='审核'" title="办理领导"></uni-list-item>
@@ -64,9 +66,9 @@
 							<view v-if="value2==1" class="ld">
 								<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change">
 								</uni-data-checkbox>
-								<uni-list-item class="err" v-if="text=='审核' && value.length==0" title="请选择提交领导"></uni-list-item>
+								<uni-list-item class="err" v-if="type==1 && text=='审核' && value.length==0" title="请选择提交领导"></uni-list-item>
 							</view>
-							<view v-if="text!='审核'" class="ld">
+							<view v-if="text!='审核' && type==1" class="ld">
 								<uni-data-checkbox multiple v-model="value" :localdata="range" @change="change">
 								</uni-data-checkbox>
 								<uni-list-item class="err" v-if="text=='审核' && value.length==0" title="请选择提交领导"></uni-list-item>
@@ -77,7 +79,7 @@
 								</uni-data-checkbox>
 							</view>
 						</view>
-						<view class="btn">
+						<view v-if="type==1 && text != '办理'" class="btn">
 							<button size="mini" type="primary" @click="save">{{text}}提交</button>
 						</view>
 
@@ -86,7 +88,7 @@
 				</view>
 				<view style="height: 150rpx;"></view>
 			</view>
-			<uni-popup ref="popup1" type="bottom">
+			<uni-popup ref="popup1" type="bottom" :mask-click="false">
 				<view class="box-style popup-box">
 					<view class="textarea" style="visibility: hidden;">
 
@@ -131,6 +133,7 @@
 		},
 		data() {
 			return {
+				type:1,
 				text:'督办',
 				value: [],
 				range: [],
@@ -147,6 +150,7 @@
 				contentText: '',
 				CENTER_ADVICE: '',
 				CENTER_ADVICE_TIME: '',
+				LEAD_ADVICE_TIME: '',
 				sldata: '',
 				isLandScape: true,
 				active: '督办', //左侧tabs
@@ -154,6 +158,7 @@
 				indexs: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二', '十三', '十四', '十五'],
 				date: '',
 				depts:'',
+				depts1:'',
 				deptLeaders:'',
 
 			}
@@ -162,20 +167,29 @@
 			//模拟从服务器获取数据
 		},
 		onLoad(option) {
+			this.type = option.type;
 			let role = uni.getStorageSync('role')
 			console.log('role',role)
 			if(role==='区领导账号') {
 				this.text = '督办'
+				if(this.type==1) {
+					
+				this.getLeaders()
+				}
 			};
 			if(role==='区中心账号') {
 				this.text = '审核'
+				if(this.type==1) {
+					
+				this.getLeaders()
+				}
 			};
 			if(role==='部门账号') {
 				this.text = '办理'
 			}
 			this.gdDetail(option.formId)
 			this.date = option.date
-			this.getLeaders()
+			// this.getLeaders()
 
 		},
 		onResize() {
@@ -239,6 +253,7 @@
 			change(e) {
 				let deptLeaders = e.detail.value;
 				this.deptLeaders = e.detail.value.toString();
+				console.log(e)
 				if(this.text=='审核')return;
 				let arr= [];
 				let arrAll = []
@@ -261,8 +276,10 @@
 			},
 			change1(e) {
 				let depts = e.detail.value.toString()
+				let depts1 = e.detail.data.map(item=>item.text).toString()
 				this.depts = depts;
-				console.log('e:', depts);
+				this.depts1 = depts1;
+				console.log('e:', depts1);
 			},
 			change2(e) {
 				
@@ -275,8 +292,10 @@
 					} = res.data
 					// console.log(res)
 					console.log(code, data)
-					this.CENTER_ADVICE = data.busiFormAdvice.CENTER_ADVICE
-					this.CENTER_ADVICE_TIME = data.busiFormAdvice.CENTER_ADVICE_TIME
+					this.CENTER_ADVICE = data.busiFormAdvice.CENTER_ADVICE || ''
+					this.CENTER_ADVICE_TIME = data.busiFormAdvice.CENTER_ADVICE_TIME || ''
+					this.contentText = data.busiFormAdvice.LEAD_ADVICE || ''
+					this.LEAD_ADVICE_TIME = data.busiFormAdvice.LEAD_ADVICE_TIME || ''
 					let i= 0
 					!!data.processList && data.processList.map((item,index)=>{
 						// if(item.deptName.search('局')==true) {
@@ -287,6 +306,25 @@
 						}
 					})
 					this.detail = data
+					// if(this.text == '办理') {
+					if(!!data.busiFormAdvice.MANAGE_LEAD) {
+						this.range =data.busiFormAdvice.MANAGE_LEAD.split(",").map(item=>{
+							return {
+								value:item,
+								text:item,
+							}
+						})
+						this.value= data.busiFormAdvice.MANAGE_LEAD.split(",")
+						this.range1 =data.busiFormAdvice.MANAGE_DEPT.split(",").map(item=>{
+							return {
+								value:item,
+								text:item,
+							}
+						})
+						this.value1= data.busiFormAdvice.MANAGE_DEPT.split(",")
+						this.value2 = 1;
+						console.log(this.range)
+					}
 					console.log(this.detail)
 				}).catch(error => console.log(error))
 			},
@@ -298,7 +336,6 @@
 				// leaders 提交到那些领导账号 eg:领导1,领导2,领导3
 				let params = {}
 				if(this.text == '审核') {
-					
 					 params = {
 						id: this.detail.busiNum,
 						// context: this.contentText,
@@ -308,14 +345,14 @@
 					}
 				}
 				if(this.text == '督办') {
-					
 					 params = {
 						id: this.detail.busiNum,
 						// context: this.contentText,
 						// CENTER_ADVICE:this.CENTER_ADVICE,
 						LEAD_ADVICE: this.contentText,
-						leaders:this.deptLeaders,
+						// leaders:this.deptLeaders,
 						deptLeaders:this.depts,
+						depts:this.depts1,
 					}
 				}
 				if(this.flag==1 && value.length==0)return;

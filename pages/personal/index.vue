@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="个人中心" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -20,11 +20,11 @@
 							<view class="banner">
 								<!-- <image src="" mode=""></image> -->
 								<view class="image">
-
+									<image src="/static/image/update/1.png" mode="aspectFit"></image>
 								</view>
 								<view class="admin">
 									<text class="text1">GAFFES</text>
-									<text class="text2">ID: <text>admin</text></text>
+									<text class="text2">ID: <text>{{dataInfo.name}}</text></text>
 								</view>
 							</view>
 							<view class="info">
@@ -397,8 +397,12 @@
 				width: rpx2multiple(175);
 				height: rpx2multiple(175);
 				border-radius: 50%;
-				border: solid 1px #FFFFFF;
+				// border: solid 1px #FFFFFF;
 				margin-right: rpx2multiple(54);
+				image {
+					width: 100%;
+					height: 100%;
+				}
 			}
 
 			.admin {

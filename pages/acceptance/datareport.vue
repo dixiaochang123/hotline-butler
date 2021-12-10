@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="分析报告" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>

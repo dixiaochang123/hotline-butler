@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="数据分析" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -492,7 +492,7 @@
 		// height: rpx2multiple(518);
 		display: grid;
 		grid-template-columns: calc(50% - 60rpx) 50%;
-		grid-template-rows: rpx2multiple(390) rpx2multiple(518);
+		// grid-template-rows: rpx2multiple(390) rpx2multiple(518);
 		grid-row-gap: rpx2multiple(40);
 		grid-column-gap: rpx2multiple(40);
 
@@ -504,7 +504,7 @@
 			.data-type-content-list {
 				// width: 809px;
 				height: rpx2multiple(140);
-				// background: #4585F5;
+				background: #4585F5;
 				border-radius: rpx2multiple(20);
 				display: flex;
 				justify-content: flex-start;
@@ -527,7 +527,7 @@
 					justify-content: space-between;
 					flex-direction: column;
 					font-family: PangMenZhengDao;
-					// color: #FFFFFF;
+					color: #FFFFFF;
 					font-size: rpx2multiple(40);
 					padding-left: rpx2multiple(20);
 				}
@@ -595,23 +595,23 @@
 			box-sizing: border-box;
 		}
 	
-		.chart-pie-legend {
+		.chart-pie-legend.isapp {
 			width: 50%;
 			height: 100%;
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
 			flex-wrap: wrap;
-			padding: rpx2multiple(60) 0;
+			// padding: rpx2multiple(60) 0;
 	
 			.data-type-content-list {
 				width: calc(100% / 2);
 				height: auto;
-				// background: #4585F5;
+				background: none;
 				border-radius: rpx2multiple(30);
 				display: flex;
 				justify-content: flex-start;
-				padding: rpx2multiple(30) rpx2multiple(10);
+				padding: 0 !important;
 				color: #395176;
 	
 				.content-list-1 {
@@ -634,6 +634,7 @@
 					font-family: PangMenZhengDao;
 					font-size: rpx2multiple(24);
 					padding-left: rpx2multiple(8);
+					color: #000;
 	
 					.content-list-2-2 {
 						font-size: rpx2multiple(36);
@@ -788,7 +789,7 @@
 				box-sizing: border-box;
 			}
 		
-			.chart-pie-legend111111 {
+			.chart-pie-legend111111.app-nav {
 				width: 100%;
 				height: 100%;
 				display: flex !important;
@@ -796,16 +797,17 @@
 				align-items: center;
 				flex-wrap: wrap;
 				padding: 0;
+				
 		
 				.data-type-content-list1 {
 					width: calc(100% / 2) !important;
 					height: auto;
-					// background: #4585F5;
+					background: none !important;
 					border-radius: rpx2multiple(30);
 					display: flex;
 					justify-content: flex-start;
 					padding: rpx2multiple(30) rpx2multiple(10);
-					color: #395176;
+					color: #000 !important;
 					&.data-type-content-list {
 						width: calc(100% / 2) !important;
 						text-align: left !important;
@@ -834,7 +836,7 @@
 						font-family: PangMenZhengDao;
 						font-size: rpx2multiple(28);
 						padding-left: rpx2multiple(8);
-		
+		color: #000 !important;
 						.content-list-2-2 {
 							font-size: rpx2multiple(38);
 						}

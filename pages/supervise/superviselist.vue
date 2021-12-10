@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●\nHotline housekeeper" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" left-icon="back" title="●武进热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="督办工单" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -18,7 +18,8 @@
 				</view>
 				<view class="box-style">
 					<view class="box-style-head isapp">
-						<view class="">待{{text}}工单详情</view>
+						<view v-if="type==1" class="">待{{text}}工单详情</view>
+						<view v-if="type==2" class="">已{{text}}工单详情</view>
 					</view>
 					<view class="uni-container isapp">
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
@@ -47,8 +48,10 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise(item)">{{text}}</button>
+										<button v-if="type==1" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+											@click="handleClickSupervise1(item)">{{text}}</button>
+										<button v-if="type==2" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+											@click="handleClickSupervise1(item)">详情</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -64,7 +67,7 @@
 							<uni-tr>
 								<uni-th width="100" align="center">序号</uni-th>
 								<uni-th width="300" align="center">工单标题</uni-th>
-								<uni-th width="100" v-if="activetab=='已督办'" align="center">处理人员</uni-th>
+								<uni-th width="100" v-if="type==2" align="center">处理人员</uni-th>
 								<uni-th width="100" align="center">紧急程度</uni-th>
 								<uni-th width="100" align="center">创建时间</uni-th>
 								<uni-th width="100" align="center">操作</uni-th>
@@ -74,7 +77,7 @@
 								<uni-td align="center">
 									<view class="name">{{ item.content }}</view>
 								</uni-td>
-								<uni-td v-if="activetab=='已督办'" align="center">
+								<uni-td v-if="type==2" align="center">
 									<view class="name">{{ item.createUserId }}</view>
 								</uni-td>
 								<uni-td align="center">
@@ -85,8 +88,10 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+										<button v-if="type==1" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise1(item)">{{text}}</button>
+										<button v-if="type==2" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+											@click="handleClickSupervise1(item)">详情</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -132,6 +137,7 @@
 				active: '督办', //左侧tabs
 				activetab: '待督办', //顶部tabs
 				subname: '待督办', //顶部tabs
+				type:1,
 				headtabs: [{
 					name: '待督办',
 					subname: '待督办',
@@ -184,6 +190,8 @@
 				date:option.date,
 				type
 			}
+			console.log(type)
+			this.type = type
 			
 			
 			this.ddbgdList(params)
@@ -237,24 +245,26 @@
 			handletabschange(item) {
 				this.activetab = item.name;
 				this.subname = item.subname;
+				this.type = this.headtabs.find(key=>key.name==item.name).type
 				let params ={
 					date:this.date,
 					type:this.headtabs.find(key=>key.name==item.name).type
 				}
+				console.log('type',this.type)
 				this.ddbgdList(params)
 			
 			},
 			handleClickSupervise(item) {
 				console.log(item)
 				uni.navigateTo({
-					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}`
+					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}&type=${this.type}`
 				})
 			
 			},
 			handleClickSupervise1(item) {
 				console.log(item)
 				uni.navigateTo({
-					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}`
+					url: `/pages/supervise/supervisedetails?formId=${item.formId}&date=${this.date}&type=${this.type}`
 				})
 			
 			},

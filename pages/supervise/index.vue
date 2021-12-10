@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" title="●武进热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="督办" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -1227,6 +1227,7 @@
 			.data-type-content-list-3 {
 				display: flex;
 				justify-content: flex-start;
+				flex-wrap: nowrap;
 
 				.data-type-content-list-4 {
 					display: flex;
@@ -1238,20 +1239,20 @@
 					display: flex;
 					justify-content: space-between;
 					flex-direction: column;
-					font-size: rpx2multiple(46);
+					font-size: rpx2multiple(55);
 					font-family: PangMenZhengDao;
 					font-weight: 400;
 					color: #395176;
 					padding-left: rpx2multiple(10);
 
 					.t-1 {
-						font-size: rpx2multiple(20);
+						font-size: rpx2multiple(30);
 						display: inline-block;
 						padding-left: rpx2multiple(10);
 					}
 
 					.t-2 {
-						font-size: rpx2multiple(24);
+						font-size: rpx2multiple(35);
 					}
 				}
 
