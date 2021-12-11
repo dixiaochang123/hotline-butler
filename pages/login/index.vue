@@ -65,15 +65,15 @@
 					password: '1234',
 					
 					// liuzhifeng czzw99999 领导
-					// username: 'liuzhifeng',
-					// password: '1234',
+					username: 'liuzhifeng',
+					password: '1234',
 					
 					// wjqzfb001 czzw99999 部门
 					username: 'wjqzfb001',
 					password: '1234',
 					
-					// username: '',
-					// password: '',
+					username: '',
+					password: '',
 
 				},
 				rules: {

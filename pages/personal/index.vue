@@ -29,24 +29,24 @@
 							</view>
 							<view class="info">
 								<view class="">
-									<text>部门</text>
-									<text>{{dataInfo.dept}}</text>
+									<text style="font-size: 48rpx;">部门</text>
+									<text style="font-size: 48rpx;">{{dataInfo.dept}}</text>
 								</view>
 								<view class="">
-									<text>岗位</text>
-									<text>{{dataInfo.station}}</text>
+									<text style="font-size: 48rpx;">岗位</text>
+									<text style="font-size: 48rpx;">{{dataInfo.station}}</text>
 								</view>
 								<view class="">
-									<text>角色</text>
-									<text>{{dataInfo.role}}</text>
+									<text style="font-size: 48rpx;">角色</text>
+									<text style="font-size: 48rpx;">{{dataInfo.role}}</text>
 								</view>
 								<view class="">
-									<text>联系电话</text>
-									<text>{{dataInfo.phone}}</text>
+									<text style="font-size: 48rpx;">联系电话</text>
+									<text style="font-size: 48rpx;">{{dataInfo.phone}}</text>
 								</view>
 								<view class="">
-									<text>邮箱</text>
-									<text>{{dataInfo.mail}}</text>
+									<text style="font-size: 48rpx;">邮箱</text>
+									<text style="font-size: 48rpx;">{{dataInfo.mail}}</text>
 								</view>
 							</view>
 						</view>
@@ -70,11 +70,11 @@
 								</uni-forms-item>
 							</uni-forms>
 							<view class="" style="height: 80rpx;"></view>
-							<button type="primary" @click="submit">确认修改</button>
+							<button style="font-size: 48rpx;" type="primary" @click="submit">确认修改</button>
 						</view>
 						<view class="btns" v-if="isshow">
-							<view class="update" @click="updatepassword">修改密码</view>
-							<view class="loginout" @click="loginout">退出登录</view>
+							<view style="font-size: 48rpx;" class="update" @click="updatepassword">修改密码</view>
+							<view style="font-size: 48rpx;" class="loginout" @click="loginout">退出登录</view>
 
 						</view>
 					</view>
