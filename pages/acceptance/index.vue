@@ -552,10 +552,6 @@
 		onLoad() {
 			this.selectedIndexs = []
 			// this.getData(1)
-			uni.showModal({
-				content: '受理情况',
-				showCancel: false
-			});
 
 		},
 		onResize() {
@@ -1628,7 +1624,7 @@
 			}
 		}
 
-		.order-details-pie[data-v-3c4f2293] {
+		.order-details-pie {
 			height: auto;
 			min-height: 357px !important;
 		}
@@ -1659,8 +1655,8 @@
 			position: absolute !important;
 			right: rpx2multiple(80) !important;
 		}
-		.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-1[data-v-3c4f2293] {
-		    font-size: 22rpx;
+		.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-1 {
+		    font-size: 22rpx !important;
 		    font-weight: 500;
 		}
 	}
