@@ -552,6 +552,10 @@
 		onLoad() {
 			this.selectedIndexs = []
 			// this.getData(1)
+			uni.showModal({
+				content: '受理情况',
+				showCancel: false
+			});
 
 		},
 		onResize() {
