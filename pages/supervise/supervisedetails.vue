@@ -12,8 +12,8 @@
 			<view class="box-main">
 				<view class="box-style">
 					<view class="box-style-head">
-						<view v-if="type==1" class="">待{{text}}工单详情</view>
-						<view v-if="type==2" class="">已{{text}}工单详情</view>
+						<view v-if="!issave" class="">待{{text}}工单详情</view>
+						<view v-if="!!issave" class="">已{{text}}工单详情</view>
 					</view>
 					<view class="uni-container">
 						<uni-list>
@@ -41,7 +41,7 @@
 								<view class="">中心信息</view>
 							</view>
 							<uni-list-item title="中心建议" :rightText="CENTER_ADVICE_TIME"></uni-list-item>
-							<view v-if="type==2 && text=='督办' || text=='办理'" class="clyj">{{CENTER_ADVICE}}</view>
+							<view v-if="type==2" class="clyj">{{CENTER_ADVICE}}</view>
 							<view v-if="text=='审核' && type==1" class="textareabox">
 								<textarea maxlength="200" placeholder="请输入您的意见" v-model="CENTER_ADVICE" auto-height />
 							</view>
@@ -51,8 +51,8 @@
 								<view class="">办理信息</view>
 							</view>
 							<uni-list-item v-if="text!='审核'" title="签批意见" :rightText="LEAD_ADVICE_TIME"></uni-list-item>
-							<view v-if="text=='办理' || type==2" class="clyj">{{contentText}}</view>
-							<view v-if="type==1 && text=='督办'" class="textareabox" >
+							<view v-if="text=='办理' || !issave" class="clyj">{{contentText}}</view>
+							<view v-if="!!issave && text=='督办'" class="textareabox" >
 								<textarea maxlength="200" placeholder="请输入您的意见" v-model="contentText" auto-height />
 							</view>
 							<uni-list-item v-if="text!='审核'" title="办理领导"></uni-list-item>
@@ -79,7 +79,7 @@
 								</uni-data-checkbox>
 							</view>
 						</view>
-						<view v-if="type==1 && text != '办理'" class="btn">
+						<view v-if="!!issave" class="btn">
 							<button size="mini" type="primary" @click="save">{{text}}提交</button>
 						</view>
 
@@ -160,6 +160,7 @@
 				depts:'',
 				depts1:'',
 				deptLeaders:'',
+				issave:true,
 
 			}
 		},
@@ -172,9 +173,12 @@
 			console.log('role',role)
 			if(role==='区领导账号') {
 				this.text = '督办'
-				if(this.type==1) {
+				if(this.type==2) {
 					
 				this.getLeaders()
+				this.issave = true;
+				} else {
+					this.issave = false;
 				}
 			};
 			if(role==='区中心账号') {
@@ -182,10 +186,14 @@
 				if(this.type==1) {
 					
 				this.getLeaders()
+				this.issave = true;
+				} else {
+					this.issave = false;
 				}
 			};
 			if(role==='部门账号') {
 				this.text = '办理'
+				this.issave = false;
 			}
 			this.gdDetail(option.formId)
 			this.date = option.date
@@ -292,10 +300,10 @@
 					} = res.data
 					// console.log(res)
 					console.log(code, data)
-					this.CENTER_ADVICE = data.busiFormAdvice.CENTER_ADVICE || ''
-					this.CENTER_ADVICE_TIME = data.busiFormAdvice.CENTER_ADVICE_TIME || ''
-					this.contentText = data.busiFormAdvice.LEAD_ADVICE || ''
-					this.LEAD_ADVICE_TIME = data.busiFormAdvice.LEAD_ADVICE_TIME || ''
+					this.CENTER_ADVICE = !!data.busiFormAdvice?data.busiFormAdvice.CENTER_ADVICE: ''
+					this.CENTER_ADVICE_TIME = !!data.busiFormAdvice?data.busiFormAdvice.CENTER_ADVICE_TIME : ''
+					this.contentText = !!data.busiFormAdvice?data.busiFormAdvice.LEAD_ADVICE :''
+					this.LEAD_ADVICE_TIME = !!data.busiFormAdvice?data.busiFormAdvice.LEAD_ADVICE_TIME: ''
 					let i= 0
 					!!data.processList && data.processList.map((item,index)=>{
 						// if(item.deptName.search('局')==true) {
@@ -307,22 +315,31 @@
 					})
 					this.detail = data
 					// if(this.text == '办理') {
-					if(!!data.busiFormAdvice.MANAGE_LEAD) {
+					if(!!data.busiFormAdvice && !!data.busiFormAdvice.MANAGE_LEAD) {
 						this.range =data.busiFormAdvice.MANAGE_LEAD.split(",").map(item=>{
 							return {
 								value:item,
 								text:item,
 							}
 						})
+						this.value2 = 1
 						this.value= data.busiFormAdvice.MANAGE_LEAD.split(",")
-						this.range1 =data.busiFormAdvice.MANAGE_DEPT.split(",").map(item=>{
-							return {
-								value:item,
-								text:item,
-							}
-						})
-						this.value1= data.busiFormAdvice.MANAGE_DEPT.split(",")
-						this.value2 = 1;
+						if(!!data.busiFormAdvice && !!data.busiFormAdvice.MANAGE_DEPT) {
+							this.range1 =data.busiFormAdvice.MANAGE_DEPT.split(",").map(item=>{
+								return {
+									value:item,
+									text:item,
+								}
+							})
+							this.value1= data.busiFormAdvice.MANAGE_DEPT.split(",")
+							
+						} else {
+							this.change({
+								detail:{
+									value:this.value
+								}
+							})
+						}
 						console.log(this.range)
 					}
 					console.log(this.detail)
@@ -355,25 +372,26 @@
 						depts:this.depts1,
 					}
 				}
-				if(this.flag==1 && value.length==0)return;
+				if(this.value2==1 && this.value.length==0)return;
 				console.log(params)
 				// return;
 				tjsh(params).then(res => {
 					let {
 						code,
-						data
+						data,
+						msg
 					} = res.data;
 					console.log(code, data, data.operMsg)
 					if (code==0) {
 						// this.$refs.popup.close();
 						this.$refs.popup1.open('center');
 					} else {
-						this.message = data.operMsg
+						// this.message = data.operMsg
 						// this.$refs.popup.close();
 						uni.showModal({
 							title: '提示',
 							showCancel: false,
-							content: data.operMsg,
+							content: msg,
 							success: function(res) {
 								if (res.confirm) {
 									console.log('用户点击确定');
@@ -605,9 +623,9 @@
 		background-color: #fcfafa;
 		overflow: hidden;
 		padding: 10rpx;
-		color: #3b4144;
+		color: #999;
 		margin-bottom: 20rpx;
-		font-size: 18rpx;
+		font-size: 38rpx;
 		margin-left: 10rpx;
 		margin-right: 10rpx;
 		box-sizing: border-box !important;
@@ -653,9 +671,9 @@
 			background-color: #fcfafa;
 			overflow: hidden;
 			padding: 10rpx;
-			color: #3b4144;
+			color: #999;
 			margin-bottom: 20rpx;
-			font-size: 18rpx;
+			font-size: 38rpx;
 			margin-left: 10rpx;
 			margin-right: 10rpx;
 			box-sizing: border-box !important;
@@ -681,7 +699,7 @@
 		}
 
 		.box-style-head {
-			font-size: 35rpx;
+			font-size: 40rpx;
 			padding-left: 12px;
 
 			&::before {
@@ -750,5 +768,11 @@
 			color: red !important;
 			
 		}
+	}
+	/deep/ .uni-list-item__content-title,/deep/ .uni-list-item__content-note,/deep/ .uni-list-item__extra-text {
+		font-size: 38rpx !important;
+	}
+	/deep/ .uni-data-checklist .checklist-group .checklist-box .checklist-content .checklist-text {
+		font-size: 38rpx !important;
 	}
 </style>

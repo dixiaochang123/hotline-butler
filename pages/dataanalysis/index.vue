@@ -428,13 +428,13 @@
 		}
 
 		.uni-tabs-item {
-			width: rpx2multiple(200);
-			height: rpx2multiple(65);
-			font-size: rpx2multiple(24);
-			line-height: rpx2multiple(65);
+			width: rpx2multiple(300);
+			height: rpx2multiple(85);
+			font-size: rpx2multiple(44);
+			line-height: rpx2multiple(85);
 			font-family: PingFang SC;
 			font-weight: 800;
-			color: rgba(0, 46, 108, 0.3);
+			color: #fff;
 			text-align: center;
 		}
 
@@ -482,7 +482,7 @@
 		.uni-tabs-item-active {
 			background: #FFFFFF;
 			border: solid 1px #FFFFFF;
-			border-radius: rpx2multiple(33);
+			border-radius: rpx2multiple(63);
 			color: #4585F5;
 		}
 	}
@@ -535,7 +535,7 @@
 			}
 
 			.data-type-appeal {
-				font-size: rpx2multiple(24);
+				font-size: rpx2multiple(44);
 				font-family: PingFang;
 				font-weight: bold;
 				color: #395176;
@@ -556,7 +556,7 @@
 					text-align: center;
 					background: #DAEFFF;
 					border-radius: rpx2multiple(18);
-					font-size: rpx2multiple(30);
+					font-size: rpx2multiple(40);
 					font-family: PingFang;
 					font-weight: bold;
 					color: #1EA2FF;
@@ -775,6 +775,28 @@
 			.uni-tabs-item-selet {
 				width: 100%;
 			}
+		}
+		
+		.data-type-appeal {
+			font-size: rpx2multiple(30) !important;
+		
+			.bor {
+				font-size: rpx2multiple(48) !important;
+			}
+		
+			.btn {
+				font-size: rpx2multiple(30) !important;
+			}
+		}
+		.uni-tabs-item {
+			font-size: 30rpx !important;
+			color: #000 !important;
+		}
+		.uni-tabs-item-active {
+			background: #FFFFFF;
+			border: solid 1px #FFFFFF;
+			border-radius: rpx2multiple(63);
+			color: #4585F5 !important;
 		}
 
 		.data-chart .datas .data-type-content-list {

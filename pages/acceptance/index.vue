@@ -39,7 +39,7 @@
 						<view class="data-type">
 							<view class="data-type-content">
 								<view class="data-type-content-list" v-for="(item,index) in typedata" :key="index">
-									<view class="content-list-1">{{item.PDKEY}} {{item.TOTAL}}件</view>
+									<view style="white-space: nowrap;" class="content-list-1">{{item.PDKEY}} {{item.TOTAL}}件</view>
 									<view class="content-list-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
 								</view>
@@ -47,7 +47,7 @@
 							</view>
 							<view class="data-type-appeal">
 								<view class="data-type-content-list" v-for="(item,index) in contextdata" :key="index">
-									<view class="content-list-1">{{item.OPTNAME}} {{item.TOTAL}}件</view>
+									<view style="white-space: nowrap;" class="content-list-1">{{item.OPTNAME}} {{item.TOTAL}}件</view>
 									<view class="content-list-2 content-list-2-2"></view>
 									<view class="pmzd-font content-list-3">{{item.percentage}}%</view>
 								</view>
@@ -98,7 +98,7 @@
 												size="10"></uni-icons>
 										</view>
 										<view class="content-list-2">
-											<view class="content-list-2-1" style="">{{item.name}}
+											<view class="content-list-2-1" style="white-space: nowrap;">{{item.name}}
 											</view>
 											<view class="content-list-2-2">{{item.value}}%</view>
 										</view>
@@ -148,7 +148,7 @@
 										</uni-icons>
 									</view>
 									<view class="content-list-2">
-										<view class="content-list-2-1" style="">{{item.name}}</view>
+										<view style="white-space: nowrap;" class="content-list-2-1">{{item.name}}</view>
 										<view class="content-list-2-2">{{item.value}}%</view>
 									</view>
 								</view>
@@ -234,7 +234,7 @@
 									<image class="images" src="/static/image/lkgl.png" mode="aspectFit"></image>
 								</view>
 								<view class="content-list-2">
-									<view class="content-list-2-1">{{item.OPTNAME}}</view>
+									<view style="white-space: nowrap;" class="content-list-2-1">{{item.OPTNAME}}</view>
 									<view class="content-list-2-2">{{item.RATE}}</view>
 								</view>
 							</view>
@@ -423,7 +423,7 @@
 					xAxis: {
 						rotateLabel:true,
 						disabled: false,
-						fontSize:10,
+						fontSize:15,
 						axisLine: {
 							show: false
 						},
@@ -593,19 +593,19 @@
 						// YQ: "0.0"
 						let total = parseFloat(data[0].DB) + parseFloat(data[0].QY) + parseFloat(data[0].SHENG) +
 							parseFloat(data[0].SHI) + parseFloat(data[0].YQ);
-						this.ringOptsLegend0[0].name = this.ringOptsLegend0[0].name + ' ' + data[0].DB + '件';
+						this.ringOptsLegend0[0].name = this.ringOptsLegend0[0].name + '' + data[0].DB + '件';
 						this.ringOptsLegend0[0].value = (parseFloat(data[0].DB) / total).toFixed(3);
 						this.ringOptsLegend0[0].value1 = parseFloat(data[0].DB);
-						this.ringOptsLegend0[1].name = this.ringOptsLegend0[1].name + ' ' + data[0].SHENG + '件';
+						this.ringOptsLegend0[1].name = this.ringOptsLegend0[1].name + '' + data[0].SHENG + '件';
 						this.ringOptsLegend0[1].value = (parseFloat(data[0].SHENG) / total).toFixed(3);
 						this.ringOptsLegend0[1].value1 = parseFloat(data[0].SHENG);
-						this.ringOptsLegend0[2].name = this.ringOptsLegend0[2].name + ' ' + data[0].SHI + '件';
+						this.ringOptsLegend0[2].name = this.ringOptsLegend0[2].name + '' + data[0].SHI + '件';
 						this.ringOptsLegend0[2].value = (parseFloat(data[0].SHI) / total).toFixed(3);
 						this.ringOptsLegend0[2].value1 = parseFloat(data[0].SHI);
-						this.ringOptsLegend0[3].name = this.ringOptsLegend0[3].name + ' ' + data[0].QY + '件';
+						this.ringOptsLegend0[3].name = this.ringOptsLegend0[3].name + '' + data[0].QY + '件';
 						this.ringOptsLegend0[3].value = (parseFloat(data[0].QY) / total).toFixed(3);
 						this.ringOptsLegend0[3].value1 = parseFloat(data[0].QY);
-						this.ringOptsLegend0[4].name = this.ringOptsLegend0[4].name + ' ' + data[0].YQ + '件';
+						this.ringOptsLegend0[4].name = this.ringOptsLegend0[4].name + '' + data[0].YQ + '件';
 						this.ringOptsLegend0[4].value = (parseFloat(data[0].YQ) / total).toFixed(3);
 						this.ringOptsLegend0[4].value1 = parseFloat(data[0].YQ);
 						this.ringOpts.title.name = total+'件'
@@ -1027,10 +1027,10 @@
 		align-items: center;
 
 		.uni-tabs-item {
-			width: rpx2multiple(200);
-			height: rpx2multiple(65);
-			font-size: rpx2multiple(24);
-			line-height: rpx2multiple(65);
+			width: rpx2multiple(300);
+			height: rpx2multiple(90);
+			font-size: rpx2multiple(40);
+			line-height: rpx2multiple(90);
 			font-family: PingFang SC;
 			font-weight: 800;
 			color: #FFFFFF;
@@ -1039,7 +1039,7 @@
 
 		.uni-tabs-item-active {
 			background: #FFFFFF;
-			border-radius: rpx2multiple(33);
+			border-radius: rpx2multiple(80);
 			color: #4B93F7;
 		}
 	}
@@ -1085,7 +1085,7 @@
 			}
 
 			.data-report-text {
-				font-size: rpx2multiple(25);
+				font-size: rpx2multiple(45);
 				font-weight: 500;
 			}
 
@@ -1176,7 +1176,7 @@
 				}
 
 				.content-list-1 {
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(45);
 					font-weight: 500;
 
 					// color: #1EA2FF;
@@ -1275,11 +1275,11 @@
 							justify-content: space-between;
 							flex-direction: column;
 							font-family: PangMenZhengDao;
-							font-size: rpx2multiple(24);
+							font-size: rpx2multiple(44);
 							padding-left: rpx2multiple(8);
 
 							.content-list-2-2 {
-								font-size: rpx2multiple(36);
+								font-size: rpx2multiple(46);
 							}
 						}
 

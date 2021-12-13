@@ -18,26 +18,26 @@
 				</view>
 				<view class="box-style">
 					<view class="box-style-head isapp">
-						<view v-if="type==1" class="">待{{text}}工单详情</view>
-						<view v-if="type==2" class="">已{{text}}工单详情</view>
+						<view v-if="!isdetails" class="">待{{text}}工单详情</view>
+						<view v-if="!!isdetails" class="">已{{text}}工单详情</view>
 					</view>
 					<view class="uni-container isapp">
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th width="20%" align="center">序号</uni-th>
-								<uni-th width="800" align="center">工单标题</uni-th>
-								<uni-th v-if="activetab=='已督办'" width="20%" align="center">处理人员</uni-th>
-								<uni-th width="20%" align="center">紧急程度</uni-th>
-								<uni-th width="20%" align="center">创建时间</uni-th>
-								<uni-th width="20%" align="center">操作</uni-th>
+								<uni-th  align="center">序号</uni-th>
+								<uni-th align="center">工单标题</uni-th>
+								<uni-th v-if="!!isdetails"  align="center">处理人员</uni-th>
+								<uni-th  align="center">紧急程度</uni-th>
+								<uni-th  align="center">创建时间</uni-th>
+								<uni-th  align="center">操作</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.content }}</view>
+									<view class="name">{{ item.title }}</view>
 								</uni-td>
-								<uni-td v-if="activetab=='已督办'" align="center">
+								<uni-td v-if="!!isdetails" align="center">
 									<view class="name">{{ item.createUserId }}</view>
 								</uni-td>
 								<uni-td align="center">
@@ -48,9 +48,9 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button v-if="type==1" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+										<button v-if="!isdetails" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise1(item)">{{text}}</button>
-										<button v-if="type==2" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+										<button v-if="!!isdetails" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise1(item)">详情</button>
 									</view>
 								</uni-td>
@@ -65,19 +65,19 @@
 						<uni-table ref="table" :loading="loading" emptyText="暂无更多数据"
 							@selection-change="selectionChange">
 							<uni-tr>
-								<uni-th width="100" align="center">序号</uni-th>
-								<uni-th width="300" align="center">工单标题</uni-th>
-								<uni-th width="100" v-if="type==2" align="center">处理人员</uni-th>
-								<uni-th width="100" align="center">紧急程度</uni-th>
-								<uni-th width="100" align="center">创建时间</uni-th>
-								<uni-th width="100" align="center">操作</uni-th>
+								<uni-th  align="center">序号</uni-th>
+								<uni-th  align="center">工单标题</uni-th>
+								<uni-th  v-if="!!isdetails" align="center">处理人员</uni-th>
+								<uni-th  align="center">紧急程度</uni-th>
+								<uni-th  align="center">创建时间</uni-th>
+								<uni-th  align="center">操作</uni-th>
 							</uni-tr>
 							<uni-tr v-for="(item, index) in tableData" :key="'index-'+index">
 								<uni-td align="center">{{ index+1 }}</uni-td>
 								<uni-td align="center">
-									<view class="name">{{ item.content }}</view>
+									<view class="name">{{ item.title }}</view>
 								</uni-td>
-								<uni-td v-if="type==2" align="center">
+								<uni-td v-if="!!isdetails" align="center">
 									<view class="name">{{ item.createUserId }}</view>
 								</uni-td>
 								<uni-td align="center">
@@ -88,9 +88,9 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button v-if="type==1" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+										<button v-if="!isdetails" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise1(item)">{{text}}</button>
-										<button v-if="type==2" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
+										<button v-if="!!isdetails" style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
 											@click="handleClickSupervise1(item)">详情</button>
 									</view>
 								</uni-td>
@@ -138,6 +138,7 @@
 				activetab: '待督办', //顶部tabs
 				subname: '待督办', //顶部tabs
 				type:1,
+				isdetails:false,
 				headtabs: [{
 					name: '待督办',
 					subname: '待督办',
@@ -159,42 +160,71 @@
 			console.log(option)
 			let role = uni.getStorageSync('role')
 			console.log('role',role)
+			let type = 1
 			if(role==='区领导账号') {
 				this.text = '督办'
+				this.headtabs[0].type = 2;
+				this.headtabs[1].type = 4;
+				type = 2
+				if(option.activetab=='已'+this.text) {
+					type = 4
+					this.activetab = '已'+this.text
+					this.isdetails = true
+				} else {
+					type = 2
+					this.activetab = '待'+this.text;
+					this.isdetails = false
+				}
+				this.type = type
 			};
 			if(role==='区中心账号') {
 				this.text = '审核'
+				this.headtabs[0].type = 1;
+				this.headtabs[1].type = 2;
+				type = 1
+				if(option.activetab=='已'+this.text) {
+					type = 2
+					this.activetab = '已'+this.text
+					this.isdetails = true
+				} else {
+					type = 1
+					this.activetab = '待'+this.text;
+					this.isdetails = false
+				}
+				this.type = type
 			};
 			if(role==='部门账号') {
 				this.text = '办理'
+				this.headtabs[0].type = 4;
+				this.headtabs[1].type = 5;
+				type = 4
+				if(option.activetab=='已'+this.text) {
+					type = 5
+					this.activetab = '已'+this.text
+					this.isdetails = true
+				} else {
+					type = 4
+					this.activetab = '待'+this.text;
+					this.isdetails = false
+				}
+				this.type = type
 			}
-			this.activetab = '待'+this.text;
-			this.headtabs.map(item=>{
-				item.name = '待'+this.text
-				item.name = '待'+this.text
-			})
+			// this.headtabs.map(item=>{
+			// 	item.name = '待'+this.text
+			// 	item.name = '待'+this.text
+			// })
 			this.headtabs[0].name = '待'+this.text
 			this.headtabs[0].subname = '待'+this.text
 			this.headtabs[1].name = '已'+this.text
 			this.headtabs[1].name = '已'+this.text
 			
 			this.date = option.date;
-			let type = 1
-			if(option.activetab=='已'+this.text) {
-				type = 2
-				this.activetab = '已'+this.text
-			} else {
-				type = 1
-			}
 			let params ={
 				date:option.date,
 				type
 			}
-			console.log(type)
-			this.type = type
-			
-			
 			this.ddbgdList(params)
+			console.log(this.text)
 
 		},
 		onResize() {
@@ -245,7 +275,31 @@
 			handletabschange(item) {
 				this.activetab = item.name;
 				this.subname = item.subname;
-				this.type = this.headtabs.find(key=>key.name==item.name).type
+				this.type = this.headtabs.find(key=>key.name==item.name).type;
+				console.log(this.type)
+				if(this.text == '审核') {
+					if(this.type==1) {
+						this.isdetails = false
+					} else {
+						this.isdetails = true
+					}
+					
+				}
+				if(this.text == '督办') {
+					if(this.type==2) {
+						this.isdetails = false
+					} else {
+						this.isdetails = true
+					}
+					
+				}
+				if(this.text == '办理') {
+					if(this.type==4) {
+						this.isdetails = false
+					} else {
+						this.isdetails = true
+					}
+				}
 				let params ={
 					date:this.date,
 					type:this.headtabs.find(key=>key.name==item.name).type

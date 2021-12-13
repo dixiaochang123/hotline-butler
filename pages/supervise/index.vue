@@ -22,16 +22,15 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="data-type-content-list">
-							<view class="pmzd-font content-list-3">{{dbtotal.dbbsl+dbtotal.dbzsl+dbtotal.dbyjssl}}</view>
+							<view class="pmzd-font content-list-3">{{dbtotal.dbbsl+dbtotal.dbzsl+dbtotal.dbyjssl}}
+							</view>
 							<view class="content-list-2"></view>
 							<view class="content-list-1">{{text}}总量(件)</view>
 						</view>
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4" @click="gotosuperviselist">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/ddb.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/ddb.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbbsl}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">待{{text}}</view>
@@ -39,9 +38,7 @@
 							</view>
 							<view class="data-type-content-list-4" @click="gotosuperviselist1">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/tdl.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/tdl.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbzsl}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">{{text}}中</view>
@@ -49,9 +46,7 @@
 							</view>
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/qsl.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/qsl.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
 									<view class="">{{dbtotal.dbyjssl}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">已{{text}}</view>
@@ -65,7 +60,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+							<qiun-data-charts type="line" :opts="columnOpts1" :ontouch="true"
 								:chartData="chartsDataLine2" />
 						</view>
 					</view>
@@ -78,9 +73,8 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="columnOpts"
-								:ontouch="true" :chartData="chartsDataColumn5" :loadingType="1"/>
+							<qiun-data-charts type="column" :opts="columnOpts" :ontouch="true"
+								:chartData="chartsDataColumn5" :loadingType="1" />
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -89,7 +83,7 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+							<qiun-data-charts type="line" :opts="columnOpts1" :ontouch="true"
 								:chartData="chartsDataLine3" />
 						</view>
 					</view>
@@ -118,31 +112,25 @@
 						<view class="data-type-content-list-3">
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/ddb.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/ddb.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">{{TH}} <text class="t-1"> 件</text></view>
+									<view style="white-space: nowrap;" class="">{{TH}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">退单率</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/tdl.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/tdl.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">{{QSLV}} <text class="t-1"></text></view>
+									<view style="white-space: nowrap;" class="">{{QSLV}} <text class="t-1"></text></view>
 									<view class="t-2" style="font-family: PingFang;">签收率</view>
 								</view>
 							</view>
 							<view class="data-type-content-list-4">
 								<image style="width: 100rpx; height: 100rpx; background-color: #eeeeee;"
-									mode="aspectFit"
-									src="/static/image/qsl.png"
-									@error="imageError"></image>
+									mode="aspectFit" src="/static/image/qsl.png" @error="imageError"></image>
 								<view class="data-type-content-list-5">
-									<view class="">{{DC}} <text class="t-1"> 件</text></view>
+									<view style="white-space: nowrap;" class="">{{DC}} <text class="t-1"> 件</text></view>
 									<view class="t-2" style="font-family: PingFang;">多次流转</view>
 								</view>
 							</view>
@@ -157,9 +145,7 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="arcbar"
-									:opts="opts"
-									:chartData="chartsDataArcbar1" />
+								<qiun-data-charts type="arcbar" :opts="opts" :chartData="chartsDataArcbar1" />
 							</view>
 						</view>
 						<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -168,9 +154,7 @@
 							</view>
 							<view class="" style="height: 80rpx;"></view>
 							<view class="charts-box" style="height: 80%;">
-								<qiun-data-charts type="arcbar"
-									:opts="opts1"
-									:chartData="chartsDataArcbar2" />
+								<qiun-data-charts type="arcbar" :opts="opts1" :chartData="chartsDataArcbar2" />
 							</view>
 						</view>
 					</view>
@@ -199,8 +183,8 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise(item)">督办/催办</button>
+										<button style="white-space: nowrap;" class="uni-button" size="mini"
+											type="primary" @click="handleClickSupervise(item)">督办/催办</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -229,8 +213,8 @@
 								</uni-td>
 								<uni-td align="center">
 									<view class="uni-group">
-										<button style="white-space: nowrap;" class="uni-button" size="mini" type="primary"
-											@click="handleClickSupervise1(item)">督办/催办</button>
+										<button style="white-space: nowrap;" class="uni-button" size="mini"
+											type="primary" @click="handleClickSupervise1(item)">督办/催办</button>
 									</view>
 								</uni-td>
 							</uni-tr>
@@ -260,7 +244,7 @@
 										<image class="images" src="/static/image/lkgl.png" mode="aspectFit"></image>
 									</view>
 									<view class="content-list-2">
-										<view class="content-list-2-1">{{item.OPTNAME}}</view>
+										<view style="white-space: nowrap;" class="content-list-2-1">{{item.OPTNAME}}</view>
 										<view class="content-list-2-2">{{item.rate}}%</view>
 									</view>
 								</view>
@@ -277,9 +261,9 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="line" :opts="{legend:{show:false},extra:{line:{type:'curve'}}}"
+							<qiun-data-charts type="line" :opts="columnOpts1" :ontouch="true"
 								:chartData="chartsDataLine2" />
-							
+
 						</view>
 					</view>
 					<view class="box-style chats" style="width: 50%;height: 100%;">
@@ -288,9 +272,8 @@
 						</view>
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
-							<qiun-data-charts type="column"
-								:opts="columnOpts"
-								:ontouch="true" :chartData="chartsDataColumn6" :loadingType="1" />
+							<qiun-data-charts type="column" :opts="columnOpts" :ontouch="true"
+								:chartData="chartsDataColumn6" :loadingType="1" />
 						</view>
 					</view>
 
@@ -360,13 +343,13 @@
 		},
 		data() {
 			return {
-				text:'督办',
-				WTTOTAL:0,
-				TH:0,
-				DC:0,
-				QSLV:0,
-				message:'',
-				BUSI_NUMBER:'',//工单编号
+				text: '督办',
+				WTTOTAL: 0,
+				TH: 0,
+				DC: 0,
+				QSLV: 0,
+				message: '',
+				BUSI_NUMBER: '', //工单编号
 				isLandScape: true,
 				active: '督办', //左侧tabs
 				dbtotal: {
@@ -374,9 +357,9 @@
 					ENDTOTAL: "",
 					RQ: "",
 					TOTAL: "",
-					dbbsl:0,
-					dbzsl:0,
-					dbyjssl:0,
+					dbbsl: 0,
+					dbzsl: 0,
+					dbyjssl: 0,
 				},
 				array: ['中国', '美国', '巴西', '日本'],
 				classes: '2011',
@@ -385,7 +368,7 @@
 					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 11,
+				yearsIndex2: 9,
 				date: '',
 				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
 				activetab: '当月',
@@ -457,7 +440,7 @@
 				},
 				opts: {
 					title: {
-						name:'0',
+						name: '0',
 						color: '#2fc25b',
 						fontSize: 35
 					},
@@ -473,7 +456,7 @@
 				},
 				opts1: {
 					title: {
-						name:'0',
+						name: '0',
 						color: '#2fc25b',
 						fontSize: 35
 					},
@@ -498,7 +481,9 @@
 							align: "center"
 						}
 					},
-					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C','#672099', '#F2984E', '#0263FF'],
+					color: ['#E9A700', '#E95F5E', '#5E63FF', '#5EC4FF', '#EA7FE3', '#9B8EFF', '#6CDC2C', '#672099',
+						'#F2984E', '#0263FF'
+					],
 					legend: {
 						show: false
 					},
@@ -509,8 +494,10 @@
 					"animation": true,
 					"timing": "easeOut",
 					"duration": 1000,
-					"color": ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
-					"padding": [5,5,5,5],
+					"color": ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					"padding": [5, 5, 5, 5],
 					"rotate": false,
 					"errorReload": false,
 					"fontSize": 13,
@@ -538,18 +525,18 @@
 						"itemGap": 10
 					},
 					"title": {
-					    "name": "诉求问题",
-					    "fontSize": 15,
-					    "color": "#666666",
-					    "offsetX": 0,
-					    "offsetY": 0
+						"name": "诉求问题",
+						"fontSize": 15,
+						"color": "#666666",
+						"offsetX": 0,
+						"offsetY": 0
 					},
 					"subtitle": {
-					    "name": "",
-					    "fontSize": 25,
-					    "color": "#7cb5ec",
-					    "offsetX": 0,
-					    "offsetY": 0
+						"name": "",
+						"fontSize": 25,
+						"color": "#7cb5ec",
+						"offsetX": 0,
+						"offsetY": 0
 					},
 					"extra": {
 						"ring": {
@@ -589,17 +576,77 @@
 						}
 					}
 				},
+				// {legend:{show:false},extra:{line:{type:'curve'}}},
+				columnOpts1: {
+					padding: [15, 0, 10, 0],
+					legend: {
+						show: false
+					},
+					enableScroll: true,
+					xAxis: {
+						fontSize: 15,
+						rotateLabel: true,
+						itemCount: 5,
+						disabled: false,
+						// scrollShow: true,
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+					},
+					yAxis: {
+						disabled: false,
+						disableGrid: false,
+						splitNumber: 5,
+						gridType: "dash",
+						dashLength: 5,
+						gridColor: "#CCCCCC",
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: "#E1E1E1",
+								type: "dashed"
+							}
+						}
+					},
+					extra: {
+						// column: {
+						// 	width: 20,
+						// 	seriesGap: 5,
+						// 	linearOpacity: 0.5,
+						// 	barBorderCircle: true,
+						// 	customColor: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+						// }
+						line: {
+							type: 'curve'
+						}
+					}
+				},
 				columnOpts: {
-					padding:[15,0,10,0],
+					padding: [15, 0, 10, 0],
 					legend: {
 						show: false
 					},
 					color: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
-					enableScroll:true,
+					enableScroll: true,
 					xAxis: {
-						fontSize:10,
-						rotateLabel:true,
-						itemCount:5,
+						fontSize: 15,
+						rotateLabel: true,
+						itemCount: 5,
 						disabled: false,
 						axisLine: {
 							show: false
@@ -637,7 +684,7 @@
 					},
 					extra: {
 						column: {
-							width:20,
+							width: 20,
 							seriesGap: 5,
 							linearOpacity: 0.5,
 							barBorderCircle: true,
@@ -645,7 +692,7 @@
 						}
 					}
 				},
-					
+
 			}
 		},
 		onReady() {
@@ -688,19 +735,19 @@
 			this.zysjbm(date)
 			this.zysjbm(date)
 			// 待督办数量
-			this.ddbgdType(date)
 			this.wtgdzl(date)
 			let role = uni.getStorageSync('role')
-			console.log('role',role)
-			if(role==='区领导账号') {
+			console.log('role', role)
+			if (role === '区领导账号') {
 				this.text = '督办'
 			};
-			if(role==='区中心账号') {
+			if (role === '区中心账号') {
 				this.text = '审核'
 			};
-			if(role==='部门账号') {
+			if (role === '部门账号') {
 				this.text = '办理'
 			}
+			this.ddbgdType(date)
 		},
 		methods: {
 			wtgdzl(date) {
@@ -717,21 +764,57 @@
 				}).catch(error => console.log(error));
 			},
 			ddbgdType(date) {
-				ddbgdType(date,1).then(res => {
-					let {
-						code,
-						data
-					} = res.data;
-					this.dbtotal.dbbsl = data
-				}).catch(error => console.log(error));
-				ddbgdType(date,2).then(res => {
-					let {
-						code,
-						data
-					} = res.data;
-					this.dbtotal.dbzsl = data
-				}).catch(error => console.log(error));
-				ddbgdType(date,3).then(res => {
+				if (this.text == '督办') {
+
+					ddbgdType(date, 2).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbbsl = data
+					}).catch(error => console.log(error));
+					ddbgdType(date, 4).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbzsl = data
+					}).catch(error => console.log(error));
+				}
+				if (this.text == '审核') {
+					ddbgdType(date, 1).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbbsl = data
+					}).catch(error => console.log(error));
+					ddbgdType(date, 2).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbzsl = data
+					}).catch(error => console.log(error));
+
+				}
+				if (this.text == '办理') {
+					ddbgdType(date, 4).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbbsl = data
+					}).catch(error => console.log(error));
+					ddbgdType(date, 5).then(res => {
+						let {
+							code,
+							data
+						} = res.data;
+						this.dbtotal.dbzsl = data
+					}).catch(error => console.log(error));
+				}
+				ddbgdType(date, 3).then(res => {
 					let {
 						code,
 						data
@@ -746,7 +829,7 @@
 			},
 			gotosuperviselist1() {
 				uni.navigateTo({
-					url: `/pages/supervise/superviselist?date=${this.date}&activetab=已督办` //跳转地址
+					url: `/pages/supervise/superviselist?date=${this.date}&activetab=已${this.text}` //跳转地址
 				})
 			},
 			yearChange: function(e) {
@@ -801,8 +884,8 @@
 					})
 					this.chartsDataColumn5 = chartsDataColumn5
 					console.log(this.chartsDataColumn5)
-					
-					
+
+
 				}).catch(error => console.log(error))
 			},
 			dbdc2jgk(date) {
@@ -820,8 +903,8 @@
 						}
 					})
 					this.chartsDataLine2 = chartsDataLine2
-					
-					
+
+
 				}).catch(error => console.log(error))
 
 			},
@@ -860,22 +943,22 @@
 						data
 					} = res.data;
 					let total = 0
-					data.map(item=>{
-						total+=parseFloat(item.TOTAL)
+					data.map(item => {
+						total += parseFloat(item.TOTAL)
 					})
-					data.map(item=>{
-						item['rate'] = (parseFloat(item.TOTAL)/total).toFixed(3)
-						
+					data.map(item => {
+						item['rate'] = (parseFloat(item.TOTAL) / total).toFixed(3)
+
 					})
 					this.detaildata = data;
 					let chartsDataPie2 = JSON.parse(JSON.stringify(demodata.PieA));
-					chartsDataPie2.series[0].data = data.map(item=>{
+					chartsDataPie2.series[0].data = data.map(item => {
 						return {
-							name:item.OPTNAME,
-							value:parseFloat(item.TOTAL)
+							name: item.OPTNAME,
+							value: parseFloat(item.TOTAL)
 						}
 					})
-					
+
 					this.chartsDataPie2 = chartsDataPie2
 				}).catch(error => console.log(error))
 
@@ -909,7 +992,7 @@
 						data
 					} = res.data;
 					console.log(data)
-					
+
 				}).catch(error => console.log(error))
 			},
 			zysjbm(date) {
@@ -933,7 +1016,7 @@
 						}
 					})
 					this.chartsDataColumn6 = chartsDataColumn5
-					
+
 				}).catch(error => console.log(error))
 			},
 			close() {
@@ -941,35 +1024,35 @@
 			},
 			sendinfo() {
 				let params = {
-					id:this.BUSI_NUMBER,
-					context:this.contentText
+					id: this.BUSI_NUMBER,
+					context: this.contentText
 				}
-				addNetWorkOrder(params).then(res=>{
+				addNetWorkOrder(params).then(res => {
 					let {
 						code,
 						data
 					} = res.data;
-					console.log(code,data,data.operMsg)
-					if(data.success=="true") {
+					console.log(code, data, data.operMsg)
+					if (data.success == "true") {
 						this.$refs.popup.close();
 						this.$refs.popup1.open('center');
 					} else {
 						this.message = data.operMsg
 						this.$refs.popup.close();
 						uni.showModal({
-						    title: '提示',
-							showCancel:false,
-						    content: data.operMsg,
-						    success: function (res) {
-						        if (res.confirm) {
-						            console.log('用户点击确定');
-						        } else if (res.cancel) {
-						            console.log('用户点击取消');
-						        }
-						    }
+							title: '提示',
+							showCancel: false,
+							content: data.operMsg,
+							success: function(res) {
+								if (res.confirm) {
+									console.log('用户点击确定');
+								} else if (res.cancel) {
+									console.log('用户点击取消');
+								}
+							}
 						});
 					}
-				}).catch(error=>console.log(error))
+				}).catch(error => console.log(error))
 			},
 			closeinfo() {
 				this.$refs.popup1.close();
@@ -1024,7 +1107,7 @@
 			handleClickSupervise1(item) {
 				console.log(item)
 				uni.navigateTo({
-					url: '/pages/supervise/submit?BUSI_NUMBER='+item.BUSI_NUMBER //跳转地址
+					url: '/pages/supervise/submit?BUSI_NUMBER=' + item.BUSI_NUMBER //跳转地址
 				})
 
 			},
@@ -1179,6 +1262,7 @@
 		height: rpx2multiple(658);
 		display: flex;
 		justify-content: space-between;
+
 		&.data-chart1 {
 			margin-top: 0;
 		}
@@ -1356,14 +1440,14 @@
 				color: #395176;
 
 				.content-list-1 {
-					width: rpx2multiple(68);
-					height: rpx2multiple(68);
+					width: rpx2multiple(100);
+					height: rpx2multiple(100);
 
 					// background-color: #E9A700;
 					.images,
 					img {
-						width: rpx2multiple(68);
-						height: rpx2multiple(68);
+						width: rpx2multiple(100);
+						height: rpx2multiple(100);
 					}
 				}
 
@@ -1372,11 +1456,11 @@
 					justify-content: space-between;
 					flex-direction: column;
 					font-family: PangMenZhengDao;
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(45);
 					padding-left: rpx2multiple(20);
 
 					.content-list-2-2 {
-						font-size: rpx2multiple(36);
+						font-size: rpx2multiple(55);
 					}
 				}
 
@@ -1474,9 +1558,11 @@
 			// height: 470rpx;
 			height: auto;
 			flex-wrap: wrap;
+
 			.charts-box {
 				width: 100%;
 			}
+
 			.chart-pie-legend {
 				width: 100%;
 			}
@@ -1520,6 +1606,12 @@
 
 		.chart-pie .chart-pie-legend .data-type-content-list {
 			width: 50%;
+		}
+		
+		.data-type-content-list-3 {
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap !important;
 		}
 
 
