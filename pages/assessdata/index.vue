@@ -661,7 +661,7 @@
 					});
 				} else if (pages.length === 1) {
 					uni.switchTab({
-						url: '/pages/login/index',
+						url: '/pages/index/index',
 					})
 				} else {
 					uni.navigateBack({

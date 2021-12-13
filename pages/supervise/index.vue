@@ -1607,6 +1607,9 @@
 		.chart-pie .chart-pie-legend .data-type-content-list {
 			width: 50%;
 		}
+		.data-chart .datas .data-type-content-list-3 .data-type-content-list-4 {
+			width: auto;
+		}
 		
 		.data-type-content-list-3 {
 			display: flex;

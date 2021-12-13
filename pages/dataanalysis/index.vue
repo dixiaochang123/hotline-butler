@@ -204,6 +204,7 @@
 		onLoad() {
 			this.selectedIndexs = []
 			this.getData(1)
+			this.reportcase(this.params[0])
 		},
 		onResize() {
 			let _this = this;
@@ -222,7 +223,7 @@
 			})
 		},
 		mounted() {
-			this.reportcase(this.params[0])
+			// this.reportcase(this.params[0])
 		},
 		methods: {
 			yearChange: function(e) {
@@ -263,6 +264,10 @@
 				}, 1500);
 			},
 			clickLeft() {
+				// uni.switchTab({
+				// 	url: '/pages/index/index',
+				// })
+				// return;
 				const pages = getCurrentPages();
 				if (pages.length === 2) {
 					uni.navigateBack({

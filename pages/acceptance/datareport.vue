@@ -23,7 +23,8 @@
 					</view>
 					<view class="first-t">
 						<view class="f-t-1">
-							武进区区域社会治理现代化指挥中心积极发挥12345政府便民热线的载体和平台作用，紧紧围绕区委区政府中心工作，立足服务群众、 方便群众、推动机关作风转变，在办好民生诉求、深化诉接速办、提升服务质效上呈现了良好发展态势。现将有关运行情况汇报如下:
+							武进区区域社会治理现代化指挥中心积极发挥12345政府便民热线的载体和平台作用，紧紧围绕区委区政府中心工作，立足服务群众、
+							方便群众、推动机关作风转变，在办好民生诉求、深化诉接速办、提升服务质效上呈现了良好发展态势。现将有关运行情况汇报如下:
 						</view>
 						<view class="f-t-2 t-1-app">
 							一、总体情况
@@ -696,20 +697,40 @@
 					.length - 2)) : 0
 			},
 			clickLeft() {
-				const pages = getCurrentPages();
-				if (pages.length === 2) {
 					uni.navigateBack({
 						delta: 1
 					});
-				} else if (pages.length === 1) {
-					uni.switchTab({
-						url: '/pages/login/index',
-					})
-				} else {
-					uni.navigateBack({
-						delta: 1
-					});
-				}
+				// let pages = getCurrentPages(); // 当前页面
+				// let beforePage = pages[pages.length - 2]; // 上一页
+				// uni.navigateBack({
+				//     success: function() {
+				//         beforePage.onLoad(); // 执行上一页的onLoad方法
+				//     }
+				// });
+				// return
+				// uni.navigateBack({
+				// 	delta: 1,
+				// 	success: function() {
+				// 		let page = getCurrentPages().pop(); //跳转页面成功之后
+				// 		if (!page) return;
+				// 		page.onLoad(); //如果页面存在，则重新刷新页面
+				// 	}
+				// });
+
+				// const pages = getCurrentPages();
+				// if (pages.length === 2) {
+				// 	uni.navigateBack({
+				// 		delta: 1
+				// 	});
+				// } else if (pages.length === 1) {
+				// 	uni.switchTab({
+				// 		url: '/pages/login/index',
+				// 	})
+				// } else {
+				// 	uni.navigateBack({
+				// 		delta: 1
+				// 	});
+				// }
 			},
 			getServerData() {
 				let windowWidth = 600
@@ -1064,6 +1085,10 @@
 		}
 	}
 
+	.app-nav {
+		display: none;
+	}
+
 	@media (max-width:500px) {
 		/deep/ .uni-nav-bar-text {
 			font-family: PingFang !important;
@@ -1072,6 +1097,7 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 		}
+
 		.box-main-parent {
 			padding: 0;
 		}
