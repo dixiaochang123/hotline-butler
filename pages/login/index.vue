@@ -65,8 +65,8 @@
 					password: '1234',
 					
 					// liuzhifeng czzw99999 领导
-					// username: 'liuzhifeng',
-					// password: '1234',
+					username: 'liuzhifeng',
+					password: '1234',
 					
 					// wjqzfb001 czzw99999 部门
 					// username: 'wjqzfb001',
@@ -211,6 +211,7 @@
 							uni.setStorageSync('role', data.role)
 							uni.setStorageSync('token', data.token.token)
 							this.setToken(data.token.token)
+							console.log('手机端接口')
 							uni.navigateTo({
 								url: '/pages/index/index' //跳转地址
 							})

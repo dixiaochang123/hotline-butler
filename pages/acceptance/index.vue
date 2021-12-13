@@ -1655,5 +1655,9 @@
 			position: absolute !important;
 			right: rpx2multiple(80) !important;
 		}
+		.acceptance-data-show .acceptance-data-show-left .data-type-content-list .content-list-1[data-v-3c4f2293] {
+		    font-size: 22rpx;
+		    font-weight: 500;
+		}
 	}
 </style>
