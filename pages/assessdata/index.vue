@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" title="●武进热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="考核数据" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -96,7 +96,7 @@
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="column"
 								:opts="columnOpts"
-								:chartData="chartsDataColumn5" :loadingType="1" />
+								:chartData="chartsDataColumn5" :loadingType="1"  />
 						</view>
 					</view>
 
@@ -315,6 +315,7 @@
 				loading: false,
 
 				chartsDataColumn5: {},
+				// :errorShow="errorShow5" :errorMessage="errorMessage5"
 				chartsDataColumn6: {},
 				chartsDataPie2: {},
 				ringOpts: {},
@@ -473,13 +474,13 @@
 					} = res.data
 					this.dnsltrenddata = this.sort_pro(data)[0]
 					let chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Column));
-					chartsDataArea1.categories = this.dnsltrenddata.map(item => item.RQ);
-					chartsDataArea1.series[0].data = this.dnsltrenddata.map((item, index) => {
+					chartsDataArea1.categories = !!this.dnsltrenddata ? this.dnsltrenddata.map(item => item.RQ):[];
+					chartsDataArea1.series[0].data = !!this.dnsltrenddata ? this.dnsltrenddata.map((item, index) => {
 						return {
 							name: item.RQ,
 							value: item.XYRATE,
 						}
-					})
+					}):[]
 					this.chartsDataArea1 = chartsDataArea1
 					console.log( this.dnsltrenddata)
 				}).catch(error => console.log(error));
@@ -512,13 +513,13 @@
 					this.dnydkhtrenddata = this.sort_pro(data)[0]
 					// let chartsDataArea1 = JSON.parse(JSON.stringify(demodata.Column));
 					let chartsDataLine2 = JSON.parse(JSON.stringify(demodata.Column))
-					chartsDataLine2.categories = this.dnydkhtrenddata.map(item => item.RQ);
-					chartsDataLine2.series[0].data = this.dnydkhtrenddata.map((item, index) => {
+					chartsDataLine2.categories = !!this.dnydkhtrenddata?this.dnydkhtrenddata.map(item => item.RQ):[];
+					chartsDataLine2.series[0].data = !!this.dnydkhtrenddata?this.dnydkhtrenddata.map((item, index) => {
 						return {
 							name: item.RQ,
 							value: item.RN,
 						}
-					})
+					}):[]
 					this.chartsDataLine2 = chartsDataLine2
 					console.log( this.dnydkhtrenddata)
 				}).catch(error => console.log(error))
@@ -552,8 +553,8 @@
 					// console.log(data)
 					this.dnzhpftrenddata = this.sort_pro(data)[0]
 					let chartsDataColumn5 = JSON.parse(JSON.stringify(demodata.Column));
-					chartsDataColumn5.categories = this.dnzhpftrenddata.map(item => item.RQ);
-					chartsDataColumn5.series[0].data = this.dnzhpftrenddata.map((item, index) => {
+					chartsDataColumn5.categories = !!this.dnzhpftrenddata? this.dnzhpftrenddata.map(item => item.RQ):[];
+					chartsDataColumn5.series[0].data = !!this.dnzhpftrenddata? this.dnzhpftrenddata.map((item, index) => {
 						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
 						return {
 							name: item.RQ,
@@ -563,7 +564,8 @@
 								borderRadius: [15, 15, 0, 0]
 							}
 						}
-					})
+					}):[];
+					console.log(this.errorShow5)
 					this.chartsDataColumn5 = chartsDataColumn5
 				}).catch(error => console.log(error))
 			},
@@ -576,8 +578,8 @@
 					console.log(3333,data)
 					this.zjddnzhpftrenddata = this.sort_pro(data)[0];
 					let chartsDataColumn6 = JSON.parse(JSON.stringify(demodata.Column));
-					chartsDataColumn6.categories = this.zjddnzhpftrenddata.map(item => item.RQ);
-					chartsDataColumn6.series[0].data = this.zjddnzhpftrenddata.map((item, index) => {
+					chartsDataColumn6.categories = !!this.zjddnzhpftrenddata?this.zjddnzhpftrenddata.map(item => item.RQ):[];
+					chartsDataColumn6.series[0].data = !!this.zjddnzhpftrenddata?this.zjddnzhpftrenddata.map((item, index) => {
 						var colorList = ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'];
 						return {
 							name: item.RQ,
@@ -587,7 +589,7 @@
 								borderRadius: [15, 15, 0, 0]
 							}
 						}
-					})
+					}):[]
 					this.chartsDataColumn6 = chartsDataColumn6
 				}).catch(error => console.log(error))
 			},
@@ -597,7 +599,7 @@
 						code,
 						data
 					} = res.data
-					this.scoredata = this.sort_pro(data)[0].slice(0,3)
+					this.scoredata = !!data?this.sort_pro(data)[0].slice(0,3):[]
 				}).catch(error => console.log(error));
 			},
 			zjdscore(date) {

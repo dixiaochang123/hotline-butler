@@ -69,8 +69,8 @@
 					// password: '1234',
 					
 					// wjqzfb001 czzw99999 部门
-					username: 'wjqzfb001',
-					password: '1234',
+					// username: 'wjqzfb001',
+					// password: '1234',
 					
 					// username: '',
 					// password: '',

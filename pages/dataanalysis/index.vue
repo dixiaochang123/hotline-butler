@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<uni-nav-bar class="nav" left-icon="back" title="●热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
+		<uni-nav-bar class="nav" title="●武进热线管家●" @clickLeft="clickLeft"></uni-nav-bar>
 		<uni-nav-bar class="app-nav" left-icon="back" title="数据分析" @clickLeft="clickLeft"></uni-nav-bar>
 		<view class="bg nav"></view>
 		<view class="bg bg1 nav"></view>
@@ -85,7 +85,7 @@
 									<view class="content-list-2">
 										<view class="content-list-2-1" style="">{{item.name}}
 										</view>
-										<view class="content-list-2-2">{{item.value}}%</view>
+										<view class="content-list-2-2">{{item.value}}</view>
 									</view>
 								</view>
 						
@@ -101,7 +101,7 @@
 									<view class="content-list-2">
 										<view class="content-list-2-1" style="">{{item.name}}
 										</view>
-										<view class="content-list-2-2">{{item.value}}%</view>
+										<view class="content-list-2-2">{{item.value}}</view>
 									</view>
 								</view>
 						
@@ -632,12 +632,12 @@
 					justify-content: space-between;
 					flex-direction: column;
 					font-family: PangMenZhengDao;
-					font-size: rpx2multiple(24);
+					font-size: rpx2multiple(45);
 					padding-left: rpx2multiple(8);
 					color: #000;
 	
 					.content-list-2-2 {
-						font-size: rpx2multiple(36);
+						font-size: rpx2multiple(50);
 					}
 				}
 	
