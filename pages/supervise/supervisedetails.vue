@@ -12,8 +12,8 @@
 			<view class="box-main">
 				<view class="box-style">
 					<view class="box-style-head">
-						<view v-if="!issave" class="">待{{text}}工单详情</view>
-						<view v-if="!!issave" class="">已{{text}}工单详情</view>
+						<view v-if="!!issave" class="">待{{text}}工单详情</view>
+						<view v-if="!issave" class="">已{{text}}工单详情</view>
 					</view>
 					<view class="uni-container">
 						<uni-list>

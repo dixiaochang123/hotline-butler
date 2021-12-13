@@ -824,7 +824,7 @@
 			},
 			gotosuperviselist() {
 				uni.navigateTo({
-					url: `/pages/supervise/superviselist?date=${this.date}` //跳转地址
+					url: `/pages/supervise/superviselist?date=${this.date}&activetab=待${this.text}` //跳转地址
 				})
 			},
 			gotosuperviselist1() {
