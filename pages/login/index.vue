@@ -61,8 +61,8 @@
 				// 表单数据
 				formData: {
 					// 13461309556 1234 区中心
-					// username: '13461309556',
-					// password: '1234',
+					username: '13461309556',
+					password: '1234',
 					
 					// liuzhifeng czzw99999 领导
 					// username: 'liuzhifeng',

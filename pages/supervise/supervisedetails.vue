@@ -30,7 +30,7 @@
 							<view v-if="!!item.i" class="box-style-head">
 								<view class="">第{{indexs[item.i]}}次流转</view>
 							</view>
-							<uni-list-item class="lzbm" title="流转部门" :rightText="item.deptName"></uni-list-item>
+							<uni-list-item :class="'lzbm'+item.deptFlag" title="流转部门" :rightText="item.deptName"></uni-list-item>
 							<uni-list-item title="派发时间" :rightText="item.paiFaShiJian"></uni-list-item>
 							<!-- <uni-list-item title="处理意见" :note="item.chuLiYiJian"></uni-list-item> -->
 							<uni-list-item title="处理意见" :rightText="item.chuLiShiJian"></uni-list-item>
@@ -774,5 +774,14 @@
 	}
 	/deep/ .uni-data-checklist .checklist-group .checklist-box .checklist-content .checklist-text {
 		font-size: 38rpx !important;
+	}
+	/deep/ .lzbm1 .uni-list-item__extra-text {
+	    color: #000 !important;
+	}
+	/deep/ .lzbm2 .uni-list-item__extra-text {
+	    color: red !important;
+	}
+	/deep/ .lzbm3 .uni-list-item__extra-text {
+	    color: #ffaf13 !important;
 	}
 </style>
