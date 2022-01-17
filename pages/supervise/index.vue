@@ -364,13 +364,13 @@
 				array: ['中国', '美国', '巴西', '日本'],
 				classes: '2011',
 				years: [
-					['2021', '2020'],
+					['2022','2021', '2020'],
 					["01", '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 9,
+				yearsIndex2: 0,
 				date: '',
-				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '当月', '11月', '12月'],
+				headtabs: ['当月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '11月', '11月', '12月'],
 				activetab: '当月',
 				canvas: '',
 				contentText: '',
@@ -721,6 +721,14 @@
 			})
 		},
 		mounted() {
+			let date1 = new Date();
+			let yearsIndex2 = date1.getMonth(); //获取当前月份(0-11,0代表1月)
+			console.log("================")
+			console.log("获取当前月份索引："+yearsIndex2)
+			console.log("================")
+			this.yearsIndex2 = yearsIndex2;
+			console.log("获取当前月份索引1："+this.yearsIndex2)
+			
 			let date = this.years[0][this.yearsIndex1] + "-" + this.years[1][this.yearsIndex2];
 			this.date = date;
 			console.log(date)

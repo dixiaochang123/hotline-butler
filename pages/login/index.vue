@@ -72,8 +72,8 @@
 					// username: 'wjqzfb001',
 					// password: '1234',
 					
-					username: '',
-					password: '',
+					// username: '',
+					// password: '',
 
 				},
 				rules: {

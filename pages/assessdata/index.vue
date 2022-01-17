@@ -288,17 +288,20 @@
 				}, {
 					text: '2021',
 					value: '2021'
+				}, {
+					text: '2022',
+					value: '2022'
 				}],
 				yearsapp:[
-					['2021'],
+					['2022'],
 					['01', '02', '03', '04', '05','06','07','08','09','10','11','12']
 				],
 				yearsIndex1: 0,
-				yearsIndex2: 10,
+				yearsIndex2: 0,
 				classesapp: '',
-				classes: '2021',
-				classes1: '2021',
-				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '当月'],
+				classes: '2022',
+				classes1: '2022',
+				headtabs: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 				headtabs1: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
 				activetab: '当月',
 				canvas: '',
@@ -414,8 +417,20 @@
 			})
 		},
 		mounted() {
-			let index = this.headtabs.indexOf(this.activetab);
-			let date = this.classes + '-' + this.headtabs1[index]
+			let date1 = new Date();
+			let yearsIndex2 = date1.getMonth(); //获取当前月份(0-11,0代表1月)
+			console.log("================")
+			console.log("获取当前月份索引："+yearsIndex2)
+			console.log("================")
+			this.yearsIndex2 = yearsIndex2;
+			console.log("获取当前月份索引1："+this.yearsIndex2)
+			
+			this.headtabs[this.yearsIndex2] = "当月"
+			
+			
+			
+			// let index = this.headtabs.indexOf(this.activetab);
+			let date = this.classes + '-' + this.headtabs1[this.yearsIndex2]
 			this.qjbm(date)
 			this.score(date)
 			this.dnzhpftrend('2021')
