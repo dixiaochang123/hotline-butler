@@ -100,7 +100,7 @@
 										<view class="content-list-2">
 											<view class="content-list-2-1" style="white-space: nowrap;">{{item.name}}
 											</view>
-											<view class="content-list-2-2">{{item.value}}%</view>
+											<view class="content-list-2-2">{{item.value}}</view>
 										</view>
 									</view>
 
@@ -149,7 +149,7 @@
 									</view>
 									<view class="content-list-2">
 										<view style="white-space: nowrap;" class="content-list-2-1">{{item.name}}</view>
-										<view class="content-list-2-2">{{item.value}}%</view>
+										<view class="content-list-2-2">{{item.value}}</view>
 									</view>
 								</view>
 

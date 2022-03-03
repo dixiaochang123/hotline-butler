@@ -986,8 +986,8 @@
 						chartsDataArcbar2.series[0].data = data[0].HBRATE
 						this.chartsDataArcbar1 = chartsDataArcbar1;
 						this.chartsDataArcbar2 = chartsDataArcbar2;
-						this.opts.title.name = data[0].TBRATE
-						this.opts1.title.name = data[0].HBRATE
+						this.opts.title.name = data[0].TBRATE+'%'
+						this.opts1.title.name = data[0].HBRATE+'%'
 					}
 					this.lzdtbhbdata = data[0];
 				}).catch(error => console.log(error))

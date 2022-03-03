@@ -220,7 +220,7 @@
 						<view class="" style="height: 80rpx;"></view>
 						<view class="charts-box" style="height: 80%;">
 							<qiun-data-charts type="area"
-								:opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{area:{type:'curve',addLine:true,gradient:true}}}"
+								:opts="columnOpts1"
 								:chartData="chartsDataArea2" />
 						</view>
 					</view>
@@ -238,7 +238,9 @@
 							<!-- <qiun-data-charts type="column"
 								:opts="{legend:{show:false},color:['#FAC858','#EE6666'],extra:{column:{linearType:'custom',seriesGap:5,linearOpacity:0.5,barBorderCircle:true,customColor:['#FA7D8D','#EB88E2']}}}"
 								:chartData="chartsDataColumn5" :loadingType="1" :echartsApp="true" /> -->
-							<qiun-data-charts type="line" :opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{line:{type:'curve'}}}"
+							<!-- <qiun-data-charts type="line" :opts="{padding:[15,0,10,0],xAxis: {rotateLabel:true,fontSize:10},legend:{show:false},extra:{line:{type:'curve'}}}"
+								:chartData="chartsDataLine3" /> -->
+							<qiun-data-charts type="line" :opts="columnOpts1"
 								:chartData="chartsDataLine3" />
 						</view>
 					</view>
@@ -335,6 +337,88 @@
 				dnydkhtrenddata:[],
 				zjddnydkhtrenddata:[],
 				zjddnsltrenddata:[],
+				columnOpts1: {
+					padding: [15, 0, 10, 0],
+					legend: {
+						show: false
+					},
+					enableScroll: true,
+					xAxis: {
+						fontSize: 15,
+						rotateLabel: true,
+						itemCount: 5,
+						disabled: false,
+						// scrollShow: true,
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+					},
+					yAxis: {
+						disabled: false,
+						disableGrid: false,
+						splitNumber: 5,
+						gridType: "dash",
+						dashLength: 2,
+						gridColor: "#CCCCCC",
+						max:15,
+						min:0,
+						data:[{
+							  "type": "value",
+							  "position": "left",
+							  "disabled": false,
+							  "axisLine": true,
+							  "axisLineColor": "#CCCCCC",
+							  "calibration": false,
+							  "fontColor": "#666666",
+							  "fontSize": 13,
+							  "textAlign": "right",
+							  "title": "",
+							  "titleFontSize": 13,
+							  "titleOffsetY": 0,
+							  "titleOffsetX": 0,
+							  "titleFontColor": "#666666",
+							  "min": 0,
+							  "max": 10,
+							  "tofix": null,
+							  "unit": "",
+							  "format": ""
+						}],
+						axisLine: {
+							show: false
+						},
+						axisLabel: {
+							show: true,
+							color: "#395176",
+							margin: 20,
+							fontSize: 16,
+						},
+						splitLine: {
+							show: true,
+							lineStyle: {
+								color: "#E1E1E1",
+								type: "dashed"
+							}
+						}
+					},
+					extra: {
+						// column: {
+						// 	width: 20,
+						// 	seriesGap: 5,
+						// 	linearOpacity: 0.5,
+						// 	barBorderCircle: true,
+						// 	customColor: ['#0073FA', '#6CD67F', '#FFE554', '#FF9054', '#9454FF'],
+						// }
+						line: {
+							type: 'curve'
+						}
+					}
+				},
 				columnOpts: {
 					padding:[15,0,10,0],
 					legend: {
